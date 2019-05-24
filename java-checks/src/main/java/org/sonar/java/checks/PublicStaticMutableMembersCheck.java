@@ -20,10 +20,11 @@
 package org.sonar.java.checks;
 
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,6 +71,10 @@ public class PublicStaticMutableMembersCheck extends IssuableSubscriptionVisitor
     .add(MethodMatcher.create().typeDefinition("java.util.Collections").name(NameCriteria.startsWith("singleton")).withAnyParameters())
     .add(MethodMatcher.create().typeDefinition("java.util.Collections").name(NameCriteria.startsWith("empty")).withAnyParameters())
     .add(MethodMatcher.create().typeDefinition(TypeCriteria.anyType()).name(NameCriteria.startsWith("unmodifiable")).withAnyParameters())
+       // Java 9
+    .add(MethodMatcher.create().typeDefinition("java.util.Set").name("of").withAnyParameters())
+    .add(MethodMatcher.create().typeDefinition("java.util.List").name("of").withAnyParameters())
+    .add(MethodMatcher.create().typeDefinition("java.util.Map").name("of").withAnyParameters())
       // apache commons 3.X
     .add(MethodMatcher.create().typeDefinition(TypeCriteria.subtypeOf("org.apache.commons.collections.map.UnmodifiableMap")).name(DECORATE).withAnyParameters())
     .add(MethodMatcher.create().typeDefinition(TypeCriteria.subtypeOf("org.apache.commons.collections.set.UnmodifiableSet")).name(DECORATE).withAnyParameters())
@@ -86,7 +91,7 @@ public class PublicStaticMutableMembersCheck extends IssuableSubscriptionVisitor
     "com.google.common.collect.ImmutableCollection"
   );
 
-  private static final Set<String> ACCEPTED_NEW_TYPES = ImmutableSet.of(
+  private static final Set<String> ACCEPTED_NEW_TYPES = Collections.singleton(
     "org.apache.commons.collections4.list.UnmodifiableList"
   );
 
@@ -95,7 +100,7 @@ public class PublicStaticMutableMembersCheck extends IssuableSubscriptionVisitor
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.INTERFACE, Tree.Kind.CLASS, Tree.Kind.ENUM, Tree.Kind.ASSIGNMENT);
+    return Arrays.asList(Tree.Kind.INTERFACE, Tree.Kind.CLASS, Tree.Kind.ENUM, Tree.Kind.ASSIGNMENT);
   }
 
   @Override

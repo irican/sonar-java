@@ -19,11 +19,11 @@
  */
 package org.sonar.java.model.expression;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
 import org.sonar.java.model.AbstractTypedTree;
 import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
@@ -43,13 +43,13 @@ public class IdentifierTreeImpl extends AbstractTypedTree implements IdentifierT
 
   public IdentifierTreeImpl(InternalSyntaxToken nameToken) {
     super(Kind.IDENTIFIER);
-    this.nameToken = Preconditions.checkNotNull(nameToken);
-    this.annotations = ImmutableList.<AnnotationTree>of();
+    this.nameToken = Objects.requireNonNull(nameToken);
+    this.annotations = Collections.emptyList();
   }
 
   @Override
   public void complete(List<AnnotationTree> annotations) {
-    this.annotations = Preconditions.checkNotNull(annotations);
+    this.annotations = Objects.requireNonNull(annotations);
   }
 
   @Override

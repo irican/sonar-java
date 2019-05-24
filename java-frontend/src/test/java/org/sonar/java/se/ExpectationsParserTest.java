@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableMap;
 import org.fest.assertions.Fail;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public class ExpectationsParserTest {
     assertThat(issue.get(START_COLUMN)).isEqualTo(3);
     assertThat(issue.get(END_COLUMN)).isEqualTo(7);
     assertThat(issue.get(END_LINE)).isEqualTo(Expectations.Parser.LineRef.fromString("4"));
-    assertThat(issue.get(SECONDARY_LOCATIONS)).isEqualTo(ImmutableList.of(5));
+    assertThat(issue.get(SECONDARY_LOCATIONS)).isEqualTo(Collections.singletonList(5));
     assertThat(issue.get(MESSAGE)).isNull();
   }
 
@@ -197,7 +198,7 @@ public class ExpectationsParserTest {
       MESSAGE, "issue msg",
       START_COLUMN, 1,
       END_COLUMN, 2,
-      FLOWS, ImmutableList.of()
+      FLOWS, Collections.emptyList()
     ));
     assertThat(iaf.flows).hasSize(1);
     Expectations.FlowComment flow = iaf.flows.iterator().next();

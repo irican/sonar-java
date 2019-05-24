@@ -20,8 +20,9 @@
 package org.sonar.java.checks;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
@@ -68,10 +69,10 @@ public class InvalidDateValuesCheck extends AbstractMethodDetection {
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.<Tree.Kind>builder().addAll(super.nodesToVisit())
-      .add(Tree.Kind.EQUAL_TO)
-      .add(Tree.Kind.NOT_EQUAL_TO)
-      .build();
+    ArrayList<Tree.Kind> kinds = new ArrayList<>(super.nodesToVisit());
+    kinds.add(Tree.Kind.EQUAL_TO);
+    kinds.add(Tree.Kind.NOT_EQUAL_TO);
+    return kinds;
   }
 
   @Override
@@ -135,15 +136,14 @@ public class InvalidDateValuesCheck extends AbstractMethodDetection {
 
   @Override
   protected List<MethodMatcher> getMethodInvocationMatchers() {
-    ImmutableList.Builder<MethodMatcher> builder = ImmutableList.builder();
+    ArrayList<MethodMatcher> matchers = new ArrayList<>();
     for (String dateSetMethod : DATE_SET_METHODS) {
-      builder.add(dateMethodInvocationMatcherSetter(JAVA_UTIL_DATE, dateSetMethod));
-      builder.add(dateMethodInvocationMatcherSetter(JAVA_SQL_DATE, dateSetMethod));
+      matchers.add(dateMethodInvocationMatcherSetter(JAVA_UTIL_DATE, dateSetMethod));
+      matchers.add(dateMethodInvocationMatcherSetter(JAVA_SQL_DATE, dateSetMethod));
     }
-    return builder
-      .add(MethodMatcher.create().typeDefinition(JAVA_UTIL_CALENDAR).name("set").addParameter("int").addParameter("int"))
-      .add(MethodMatcher.create().typeDefinition("java.util.GregorianCalendar").name("<init>").withAnyParameters())
-      .build();
+    matchers.add(MethodMatcher.create().typeDefinition(JAVA_UTIL_CALENDAR).name("set").addParameter("int").addParameter("int"));
+    matchers.add(MethodMatcher.create().typeDefinition("java.util.GregorianCalendar").name("<init>").withAnyParameters());
+    return matchers;
   }
 
   private static MethodMatcher dateMethodInvocationMatcherGetter(String type, String methodName) {
@@ -218,7 +218,7 @@ public class InvalidDateValuesCheck extends AbstractMethodDetection {
     MINUTE(60, "setMinutes", "getMinutes", "MINUTE", "minute"),
     SECOND(61, "setSeconds", "getSeconds", "SECOND", "second");
 
-    private static Map<String, Integer> thresholdByName = Maps.newHashMap();
+    private static Map<String, Integer> thresholdByName = new HashMap<>();
 
     static {
       for (Threshold value : Threshold.values()) {

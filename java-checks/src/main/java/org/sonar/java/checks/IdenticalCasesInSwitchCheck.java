@@ -20,7 +20,6 @@
 package org.sonar.java.checks;
 
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.SetMultimap;
 
@@ -36,6 +35,8 @@ import org.sonar.plugins.java.api.tree.SwitchStatementTree;
 import org.sonar.plugins.java.api.tree.Tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 @Rule(key = "S1871")
@@ -43,7 +44,7 @@ public class IdenticalCasesInSwitchCheck extends IssuableSubscriptionVisitor {
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.SWITCH_STATEMENT, Tree.Kind.IF_STATEMENT);
+    return Arrays.asList(Tree.Kind.SWITCH_STATEMENT, Tree.Kind.IF_STATEMENT);
   }
 
   @Override
@@ -162,7 +163,7 @@ public class IdenticalCasesInSwitchCheck extends IssuableSubscriptionVisitor {
   }
 
   private void createIssue(Tree node, String message, Tree secondary) {
-    reportIssue(node, message, ImmutableList.of(new JavaFileScannerContext.Location("Original", secondary)), null);
+    reportIssue(node, message, Collections.singletonList(new JavaFileScannerContext.Location("Original", secondary)), null);
   }
 
   private static String issueMessage(String type, Tree node) {

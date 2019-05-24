@@ -20,8 +20,8 @@
 package org.sonar.java.resolve;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.annotation.Nullable;
@@ -67,7 +67,7 @@ public class FirstPass extends BaseTreeVisitor {
   private static final String CONSTRUCTOR_NAME = "<init>";
   private final SemanticModel semanticModel;
 
-  private final List<JavaSymbol> uncompleted = Lists.newArrayList();
+  private final List<JavaSymbol> uncompleted = new ArrayList<>();
   private final SecondPass completer;
   private final Symbols symbols;
   private final ParametrizedTypeCache parametrizedTypeCache;
@@ -273,14 +273,14 @@ public class FirstPass extends BaseTreeVisitor {
       // add 'public static E[] values()'
       JavaSymbol.MethodJavaSymbol valuesMethod = new JavaSymbol.MethodJavaSymbol((symbol.flags & Flags.ACCESS_FLAGS) | Flags.STATIC, "values", symbol);
       ArrayJavaType enumArrayType = new ArrayJavaType(symbol.type, symbols.arrayClass);
-      MethodJavaType valuesMethodType = new MethodJavaType(ImmutableList.<JavaType>of(), enumArrayType, ImmutableList.<JavaType>of(), symbol);
+      MethodJavaType valuesMethodType = new MethodJavaType(Collections.emptyList(), enumArrayType, Collections.emptyList(), symbol);
       valuesMethod.setMethodType(valuesMethodType);
       valuesMethod.parameters = new Scope(valuesMethod);
       classEnv.scope.enter(valuesMethod);
 
       // add 'public static E valueOf(String name)'
       JavaSymbol.MethodJavaSymbol valueOfMethod = new JavaSymbol.MethodJavaSymbol((symbol.flags & Flags.ACCESS_FLAGS) | Flags.STATIC, "valueOf", symbol);
-      MethodJavaType valueOfMethodType = new MethodJavaType(ImmutableList.<JavaType>of(symbols.stringType), symbol.type, ImmutableList.<JavaType>of(), symbol);
+      MethodJavaType valueOfMethodType = new MethodJavaType(Collections.singletonList(symbols.stringType), symbol.type, Collections.emptyList(), symbol);
       valueOfMethod.setMethodType(valueOfMethodType);
       valueOfMethod.parameters = new Scope(valueOfMethod);
       valueOfMethod.parameters.enter(new JavaSymbol.VariableJavaSymbol(0, "name", symbols.stringType, valueOfMethod));

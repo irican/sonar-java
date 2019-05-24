@@ -44,6 +44,9 @@ import org.sonar.java.checks.naming.MethodNameSameAsClassCheck;
 import org.sonar.java.checks.naming.MethodNamedEqualsCheck;
 import org.sonar.java.checks.naming.MethodNamedHashcodeOrEqualCheck;
 import org.sonar.java.checks.security.AESAlgorithmCheck;
+import org.sonar.java.checks.security.AndroidBroadcastingCheck;
+import org.sonar.java.checks.security.AndroidExternalStorageCheck;
+import org.sonar.java.checks.security.AndroidSSLConnectionCheck;
 import org.sonar.java.checks.security.CipherBlockChainingCheck;
 import org.sonar.java.checks.security.CommandLineArgumentsCheck;
 import org.sonar.java.checks.security.ControllingPermissionsCheck;
@@ -53,16 +56,16 @@ import org.sonar.java.checks.security.CryptographicKeySizeCheck;
 import org.sonar.java.checks.security.DataEncryptionCheck;
 import org.sonar.java.checks.security.DataHashingCheck;
 import org.sonar.java.checks.security.DebugFeatureEnabledCheck;
-import org.sonar.java.checks.security.DynamicCodeCheck;
+import org.sonar.java.checks.security.EmailHotspotCheck;
 import org.sonar.java.checks.security.EmptyDatabasePasswordCheck;
-import org.sonar.java.checks.security.ExecCallCheck;
-import org.sonar.java.checks.security.FileHandlingCheck;
+import org.sonar.java.checks.security.EnvVariablesHotspotCheck;
 import org.sonar.java.checks.security.HostnameVerifierImplementationCheck;
-import org.sonar.java.checks.security.HttpRequestsHotspotCheck;
 import org.sonar.java.checks.security.IntegerToHexStringCheck;
 import org.sonar.java.checks.security.LDAPAuthenticatedConnectionCheck;
 import org.sonar.java.checks.security.LDAPDeserializationCheck;
 import org.sonar.java.checks.security.LogConfigurationCheck;
+import org.sonar.java.checks.security.PasswordEncoderCheck;
+import org.sonar.java.checks.security.ReceivingIntentsCheck;
 import org.sonar.java.checks.security.RegexHotspotCheck;
 import org.sonar.java.checks.security.SMTPSSLServerIdentityCheck;
 import org.sonar.java.checks.security.SecureCookieCheck;
@@ -70,7 +73,6 @@ import org.sonar.java.checks.security.SecureXmlTransformerCheck;
 import org.sonar.java.checks.security.SocketUsageCheck;
 import org.sonar.java.checks.security.StandardInputReadCheck;
 import org.sonar.java.checks.security.TrustManagerCertificateCheck;
-import org.sonar.java.checks.security.XPathUsageCheck;
 import org.sonar.java.checks.security.XmlExternalEntityProcessingCheck;
 import org.sonar.java.checks.security.ZipEntryCheck;
 import org.sonar.java.checks.serialization.BlindSerialVersionUidCheck;
@@ -93,7 +95,6 @@ import org.sonar.java.checks.spring.SpringComponentWithNonAutowiredMembersCheck;
 import org.sonar.java.checks.spring.SpringComponentWithWrongScopeCheck;
 import org.sonar.java.checks.spring.SpringComposedRequestMappingCheck;
 import org.sonar.java.checks.spring.SpringConfigurationWithAutowiredFieldsCheck;
-import org.sonar.java.checks.spring.SpringEndpointsCheck;
 import org.sonar.java.checks.spring.SpringIncompatibleTransactionalCheck;
 import org.sonar.java.checks.spring.SpringRequestMappingMethodCheck;
 import org.sonar.java.checks.spring.SpringScanDefaultPackageCheck;
@@ -637,13 +638,10 @@ public final class CheckList {
       XmlDeserializationCheck.class,
       JacksonDeserializationCheck.class,
       ObjectDeserializationCheck.class,
-      SpringEndpointsCheck.class,
-      ExecCallCheck.class,
       EmptyDatabasePasswordCheck.class,
       StreamPeekCheck.class,
       LogConfigurationCheck.class,
       VolatileNonPrimitiveFieldCheck.class,
-      DynamicCodeCheck.class,
       GetClassLoaderCheck.class,
       ObjectOutputStreamCheck.class,
       VolatileVariablesOperationsCheck.class,
@@ -652,10 +650,7 @@ public final class CheckList {
       DataHashingCheck.class,
       CommandLineArgumentsCheck.class,
       StandardInputReadCheck.class,
-      FileHandlingCheck.class,
       SocketUsageCheck.class,
-      XPathUsageCheck.class,
-      HttpRequestsHotspotCheck.class,
       BlindSerialVersionUidCheck.class,
       JdbcDriverExplicitLoadingCheck.class,
       StandardCharsetsConstantsCheck.class,
@@ -667,7 +662,16 @@ public final class CheckList {
       BasicAuthCheck.class,
       SynchronizedOverrideCheck.class,
       MissingBeanValidationCheck.class,
-      UseSwitchExpressionCheck.class);
+      UseSwitchExpressionCheck.class,
+      EnvVariablesHotspotCheck.class,
+      PasswordEncoderCheck.class,
+      AndroidExternalStorageCheck.class,
+      ReceivingIntentsCheck.class,
+      AndroidBroadcastingCheck.class,
+      EmailHotspotCheck.class,
+      AndroidSSLConnectionCheck.class,
+      LoggerClassCheck.class
+    );
   }
 
   public static List<Class<? extends DebugCheck>> getDebugChecks() {

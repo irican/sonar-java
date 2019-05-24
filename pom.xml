@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.sonarsource.parent</groupId>
     <artifactId>parent</artifactId>
-    <version>51</version>
+    <version>52</version>
   </parent>
 
   <groupId>org.sonarsource.java</groupId>
@@ -94,6 +94,10 @@
 
     <!-- Release: enable publication to Bintray -->
     <artifactsToPublish>${project.groupId}:sonar-java-plugin:jar</artifactsToPublish>
+
+    <version.compiler.plugin>3.8.0</version.compiler.plugin>
+    <!-- FIXME: warnings on javadoc should be fixed -->
+    <doclint>none</doclint>
   </properties>
 
   <dependencyManagement>
@@ -288,19 +292,58 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration />
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <!--
-              Force version of source to Java 8 in order to produce Javadoc relying on package-based architecture.
-              Without this parameter, producing Javadoc with JDK 11.0.2 makes analysis fail.
-            -->
-            <source>8</source>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>de.thetaphi</groupId>
+        <artifactId>forbiddenapis</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
+              <signatures>
+                <![CDATA[
+                com.google.common.base.Preconditions#checkNotNull(java.lang.Object) @ use java.util.Objects#requireNonNull(java.lang.Object) instead
+
+                com.google.common.collect.ImmutableList#of(java.lang.Object) @ use java.util.Collections#singletonList(java.util.Objects#requireNonNull(java.lang.Object)) instead, and also consider omitting unnecessary null-checks
+                com.google.common.collect.ImmutableSet#of(java.lang.Object) @ use java.util.Collections#singleton(java.util.Objects#requireNonNull(java.lang.Object)) instead, and also consider omitting unnecessary null-checks
+
+                com.google.common.collect.ImmutableList#of() @ use java.util.Collections#emptyList() instead
+                com.google.common.collect.ImmutableSet#of() @ use java.util.Collections#emptySet() instead
+
+                # According to javadoc of following methods
+                # "for Java 7 and later: this method is now unnecessary and should be treated as deprecated"
+                @defaultMessage use diamond operator instead
+                com.google.common.collect.Lists#newArrayList()
+                com.google.common.collect.Lists#newLinkedList()
+                com.google.common.collect.Maps#newHashMap()
+                com.google.common.collect.Sets#newHashSet()
+                com.google.common.base.Objects @ use java.util.Objects instead
+                ]]>
+              </signatures>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <!-- Use javac's release flag for Java 9 and higher -->
+      <id>java9+</id>
+      <activation>
+        <jdk>[9,)</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>8</maven.compiler.release>
+      </properties>
+    </profile>
+  </profiles>
 </project>

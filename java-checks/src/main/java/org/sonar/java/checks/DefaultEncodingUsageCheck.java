@@ -19,8 +19,9 @@
  */
 package org.sonar.java.checks;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Sets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -71,7 +72,7 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
   private static final String COMMONS_IOUTILS = "org.apache.commons.io.IOUtils";
   private static final String COMMONS_FILEUTILS = "org.apache.commons.io.FileUtils";
 
-  private static final List<MethodMatcher> COMMONS_IO = ImmutableList.of(
+  private static final List<MethodMatcher> COMMONS_IO = Arrays.asList(
     method(COMMONS_IOUTILS, "copy").parameters(JAVA_IO_INPUTSTREAM, JAVA_IO_WRITER),
     method(COMMONS_IOUTILS, "copy").parameters(JAVA_IO_READER, JAVA_IO_OUTPUTSTREAM),
     method(COMMONS_IOUTILS, "readLines").parameters(JAVA_IO_INPUTSTREAM),
@@ -101,7 +102,7 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
   private static final MethodMatcherCollection COMMONS_IO_CHARSET_MATCHERS =
     MethodMatcherCollection.create(COMMONS_IO_WITH_CHARSET.toArray(new MethodMatcher[0]));
 
-  private static final List<MethodMatcher> FILEUTILS_WRITE_WITH_CHARSET = ImmutableList.of(
+  private static final List<MethodMatcher> FILEUTILS_WRITE_WITH_CHARSET = Arrays.asList(
     method(COMMONS_FILEUTILS, "write").parameters(JAVA_IO_FILE, JAVA_LANG_CHARSEQUENCE, JAVA_LANG_STRING, BOOLEAN),
     method(COMMONS_FILEUTILS, "write").parameters(JAVA_IO_FILE, JAVA_LANG_CHARSEQUENCE, JAVA_NIO_CHARSET, BOOLEAN)
   );
@@ -109,7 +110,7 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
   private static final MethodMatcherCollection FILEUTILS_WRITE_WITH_CHARSET_MATCHERS =
     MethodMatcherCollection.create(FILEUTILS_WRITE_WITH_CHARSET.toArray(new MethodMatcher[0]));
 
-  private Set<Tree> excluded = Sets.newHashSet();
+  private Set<Tree> excluded = new HashSet<>();
 
   @Override
   public void leaveFile(JavaFileScannerContext context) {
@@ -118,7 +119,7 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.METHOD_INVOCATION, Tree.Kind.NEW_CLASS, Tree.Kind.VARIABLE);
+    return Arrays.asList(Tree.Kind.METHOD_INVOCATION, Tree.Kind.NEW_CLASS, Tree.Kind.VARIABLE);
   }
 
   @Override
@@ -150,7 +151,7 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
 
   @Override
   protected List<MethodMatcher> getMethodInvocationMatchers() {
-    ImmutableList.Builder<MethodMatcher> matchers = ImmutableList.<MethodMatcher>builder().add(
+    ArrayList<MethodMatcher> matchers = new ArrayList<>(Arrays.asList(
       method(JAVA_LANG_STRING, "getBytes").withoutParameter(),
       method(JAVA_LANG_STRING, "getBytes").parameters(INT, INT, BYTE_ARRAY, INT),
       constructor(JAVA_LANG_STRING).parameters(BYTE_ARRAY),
@@ -180,12 +181,11 @@ public class DefaultEncodingUsageCheck extends AbstractMethodDetection {
       constructor(JAVA_UTIL_SCANNER).parameters(JAVA_IO_FILE),
       constructor(JAVA_UTIL_SCANNER).parameters(JAVA_NIO_FILE_PATH),
       constructor(JAVA_UTIL_SCANNER).parameters(JAVA_IO_INPUTSTREAM)
-    );
+    ));
     matchers.addAll(COMMONS_IO);
     matchers.addAll(COMMONS_IO_WITH_CHARSET);
     matchers.addAll(FILEUTILS_WRITE_WITH_CHARSET);
-
-    return matchers.build();
+    return matchers;
   }
 
   private static MethodMatcher method(String type, String methodName) {

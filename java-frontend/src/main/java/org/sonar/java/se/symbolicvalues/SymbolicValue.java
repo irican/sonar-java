@@ -44,7 +44,7 @@ public class SymbolicValue {
 
     @Override
     public List<ProgramState> setConstraint(ProgramState programState, BooleanConstraint booleanConstraint) {
-      return ImmutableList.of();
+      return Collections.emptyList();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SymbolicValue {
       if(constraint instanceof ObjectConstraint) {
         return super.setConstraint(programState, (ObjectConstraint) constraint);
       }
-      return ImmutableList.of(programState);
+      return Collections.singletonList(programState);
     }
 
     @Override
@@ -142,22 +142,22 @@ public class SymbolicValue {
       if(nullConstraint.isNull()) {
         // null constraints get rid of all other constraints
         ConstraintsByDomain onlyNullConstraint = ConstraintsByDomain.empty().put(ObjectConstraint.NULL);
-        return ImmutableList.of(programState.addConstraints(this, onlyNullConstraint));
+        return Collections.singletonList(programState.addConstraints(this, onlyNullConstraint));
       } else {
-        return ImmutableList.of(programState.addConstraint(this, nullConstraint));
+        return Collections.singletonList(programState.addConstraint(this, nullConstraint));
       }
     } else if (constraint != nullConstraint) {
-      return ImmutableList.of();
+      return Collections.emptyList();
     }
-    return ImmutableList.of(programState);
+    return Collections.singletonList(programState);
   }
 
   public List<ProgramState> setConstraint(ProgramState programState, BooleanConstraint booleanConstraint) {
     Constraint cstraint = programState.getConstraint(this, booleanConstraint.getClass());
     if (!booleanConstraint.isValidWith(cstraint)) {
-      return ImmutableList.of();
+      return Collections.emptyList();
     }
-    return ImmutableList.of(programState.addConstraint(this, booleanConstraint));
+    return Collections.singletonList(programState.addConstraint(this, booleanConstraint));
   }
 
   public List<ProgramState> setConstraint(ProgramState programState, Constraint constraint) {
@@ -168,9 +168,9 @@ public class SymbolicValue {
     }
     Constraint csrtaint = programState.getConstraint(this, constraint.getClass());
     if (constraint.isValidWith(csrtaint)) {
-      return ImmutableList.of(programState.addConstraint(this, constraint));
+      return Collections.singletonList(programState.addConstraint(this, constraint));
     }
-    return ImmutableList.of();
+    return Collections.emptyList();
   }
 
   public ProgramState setSingleConstraint(ProgramState programState, ObjectConstraint nullConstraint) {
@@ -208,12 +208,12 @@ public class SymbolicValue {
 
     @Override
     public List<SymbolicValue> computedFrom() {
-      return ImmutableList.of(operand);
+      return Collections.singletonList(operand);
     }
 
     @Override
     public List<Symbol> computedFromSymbols() {
-      return operandSymbol == null ? operand.computedFromSymbols() : ImmutableList.of(operandSymbol);
+      return operandSymbol == null ? operand.computedFromSymbols() : Collections.singletonList(operandSymbol);
     }
   }
 
@@ -271,18 +271,18 @@ public class SymbolicValue {
         ObjectConstraint constraint = programState.getConstraint(operand, ObjectConstraint.class);
         if (constraint !=null && constraint.isNull()) {
           // irrealizable constraint : instance of true if operand is null
-          return ImmutableList.of();
+          return Collections.emptyList();
         }
         // if instanceof is true then we know for sure that expression is not null.
         List<ProgramState> ps = operand.setConstraint(programState, ObjectConstraint.NOT_NULL);
         if (ps.size() == 1 && ps.get(0).equals(programState)) {
           // FIXME we already know that operand is NOT NULL, so we add a different constraint to distinguish program state. Typed Constraint
           // should store the deduced type.
-          return ImmutableList.of(programState.addConstraint(this, new TypedConstraint(Symbols.unknownType.fullyQualifiedName())));
+          return Collections.singletonList(programState.addConstraint(this, new TypedConstraint(Symbols.unknownType.fullyQualifiedName())));
         }
         return ps;
       }
-      return ImmutableList.of(programState);
+      return Collections.singletonList(programState);
     }
   }
 

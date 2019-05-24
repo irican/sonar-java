@@ -20,10 +20,8 @@
 package org.sonar.java.resolve;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Preconditions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.collect.Maps;
 import javax.annotation.CheckForNull;
 import org.sonar.java.bytecode.loader.SquidClassLoader;
 import org.sonar.java.model.AbstractTypedTree;
@@ -39,13 +37,14 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public class SemanticModel {
 
   private final Map<Tree, Symbol> symbolsTree = new HashMap<>();
 
-  private final Map<Symbol, Resolve.Env> symbolEnvs = Maps.newHashMap();
+  private final Map<Symbol, Resolve.Env> symbolEnvs = new HashMap<>();
   private final BiMap<Tree, Resolve.Env> envs = HashBiMap.create();
   private final BytecodeCompleter bytecodeCompleter;
 
@@ -138,7 +137,7 @@ public class SemanticModel {
   }
 
   public void associateSymbol(Tree tree, Symbol symbol) {
-    Preconditions.checkNotNull(symbol);
+    Objects.requireNonNull(symbol);
     symbolsTree.put(tree, symbol);
   }
 

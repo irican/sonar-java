@@ -19,7 +19,6 @@
  */
 package org.sonar.java.resolve;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -141,7 +140,7 @@ public class TypeInferenceSolverTest {
   private JavaType createType(String string, JavaType superType) {
     JavaSymbol.TypeJavaSymbol symbol = new JavaSymbol.TypeJavaSymbol(Flags.PUBLIC, "A", symbols.defaultPackage);
     ClassJavaType type = (ClassJavaType) symbol.type;
-    type.interfaces = ImmutableList.of();
+    type.interfaces = Collections.emptyList();
     type.supertype = superType;
     return type;
   }
@@ -191,12 +190,12 @@ public class TypeInferenceSolverTest {
 
   private TypeVariableJavaType getTypeVariable(String variableName) {
     TypeVariableJavaType typeVariableJavaType = new TypeVariableJavaType(new JavaSymbol.TypeVariableJavaSymbol(variableName, Symbols.unknownSymbol));
-    typeVariableJavaType.bounds = ImmutableList.of(symbols.objectType);
+    typeVariableJavaType.bounds = Collections.singletonList(symbols.objectType);
     return typeVariableJavaType;
   }
 
   private TypeSubstitution typeSubstitutionForTypeParameters(List<JavaType> formals, List<JavaType> args, boolean varargs, TypeVariableJavaType... typeParameters) {
-    MethodJavaType methodType = new MethodJavaType(formals, symbols.voidType, ImmutableList.<JavaType>of(), symbols.objectType.symbol);
+    MethodJavaType methodType = new MethodJavaType(formals, symbols.voidType, Collections.emptyList(), symbols.objectType.symbol);
     int flags = Flags.PUBLIC;
     if (varargs) {
       flags |= Flags.VARARGS;

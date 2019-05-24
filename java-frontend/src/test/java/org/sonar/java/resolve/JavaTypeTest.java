@@ -19,9 +19,9 @@
  */
 package org.sonar.java.resolve;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -81,7 +81,7 @@ public class JavaTypeTest {
     JavaSymbol.TypeJavaSymbol typeSymbol2 = new JavaSymbol.TypeJavaSymbol(Flags.PUBLIC, "MyType", Symbols.rootPackage);
     ArrayJavaType arrayType = new ArrayJavaType(typeSymbol.type, symbols.arrayClass);
     ClassJavaType classType = (ClassJavaType) typeSymbol.type;
-    classType.interfaces = Lists.newArrayList();
+    classType.interfaces = new ArrayList<>();
     assertThat(symbols.byteType.is("byte")).isTrue();
     assertThat(symbols.byteType.is("int")).isFalse();
     assertThat(classType.is("org.foo.bar.MyType")).isTrue();
@@ -124,7 +124,7 @@ public class JavaTypeTest {
     ParametrizedTypeJavaType parametrizedType = new ParametrizedTypeJavaType(typeSymbol, typeSubstitution, null);
 
     TypeVariableJavaType typeVariableType = (TypeVariableJavaType) new JavaSymbol.TypeVariableJavaSymbol("X", typeSymbol).type;
-    typeVariableType.bounds = ImmutableList.<JavaType>of(parametrizedType);
+    typeVariableType.bounds = Collections.singletonList(parametrizedType);
 
     assertThat(typeVariableType.erasure()).isNotEqualTo(parametrizedType);
     assertThat(typeVariableType.erasure()).isEqualTo(parametrizedType.erasure());
@@ -287,7 +287,7 @@ public class JavaTypeTest {
 
     @Override
     public List<Tree.Kind> nodesToVisit() {
-      return ImmutableList.of(Tree.Kind.CLASS);
+      return Collections.singletonList(Tree.Kind.CLASS);
     }
 
     @Override

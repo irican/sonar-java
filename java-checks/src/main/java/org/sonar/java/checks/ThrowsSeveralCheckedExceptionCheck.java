@@ -21,9 +21,11 @@ package org.sonar.java.checks;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
+
+import java.util.Collections;
 import java.util.List;
 import org.sonar.check.Rule;
-import org.sonar.java.model.declaration.MethodTreeImpl;
+import org.sonar.java.checks.helpers.MethodTreeUtils;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Symbol;
 import org.sonar.plugins.java.api.semantic.Type;
@@ -35,13 +37,13 @@ public class ThrowsSeveralCheckedExceptionCheck extends IssuableSubscriptionVisi
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.METHOD);
+    return Collections.singletonList(Tree.Kind.METHOD);
   }
 
   @Override
   public void visitNode(Tree tree) {
     MethodTree methodTree = (MethodTree) tree;
-    if (hasSemantic() && isPublic(methodTree) && !((MethodTreeImpl) methodTree).isMainMethod()) {
+    if (hasSemantic() && isPublic(methodTree) && !MethodTreeUtils.isMainMethod(methodTree)) {
       List<String> thrownCheckedExceptions = getThrownCheckedExceptions(methodTree);
       if (thrownCheckedExceptions.size() > 1 && isNotOverridden(methodTree)) {
         reportIssue(methodTree.simpleName(), "Refactor this method to throw at most one checked exception instead of: " + Joiner.on(", ").join(thrownCheckedExceptions));

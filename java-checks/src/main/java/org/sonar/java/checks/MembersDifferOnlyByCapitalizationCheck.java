@@ -19,10 +19,11 @@
  */
 package org.sonar.java.checks;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
@@ -44,7 +45,7 @@ public class MembersDifferOnlyByCapitalizationCheck extends IssuableSubscription
 
   @Override
   public List<Tree.Kind> nodesToVisit() {
-    return ImmutableList.of(Tree.Kind.CLASS, Tree.Kind.INTERFACE, Tree.Kind.ENUM);
+    return Arrays.asList(Tree.Kind.CLASS, Tree.Kind.INTERFACE, Tree.Kind.ENUM);
   }
 
   @Override
@@ -196,7 +197,7 @@ public class MembersDifferOnlyByCapitalizationCheck extends IssuableSubscription
   }
 
   private static List<Symbol> retrieveMembers(Symbol.TypeSymbol classSymbol) {
-    List<Symbol> results = Lists.newLinkedList();
+    List<Symbol> results = new LinkedList<>();
     results.addAll(extractMembers(classSymbol, false));
 
     for (Type parentInterface : classSymbol.interfaces()) {
@@ -211,7 +212,7 @@ public class MembersDifferOnlyByCapitalizationCheck extends IssuableSubscription
   }
 
   private static List<Symbol> extractMembers(Symbol.TypeSymbol classSymbol, boolean ignorePrivate) {
-    List<Symbol> results = Lists.newLinkedList();
+    List<Symbol> results = new LinkedList<>();
     for (Symbol symbol : classSymbol.memberSymbols()) {
       if ((isVariableToExtract(symbol) || isMethodToExtract(symbol)) && !(symbol.isPrivate() && ignorePrivate)) {
         results.add(symbol);

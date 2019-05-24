@@ -19,8 +19,6 @@
  */
 package org.sonar.java.model;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.sonar.sslr.api.RecognitionException;
 import java.io.File;
 import java.text.DecimalFormat;
@@ -60,7 +58,7 @@ public class VisitorsBridgeTest {
     VisitorsBridge visitorsBridgeWithoutSemantic = new VisitorsBridge(Collections.singletonList((JavaFileScanner) context -> {
       assertThat(context.getSemanticModel()).isNull();
       assertThat(context.fileParsed()).isTrue();
-    }), Lists.newArrayList(), null);
+    }), new ArrayList<>(), null);
     checkFile(contstructFileName("java", "lang", "someFile.java"), "package java.lang; class A {}", visitorsBridgeWithoutSemantic);
     checkFile(contstructFileName("src", "java", "lang", "someFile.java"), "package java.lang; class A {}", visitorsBridgeWithoutSemantic);
     checkFile(contstructFileName("home", "user", "oracleSdk", "java", "lang", "someFile.java"), "package java.lang; class A {}", visitorsBridgeWithoutSemantic);
@@ -75,9 +73,9 @@ public class VisitorsBridgeTest {
 
       @Override
       public List<Kind> nodesToVisit() {
-        return ImmutableList.of(Tree.Kind.METHOD);
+        return Collections.singletonList(Tree.Kind.METHOD);
       }
-    }), Lists.newArrayList(), null);
+    }), new ArrayList<>(), null);
     checkFile(contstructFileName("org", "foo", "bar", "Foo.java"), "class Foo { arrrrrrgh", visitorsBridgeWithParsingIssue);
   }
 
@@ -94,7 +92,7 @@ public class VisitorsBridgeTest {
       new VisitorsBridge(Collections.singletonList((JavaFileScanner) context -> {
         assertThat(context.getSemanticModel()).isNotNull();
         ((SemanticModel) context.getSemanticModel()).classesNotFound().addAll(IntStream.range(0, 60).mapToObj(classNotFoundName).collect(Collectors.toList()));
-      }), Lists.newArrayList(), null);
+      }), new ArrayList<>(), null);
     checkFile("Foo.java", "class Foo {}", visitorsBridge);
     visitorsBridge.endOfAnalysis();
     assertThat(logTester.logs(LoggerLevel.WARN)).containsOnly(

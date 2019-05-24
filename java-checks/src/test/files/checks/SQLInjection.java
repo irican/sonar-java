@@ -36,16 +36,14 @@ class A {
 
       //Prepared statement
       PreparedStatement ps = conn.prepareStatement("SELECT Lname FROM Customers"+" WHERE Snum = 2001");
-      ps.executeQuery(query); // Noncompliant
+      ps.executeQuery("SELECT Lname FROM Customers WHERE Snum = "+param); // Noncompliant
       ps  = conn.prepareStatement("SELECT Lname FROM Customers WHERE Snum = "+param); // Noncompliant
-      ps = conn.prepareStatement(query); // Noncompliant
       ps = conn.prepareStatement(query2);
 
       //Callable Statement
       CallableStatement cs = conn.prepareCall("SELECT Lname FROM Customers WHERE Snum = 2001");
       cs.executeQuery(query); // Noncompliant
       cs  = conn.prepareCall("SELECT Lname FROM Customers WHERE Snum = "+param2); // Noncompliant
-      cs = conn.prepareCall(query); // Noncompliant
       cs = conn.prepareCall(query2);
       cs = conn.prepareCall(CONSTANT);
       cs = conn.prepareCall(foo());
@@ -63,7 +61,7 @@ class A {
       }
       cs = conn.prepareCall(s);
       String request = foo() + " FROM table";
-      cs = conn.prepareCall(request);
+      cs = conn.prepareCall(request); // Noncompliant
       new A().prepareStatement(query);
       A a = new A();
       a.prepareStatement(query);
@@ -72,15 +70,26 @@ class A {
 
       Session session;
       session.createQuery("From Customer where id > ?");
-      session.createQuery("From Customer where id > "+param); // Noncompliant
       session.createQuery(query); // Noncompliant
       conn.prepareStatement(param);
-      conn.prepareStatement(sqlQuery + "plop");
+      conn.prepareStatement(sqlQuery + "plop"); // Noncompliant
 
       String sql = "SELECT lastname, firstname FROM employee where uid = '" + param + "'";
       entityManager.createNativeQuery(sql); // Noncompliant
     } catch (Exception e) {
     }
+  }
+
+  void foo(Connection conn, String param) {
+    Statement stmt = conn.createStatement();
+    String localVar = param;
+    String aliasParam;
+    aliasParam = param;
+    stmt.execute(aliasParam); // OK
+    stmt.execute(localVar); // OK
+    stmt.execute(param); // OK
+    String[] queries = {"test"};
+    stmt.execute(queries[0]); // OK
   }
 
   String foo() {
@@ -147,7 +156,7 @@ class Test {
     if (page != null) {
       String countJql = "select count(*) " + from;
       Session session;
-      session.createQuery(countJql);
+      session.createQuery(countJql); // Noncompliant
 
     }
   }

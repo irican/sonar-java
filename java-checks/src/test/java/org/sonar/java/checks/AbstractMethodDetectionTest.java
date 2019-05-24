@@ -20,7 +20,9 @@
 package org.sonar.java.checks;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import org.sonar.java.CheckTestUtils;
@@ -50,7 +52,7 @@ public class AbstractMethodDetectionTest {
 
   @Test
   public void withAnyParameters() throws Exception {
-    Visitor visitor = new Visitor(ImmutableList.of(
+    Visitor visitor = new Visitor(Collections.singletonList(
       MethodMatcher.create().typeDefinition("A").name("method").withAnyParameters()
       ));
     JavaAstScanner.scanSingleFileForTests(CheckTestUtils.inputFile("src/test/files/checks/AbstractMethodDetection.java"), new VisitorsBridge(visitor));
@@ -60,7 +62,7 @@ public class AbstractMethodDetectionTest {
 
   @Test
   public void withoutParameter() throws Exception {
-    Visitor visitor = new Visitor(ImmutableList.of(
+    Visitor visitor = new Visitor(Collections.singletonList(
       MethodMatcher.create().typeDefinition("A").name("method").withoutParameter()
       ));
     JavaAstScanner.scanSingleFileForTests(CheckTestUtils.inputFile("src/test/files/checks/AbstractMethodDetection.java"), new VisitorsBridge(visitor));
@@ -70,7 +72,7 @@ public class AbstractMethodDetectionTest {
 
   class Visitor extends AbstractMethodDetection {
 
-    public List<Integer> lines = Lists.newArrayList();
+    public List<Integer> lines = new ArrayList<>();
     private List<MethodMatcher> methodInvocationMatchers;
 
     public Visitor(List<MethodMatcher> methodInvocationMatchers) {
