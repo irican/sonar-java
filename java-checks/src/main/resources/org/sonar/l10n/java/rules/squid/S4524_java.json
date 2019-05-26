@@ -1,5 +1,5 @@
 {
-  "title": "\"default\" clauses should be last",
+  "title": "\"default\"（默认）条款应该是最后一个",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,7 +7,6 @@
     "constantCost": "5min"
   },
   "tags": [
-    "based-on-misra",
     "misra"
   ],
   "defaultSeverity": "Critical",

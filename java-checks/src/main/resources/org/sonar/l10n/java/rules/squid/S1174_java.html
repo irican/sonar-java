@@ -1,16 +1,16 @@
-<p>The contract of the <code>Object.finalize()</code> method is clear: only the Garbage Collector is supposed to call this method.</p>
-<p>Making this method public is misleading, because it implies that any caller can use it.</p>
-<h2>Noncompliant Code Example</h2>
+<p> <code>Object.finalize()</code> 方法的契约很明确：只有垃圾收集器（Garbage Collector）才能调用此方法。</p>
+<p>公开此方法会产生误导，因为这意味着任何调用者都可以使用它。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClass {
 
   @Override
-  public void finalize() {    // Noncompliant
+  public void finalize() {    // 不合规
     /* ... */
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/583.html">MITRE, CWE-583</a> - finalize() Method Declared Public </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/H4cbAQ">CERT, MET12-J.</a> - Do not use finalizers </li>

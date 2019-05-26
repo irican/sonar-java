@@ -1,5 +1,5 @@
 {
-  "title": "\"URL.hashCode\" and \"URL.equals\" should be avoided",
+  "title": "应避免使用 \"URL.hashCode\" 和 \"URL.equals\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

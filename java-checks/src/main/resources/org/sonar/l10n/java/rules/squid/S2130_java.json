@@ -1,5 +1,5 @@
 {
-  "title": "Parsing should be used to convert \"Strings\" to primitives",
+  "title": "解析（parse）应该用于将 \"Strings\" 转换为原始类型",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

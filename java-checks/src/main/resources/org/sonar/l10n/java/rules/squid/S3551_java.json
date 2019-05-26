@@ -1,5 +1,5 @@
 {
-  "title": "Overrides should match their parent class methods in synchronization",
+  "title": "覆盖应与其父类方法同步匹配",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,20 +1,19 @@
-<p>Returning <code>null</code> instead of an actual array or collection forces callers of the method to explicitly test for nullity, making them more
-complex and less readable.</p>
-<p>Moreover, in many cases, <code>null</code> is used as a synonym for empty.</p>
-<h2>Noncompliant Code Example</h2>
+<p>返回 <code>null</code> 而不是实际的数组或集合，这迫使方法的调用者显式的测试是否为空，使它们更复杂，更不易读。</p>
+<p>此外，在许多情况下， <code>null</code> 用作empty的同义词。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public static List&lt;Result&gt; getResults() {
-  return null;                             // Noncompliant
+  return null;                             // 不合规
 }
 
 public static Result[] getResults() {
-  return null;                             // Noncompliant
+  return null;                             // 不合规
 }
 
 public static void main(String[] args) {
   Result[] results = getResults();
 
-  if (results != null) {                   // Nullity test required to prevent NPE
+  if (results != null) {                   // 需要进行null测试以防止NPE
     for (Result result: results) {
       /* ... */
     }
@@ -22,10 +21,10 @@ public static void main(String[] args) {
 }
 
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public static List&lt;Result&gt; getResults() {
-  return Collections.emptyList();          // Compliant
+  return Collections.emptyList();          // 合规
 }
 
 public static Result[] getResults() {
@@ -38,7 +37,7 @@ public static void main(String[] args) {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/AgG7AQ">CERT, MSC19-C.</a> - For functions that return an array, prefer returning an
   empty array over a null value </li>

@@ -1,9 +1,7 @@
-<p>By convention, a Java class' physical location (source directories) and its logical representation (packages) should be kept in sync. Thus a Java
-file located at <code>"src/org/bar/Foo.java"</code> should have a package of <code>"org.bar"</code>. </p>
-<p>Unfortunately, this convention is not enforced by Java compilers, and nothing prevents a developer from making the "Foo.java" class part of the
-"com.apple" package, which could degrade the maintainability of both the class and its application.</p>
-<p>Similarly, source placed in a folder with dots in its name instead of having the equivalent folder structure will compile but cause problems at run
-time. For instance, code with a package declaration of <code>org.foo.bar</code> that is placed in <code>org/foo.bar</code> will compile, but the
-classloader will always search for the class into the folder based on package structure, and will consequently expect sources to be in
-<code>org/foo/bar</code> folder. <code>foo.bar</code> is therefore not a proper folder name for sources.</p>
+<p>按照惯例，Java类的物理位置（源目录）及其逻辑表示（包）应保持同步。 因此，位于 <code>"src/org/bar/Foo.java"</code> 
+的Java文件应该包含 <code>"org.bar"</code>的包。</p>
+<p>遗憾的是，Java编译器并未强制执行此约定，并且没有任何东西可以阻止开发人员将“Foo.java”类作为“com.apple”包的一部分，但这可能会降低类及其应用程序的可维护性。</p>
+<p>类似地，将源代码放在名称中有圆点的文件夹中，而不是放在具有相同文件夹结构的文件夹中，会编译源代码，但在运行时会导致问题。
+例如，带有 <code>org.foo.bar</code> 的包声明的代码放在 <code>org/foo.bar</code> 将被编译，但是类加载器将始终找到类将其放入基于包结构的文件夹，
+因此希望源代码位于 <code>org/foo/bar</code> 文件夹中。 因此<code>foo.bar</code> 对源文件来说不是恰当的文件夹名。</p>
 

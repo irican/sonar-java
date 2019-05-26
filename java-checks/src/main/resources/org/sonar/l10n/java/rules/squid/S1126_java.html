@@ -1,23 +1,22 @@
-<p>Return of boolean literal statements wrapped into <code>if-then-else</code> ones should be simplified.</p>
-<p>Similarly, method invocations wrapped into <code>if-then-else</code> differing only from boolean literals should be simplified into a single
-invocation.</p>
-<h2>Noncompliant Code Example</h2>
+<p>应该简化包含在 <code>if-then-else</code> 中的布尔文字语句的返回值。</p>
+<p>类似地，包含在 <code>if-then-else</code> 中的方法调用（invocation）仅与布尔文字不同，应简化为单个调用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 boolean foo(Object param) {
-  if (expression) { // Noncompliant
+  if (expression) { // 不合规
     bar(param, true, "qix");
   } else {
     bar(param, false, "qix");
   }
 
-  if (expression) {  // Noncompliant
+  if (expression) {  // 不合规
     return true;
   } else {
     return false;
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 boolean foo(Object param) {
   bar(param, expression, "qix");

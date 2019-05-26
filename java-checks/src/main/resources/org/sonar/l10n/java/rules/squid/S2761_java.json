@@ -1,5 +1,5 @@
 {
-  "title": "Unary prefix operators should not be repeated",
+  "title": "不应重复使用一元前缀操作符",
   "type": "BUG",
   "status": "ready",
   "remediation": {

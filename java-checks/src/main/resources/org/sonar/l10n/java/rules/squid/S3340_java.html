@@ -1,20 +1,20 @@
-<p>For optimal code readability, annotation arguments should be specified in the same order that they were declared in the annotation definition.</p>
-<h2>Noncompliant Code Example</h2>
+<p>为了获得最佳的代码可读性，应该按照在注释定义中声明它们的顺序指定注释参数。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @interface Pet {
     String name();
     String surname();
 }
 
-@Pet(surname ="", name="") // Noncompliant
+@Pet(surname ="", name="") // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @interface Pet {
     String name();
     String surname();
 }
 
-@Pet(name ="", surname="") // Compliant
+@Pet(name ="", surname="") // 合规的
 </pre>
 

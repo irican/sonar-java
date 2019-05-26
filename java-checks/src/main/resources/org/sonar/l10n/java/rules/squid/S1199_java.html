@@ -1,11 +1,10 @@
-<p>Nested code blocks can be used to create a new scope and restrict the visibility of the variables defined inside it. Using this feature in a method
-typically indicates that the method has too many responsibilities, and should be refactored into smaller methods.</p>
-<h2>Noncompliant Code Example</h2>
+<p>嵌套代码块可用于创建新范围并限制其中定义的变量的可见性。在方法中使用此功能通常表示该方法具有太多功能，应该重构为较小的方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void evaluate(int operator) {
   switch (operator) {
     /* ... */
-    case ADD: {                                // Noncompliant - nested code block '{' ... '}'
+    case ADD: {                                // 不合规 - 嵌套代码块 '{' ... '}'
         int a = stack.pop();
         int b = stack.pop();
         int result = a + b;
@@ -16,12 +15,12 @@ public void evaluate(int operator) {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方法</h2>
 <pre>
 public void evaluate(int operator) {
   switch (operator) {
     /* ... */
-    case ADD:                                  // Compliant
+    case ADD:                                  // 合规
       evaluateAdd();
       break;
     /* ... */

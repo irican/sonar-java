@@ -1,16 +1,16 @@
-<p>The purpose of checked exceptions is to ensure that errors will be dealt with, either by propagating them or by handling them, but some believe
-that checked exceptions negatively impact the readability of source code, by spreading this error handling/propagation logic everywhere.</p>
-<p>This rule verifies that no method throws a new checked exception.</p>
-<h2>Noncompliant Code Example</h2>
+<p>检查异常的目的是确保通过传播或处理错误来解决错误，但是有些人认为检查异常会将错误处理/传播逻辑传播到任何地方，
+从而对源代码的可读性产生负面影响。</p>
+<p>此规则验证没有方法抛出新的已检查异常。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void myMethod1() throws CheckedException {
   ...
-  throw new CheckedException(message);   // Noncompliant
+  throw new CheckedException(message);   // 不合规
   ...
-  throw new IllegalArgumentException(message); // Compliant; IllegalArgumentException is unchecked
+  throw new IllegalArgumentException(message); // 合规； IllegalArgumentException 未检查
 }
 
-public void myMethod2() throws CheckedException {  // Compliant; propagation allowed
+public void myMethod2() throws CheckedException {  // 合规； 传播被允许
   myMethod1();
 }
 </pre>

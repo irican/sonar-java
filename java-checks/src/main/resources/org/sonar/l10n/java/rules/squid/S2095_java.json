@@ -1,5 +1,5 @@
 {
-  "title": "Resources should be closed",
+  "title": "资源应该关闭",
   "type": "BUG",
   "status": "ready",
   "remediation": {

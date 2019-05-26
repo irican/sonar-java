@@ -1,7 +1,6 @@
-<p>By contract, any implementation of the <code>java.util.Iterator.next()</code> method should throw a <code>NoSuchElementException</code> exception
-when the iteration has no more elements. Any other behavior when the iteration is done could lead to unexpected behavior for users of this
-<code>Iterator</code>. </p>
-<h2>Noncompliant Code Example</h2>
+<p>根据约定，当迭代没有更多元素时，<code>java.util.Iterator.next()</code>方法的任何实现都应该抛出一个<code>NoSuchElementException</code>异常。当迭代完成时，任何其他行为都可能导致此<code>Iterator</code>（迭代器）的用户出现意外行为。 
+</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyIterator implements Iterator&lt;String&gt;{
   ...
@@ -13,7 +12,7 @@ public class MyIterator implements Iterator&lt;String&gt;{
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class MyIterator implements Iterator&lt;String&gt;{
   ...

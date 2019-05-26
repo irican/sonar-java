@@ -1,5 +1,5 @@
 {
-  "title": "\"@RequestMapping\" methods should be \"public\"",
+  "title": "“@ RequestMapping”方法应该是“公共”",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

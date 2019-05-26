@@ -1,5 +1,5 @@
 {
-  "title": "\"wait\" should not be called when multiple locks are held",
+  "title": "持有多个锁时不应调用 \"wait\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Classes extending java.lang.Thread should override the \"run\" method",
+  "title": "扩展java.lang.Thread的类应该重写 \"run\" 方法",
   "type": "BUG",
   "status": "ready",
   "remediation": {

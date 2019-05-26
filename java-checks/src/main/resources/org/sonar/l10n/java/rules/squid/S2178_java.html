@@ -1,14 +1,13 @@
-<p>The use of non-short-circuit logic in a boolean context is likely a mistake - one that could cause serious program errors as conditions are
-evaluated under the wrong circumstances. </p>
-<h2>Noncompliant Code Example</h2>
+<p>在布尔上下文中使用非短路（non-short-circuit）逻辑可能是一个错误 - 由于在错误的情况下判断条件，可能会导致严重的程序错误。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
-if(getTrue() | getFalse()) { ... } // Noncompliant; both sides evaluated
+if(getTrue() | getFalse()) { ... } // 不合规； 两边都判断
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-if(getTrue() || getFalse()) { ... } // true short-circuit logic
+if(getTrue() || getFalse()) { ... } // 正确的短路逻辑
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/g4FtAg">CERT, EXP46-C.</a> - Do not use a bitwise operator with a Boolean-like operand
   </li>

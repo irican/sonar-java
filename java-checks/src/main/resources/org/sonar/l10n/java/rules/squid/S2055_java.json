@@ -1,5 +1,5 @@
 {
-  "title": "The non-serializable super class of a \"Serializable\" class should have a no-argument constructor",
+  "title": " \"Serializable\" 类的非可序列化超类应该具有无参数构造函数",
   "type": "BUG",
   "status": "ready",
   "remediation": {

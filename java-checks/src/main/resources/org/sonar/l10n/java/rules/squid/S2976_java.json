@@ -1,5 +1,5 @@
 {
-  "title": "\"File.createTempFile\" should not be used to create a directory",
+  "title": "不应该使用\"File.createTempFile\"创建目录",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

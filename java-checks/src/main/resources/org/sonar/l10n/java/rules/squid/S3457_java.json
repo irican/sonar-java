@@ -1,5 +1,5 @@
 {
-  "title": "Printf-style format strings should be used correctly",
+  "title": "应该正确使用Printf样式的格式字符串",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,25 +1,22 @@
-<p>Many consider <code>clone</code> and <code>Cloneable</code> broken in Java, largely because the rules for overriding <code>clone</code> are tricky
-and difficult to get right, according to Joshua Bloch:</p>
+<p>很多人认为<code>clone</code> 和 <code>Cloneable</code> 在Java中被破坏，主要是因为重写<code>clone</code>的规则是棘手的，并且很难得到正确的，根据Joshua Bloch：</p>
 <blockquote>
-  Object's clone method is very tricky. It's based on field copies, and it's "extra-linguistic." It creates an object without calling a constructor.
-  There are no guarantees that it preserves the invariants established by the constructors. There have been lots of bugs over the years, both in and
-  outside Sun, stemming from the fact that if you just call super.clone repeatedly up the chain until you have cloned an object, you have a shallow
-  copy of the object. The clone generally shares state with the object being cloned. If that state is mutable, you don't have two independent objects.
-  If you modify one, the other changes as well. And all of a sudden, you get random behavior.
+  对象的克隆方法非常棘手。它基于字段副本，而且是“语言外的”。它在不调用构造函数的情况下创建对象。不能保证它保留构造函数建立的不变量。
+  多年来，Sun内部和外部都有很多bug，原因是，如果只是重复调用 super.clone 直到克隆了一个对象，就得到了该对象的一个浅副本。 
+  克隆通常与被克隆的对象处于共享状态。如果状态是可变的，那么就没有两个独立的对象。如果修改其中一个，其他的也会更改。 突然间，得到了随机的行为。
 </blockquote>
-<p>A copy constructor or copy factory should be used instead.</p>
-<p>This rule raises an issue when <code>clone</code> is overridden, whether or not <code>Cloneable</code> is implemented.</p>
-<h2>Noncompliant Code Example</h2>
+<p>应该使用复制构造函数或复制工厂。</p>
+<p>当<code>clone</code> 被重写时，无论是否实现了<code>Cloneable</code> ，该规则都会引发一个问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClass {
   // ...
 
-  public Object clone() { // Noncompliant
+  public Object clone() { // 不合格
     //...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class MyClass {
   // ...
@@ -29,11 +26,11 @@ public class MyClass {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://www.artima.com/intv/bloch13.html">Copy Constructor versus Cloning</a> </li>
 </ul>
-<h3>See Also</h3>
+<h3>也可以参阅</h3>
 <ul>
   <li> {rule:squid:S2157} - "Cloneables" should implement "clone" </li>
   <li> {rule:squid:S1182} - Classes that override "clone" should be "Cloneable" and call "super.clone()" </li>

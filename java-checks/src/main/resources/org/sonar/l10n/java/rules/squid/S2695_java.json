@@ -1,5 +1,5 @@
 {
-  "title": "\"PreparedStatement\" and \"ResultSet\" methods should be called with valid indices",
+  "title": "应该使用有效的索引调用\"PreparedStatement\" 和 \"ResultSet\"方法",
   "type": "BUG",
   "status": "ready",
   "remediation": {

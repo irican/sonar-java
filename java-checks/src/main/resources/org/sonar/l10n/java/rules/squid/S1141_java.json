@@ -1,5 +1,5 @@
 {
-  "title": "Try-catch blocks should not be nested",
+  "title": "不应嵌套 Try-catch 块",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

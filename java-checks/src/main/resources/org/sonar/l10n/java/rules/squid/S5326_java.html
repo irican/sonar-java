@@ -1,28 +1,25 @@
-<p>Validating SSL/TLS connections is security-sensitive. For example, it has led in the past to the following vulnerabilities:</p>
+<p>验证SSL / TLS连接是安全敏感的。例如，它过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-5531">CVE-2014-5531</a> </li>
   <li> <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-5524">CVE-2014-5524</a> </li>
   <li> <a href="https://nvd.nist.gov/vuln/detail/CVE-2014-5574">CVE-2014-5574</a> </li>
 </ul>
-<p>SSL/TLS protocols encrypt network connections. The server usually provides a digital certificate to prove its identity. Accepting all SSL/TLS
-certificates makes your application vulnerable to <a href="https://www.owasp.org/index.php/Man-in-the-middle_attack">Man-in-the-middle attacks
-(MITM)</a>.</p>
-<p>This rule will raise an issue when a method named <code>onReceivedSslError</code> with first argument of type <code>android.webkit.WebView</code>
-is defined.</p>
-<h2>Ask Yourself Whether</h2>
+<p>SSL / TLS协议加密网络连接。服务器通常提供数字证书来证明其身份。接受所有SSL / TLS证书会使您的应用程序容易受到
+ <a href="https://www.owasp.org/index.php/Man-in-the-middle_attack">中间人攻击（MITM）的攻击</a>。</p>
+<p>当定义名为 <code>onReceivedSslError</code> 且第一个参数类型为 <code>android.webkit.WebView</code> 的方法时，此规则将报告问题。</p>
+<h2>检查自己是否存在以下问题</h2>
 <ul>
-  <li> invalid SSL/TLS certificates are accepted automatically. </li>
-  <li> The user is asked to accept invalid SSL/TLS certificates. </li>
+  <li> 自动接受无效的SSL / TLS证书。 </li>
+  <li> 要求用户接受无效的SSL / TLS证书。</li>
 </ul>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>如果您对这些问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码实践</h2>
 <ul>
-  <li> Accept only trusted SSL/TLS certificates. </li>
-  <li> Do not ask users to accept unsafe connections as they are unlikely to make an informed security decision. </li>
+  <li> 仅接受受信任的SSL / TLS证书。 </li>
+  <li> 不要让用户接受不安全的连接，因为他们不太可能做出明智的安全决定。 </li>
 </ul>
-<h2>Sensitive Code Example</h2>
-<p>Android (See also <a href="https://support.google.com/faqs/answer/7071387?hl=en">"How to address WebView SSL Error Handler alerts in your
-apps."</a>)</p>
+<h2>敏感代码示例</h2>
+<p>Android （参阅 <a href="https://support.google.com/faqs/answer/7071387?hl=en">"如何在应用程序中处理WebView SSL错误处理程序警报。"</a>）</p>
 <pre>
 package com.example.myapplication.rspec_5326;
 
@@ -44,7 +41,7 @@ public class SSLTLSValidation extends WebViewClient {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) { // Sensitive
+    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) { // 敏感
         if (acceptSslError.apply(error)) {
             handler.proceed();
         } else {
@@ -53,7 +50,7 @@ public class SSLTLSValidation extends WebViewClient {
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A6-Security_Misconfiguration">OWASP Top 10 2017 Category A6</a> - Security
   Misconfiguration </li>

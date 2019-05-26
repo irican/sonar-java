@@ -1,19 +1,19 @@
-<p>There's no reason for a <code>main</code> method to <code>throw</code> anything. After all, what's going to catch it? </p>
-<p>Instead, the method should itself gracefully handle any exceptions that may bubble up to it, attach as much contextual information as possible, and
-perform whatever logging or user communication is necessary, and <code>exit</code> with a non-zero (i.e. non-success) exit code if necessary.</p>
-<h2>Noncompliant Code Example</h2>
+<p>没有理由使用 <code>main</code> 方法来 <code>throw</code> 任何东西。毕竟，有什么 catch 它呢？ </p>
+<p>相反，该方法本身应该优雅地处理可能出现的任何异常，附加尽可能多的上下文信息，执行任何必要的日志记录或用户通信。
+并且如果有必要的话，使用非零（即失败）退出代码来 <code>exit</code> 。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public static void main(String args[]) throws Exception { // Noncompliant
+public static void main(String args[]) throws Exception { // 不合规
   doSomething();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public static void main(String args[]) {
  try {
     doSomething();
   } catch (Throwable t) {
     log.error(t);
-    System.exit(1);  // Default exit code, 0, indicates success. Non-zero value means failure.
+    System.exit(1);  // 默认退出代码0表示成功。非零值表示失败。
   }
 }
 </pre>

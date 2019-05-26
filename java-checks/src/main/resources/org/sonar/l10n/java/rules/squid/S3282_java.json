@@ -1,5 +1,5 @@
 {
-  "title": "EJB interceptor exclusions should be declared as annotations",
+  "title": "EJB拦截器的排除应使用注解来声明",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

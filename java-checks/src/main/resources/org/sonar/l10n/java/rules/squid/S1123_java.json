@@ -1,5 +1,5 @@
 {
-  "title": "Deprecated elements should have both the annotation and the Javadoc tag",
+  "title": "弃用的元素应该同时具有注释和Javadoc标记",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

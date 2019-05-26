@@ -1,12 +1,12 @@
-<p>There's no need to null test in conjunction with an <code>instanceof</code> test. <code>null</code> is not an <code>instanceof</code> anything, so
-a null check is redundant.</p>
-<h2>Noncompliant Code Example</h2>
+<p>无需与<code> instanceof </code>测试结合使用null测试。 <code> null </code>不是<code> instanceof </code>，所以
+空检查是多余的。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-if (x != null &amp;&amp; x instanceof MyClass) { ... }  // Noncompliant
+if (x != null &amp;&amp; x instanceof MyClass) { ... }  //不符合规范的
 
-if (x == null || ! x instanceof MyClass) { ... } // Noncompliant
+if (x == null || ! x instanceof MyClass) { ... } // 不符合规范的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的代码示例</h2>
 <pre>
 if (x instanceof MyClass) { ... }
 

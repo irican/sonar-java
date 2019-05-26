@@ -1,15 +1,15 @@
-<p>Appending <code>String.valueOf()</code> to a <code>String</code> decreases the code readability.</p>
-<p>The argument passed to <code>String.valueOf()</code> should be directly appended instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p>将 <code>String.valueOf()</code> 附加到 <code>String</code> 会降低代码的可读性。</p>
+<p>传递给 <code>String.valueOf()</code> 的参数应该直接附加。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void display(int i){
-  System.out.println("Output is " + String.valueOf(i));    // Noncompliant
+  System.out.println("Output is " + String.valueOf(i));    // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void display(int i){
-  System.out.println("Output is " + i);                    // Compliant
+  System.out.println("Output is " + i);                    // 合规
 }
 </pre>
 

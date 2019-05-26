@@ -1,5 +1,5 @@
 {
-  "title": "\"readObject\" should not be \"synchronized\"",
+  "title": "\"readObject\" 不应该是\"synchronized\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

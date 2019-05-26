@@ -1,6 +1,5 @@
-<p>Having a variable with the same name in two unrelated classes is fine, but do the same thing within a class hierarchy and you'll get confusion at
-best, chaos at worst. </p>
-<h2>Noncompliant Code Example</h2>
+<p>在两个不相关的类中使用相同名称的变量是可以的，但是在类层次结构中做同样的事情，你最多会感到困惑，最糟糕的是混乱。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Fruit {
   protected Season ripe;
@@ -10,11 +9,11 @@ public class Fruit {
 }
 
 public class Raspberry extends Fruit {
-  private boolean ripe;  // Noncompliant
-  private static Color FLESH; // Noncompliant
+  private boolean ripe;  // 不合规的
+  private static Color FLESH; // 不合规的
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Fruit {
   protected Season ripe;
@@ -29,9 +28,8 @@ public class Raspberry extends Fruit {
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule ignores same-name fields that are <code>static</code> in both the parent and child classes. This rule ignores <code>private</code> parent
-class fields, but in all other such cases, the child class field should be renamed.</p>
+<h2>例外</h2>
+<p>此规则忽略父类和子类中 <code>static</code> 的同名字段。 此规则忽略 <code>private</code> 父类字段，但在所有其他此类情况下，应重命名子类字段。</p>
 <pre>
 public class Fruit {
   private Season ripe;
@@ -39,7 +37,7 @@ public class Fruit {
 }
 
 public class Raspberry extends Fruit {
-  private Season ripe;  // Compliant as parent field 'ripe' is anyway not visible from Raspberry
+  private Season ripe;  // 无论如何，从Raspberry中看不到父字段'成熟'的合规性
   // ...
 }
 </pre>

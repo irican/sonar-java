@@ -1,43 +1,33 @@
-<p>Using regular expressions is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>使用正则表达式是安全敏感的。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-16021">CVE-2017-16021</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-13863">CVE-2018-13863</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-8926">CVE-2018-8926</a> </li>
 </ul>
-<p>Regular Expressions are subject to different kinds of vulnerabilities.</p>
+<p>正则表达式会受到各种漏洞的影响。</p>
 <p> </p>
-<p>First, evaluating regular expressions against input strings is potentially an extremely CPU-intensive task. Specially crafted regular expressions
-such as <code>(a+)+</code> will take several seconds to evaluate the input string <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa!</code>. The problem is that
-with every additional <code>a</code> character added to the input, the time required to evaluate the regex doubles. However, the equivalent regular
-expression, <code>a+</code> (without grouping) is efficiently evaluated in milliseconds and scales linearly with the input size.</p>
-<p>Evaluating user-provided strings as regular expressions opens the door to <a
-href="https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS">Regular expression Denial of Service (ReDoS)</a> attacks. In the
-context of a web application, attackers can force the web server to spend all of its resources evaluating regular expressions thereby making the
-service inaccessible to genuine users.</p>
+<p>首先，针对输入字符串计算正则表达式可能是一项极其耗费CPU的任务。经过精心设计的正则表达式（如<code>（a +）+ </code>）将需要几秒钟来评估输入字符串 <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa!</code>. 问题是，在输入中添加了每个额外的<code> a </code>字符，评估正则表达式所需的时间会翻倍。但是，等效的正则表达式<code> a + </code>（没有分组）可以在几毫秒内有效地进行评估，并与输入大小成线性比例。</p>
+<p>将用户提供的字符串作为正则表达式进行评估，打开了 <a
+href="https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS">正则表达式拒绝服务（ReDoS）</a>攻击。在里面
+在Web应用程序的上下文中，攻击者可以强制Web服务器花费其所有资源来评估正则表达式，从而实现
+让真正的用户无法访问服务。</p>
 <p> </p>
-<p>Another type of vulnerability can occur when regular expressions are used to validate user input. A regular expression can be used to filter unsafe
-input by either matching a whole input when it is valid (example: the whole string should only contain alphanumeric characters) or by detecting
-dangerous parts of an input. In both cases it is possible to let dangerous values through. For example, searching for <code>&lt;script&gt;</code> tags
-in some HTML code with the regular expression <code>.*&lt;script&gt;.*</code> will miss <code>&lt;script id="test"&gt;</code>.</p>
+使用正则表达式验证用户输入时，可能会发生另一种类型的漏洞。正则表达式可用于过滤不安全输入，方法是在整个输入有效时匹配整个输入（例如：整个字符串应仅包含字母数字字符）或检测输入的危险部分。在这两种情况下都可以通过危险的价值观。例如，使用正则表达式<code>。*＆lt; script＆gt;。* </code>搜索某些HTML代码中的<code>＆lt; script＆gt; </code>标记将会错过<code>＆lt; script id = “测试” ＆GT; </code>.</p>
 <p> </p>
-<p>This rule flags any regular expression execution or compilation for review.</p>
-<h2>Ask Yourself Whether</h2>
+<p><p>此规则标记任何正则表达式执行或编译以供审阅。</p>
+<h2>检查自己是否出现下列问题</h2>
 <ul>
-  <li> a user input string is executed as a regular-expression, or it is inserted in a regular expression. </li>
-  <li> a user can provide a string which will be analyzed by a regular expression. </li>
-  <li> your regular expression engine performance decrease with specially crafted inputs and regular expressions. </li>
-  <li> the regular expression is used to validate unsafe input, but it does not detect all dangerous values. </li>
+  <li>用户输入字符串作为正则表达式执行，或者插入正则表达式。 </li>
+  <li>用户可以提供将由正则表达式分析的字符串。 </li>
+  <li>通过特制输入和正则表达式降低正则表达式引擎的性能。 </li>
+  <li>正则表达式用于验证不安全的输入，但它不会检测所有危险值。 </li>
 </ul>
-<p>You may be at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Avoid executing a user input string as a regular expression. If this is required, restrict the allowed regular expressions.</p>
-<p>Check whether your regular expression engine (the algorithm executing your regular expression) has any known vulnerabilities. Search for
-vulnerability reports mentioning the one engine you're are using.</p>
-<p>Test your regular expressions with techniques such as equivalence partitioning, and boundary value analysis, and test for robustness. Try not to
-make complex regular expressions as they are difficult to understand and test. Note that some regular expression engines will match only part of the
-input if no anchors are used. In PHP for example <code>preg_match("/[A-Za-z0-9]+/", $text)</code> will accept any string containing at least one
-alphanumeric character because it has no anchors.</p>
-<h2>Questionable Code Example</h2>
+<p>如果对这些问题的回答是肯定的，您可能会面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p>避免将用户输入字符串作为正则表达式执行。如果需要，请限制允许的正则表达式。</p>
+<p>检查正则表达式引擎（执行正则表达式的算法）是否存在任何已知漏洞。搜索提及您正在使用的一个引擎的漏洞报告。</p>
+<p>使用等价分区和边界值分析等技术测试正则表达式，并测试稳健性。尽量不要制作复杂的正则表达式，因为它们很难理解和测试。请注意，如果没有使用锚点，某些正则表达式引擎将仅匹配部分输入。在PHP中，例如<code> preg_match（“/ [A-Za-z0-9] /”，$ text）</code>将接受包含至少一个字母数字字符的任何字符串，因为它没有锚点。</p>
+<h2>可疑代码示例</h2>
 <pre>
 import java.util.regex.Pattern;
 
@@ -78,12 +68,12 @@ class BeansRegex implements Serializable {
   // ...
 }
 </pre>
-<h2>Exceptions</h2>
+<h2>例外</h2>
 <p>Calls to <code>java.util.regex.Pattern.matcher(...)</code>, <code>java.util.regex.Pattern.split(...)</code> and all methods of
 <code>java.util.regex.Matcher</code> are not highlighted as the pattern compilation is already highlighted.</p>
 <p>Calls to <code>String.split(regex)</code> and <code>String.split(regex, limit)</code> will not raise an exception despite their use of a regular
 expression. These methods are used most of the time to split on a single character, which doesn't create any vulnerability.</p>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS">MITRA, CWE-624</a> - Executable Regular Expression Error
   </li>

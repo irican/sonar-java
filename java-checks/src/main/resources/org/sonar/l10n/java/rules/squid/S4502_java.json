@@ -1,5 +1,5 @@
 {
-  "title": "Disabling Spring Security's CSRF protection is security-sensitive",
+  "title": "禁用Spring Security的CSRF保护对安全性敏感",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "remediation": {

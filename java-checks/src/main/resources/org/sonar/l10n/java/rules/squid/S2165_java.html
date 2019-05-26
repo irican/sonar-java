@@ -1,12 +1,12 @@
-<p>There is no point in setting class fields to <code>null</code> in a finalizer. If this this is a hint to the garbage collector, it is unnecessary -
-the object will be garbage collected anyway - and doing so may actually cause extra work for the garbage collector.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在终结器（finalizer）中将类字段设置为 <code>null</code> 是没有意义的。如果这是对垃圾收集器（garbage collector）的提示，
+那么它是不必要的 - 无论如何对象都将被垃圾收集 - 这样做实际上可能会导致垃圾收集器的额外工作。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo {
   private String name;
 
   @Override
   void finalize() {
-    name = null;  // Noncompliant; completely unnecessary
+    name = null;  // 不合规； 完全没必要
 </pre>
 

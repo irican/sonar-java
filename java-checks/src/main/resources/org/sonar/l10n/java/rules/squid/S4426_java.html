@@ -1,16 +1,16 @@
-<p>When generating cryptographic keys (or key pairs), it is important to use a key length that provides enough entropy against brute-force attacks.
-For the <code>Blowfish</code> algorithm the key should be at least 128 bits long, while for the <code>RSA</code> algorithm it should be at least 2048
-bits long.</p>
-<p>This rule raises an issue when a Blowfish key generator or RSA key-pair generator is initialized with too small a length parameter.</p>
-<h2>Noncompliant Code Example</h2>
+<p>生成加密密钥（或密钥对）时，使用密钥长度来提供足够的熵以抵御暴力攻击非常重要。
+对于 <code>Blowfish</code>算法，密钥长度应至少为128位，而对于 <code>RSA</code> 算法，密钥应至少为2048
+比特长。</p>
+<p>当使用太小的长度参数初始化Blowfish密钥生成器或RSA密钥对生成器时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 KeyGenerator keyGen = KeyGenerator.getInstance("Blowfish");
-keyGen.init(64); // Noncompliant
+keyGen.init(64); // 不合规的
 
 KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
-keyPairGen.initialize(512); // Noncompliant
+keyPairGen.initialize(512); // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 KeyGenerator keyGen = KeyGenerator.getInstance("Blowfish");
 keyGen.init(128);
@@ -18,7 +18,7 @@ keyGen.init(128);
 KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
 keyPairGen.initialize(2048);
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/326.html">MITRE, CWE-326</a> - Inadequate Encryption Strength </li>
   <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>

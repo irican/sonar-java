@@ -1,5 +1,5 @@
 {
-  "title": "Dissimilar primitive wrappers should not be used with the ternary operator without explicit casting",
+  "title": "在没有显式强制转换（explicit casting）的情况下，不应该将不同的原始类型包装器（primitive wrapper）与三元运算符一起使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

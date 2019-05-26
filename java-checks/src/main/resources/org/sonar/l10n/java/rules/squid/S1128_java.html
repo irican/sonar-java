@@ -1,16 +1,16 @@
-<p>The imports part of a file should be handled by the Integrated Development Environment (IDE), not manually by the developer. </p>
-<p>Unused and useless imports should not occur if that is the case. </p>
-<p>Leaving them in reduces the code's readability, since their presence can be confusing.</p>
-<h2>Noncompliant Code Example</h2>
+<p>文件的导入部分应由集成开发环境（IDE）处理，而不是由开发人员手动处理。 </p>
+<p>如果是这种情况，则不应出现未使用和无用的导入。 </p>
+<p>将它们留在代码中会降低其可读性，因为它们的存在可能引起混淆。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 package my.company;
 
-import java.lang.String;        // Noncompliant; java.lang classes are always implicitly imported
-import my.company.SomeClass;    // Noncompliant; same-package files are always implicitly imported
-import java.io.File;            // Noncompliant; File is not used
+import java.lang.String;        // 不合规； 始终隐式导入java.lang类
+import my.company.SomeClass;    // 不合规； 始终隐式导入同包文件
+import java.io.File;            // 不合规； 文件未使用
 
 import my.company2.SomeType;
-import my.company2.SomeType;    // Noncompliant; 'SomeType' is already imported
+import my.company2.SomeType;    // 不合规； 'SomeType' 已经导入
 
 class ExampleClass {
 
@@ -19,6 +19,5 @@ class ExampleClass {
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Imports for types mentioned in comments, such as Javadocs, are ignored.</p>
-
+<h2>例外</h2>
+<p>注释中提到的类型的导入（例如Javadocs）将被忽略。</p>

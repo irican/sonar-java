@@ -1,12 +1,11 @@
-<p>While most <code>compareTo</code> methods return -1, 0, or 1, some do not, and testing the result of a <code>compareTo</code> against a specific
-value other than 0 could result in false negatives.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然大多数 <code>compareTo</code> 方法返回 -1, 0, 或者 1, 但有些方法没有，并且测试 <code>compareTo</code> 针对0以外的特定值，可能会产生判断错误（false negative）。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
-if (myClass.compareTo(arg) == -1) {  // Noncompliant
+if (myClass.compareTo(arg) == -1) {  // 不合规的
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 if (myClass.compareTo(arg) &lt; 0) {
   // ...

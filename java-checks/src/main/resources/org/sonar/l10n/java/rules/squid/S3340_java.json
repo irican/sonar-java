@@ -1,5 +1,5 @@
 {
-  "title": "Annotation arguments should appear in the order in which they were declared",
+  "title": "注释参数应按声明它们的顺序出现",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

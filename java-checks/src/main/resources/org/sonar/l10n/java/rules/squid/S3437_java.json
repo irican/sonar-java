@@ -1,5 +1,5 @@
 {
-  "title": "Value-based objects should not be serialized",
+  "title": "不应序列化基于值（value-based）的对象",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Composed \"@RequestMapping\" variants should be preferred",
+  "title": "组合“@ RequestMapping ”变体应该是首选",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

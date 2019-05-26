@@ -1,11 +1,10 @@
-<p><code>java.lang.Error</code> and its subclasses represent abnormal conditions, such as <code>OutOfMemoryError</code>, which should only be
-encountered by the Java Virtual Machine.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>java.lang.Error</code> 及其子类表示异常情况，例如只应由Java虚拟机遇到的 <code>OutOfMemoryError</code> 。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class MyException extends Error { /* ... */ }       // Noncompliant
+public class MyException extends Error { /* ... */ }       // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public class MyException extends Exception { /* ... */ }   // Compliant
+public class MyException extends Exception { /* ... */ }   // 合规
 </pre>
 

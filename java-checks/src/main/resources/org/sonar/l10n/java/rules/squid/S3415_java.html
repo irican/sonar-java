@@ -1,12 +1,10 @@
-<p>The standard assertions library methods such as <code>org.junit.Assert.assertEquals</code>, and <code>org.junit.Assert.assertSame</code> expect the
-first argument to be the expected value and the second argument to be the actual value. Swap them, and your test will still have the same outcome
-(succeed/fail when it should) but the error messages will be confusing. </p>
-<p>This rule raises an issue when the second argument to an assertions library method is a hard-coded value and the first argument is not.</p>
-<h2>Noncompliant Code Example</h2>
+<p>标准断言库方法，例如<code>org.junit.Assert.assertEquals</code>和 <code>org.junit.Assert.assertSame</code>，期望第一个参数是期望值，第二个参数成为实际价值。交换它们，你的测试仍然会有相同的结果（应该成功/失败）但错误消息会令人困惑。</p>
+<p>当断言库方法的第二个参数是硬编码值而第一个参数不是时，此规则引发了一个问题。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 org.junit.Assert.assertEquals(runner.exitCode(), 0, "Unexpected exit code");  // Noncompliant; Yields error message like: Expected:&lt;-1&gt;. Actual:&lt;0&gt;.
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 org.junit.Assert.assertEquals(0, runner.exitCode(), "Unexpected exit code");
 </pre>

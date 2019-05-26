@@ -1,12 +1,12 @@
-<p>Non-abstract <code>class</code>es and <code>enum</code>s with non-<code>static</code>, <code>private</code> members should explicitly initialize
-those members, either in a constructor or with a default value.</p>
-<h2>Noncompliant Code Example</h2>
+<p>带有非<code>static</code>，<code>private</code>成员的非抽象<code>class</code> 和<code>enum</code>应该显式初始化这些成员，
+要么在构造函数中，要么使用默认值。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-class A { // Noncompliant
+class A { // 不合规
   private int field;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class A {
   private int field;

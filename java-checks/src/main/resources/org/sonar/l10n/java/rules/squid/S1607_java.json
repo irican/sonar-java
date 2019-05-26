@@ -1,5 +1,5 @@
 {
-  "title": "Tests should not be ignored",
+  "title": "不应忽略测试",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

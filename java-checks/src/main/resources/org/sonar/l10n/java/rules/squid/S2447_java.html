@@ -1,14 +1,13 @@
-<p>While <code>null</code> is technically a valid <code>Boolean</code> value, that fact, and the distinction between <code>Boolean</code> and
-<code>boolean</code> is easy to forget. So returning <code>null</code> from a <code>Boolean</code> method is likely to cause problems with callers'
-code.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然<code>null</code> 在技术上是一个有效的<code>Boolean</code> 值，但事实上，<code>Boolean</code> 和<code>boolean</code> 之间的区别很容易被忘记。
+因此，从<code>Boolean</code>方法返回<code>null</code>可能会导致调用者的代码出现问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public Boolean isUsable() {
   // ...
-  return null;  // Noncompliant
+  return null;  // 不合规
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/476.html">MITRE CWE-476</a> - NULL Pointer Dereference </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/ZwDOAQ">CERT, EXP01-J.</a> - Do not use a null in a case where an object is required

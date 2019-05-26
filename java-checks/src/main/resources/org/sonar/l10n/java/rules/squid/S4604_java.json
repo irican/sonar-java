@@ -1,5 +1,5 @@
 {
-  "title": "\"@EnableAutoConfiguration\" should be fine-tuned",
+  "title": "\"@EnableAutoConfiguration\"应该进行微调",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,6 +1,5 @@
-<p><code>static</code> methods can be accessed without an instance of the enclosing class, so there's no reason to instantiate a class that has only
-<code>static</code> methods.</p>
-<h2>Noncompliant Code Example</h2>
+<p>可以在没有封闭类实例的情况下访问<code>static</code> 方法，因此没有理由实例化只有<code>static</code> 方法的类。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class TextUtils {
   public static String stripHtml(String source) {
@@ -13,7 +12,7 @@ public class TextManipulator {
   // ...
 
   public void cleanText(String source) {
-    TextUtils textUtils = new TextUtils(); // Noncompliant
+    TextUtils textUtils = new TextUtils(); //不合规的
 
     String stripped = textUtils.stripHtml(source);
 
@@ -21,7 +20,7 @@ public class TextManipulator {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class TextUtils {
   public static String stripHtml(String source) {
@@ -40,7 +39,7 @@ public class TextManipulator {
   }
 }
 </pre>
-<h2>See Also</h2>
+<h2>也请详见</h2>
 <ul>
   <li> {rule:squid:S1118} - Utility classes should not have public constructors </li>
 </ul>

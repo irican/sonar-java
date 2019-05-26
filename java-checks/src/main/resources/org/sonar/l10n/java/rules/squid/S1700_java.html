@@ -1,8 +1,6 @@
-<p>It's confusing to have a class member with the same name (case differences aside) as its enclosing class. This is particularly so when you consider
-the common practice of naming a class instance for the class itself.</p>
-<p>Best practice dictates that any field or member with the same name as the enclosing class be renamed to be more descriptive of the particular
-aspect of the class it represents or holds.</p>
-<h2>Noncompliant Code Example</h2>
+<p>让一个具有相同名称的类成员（不区分大小写）作为其封闭类（enclosing class）是令人困惑的。当您考虑为类本身去命名类实例这样的常见做法时尤其如此。</p>
+<p>最佳做法要求重命名与封闭类同名的任意字段或成员，以更好地描述它所代表或保留的类的特定方面。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo {
   private String foo;
@@ -11,9 +9,9 @@ public class Foo {
 }
 
 Foo foo = new Foo();
-foo.getFoo() // what does this return?
+foo.getFoo() // 这个返回什么?
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Foo {
   private String name;
@@ -27,8 +25,8 @@ Foo foo = new Foo();
 foo.getName()
 
 </pre>
-<h2>Exceptions</h2>
-<p>When the type of the field is the containing class and that field is static, no issue is raised to allow singletons named like the type. </p>
+<h2>例外</h2>
+<p>当字段的类型是包含类（containing class）并且该字段是静态时，允许单例像该类型一样命名，不报告问题</p>
 <pre>
 public class Foo {
   ...

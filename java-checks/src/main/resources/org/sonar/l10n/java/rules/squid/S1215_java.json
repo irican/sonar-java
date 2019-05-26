@@ -1,5 +1,5 @@
 {
-  "title": "Execution of the Garbage Collector should be triggered only by the JVM",
+  "title": "垃圾收集器的执行只应该由JVM触发",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

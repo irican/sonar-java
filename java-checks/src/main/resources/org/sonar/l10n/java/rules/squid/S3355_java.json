@@ -1,5 +1,5 @@
 {
-  "title": "Defined filters should be used",
+  "title": "应使用定义过的过滤器",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

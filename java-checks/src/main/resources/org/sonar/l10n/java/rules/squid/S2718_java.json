@@ -1,5 +1,5 @@
 {
-  "title": "\"DateUtils.truncate\" from Apache Commons Lang library should not be used",
+  "title": "不应该使用Apache Commons Lang库中的\"DateUtils.truncate\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

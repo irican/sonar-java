@@ -1,17 +1,17 @@
-<p>Using upper case literal suffixes removes the potential ambiguity between "1" (digit 1) and "l" (letter el) for declaring literals.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用大写字母后缀消除了“1”（数字1）和“l”（字母L）之间用于声明数字精度等情况的潜在歧义。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-long long1 = 1l; // Noncompliant
-float float1 = 1.0f; // Noncompliant
-double double1 = 1.0d; // Noncompliant
+long long1 = 1l; // 不合规
+float float1 = 1.0f; // 不合规
+double double1 = 1.0d; // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 long long1 = 1L;
 float float1 = 1.0F;
 double double1 = 1.0D;
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C++:2008, 2-13-4 - Literal suffixes shall be upper case </li>
   <li> MISRA C:2012, 7.3 - The lowercase character "l" shall not be used in a literal suffix </li>

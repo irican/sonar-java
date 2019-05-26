@@ -1,20 +1,19 @@
-<p>According to the Java Code Conventions as defined by Oracle, the members of a class or interface declaration should appear in the following order
-in the source files:</p>
+<p>根据Oracle定义的Java代码约定，接口声明或类的成员应该在源文件中按如下顺序出现:</p>
 <ul>
-  <li> Class and instance variables </li>
-  <li> Constructors </li>
-  <li> Methods </li>
+  <li> 类和实例变量 </li>
+  <li> 构造函数 </li>
+  <li> 方法</li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo{
    private int field = 0;
    public boolean isTrue() {...}
-   public Foo() {...}                         // Noncompliant, constructor defined after methods
-   public static final int OPEN = 4;  //Noncompliant, variable defined after constructors and methods
+   public Foo() {...}                         // 不合规， 方法后定义了构造函数
+   public static final int OPEN = 4;  //不合规，构造函数和方法之后定义了变量
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Foo{
    public static final int OPEN = 4;

@@ -1,5 +1,5 @@
 {
-  "title": "Modulus results should not be checked for direct equality",
+  "title": "不应检查模数结果的直接相等性",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

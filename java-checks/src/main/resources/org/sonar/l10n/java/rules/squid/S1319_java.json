@@ -1,5 +1,5 @@
 {
-  "title": "Declarations should use Java collection interfaces such as \"List\" rather than specific implementation classes such as \"LinkedList\"",
+  "title": "声明应该使用Java集合接口，如 \"List\" ，而不是特定的实现类，如 \"LinkedList\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

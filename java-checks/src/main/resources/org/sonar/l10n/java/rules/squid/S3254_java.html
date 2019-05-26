@@ -1,19 +1,19 @@
-<p>Specifying the default value for an annotation parameter is redundant. Such values should be omitted in the interests of readability.</p>
-<h2>Noncompliant Code Example</h2>
+<p>为注解参数指定默认值是多余的。为保证可读性应省略这种值。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-@MyAnnotation(arg = "def")  // Noncompliant
+@MyAnnotation(arg = "def")  // 不合规
 public class MyClass {
-  // ...
+  // ……
 }
 public @interface MyAnnotation {
   String arg() default "def";
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @MyAnnotation
 public class MyClass {
-  // ...
+  // ……
 }
 public @interface MyAnnotation {
   String arg() default "def";

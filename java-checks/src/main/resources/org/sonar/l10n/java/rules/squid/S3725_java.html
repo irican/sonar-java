@@ -1,22 +1,21 @@
-<p>The <code>Files.exists</code> method has noticeably poor performance in JDK 8, and can slow an application significantly when used to check files
-that don't actually exist. </p>
-<p>The same goes for <code>Files.notExists</code>, <code>Files.isDirectory</code> and <code>Files.isRegularFile</code>.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is not 8.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code> Files.exists </code>方法在JDK 8中的性能明显较差，并且在用于检查实际不存在的文件时会显着减慢应用程序的速度。</p>
+<p> <code> Files.notExists </code>，<code> Files.isDirectory </code>和<code> Files.isRegularFile </code>也是如此</p>
+<p><strong>注意</strong>当项目的<code> sonar.java.source </code>不是8时，会自动禁用此规则。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Path myPath;
-if(java.nio.Files.exists(myPath)) {  // Noncompliant
- // do something
+if(java.nio.Files.exists(myPath)) {  //不符合规范的
+ // do something（一些代码）
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Path myPath;
 if(myPath.toFile().exists())) {
- // do something
+ // do something（一些代码）
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://bugs.openjdk.java.net/browse/JDK-8153414">https://bugs.openjdk.java.net/browse/JDK-8153414</a> </li>
   <li> <a href="https://bugs.openjdk.java.net/browse/JDK-8154077">https://bugs.openjdk.java.net/browse/JDK-8154077</a> </li>

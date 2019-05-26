@@ -1,19 +1,17 @@
-<p>The use of any value but <code>"validate"</code> for <code>hibernate.hbm2ddl.auto</code> may cause the database schema used by your application to
-be changed, dropped, or cleaned of all data. In short, the use of this property is risky, and should only be used in production with the
-<code>"validate"</code> option, if it is used at all.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对<code> hibernate.hbm2ddl.auto </code>使用任何值但<code>“validate”</code>可能导致应用程序使用的数据库模式被更改，删除或清除所有数据。 简而言之，使用此属性是有风险的，并且只应在生产时使用<code>“validate”</code>选项，如果它被使用的话。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 &lt;session-factory&gt;
-  &lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt;  &lt;!-- Noncompliant --&gt;
+  &lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt;  &lt;!-- 不合规的 --&gt;
 &lt;/session-factory&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 &lt;session-factory&gt;
-  &lt;property name="hibernate.hbm2ddl.auto"&gt;validate&lt;/property&gt;  &lt;!-- Compliant --&gt;
+  &lt;property name="hibernate.hbm2ddl.auto"&gt;validate&lt;/property&gt;  &lt;!-- 合规的 --&gt;
 &lt;/session-factory&gt;
 </pre>
-<p>or</p>
+<p>或者</p>
 <pre>
 &lt;session-factory&gt;
   &lt;!-- Property deleted --&gt;

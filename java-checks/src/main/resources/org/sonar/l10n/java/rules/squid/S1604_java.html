@@ -1,8 +1,7 @@
-<p>Before Java 8, the only way to partially support closures in Java was by using anonymous inner classes. But the syntax of anonymous classes may
-seem unwieldy and unclear.</p>
-<p>With Java 8, most uses of anonymous inner classes should be replaced by lambdas to highly increase the readability of the source code.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在Java 8之前，部分支持Java闭包（closure）的唯一方法是使用匿名内部类。但是匿名类的语法可能看起来不实用且不清楚。</p>
+<p>在Java 8中，应该用lambdas替换匿名内部类的大多数用法，以极大地提高源代码的可读性.</p>
+<p><strong>注意</strong> 当项目的 <code>sonar.java.source</code> 低于 <code>8</code>时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 myCollection.stream().map(new Mapper&lt;String,String&gt;() {
   public String map(String input) {
@@ -16,7 +15,7 @@ Predicate&lt;String&gt; isEmpty = new Predicate&lt;String&gt; {
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 myCollection.stream().map(input -&gt; new StringBuilder(input).reverse().toString());
 

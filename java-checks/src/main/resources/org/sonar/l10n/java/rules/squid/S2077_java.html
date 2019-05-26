@@ -1,16 +1,14 @@
-<p>Executing SQL queries is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>执行SQL查询是安全敏感的。它在过去导致了以下漏洞:</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9019">CVE-2018-9019</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7318">CVE-2018-7318</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5611">CVE-2017-5611</a> </li>
 </ul>
-<p><a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection</a> is still one of the top 10 security vulnerabilities. Applications that
-execute SQL commands should neutralize any externally-provided values used in those commands. Failure to do so could allow an attacker to include
-input that changes the query so that unintended commands are executed, or sensitive data is exposed. Instead of trying to sanitize data by hand, SQL
-binding mechanisms should be used; they can be relied on to automatically perform a full sanitization.</p>
-<p>This rule checks a variety of methods from different frameworks which are susceptible to SQL injection if not used properly. Frameworks which are
-covered are Java JDBC, JPA, JDO, Hibernate and Spring. The following specific method signatures are tested. Any SQL query built by concatenating or
-formatting Strings is considered susceptible. The goal is to guide security code reviews.</p>
+<p><a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection</a> 仍然是十大安全漏洞之一。 
+执行SQL命令的应用程序应该抵消这些命令中使用的任何外部提供的值。如果不这样做，攻击者可能会包含更改查询的输入，以便执行非预期的命令，
+或者暴露敏感数据。不应尝试手动清理数据，而应使用SQL绑定机制; 他们可以依靠自动执行完全净化。</p>
+<p>该规则检查来自不同框架的各种方法，如果使用不当，这些方法很容易受到SQL注入的影响。涵盖的框架有Java JDBC、JPA、JDO、Hibernate和Spring。
+测试以下特定的方法签名。通过连接或格式化字符串构建的任何SQL查询都被认为是易受影响的。目标是指导安全代码审查。</p>
 <ul>
   <li> <code>org.hibernate.Session.createQuery</code> </li>
   <li> <code>org.hibernate.Session.createSQLQuery</code> </li>
@@ -40,25 +38,24 @@ formatting Strings is considered susceptible. The goal is to guide security code
   <li> <code>javax.jdo.Query.setFilter</code> </li>
   <li> <code>javax.jdo.Query.setGrouping</code> </li>
 </ul>
-<p>If a method is defined in an interface, implementations are also tested. For example this is the case for
-<code>org.springframework.jdbc.core.JdbcOperations</code> , which is usually used as <code>org.springframework.jdbc.core.JdbcTemplate</code>). </p>
-<h2>Ask Yourself Whether</h2>
+<p>如果在接口中定义了方法，则还会测试其实现。例如，<code>org.springframework.jdbc.core.JdbcOperations</code> 就是这种情况，
+它通常用作 <code>org.springframework.jdbc.core.JdbcTemplate</code>。 </p>
+<h2>检查自己是否存在以下情况</h2>
 <ul>
-  <li> the SQL query contains any non sanitized input from a user or another untrusted source. </li>
+  <li> SQL查询包含来自用户或其他不可信源的任何未经净化的输入。 </li>
 </ul>
-<p>You are at risk if you answered yes to this question.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>如果你对这个问题的回答是肯定的，那么你就有风险。</p>
+<h2>推荐的安全编码实践</h2>
 <ul>
-  <li> Avoid building queries manually using concatenation or formatting. If you do it anyway, do not include user input in this building process.
+  <li> 避免使用级联或格式化手动构建查询。 如果您仍然这样做，请不要在此构建过程中包含用户输入。
   </li>
-  <li> Use <a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">parameterized queries, prepared statements, or stored
-  procedures</a> whenever possible. </li>
-  <li> You may also use ORM frameworks such as Hibernate which, if used correctly, reduce injection risks. </li>
-  <li> Avoid executing SQL queries containing unsafe input in stored procedures or functions. </li>
-  <li> <a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> every unsafe input. </li>
+  <li> 尽可能使用 <a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">参数化查询，预处理语句或存储过程</a> 。 </li>
+  <li> 您也可以使用Hibernate等ORM框架，如果使用正确，可以降低注入风险。 </li>
+  <li> 避免在存储过程或函数中执行包含不安全输入的SQL查询。 </li>
+  <li> <a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">净化</a> 每一个不安全输入。 </li>
 </ul>
-<p>You can also reduce the impact of an attack by using a database account with low privileges.</p>
-<h2>Noncompliant Code Example</h2>
+<p>您还可以使用具有低权限的数据库帐户来减少攻击的影响。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public User getUser(Connection con, String user) throws SQLException {
 
@@ -67,14 +64,14 @@ public User getUser(Connection con, String user) throws SQLException {
   PreparedStatement pstmt;
   try {
     stmt1 = con.createStatement();
-    ResultSet rs1 = stmt1.executeQuery("GETDATE()"); // Compliant; parameters not used here
+    ResultSet rs1 = stmt1.executeQuery("GETDATE()"); // 合规； 这里没有使用参数
 
     stmt2 = con.createStatement();
     ResultSet rs2 = stmt2.executeQuery("select FNAME, LNAME, SSN " +
-                 "from USERS where UNAME=" + user);  // Noncompliant; parameter concatenated directly into query
+                 "from USERS where UNAME=" + user);  // 不合规； 参数直接连接到查询中
 
     pstmt = con.prepareStatement("select FNAME, LNAME, SSN " +
-                 "from USERS where UNAME=" + user);  // Noncompliant; parameter concatenated directly into query
+                 "from USERS where UNAME=" + user);  // 不合规； 参数直接连接到查询中
     ResultSet rs3 = pstmt.executeQuery();
 
     //...
@@ -82,12 +79,12 @@ public User getUser(Connection con, String user) throws SQLException {
 
 public User getUserHibernate(org.hibernate.Session session, String userInput) {
 
-  org.hibernate.Query query = session.createQuery(  // Compliant
-            "FROM students where fname = " + userInput);  // Noncompliant; parameter binding should be used instead
+  org.hibernate.Query query = session.createQuery(  // 合规
+            "FROM students where fname = " + userInput);  // 不合规； 应该使用参数绑定（parameter binding）
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public User getUser(Connection con, String user) throws SQLException {
 
@@ -100,7 +97,7 @@ public User getUser(Connection con, String user) throws SQLException {
     ResultSet rs1 = stmt1.executeQuery("GETDATE()");
 
     pstmt = con.prepareStatement(query);
-    pstmt.setString(1, user);  // Compliant; PreparedStatements escape their inputs.
+    pstmt.setString(1, user);  // 合规； PreparedStatements 转义它们的输入。
     ResultSet rs2 = pstmt.executeQuery();
 
     //...
@@ -110,10 +107,10 @@ public User getUser(Connection con, String user) throws SQLException {
 public User getUserHibernate(org.hibernate.Session session, String userInput) {
 
   org.hibernate.Query query =  session.createQuery("FROM students where fname = ?");
-  query = query.setParameter(0,userInput);  // Parameter binding escapes all input
+  query = query.setParameter(0,userInput);  // 参数绑定转义所有的输入
   // ...
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/89">MITRE, CWE-89</a> - Improper Neutralization of Special Elements used in an SQL Command </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/564.html">MITRE, CWE-564</a> - SQL Injection: Hibernate </li>

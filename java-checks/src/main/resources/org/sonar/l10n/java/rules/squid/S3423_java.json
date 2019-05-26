@@ -1,5 +1,5 @@
 {
-  "title": "pom elements should be in the recommended order",
+  "title": "pom元素应按推荐顺序排列",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

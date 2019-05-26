@@ -1,14 +1,13 @@
-<p>A <code>for</code> loop with a counter that moves in the wrong direction is not an infinite loop. Because of wraparound, the loop will eventually
-reach its stop condition, but in doing so, it will run many, many more times than anticipated, potentially causing unexpected behavior. </p>
-<h2>Noncompliant Code Example</h2>
+<p> 带有向错误方向移动的计数器的<code>for</code>（循环）不是无限循环。 由于环绕，循环最终将达到其停止条件，但在这样做时，它将比预期运行许多次，可能导致意外行为。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public void doSomething(String [] strings) {
-  for (int i = 0; i &lt; strings.length; i--) { // Noncompliant;
-    String string = strings[i];  // ArrayIndexOutOfBoundsException when i reaches -1
+  for (int i = 0; i &lt; strings.length; i--) { //不合规的;
+    String string = strings[i];  // ArrayIndexOutOfBoundsException 当 i 达到 -1 时
     //...
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void doSomething(String [] strings) {
   for (int i = 0; i &lt; strings.length; i++) {
@@ -16,7 +15,7 @@ public void doSomething(String [] strings) {
     //...
   }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/zYEzAg">CERT, MSC54-J.</a> - Avoid inadvertent wrapping of loop counters </li>
 </ul>

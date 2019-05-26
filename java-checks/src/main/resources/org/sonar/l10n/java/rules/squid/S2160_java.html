@@ -1,12 +1,12 @@
-<p>Extend a class that overrides <code>equals</code> and add fields without overriding <code>equals</code> in the subclass, and you run the risk of
-non-equivalent instances of your subclass being seen as equal, because only the superclass fields will be considered in the equality test.</p>
-<p>This rule looks for classes that do all of the following:</p>
+<p>扩展一个重写 <code>equals</code> 的类，并在子类中不重写 <code>equals</code> 的情况下添加字段，这样就会有子类的非等价实例被视为相等的风险，
+因为在相等性测试中只会考虑超类字段。</p>
+<p>此规则查找执行以下所有操作的类：</p>
 <ul>
-  <li> extend classes that override <code>equals</code>. </li>
-  <li> do not themselves override <code>equals</code>. </li>
-  <li> add fields. </li>
+  <li> 扩展重写 <code>equals</code> 的类。</li>
+  <li> 不自己重写 <code>equals</code>。 </li>
+  <li> 添加字段 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Fruit {
   private Season ripe;
@@ -26,11 +26,11 @@ public class Fruit {
   }
 }
 
-public class Raspberry extends Fruit {  // Noncompliant; instances will use Fruit's equals method
+public class Raspberry extends Fruit {  // 不合规；实例将使用Fruit的equals方法
   private Color ripeColor;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Fruit {
   private Season ripe;
@@ -58,7 +58,7 @@ public class Raspberry extends Fruit {
       return false;
     }
     Raspberry fobj = (Raspberry) obj;
-    if (ripeColor.equals(fobj.getRipeColor()) {  // added fields are tested
+    if (ripeColor.equals(fobj.getRipeColor()) {  // 测试添加的字段
       return true;
     }
     return false;

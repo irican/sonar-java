@@ -1,5 +1,5 @@
 {
-  "title": "\"Serializable\" inner classes of non-serializable classes should be \"static\"",
+  "title": "\"Serializable\" 非序列化类的内部类时应该是 \"static\"的",
   "type": "BUG",
   "status": "ready",
   "remediation": {

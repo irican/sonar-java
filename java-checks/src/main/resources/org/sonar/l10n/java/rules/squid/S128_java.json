@@ -1,5 +1,5 @@
 {
-  "title": "Switch cases should end with an unconditional \"break\" statement",
+  "title": "switch case应以无条件的\"break\"语句结束",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,7 +8,6 @@
   },
   "tags": [
     "cwe",
-    "based-on-misra",
     "misra",
     "cert",
     "suspicious"

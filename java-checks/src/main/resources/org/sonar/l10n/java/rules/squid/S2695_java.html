@@ -1,19 +1,18 @@
-<p>The parameters in a <code>PreparedStatement</code> are numbered from 1, not 0, so using any "set" method of a <code>PreparedStatement</code> with a
-number less than 1 is a bug, as is using an index higher than the number of parameters. Similarly, <code>ResultSet</code> indices also start at 1,
-rather than 0</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>PreparedStatement</code>中的参数是从1开始编号的，而不是从0开始编号的，所以使用<code>PreparedStatement</code>的任何“set”方法(数值小于1)都是一个错误，就像使用高于参数数量的索引一样。
+类似地，<code>ResultSet</code> 索引也从1开始，而不是0</p>
+<h2>不合规的代码示例</h2>
 <pre>
 PreparedStatement ps = con.prepareStatement("SELECT fname, lname FROM employees where hireDate &gt; ? and salary &lt; ?");
-ps.setDate(0, date);  // Noncompliant
-ps.setDouble(3, salary);  // Noncompliant
+ps.setDate(0, date);  // 不合规
+ps.setDouble(3, salary);  // 不合规
 
 ResultSet rs = ps.executeQuery();
 while (rs.next()) {
-  String fname = rs.getString(0);  // Noncompliant
+  String fname = rs.getString(0);  // 不合规
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 PreparedStatement ps = con.prepareStatement("SELECT fname, lname FROM employees where hireDate &gt; ? and salary &lt; ?");
 ps.setDate(1, date);

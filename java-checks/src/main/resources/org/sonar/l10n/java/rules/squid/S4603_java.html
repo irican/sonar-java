@@ -1,11 +1,8 @@
-<p><code>@ComponentScan</code> is used to find which Spring <code>@Component</code> beans (<code>@Service</code> or <code>@Repository</code> or
-<code>Controller</code>) are available in the classpath so they can be used in the application context. This is a convenient feature especially when
-you begin a new project but it comes with the drawback of slowing down the application start-up time especially when the application becomes bigger
-(ie: it references a large JAR file, or it references a significant number of JAR files, or the base-package refers to a large amount of .class
-files).</p>
-<p><code>@ComponentScan</code> should be replaced by an explicit list of Spring beans loaded by <code>@Import</code>.</p>
-<p>The interface <code>@SpringBootApplication</code> is also considered by this rule because it is annotated with <code>@ComponentScan</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>@ComponentScan</code> 用于查找哪个Spring <code>@Component</code> beans (<code>@Service</code> 或 <code>@Repository</code> 或
+<code>Controller</code>) 在类路径中可用，因此可以在应用程序上下文中使用它们。这是一个方便的功能，尤其是当您开始一个新项目时，它具有减慢应用程序启动时间的缺点，特别是当应用程序变大时（即：它引用一个大型JAR文件，或者它引用了大量的JAR文件或base-package引用了大量的.class文件。）</p>
+<p><code>@ComponentScan</code> 应该由 <code>@Import</code>加载的显式Spring bean列表替换.</p>
+<p>此规则也考虑了接口<code>@SpringBootApplication</code> 因为它使用<code>@ComponentScan</code>进行了注释。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @ComponentScan
 public class MyApplication {
@@ -17,7 +14,7 @@ public class MyApplication {
 ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 @Configuration
 @Import({
@@ -34,7 +31,7 @@ public class MyApplication {
 ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cloud.google.com/appengine/articles/spring_optimization">Optimizing Spring Framework for App Engine Applications</a> </li>
 </ul>

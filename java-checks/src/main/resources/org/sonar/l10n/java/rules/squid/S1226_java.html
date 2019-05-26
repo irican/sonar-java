@@ -1,17 +1,16 @@
-<p>While it is technically correct to assign to parameters from within method bodies, doing so before the parameter value is read is likely a bug.
-Instead, initial values of parameters, caught exceptions, and foreach parameters should be, if not treated as <code>final</code>, then at least read
-before reassignment.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然从技术上讲，从方法体内部分配参数是正确的，但是在读取参数值之前这样做很可能是一个错误。相反，参数的初始值、捕获的异常和foreach参数应该是，
+如果不被视为 <code>final</code>，那么至少在重新分配前读取。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doTheThing(String str, int i, List&lt;String&gt; strings) {
-  str = Integer.toString(i); // Noncompliant
+  str = Integer.toString(i); // 不合规
 
   for (String s : strings) {
-    s = "hello world"; // Noncompliant
+    s = "hello world"; // 不合规
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2012, 17.8 - A function parameter should not be modified </li>
 </ul>

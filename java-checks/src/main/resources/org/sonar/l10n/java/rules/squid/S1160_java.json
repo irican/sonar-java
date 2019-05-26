@@ -1,5 +1,5 @@
 {
-  "title": "Public methods should throw at most one checked exception",
+  "title": "public方法最多应该抛出一个已检查的异常",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

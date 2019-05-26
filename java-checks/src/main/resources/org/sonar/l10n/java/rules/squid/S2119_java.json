@@ -1,5 +1,5 @@
 {
-  "title": "\"Random\" objects should be reused",
+  "title": "\"Random\" 对象应该重用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

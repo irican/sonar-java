@@ -1,16 +1,16 @@
-<p>Throwing an exception from within a finally block will mask any exception which was previously thrown in the <code>try</code> or <code>catch</code>
-block, and the masked's exception message and stack trace will be lost.</p>
-<h2>Noncompliant Code Example</h2>
+<p>从finally块中抛出异常将掩盖（mask）先前在 <code>try</code> 或 <code>catch</code>
+块中抛出的异常，并且掩盖的异常消息和堆栈跟踪将丢失。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 try {
   /* some work which end up throwing an exception */
   throw new IllegalArgumentException();
 } finally {
   /* clean up */
-  throw new RuntimeException();       // Noncompliant; masks the IllegalArgumentException
+  throw new RuntimeException();       // 不合规； 掩盖了 IllegalArgumentException
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 try {
   /* some work which end up throwing an exception */
@@ -19,7 +19,7 @@ try {
   /* clean up */
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/soUbAQ">CERT, ERR05-J.</a> - Do not let checked exceptions escape from a finally block
   </li>

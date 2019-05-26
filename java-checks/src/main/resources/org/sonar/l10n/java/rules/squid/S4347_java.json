@@ -1,5 +1,5 @@
 {
-  "title": "\"SecureRandom\" seeds should not be predictable",
+  "title": "\"SecureRandom\" 种子应该是无法预测的",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Source code should be indented consistently",
+  "title": "源代码应该进行一致的缩进",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

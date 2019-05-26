@@ -1,5 +1,5 @@
 {
-  "title": "Null pointers should not be dereferenced",
+  "title": "不应取消对空指针的引用。",
   "type": "BUG",
   "status": "ready",
   "remediation": {

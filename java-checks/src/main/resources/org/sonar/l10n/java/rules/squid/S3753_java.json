@@ -1,5 +1,5 @@
 {
-  "title": "\"@Controller\" classes that use \"@SessionAttributes\" must call \"setComplete\" on their \"SessionStatus\" objects",
+  "title": "使用“@ SessionAttributes ”的“@ Controller ”类必须在其“SessionStatus”对象上调用“setComplete ”",
   "type": "BUG",
   "status": "ready",
   "remediation": {

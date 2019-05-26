@@ -1,5 +1,5 @@
 {
-  "title": "\"ResultSet.isLast()\" should not be used",
+  "title": "\"ResultSet.isLast()\" 是不应该被使用的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

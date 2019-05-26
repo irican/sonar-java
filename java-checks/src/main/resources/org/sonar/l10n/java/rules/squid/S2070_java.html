@@ -1,8 +1,7 @@
-<p>The MD5 algorithm and its successor, SHA-1, are no longer considered secure, because it is too easy to create hash collisions with them. That is,
-it takes too little computational effort to come up with a different input that produces the same MD5 or SHA-1 hash, and using the new, same-hash
-value gives an attacker the same access as if he had the originally-hashed value. This applies as well to the other Message-Digest algorithms: MD2,
-MD4, MD6, HAVAL-128, HMAC-MD5, DSA (which uses SHA-1), RIPEMD, RIPEMD-128, RIPEMD-160, HMACRIPEMD160.</p>
-<p>The following APIs are tracked for use of obsolete crypto algorithms:</p>
+<p>MD5 算法及其后继，SHA-1不再被认为是安全的，因为它太容易与它们产生哈希碰撞。 也就是说，只需要很少的计算工作就能得出使生成的MD5或SHA-1散列相同的的不同输入，
+使用新的、相同的散列值使攻击者具有与原始散列值相同的访问权限。这也适用于其他消息摘要算法:MD2、MD4、MD6、HAVAL-128、HMAC-MD5、DSA(使用SHA-1)、
+RIPEMD、RIPEMD-128、RIPEMD-160、HMACRIPEMD160。</p>
+<p>跟踪以下API以使用过时的加密算法：</p>
 <p> * <code>java.security.AlgorithmParameters</code> (JDK)</p>
 <p> * <code>java.security.AlgorithmParameterGenerator</code> (JDK)</p>
 <p> * <code>java.security.MessageDigest</code> (JDK)</p>
@@ -20,16 +19,16 @@ MD4, MD6, HAVAL-128, HMAC-MD5, DSA (which uses SHA-1), RIPEMD, RIPEMD-128, RIPEM
 <p> * <code>org.springframework.security.crypto.password.MessageDigestPasswordEncoder</code> (Spring Security 5.0.x)</p>
 <p> * <code>org.springframework.security.crypto.password.NoOpPasswordEncoder</code> (Spring Security 5.0.x)</p>
 <p> * <code>org.springframework.security.crypto.password.StandardPasswordEncoder</code> (Spring Security 5.0.x)</p>
-<p>Consider using safer alternatives, such as SHA-256, SHA-3 or adaptive one way functions like bcrypt or PBKDF2.</p>
-<h2>Noncompliant Code Example</h2>
+<p>考虑使用更安全的替代方案，例如SHA-256，SHA-3或自适应单向函数，如bcrypt或PBKDF2。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-MessageDigest md = MessageDigest.getInstance("SHA1");  // Noncompliant
+MessageDigest md = MessageDigest.getInstance("SHA1");  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 MessageDigest md = MessageDigest.getInstance("SHA-256");
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/328">MITRE, CWE-328</a> - Reversible One-Way Hash </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/327">MITRE, CWE-327</a> - Use of a Broken or Risky Cryptographic Algorithm </li>
@@ -37,6 +36,4 @@ MessageDigest md = MessageDigest.getInstance("SHA-256");
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>
   <li> <a href="http://shattered.io/">SHAttered</a> - The first concrete collision attack against SHA-1. </li>
 </ul>
-<h2>Deprecated</h2>
-<p>This rule is deprecated; use {rule:squid:S4790} instead.</p>
 

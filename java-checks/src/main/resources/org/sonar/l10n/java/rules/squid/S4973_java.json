@@ -1,5 +1,5 @@
 {
-  "title": "Strings and Boxed types should be compared using \"equals()\"",
+  "title": "字符串和盒装类型应使用\"equals()\"进行比较",
   "type": "BUG",
   "status": "ready",
   "remediation": {

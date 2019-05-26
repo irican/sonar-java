@@ -1,5 +1,5 @@
 {
-  "title": "LDAP deserialization should be disabled",
+  "title": "应禁用LDAP反序列化",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

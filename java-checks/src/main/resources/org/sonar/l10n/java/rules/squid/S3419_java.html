@@ -1,15 +1,15 @@
-<p>Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when the a pom's <code>groupId</code> does not match
-the provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default regular expression: <code>(com|org)(\.[a-z][a-z-0-9]*)+</code></p>
+<p>共享命名约定允许团队有效协作。 当pom的<code>groupId</code> 
+与提供的正则表达式不匹配时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
+<p>使用默认正则表达式： <code>(com|org)(\.[a-z][a-z-0-9]*)+</code></p>
 <pre>
 &lt;project ...&gt;
-  &lt;groupId&gt;myCo&lt;/groupId&gt;  &lt;!-- Noncompliant --&gt;
+  &lt;groupId&gt;myCo&lt;/groupId&gt;  &lt;!-- 不符合规范的--&gt;
 
   &lt;!-- ... --&gt;
 &lt;/project&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 &lt;project ...&gt;
   &lt;groupId&gt;com.myco&lt;/groupId&gt;

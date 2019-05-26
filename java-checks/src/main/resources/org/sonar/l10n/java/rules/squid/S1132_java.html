@@ -1,14 +1,14 @@
-<p>It is preferable to place string literals on the left-hand side of an <code>equals()</code> or <code>equalsIgnoreCase()</code> method call.</p>
-<p>This prevents null pointer exceptions from being raised, as a string literal can never be null by definition.</p>
-<h2>Noncompliant Code Example</h2>
+<p>最好将字符串文本放在 <code>equals()</code> 或 <code>equalsIgnoreCase()</code> 方法调用的左侧。</p>
+<p>这可以防止引发空指针异常，因为根据定义，字符串文字永远不能为null。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String myString = null;
 
-System.out.println("Equal? " + myString.equals("foo"));                        // Noncompliant; will raise a NPE
-System.out.println("Equal? " + (myString != null &amp;&amp; myString.equals("foo")));  // Noncompliant; null check could be removed
+System.out.println("Equal? " + myString.equals("foo"));                        // 不合规；将提出 NPE
+System.out.println("Equal? " + (myString != null &amp;&amp; myString.equals("foo")));  // 不合规； 可以删除null检查
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-System.out.println("Equal?" + "foo".equals(myString));                         // properly deals with the null case
+System.out.println("Equal?" + "foo".equals(myString));                         // 恰当的处理为null的情况
 </pre>
 

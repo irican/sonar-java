@@ -1,21 +1,20 @@
-<p><code>Throwable.printStackTrace(...)</code> prints a <code>Throwable</code> and its stack trace to some stream. By default that stream
-<code>System.Err</code>, which could inadvertently expose sensitive information.</p>
-<p>Loggers should be used instead to print <code>Throwable</code>s, as they have many advantages:</p>
+<p><code>Throwable.printStackTrace(...)</code> 将 <code>Throwable</code> 及其堆栈（stack）跟踪打印（print）到某个流。默认情况下，
+<code>System.Err</code> 流可能会无意中暴露敏感信息。</p>
+<p>应使用记录器（Loggers）来打印 <code>Throwable</code>，因为它们有许多优点：</p>
 <ul>
-  <li> Users are able to easily retrieve the logs. </li>
-  <li> The format of log messages is uniform and allow users to browse the logs easily. </li>
+  <li> 用户可以轻松检索日志。 </li>
+  <li> 日志消息的格式是统一的，允许用户轻松浏览日志。 </li>
 </ul>
-<p>This rule raises an issue when <code>printStackTrace</code> is used without arguments, i.e. when the stack trace is printed to the default
-stream.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当 <code>printStackTrace</code> 在没有参数的情况下使用，即当堆栈跟踪被打印到默认流时，该规则会报告一个问题。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 try {
   /* ... */
 } catch(Exception e) {
-  e.printStackTrace();        // Noncompliant
+  e.printStackTrace();        // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 try {
   /* ... */
@@ -23,7 +22,7 @@ try {
   LOGGER.log("context", e);
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - Leftover Debug Code </li>
   <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>

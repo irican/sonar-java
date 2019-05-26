@@ -1,7 +1,6 @@
-<p>All classes extend <code>Object</code> implicitly. Doing so explicitly is redundant.</p>
-<p>Further, declaring the implementation of an interface <em>and</em> one if its parents is also redundant. If you implement the interface, you also
-implicitly implement its parents and there's no need to do so explicitly.</p>
-<h2>Noncompliant Code Example</h2>
+<p>所有类都隐式地extend <code>Object</code> 。显式地这样做是多余的。</p>
+<p>此外，如果其父项也是冗余的，则声明接口 <em>and</em> 的实现。如果您实现了接口，您还将隐式地实现它的父类，而不需要显式地实现。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public interface MyFace {
   // ...
@@ -13,11 +12,11 @@ public interface MyOtherFace extends MyFace {
 
 public class Foo
     extends Object // Noncompliant
-    implements MyFace, MyOtherFace {  // Noncompliant
+    implements MyFace, MyOtherFace {  // 不合规
   //...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public interface MyFace {
   // ...

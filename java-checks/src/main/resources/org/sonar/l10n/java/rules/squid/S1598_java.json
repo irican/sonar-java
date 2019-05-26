@@ -1,5 +1,5 @@
 {
-  "title": "Package declaration should match source file directory",
+  "title": "包声明应与源文件目录匹配",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

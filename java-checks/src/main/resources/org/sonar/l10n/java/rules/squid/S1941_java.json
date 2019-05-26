@@ -1,5 +1,5 @@
 {
-  "title": "Variables should not be declared before they are relevant",
+  "title": "变量在相关位置之前不应声明",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

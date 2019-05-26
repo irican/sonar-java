@@ -1,5 +1,5 @@
 {
-  "title": "\"equals\" method parameters should not be marked \"@Nonnull\"",
+  "title": "\"equals\" 方法参数不应标记为\"@Nonnull\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

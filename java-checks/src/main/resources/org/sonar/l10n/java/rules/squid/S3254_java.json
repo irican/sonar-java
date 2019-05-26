@@ -1,5 +1,5 @@
 {
-  "title": "Default annotation parameter values should not be passed as arguments",
+  "title": "默认的注解参数值不应作为参数传入",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

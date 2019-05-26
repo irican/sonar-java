@@ -1,5 +1,5 @@
 {
-  "title": "\"collect\" should be used with \"Streams\" instead of \"list::add\"",
+  "title": "\"collect\" 应该与 \"Streams\" 而不是 \"list::add\"一起使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

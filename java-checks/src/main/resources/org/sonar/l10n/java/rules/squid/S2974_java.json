@@ -1,5 +1,5 @@
 {
-  "title": "Classes without \"public\" constructors should be \"final\"",
+  "title": "没有\"public\"构造函数的类应该是\"final\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

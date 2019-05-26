@@ -1,14 +1,14 @@
-<p>Shared coding conventions allow teams to collaborate efficiently. This rule checks that all local, <code>final</code>, initialized, primitive
-variables, have names that match a provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default regular expression <code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code>:</p>
+<p>共享编码约定允许团队高效协作。 此规则检查所有本地<code> final </code>，已初始化的原始变量是否具有与提供的正则表达式匹配的名称。</p>
+<h2>不符合规范的代码示例</h2>
+<p>使用默认正则表达式<code>^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</code>:</p>
 <pre>
 public void doSomething() {
   final int local = 42;
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案
+</h2>
 <pre>
 public void doSomething() {
   final int LOCAL = 42;

@@ -1,5 +1,5 @@
 {
-  "title": "Public types, methods and fields (API) should be documented with Javadoc",
+  "title": "应使用Javadoc记录public类型，方法和字段（API）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

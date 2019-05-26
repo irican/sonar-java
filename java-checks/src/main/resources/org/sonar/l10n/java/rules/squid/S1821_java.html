@@ -1,13 +1,12 @@
-<p>Nested <code>switch</code> structures are difficult to understand because you can easily confuse the cases of an inner <code>switch</code> as
-belonging to an outer statement. Therefore nested <code>switch</code> statements should be avoided.</p>
-<p>Specifically, you should structure your code to avoid the need for nested <code>switch</code> statements, but if you cannot, then consider moving
-the inner <code>switch</code> to another function.</p>
-<h2>Noncompliant Code Example</h2>
+<p>嵌套的 <code>switch</code> 结构很难理解，因为您很容易将内部 <code>switch</code> 的case混淆为属于外部的语句。 
+因此，应避免使用嵌套的 <code>switch</code> 语句。</p>
+<p>具体来说，您应该构造代码，以避免嵌套 <code>switch</code> 语句，但是如果不能，则考虑将内部 <code>switch</code> 转移到另一个函数。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 void foo(int n, int m) {
   switch (n) {
     case 0:
-      switch (m) {  // Noncompliant; nested switch
+      switch (m) {  // 不合规； 嵌套的 switch
         // ...
       }
     case 1:
@@ -17,7 +16,7 @@ void foo(int n, int m) {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 void foo(int n, int m) {
   switch (n) {

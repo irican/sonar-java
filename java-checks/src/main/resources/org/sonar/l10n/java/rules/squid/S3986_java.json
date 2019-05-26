@@ -1,5 +1,5 @@
 {
-  "title": "Week Year (\"YYYY\") should not be used for date formatting",
+  "title": "周年（“YYYY”）不应用于日期格式",
   "type": "BUG",
   "status": "ready",
   "remediation": {

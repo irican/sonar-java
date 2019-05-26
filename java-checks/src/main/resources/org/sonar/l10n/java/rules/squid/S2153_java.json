@@ -1,5 +1,5 @@
 {
-  "title": "Boxing and unboxing should not be immediately reversed",
+  "title": "装箱（box）和拆箱（unbox）不应立即逆转",
   "type": "BUG",
   "status": "ready",
   "remediation": {

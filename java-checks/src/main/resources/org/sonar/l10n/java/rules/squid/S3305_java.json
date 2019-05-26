@@ -1,5 +1,5 @@
 {
-  "title": "Factory method injection should be used in \"@Configuration\" classes",
+  "title": "应在 \"@Configuration\" 类中使用工厂方法注入",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

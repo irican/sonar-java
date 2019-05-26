@@ -1,5 +1,5 @@
 {
-  "title": "\"equals\" method overrides should accept \"Object\" parameters",
+  "title": "\"equals\" 方法重写应该接受 \"Object\" 参数",
   "type": "BUG",
   "status": "ready",
   "remediation": {

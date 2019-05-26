@@ -1,32 +1,31 @@
-<p>Using sockets is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>使用套接字是安全敏感的。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-1785">CVE-2011-178</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5645">CVE-2017-5645</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6597">CVE-2018-6597</a> </li>
 </ul>
-<p>Sockets are vulnerable in multiple ways:</p>
+<p>套接字容易受到多种方式的攻击</p>
 <ul>
-  <li> They enable a software to interact with the outside world. As this world is full of attackers it is necessary to check that they cannot receive
-  sensitive information or inject dangerous input. </li>
-  <li> The number of sockets is limited and can be exhausted. Which makes the application unresponsive to users who need additional sockets. </li>
+  <li> 它们使软件能够与外界进行交互。由于这个世界充斥着攻击者，因此有必要检查他们是否无法接收敏感信息或注入危险信息。 </li>
+  <li> 套接字数量有限，可能会耗尽。这使得应用程序无法响应需要额外套接字的用户。 </li>
 </ul>
-<p>This rules flags code that creates sockets. It matches only the direct use of sockets, not use through frameworks or high-level APIs such as the
-use of http connections.</p>
-<h2>Ask Yourself Whether</h2>
+<p>此规则标记创建套接字的代码。它只匹配套接字的直接使用，而不是通过框架或高级API使用，例如使用http连接。</p>
+<h2>问自己是否...</h2>
 <ul>
-  <li> sockets are created without any limit every time a user performs an action. </li>
-  <li> input received from sockets is used without being sanitized. </li>
-  <li> sensitive data is sent via sockets without being encrypted. </li>
+  <li> 每次用户执行操作时都会创建没有任何限制的套接字。</li>
+  <li> 从套接字接收的输入在未经过清理的情况下使用。 </li>
+  <li> 敏感数据通过套接字发送而不加密。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of these questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>如果您对上述任何问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
 <ul>
-  <li> In many cases there is no need to open a socket yourself. Use instead libraries and existing protocols. </li>
-  <li> Encrypt all data sent if it is sensitive. Usually it is better to encrypt it even if the data is not sensitive as it might change later. </li>
-  <li> <a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> any input read from the socket. </li>
-  <li> Limit the number of sockets a given user can create. Close the sockets as soon as possible. </li>
+  <li> 在许多情况下，您无需自己打开套接字。而是使用库和现有协议。 </li>
+  <li> 加密敏感时发送的所有数据。通常最好加密它，即使数据不敏感，因为它可能会在以后更改。</li>
+  <li> <a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">清理</a>从套接字读取的任何输入。
+  </li>
+  <li> 限制给定用户可以创建的套接字数量。尽快关闭插座。</li>
 </ul>
-<h2>Questionable Code Example</h2>
+<h2>可疑代码示例</h2>
 <pre>
 // === java.net ===
 import java.net.Socket;
@@ -39,25 +38,25 @@ class A {
     void foo(SocketFactory factory, String address, int port, InetAddress localAddr, int localPort, boolean stream,
             String host, Proxy proxy, int backlog, InetAddress bindAddr)
             throws Exception {
-        new Socket(); // Questionable.
-        new Socket(address, port); // Questionable.
-        new Socket(address, port, localAddr, localPort); // Questionable.
-        new Socket(host, port, stream); // Questionable.
-        new Socket(proxy); // Questionable.
-        new Socket(host, port); // Questionable.
-        new Socket(host, port, stream); // Questionable.
-        new Socket(host, port, localAddr, localPort); // Questionable.
+        new Socket(); // 可疑的.
+        new Socket(address, port); // 可疑的.
+        new Socket(address, port, localAddr, localPort); // 可疑的.
+        new Socket(host, port, stream); // 可疑的.
+        new Socket(proxy); // 可疑的.
+        new Socket(host, port); // 可疑的.
+        new Socket(host, port, stream); // 可疑的.
+        new Socket(host, port, localAddr, localPort); // 可疑的.
 
-        new ServerSocket(); // Questionable.
-        new ServerSocket(port); // Questionable.
-        new ServerSocket(port, backlog); // Questionable.
-        new ServerSocket(port, backlog, bindAddr); // Questionable.
+        new ServerSocket(); // 可疑的.
+        new ServerSocket(port); // 可疑的.
+        new ServerSocket(port, backlog); // 可疑的.
+        new ServerSocket(port, backlog, bindAddr); // 可疑的.
 
-        factory.createSocket(); // Questionable
+        factory.createSocket(); // 可疑的
     }
 }
 
-abstract class mySocketFactory extends SocketFactory { // Questionable. Review how the sockets are created.
+abstract class mySocketFactory extends SocketFactory { // 可疑的，查看套接字的创建方式。
     // ...
 }
 </pre>
@@ -72,13 +71,13 @@ import java.nio.channels.ServerSocketChannel;
 
 class A {
     void foo(AsynchronousChannelGroup group, SocketAddress remote) throws Exception {
-        AsynchronousServerSocketChannel.open(); // Questionable.
-        AsynchronousServerSocketChannel.open(group); // Questionable.
-        AsynchronousSocketChannel.open(); // Questionable.
-        AsynchronousSocketChannel.open(group); // Questionable.
-        SocketChannel.open(); // Questionable.
-        SocketChannel.open(remote); // Questionable.
-        ServerSocketChannel.open(); // Questionable.
+        AsynchronousServerSocketChannel.open(); // 可疑的.
+        AsynchronousServerSocketChannel.open(group); // 可疑的.
+        AsynchronousSocketChannel.open(); // 可疑的.
+        AsynchronousSocketChannel.open(group); // 可疑的.
+        SocketChannel.open(); // 可疑的.
+        SocketChannel.open(remote); // 可疑的.
+        ServerSocketChannel.open(); // 可疑的.
     }
 }
 </pre>
@@ -88,7 +87,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.ServerSocketChannel;
 import io.netty.channel.socket.SocketChannel;
 
-class CustomChannelInitializer extends ChannelInitializer&lt;ServerSocketChannel&gt; { // Questionable. Review how the SocketChannel is used.
+class CustomChannelInitializer extends ChannelInitializer&lt;ServerSocketChannel&gt; { // 可疑的，查看SocketChannel的使用方式。
     @Override
     protected void initChannel(ServerSocketChannel ch) throws Exception {
     }
@@ -96,7 +95,7 @@ class CustomChannelInitializer extends ChannelInitializer&lt;ServerSocketChannel
 
 class A {
     void foo() {
-        new ChannelInitializer&lt;SocketChannel&gt;() {  // Questionable
+        new ChannelInitializer&lt;SocketChannel&gt;() {  // 可疑的
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
                 // ...
@@ -105,7 +104,7 @@ class A {
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/20">MITRE, CWE-20</a> - Improper Input Validation </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/400">MITRE, CWE-400</a> - Uncontrolled Resource Consumption ('Resource Exhaustion') </li>

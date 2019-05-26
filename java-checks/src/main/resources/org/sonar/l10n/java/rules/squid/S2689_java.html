@@ -1,14 +1,12 @@
-<p><code>ObjectOutputStream</code>s are used with serialization, and the first thing an <code>ObjectOutputStream</code> writes is the serialization
-stream header. This header should appear once per file, at the beginning. Pass a file opened in append mode into an <code>ObjectOutputStream</code>
-constructor and the serialization stream header will be added to the end of the file before your object is then also appended.</p>
-<p>When you're trying to read your object(s) back from the file, only the first one will be read successfully, and a
-<code>StreamCorruptedException</code> will be thrown after that.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>ObjectOutputStream</code>用于序列化，而 <code>ObjectOutputStream</code> 编写的第一件事是序列化流头。这个头文件应该在每个文件的开头出现一次。
+将以追加模式打开的文件传递到<code>ObjectOutputStream</code> 构造函数中，序列化流头将被添加到文件的末尾，然后才追加对象。</p>
+<p>当您试图从文件中读取对象时，只会成功读取第一个对象，然后会抛出一个<code>StreamCorruptedException</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-FileOutputStream fos = new FileOutputStream (fileName , true);  // fos opened in append mode
-ObjectOutputStream out = new ObjectOutputStream(fos);  // Noncompliant
+FileOutputStream fos = new FileOutputStream (fileName , true);  // fos以追加模式打开
+ObjectOutputStream out = new ObjectOutputStream(fos);  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 FileOutputStream fos = new FileOutputStream (fileName);
 ObjectOutputStream out = new ObjectOutputStream(fos);

@@ -1,7 +1,5 @@
-<p>The rules of operator precedence are complicated and can lead to errors. For this reason, parentheses should be used for clarification in complex
-statements. However, this does not mean that parentheses should be gratuitously added around every operation. </p>
-<p>This rule raises issues when <code>&amp;&amp;</code> and <code>||</code> are used in combination, when assignment and equality or relational
-operators are used in together in a condition, and for other operator combinations according to the following table:</p>
+<p>运算符优先级的规则很复杂。可能会导致错误。因此，在复杂的运算语句中应使用括号来表明意义。但是，这并不意味着应该在每次运算中平白地添加括号。 </p>
+<p>当根据下表组合使用 <code>&amp;&amp;</code> and <code>||</code> 、在条件中一起使用赋值和相等（==）或关系运算符，以及其他运算符时，此规则会提出问题：</p>
 <table>
   <tbody>
     <tr>
@@ -54,16 +52,16 @@ operators are used in together in a condition, and for other operator combinatio
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 x = a + b - c;
-x = a + 1 &lt;&lt; b;  // Noncompliant
+x = a + 1 &lt;&lt; b;  // 不合规
 
 if ( a &gt; b || c &lt; d || a == d) {...}
-if ( a &gt; b &amp;&amp; c &lt; d || a == b) {...}  // Noncompliant
-if (a = f(b,c) == 1) { ... } // Noncompliant; == evaluated first
+if ( a &gt; b &amp;&amp; c &lt; d || a == b) {...}  // 不合规
+if (a = f(b,c) == 1) { ... } // 不合规；会先考虑==
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 x = a + b - c;
 x = (a + 1) &lt;&lt; b;
@@ -72,7 +70,7 @@ if ( a &gt; b || c &lt; d || a == d) {...}
 if ( (a &gt; b &amp;&amp; c &lt; d) || a == b) {...}
 if ( (a = f(b,c)) == 1) { ... }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 12.1 - Limited dependence should be placed on C's operator precedence rules in expressions </li>
   <li> MISRA C:2004, 12.2 - The value of an expression shall be the same under any order of evaluation that the standard permits. </li>

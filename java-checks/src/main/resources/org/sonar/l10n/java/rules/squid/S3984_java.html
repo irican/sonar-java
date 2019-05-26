@@ -1,12 +1,12 @@
-<p>Creating a new <code>Throwable</code> without actually throwing it is useless and is probably due to a mistake.</p>
-<h2>Noncompliant Code Example</h2>
+<p>创建一个新的<code> Throwable </code>而不实际抛出它是没用的，可能是由于错误。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 if (x &lt; 0)
   new IllegalArgumentException("x must be nonnegative");
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 if (x &lt; 0)
-  throw new IllegalArgumentException("x must be nonnegative");
+  throw new IllegalArgumentException("x must be nonnegative（x必须是非负的）");
 </pre>
 

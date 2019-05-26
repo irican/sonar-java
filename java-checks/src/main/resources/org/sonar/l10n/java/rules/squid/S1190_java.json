@@ -1,5 +1,5 @@
 {
-  "title": "Future keywords should not be used as names",
+  "title": "未来出现的关键字不应用作名称",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

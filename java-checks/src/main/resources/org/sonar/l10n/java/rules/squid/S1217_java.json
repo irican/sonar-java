@@ -1,5 +1,5 @@
 {
-  "title": "\"Thread.run()\" should not be called directly",
+  "title": "不应直接调用 \"Thread.run()\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

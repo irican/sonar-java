@@ -1,5 +1,5 @@
 {
-  "title": "\"@SpringBootApplication\" and \"@ComponentScan\" should not be used in the default package",
+  "title": "\"@SpringBootApplication\" 和 \"@ComponentScan\" 不应该在默认包中使用”",
   "type": "BUG",
   "status": "ready",
   "remediation": {

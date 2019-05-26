@@ -1,5 +1,5 @@
 {
-  "title": "Collection methods with O(n) performance should be used carefully",
+  "title": "应谨慎使用具有O（n）性能的收集方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

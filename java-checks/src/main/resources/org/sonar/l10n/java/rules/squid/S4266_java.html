@@ -1,10 +1,10 @@
-<p>When using the <code>Stream</code> API, call chains should be simplified as much as possible to improve readability and maintainability.</p>
-<p>This rule raises an issue when one of the following substitution can be made:</p>
+<p>使用<code> Stream </code> API时，应尽可能简化调用链，以提高可读性和可维护性。</p>
+<p>当可以进行以下替换之一时，此规则会引发问题：</p>
 <table>
   <tbody>
     <tr>
-      <th>Original</th>
-      <th>Preferred</th>
+      <th>Original（原始）</th>
+      <th>Preferred（优选）</th>
     </tr>
     <tr>
       <td><code>stream.collect(counting())</code></td>
@@ -40,11 +40,11 @@
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-int count = stream.collect(counting());  // Noncompliant
+int count = stream.collect(counting());  //不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 int count = stream.count();
 </pre>

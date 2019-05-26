@@ -1,8 +1,6 @@
-<p>A key facet of the <code>equals</code> contract is that if <code>a.equals(b)</code> then <code>b.equals(a)</code>, i.e. that the relationship is
-symmetric. </p>
-<p>Using <code>instanceof</code> breaks the contract when there are subclasses, because while the child is an <code>instanceof</code> the parent, the
-parent is not an <code>instanceof</code> the child. For instance, assume that <code>Raspberry extends Fruit</code> and adds some fields (requiring a
-new implementation of <code>equals</code>):</p>
+<p> <code>equals</code> 契约的一个关键方面是，如果先 <code>a.equals(b)</code> 然后 <code>b.equals(a)</code>，即关系是对称的。</p>
+<p>当存在子类时，使用 <code>instanceof</code> 会破坏契约，因为虽然子类是父类的 <code>instance</code> ，但父类不是子类的 
+<code>instance</code> 。 例如，假设 <code>Raspberry extends Fruit</code> 并添加一些字段（需要 <code>equals</code> 的新实现）：</p>
 <pre>
 Fruit fruit = new Fruit();
 Raspberry raspberry = new Raspberry();
@@ -10,16 +8,15 @@ Raspberry raspberry = new Raspberry();
 if (raspberry instanceof Fruit) { ... } // true
 if (fruit instanceof Raspberry) { ... } // false
 </pre>
-<p>If similar <code>instanceof</code> checks were used in the classes' <code>equals</code> methods, the symmetry principle would be broken:</p>
+<p>如果在类的 <code>instanceof</code> 方法中使用类似的 <code>equals</code> 检查，则对称原则将被破坏：</p>
 <pre>
 raspberry.equals(fruit); // false
 fruit.equals(raspberry); //true
 </pre>
-<p>Additionally, non <code>final</code> classes shouldn't use a hardcoded class name in the <code>equals</code> method because doing so breaks the
-method for subclasses. Instead, make the comparison dynamic.</p>
-<p>Further, comparing to an unrelated class type breaks the contract for that unrelated type, because while
-<code>thisClass.equals(unrelatedClass)</code> can return true, <code>unrelatedClass.equals(thisClass)</code> will not.</p>
-<h2>Noncompliant Code Example</h2>
+<p>此外，非 <code>final</code> 类不应在 <code>equals</code> 方法中使用硬编码类名，因为这样做会破坏子类的方法。相反，要让比较是动态的。</p>
+<p>此外，与不相关的类类型进行比较会破坏该无关类型的契约，因为当<code>thisClass.equals(unrelatedClass)</code> 可以返回true时，
+<code>unrelatedClass.equals(thisClass)</code> 将不会。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Fruit extends Food {
   private Season ripe;
@@ -31,18 +28,18 @@ public class Fruit extends Food {
     if (obj == null) {
       return false;
     }
-    if (Fruit.class == obj.getClass()) { // Noncompliant; broken for child classes
+    if (Fruit.class == obj.getClass()) { // 不合规的； 子类的破坏
       return ripe.equals(((Fruit)obj).getRipe());
     }
-    if (obj instanceof Fruit ) {  // Noncompliant; broken for child classes
+    if (obj instanceof Fruit ) {  // 不合规； 子类的破坏
       return ripe.equals(((Fruit)obj).getRipe());
     }
-    else if (obj instanceof Season) { // Noncompliant; symmetry broken for Season class
+    else if (obj instanceof Season) { // 不合规； Season 类的对称性破坏
       // ...
     }
     //...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Fruit extends Food {
   private Season ripe;
@@ -60,7 +57,7 @@ public class Fruit extends Food {
     return false;
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/zIUbAQ">CERT, MET08-J.</a> - Preserve the equality contract when overriding the
   equals() method </li>

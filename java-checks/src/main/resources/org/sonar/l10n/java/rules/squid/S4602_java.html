@@ -1,18 +1,13 @@
-<p><code>@ComponentScan</code> is used to determine which Spring Beans are available in the application context. The packages to scan can be
-configured thanks to the <code>basePackageClasses</code> or <code>basePackages</code> (or its alias <code>value</code>) parameters. If neither
-parameter is configured, <code>@ComponentScan</code> will consider only the package of the class annotated with it. When <code>@ComponentScan</code>
-is used on a class belonging to the default package, the entire classpath will be scanned.</p>
-<p>This will slow-down the start-up of the application and it is likely the application will fail to start with an
-<code>BeanDefinitionStoreException</code> because you ended up scanning the Spring Framework package itself.</p>
-<p>This rule raises an issue when:</p>
-<p>- <code>@ComponentScan</code>, <code>@SpringBootApplication</code> and <code>@ServletComponentScan</code> are used on a class belonging to the
-default package</p>
-<p>- <code>@ComponentScan</code> is explicitly configured with the default package</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>@ComponentScan</code>用于确定应用程序上下文中可用的Spring Bean。可以通过<code>basePackageClasses</code>或<code>basePackages</code> （或其别名 <code>value</code>)参数来配置要扫描的软件包。如果两个参数都未配置，<code>@ComponentScan</code> 将仅考虑使用它注释的类的包。当<code>@ComponentScan</code>在属于默认包的类上使用，将扫描整个类路径。</p>
+<p>这将减慢应用程序的启动速度，很可能应用程序无法以<code>BeanDefinitionStoreException</code> 启动，因为您最终扫描了Spring Framework包本身。</p>
+<p>此规则在以下情况下引发问题：</p>
+<p>- <code>@ComponentScan</code>, <code>@SpringBootApplication</code>和<code>@ServletComponentScan</code>用于属于默认包的类</p>
+<p>- <code>@ComponentScan</code> 使用默认包</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 import org.springframework.boot.SpringApplication;
 
-@SpringBootApplication // Noncompliant; RootBootApp is declared in the default package
+@SpringBootApplication // 不合规; RootBootApp在默认包中声明
 public class RootBootApp {
 ...
 }
@@ -23,13 +18,13 @@ public class Application {
 ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 package hello;
 
 import org.springframework.boot.SpringApplication;
 
-@SpringBootApplication // Compliant; RootBootApp belongs to the "hello" package
+@SpringBootApplication // 合规的; RootBootApp属于“hello”包
 public class RootBootApp {
 ...
 }

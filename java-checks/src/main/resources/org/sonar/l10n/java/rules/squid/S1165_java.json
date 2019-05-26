@@ -1,5 +1,5 @@
 {
-  "title": "Exception classes should be immutable",
+  "title": "异常类应该是不可变的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

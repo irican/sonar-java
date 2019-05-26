@@ -1,38 +1,38 @@
-<p><code>enum</code>s are generally thought of as constant, but an <code>enum</code> with a <code>public</code> field or <code>public</code> setter is
-not only non-constant, but also vulnerable to malicious code. Ideally fields in an <code>enum</code> are <code>private</code> and set in the
-constructor, but if that's not possible, their visibility should be reduced as much as possible.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>enum</code> 通常被认为是常量，但 <code>enum</code> 如果有 <code>public</code> 字段或 <code>public</code> 型的
+setter方法就不仅不是常量，还容易受到恶意代码的攻击。理想情况下，<code>enum</code> 里的字段应是 <code>private</code> 型，并且
+在构造函数中进行设置。但如果这样的方式不可行，就应尽可能的降低它们的可见性。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public enum Continent {
 
   NORTH_AMERICA (23, 24709000),
-  // ...
+  // ……
   EUROPE (50, 39310000);
 
-  public int countryCount;  // Noncompliant
+  public int countryCount;  // 不合规
   private int landMass;
 
   Continent(int countryCount, int landMass) {
-    // ...
+    // ……
   }
 
-  public void setLandMass(int landMass) {  // Noncompliant
+  public void setLandMass(int landMass) {  // 不合规
     this.landMass = landMass;
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public enum Continent {
 
   NORTH_AMERICA (23, 24709000),
-  // ...
+  // ……
   EUROPE (50, 39310000);
 
   private int countryCount;
   private int landMass;
 
   Continent(int countryCount, int landMass) {
-    // ...
+    // ……
   }
 </pre>
 

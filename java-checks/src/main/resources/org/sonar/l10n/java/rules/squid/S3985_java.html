@@ -1,11 +1,10 @@
-<p><code>private</code> classes that are never used are dead code: unnecessary, inoperative code that should be removed. Cleaning out dead code
-decreases the size of the maintained codebase, making it easier to understand the program and preventing bugs from being introduced.</p>
-<h2>Noncompliant Code Example</h2>
+<p>从未使用的<code>private</code> 类是死代码：应该删除的不必要的，不起作用的代码。 清除死代码会减少维护代码库的大小，从而更容易理解程序并防止引入错误。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo
 {
   ...
-  private class MyUnusedPrivateClass {...} // Noncompliant
+  private class MyUnusedPrivateClass {...} // 不符合规范的
 }
 </pre>
 

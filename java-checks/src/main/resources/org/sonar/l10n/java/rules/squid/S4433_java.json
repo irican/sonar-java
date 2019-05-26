@@ -1,5 +1,5 @@
 {
-  "title": "LDAP connections should be authenticated",
+  "title": "应该验证LDAP连接",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

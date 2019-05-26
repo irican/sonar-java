@@ -1,5 +1,5 @@
 {
-  "title": "\"Stream.collect()\" calls should not be redundant",
+  "title": "\"Stream.collect()\" 调用不应该是多余的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,24 +1,20 @@
-<p>According to the Java API documentation:</p>
+<p>根据Java API文档:</p>
 <blockquote>
-  <p>There are two ways to create a new thread of execution. One is to declare a class to be a subclass of Thread. This subclass should override the
-  run method of class Thread. An instance of the subclass can then be allocated and started...</p>
-  <p>The other way to create a thread is to declare a class that implements the Runnable interface. That class then implements the run method. An
-  instance of the class can then be allocated, passed as an argument when creating Thread, and started.</p>
+  <p>有两种方法可以创建新的执行线程。 一种是将一个类声明为Thread的子类。 该子类应该重写Thread类的run方法。 然后可以分配并启动子类的实例......</p>
+  <p>创建线程的另一种方法是声明一个实现Runnable接口的类。然后该类实现run方法。然后可以分配该类的实例，在创建Thread时作为参数传递，并启动它。</p>
 </blockquote>
-<p>By definition, extending the Thread class without overriding the <code>run</code> method doesn't make sense, and implies that the contract of the
-<code>Thread</code> class is not well understood.</p>
-<h2>Noncompliant Code Example</h2>
+<p>根据定义，扩展Thread类而不重写 <code>run</code> 方法是没有意义的，这意味着没有很好地理解 <code>Thread</code> 类的契约。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class MyRunner extends Thread { // Noncompliant; run method not overridden
+public class MyRunner extends Thread { // 不合规； run 方法未重写
 
   public void doSometing() {...}
 }
 </pre>
-<h2>Exceptions</h2>
-<p>If <code>run()</code> is not overridden in a class extending <code>Thread</code>, it means that starting the thread will actually call
-<code>Thread.run()</code>. However, <code>Thread.run()</code> does nothing if it has not been fed with a target <code>Runnable</code>. The rule
-consequently ignore classes extending <code>Thread</code> if they are calling, in their constructors, the <code>super(...)</code> constructor with a
-proper <code>Runnable</code> target.</p>
+<h2>例外</h2>
+<p>如果在扩展 <code>run()</code> 的类中没有重写 <code>Thread</code>，则表示启动该线程实际上会调用 <code>Thread.run()</code>。然而，
+如果没有被提供给目标 <code>Runnable</code>，则<code>Thread.run()</code>不会执行任何操作。 该规则因此忽略扩展 <code>Thread</code> 的类，
+如果它们在其构造函数中使用正确的 <code>Runnable</code> 目标调用<code>super(...)</code> 构造函数。</p>
 <pre>
 class MyThread extends Thread { // Compliant - calling super constructor with a Runnable
   MyThread(Runnable target) {

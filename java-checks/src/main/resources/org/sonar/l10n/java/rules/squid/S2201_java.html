@@ -1,6 +1,5 @@
-<p>When the call to a function doesn't have any side effects, what is the point of making the call if the results are ignored? In such case, either
-the function call is useless and should be dropped or the source code doesn't behave as expected.</p>
-<p>To prevent generating any false-positives, this rule triggers an issue only on the following predefined list of immutable classes in the Java API
+<p>当对函数的调用没有任何副作用时，如果结果被忽略，那么调用的重点是什么？ 在这种情况下，函数调用是无用的，应该被删除或源代码不按预期运行。 </p>
+<p>为防止生成任何误报，此规则仅在Java API中的以下预定义的不可变类列表中触发问题
 :</p>
 <ul>
   <li> <code>java.lang.String</code> </li>
@@ -30,25 +29,26 @@ the function call is useless and should be dropped or the source code doesn't be
   <li> <code>java.math.BigDecimal</code> </li>
   <li> <code>java.util.Optional</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<p>以及 <code>ConcurrentMap.putIfAbsent</code> 调用忽略返回值。.</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void handle(String command){
-  command.toLowerCase(); // Noncompliant; result of method thrown away
+  command.toLowerCase(); // 不合规的; 方法结果丢失
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void handle(String command){
   String formattedCommand = command.toLowerCase();
   ...
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule will not raise an issue when both these conditions are met:</p>
+<h2>例外</h2>
+<p>满足这两个条件时，此规则不会引发问题：</p>
 <ul>
-  <li> The method call is in a <code>try</code> block with an associated <code>catch</code> clause. </li>
-  <li> The method name starts with "parse", "format", "decode" or "valueOf" or the method is <code>String.getBytes(Charset)</code>. </li>
+  <li> 方法调用位于 <code>try</code>块中，并带有关联的 <code>catch</code> 子句。</li>
+  <li> 方法名称以 "parse", "format", "decode" 或 "valueOf" 开头，或者方法是 <code>String.getBytes(Charset)</code>. </li>
 </ul>
 <pre>
 private boolean textIsInteger(String textToCheck) {
@@ -61,8 +61,10 @@ private boolean textIsInteger(String textToCheck) {
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
+  <li> MISRA C:2012, 17.7 - The value returned by a function having non-void return type shall be used </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/9YIRAQ">CERT, EXP12-C.</a> - Do not ignore values returned by functions </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/9gEqAQ">CERT, EXP00-J.</a> - Do not ignore values returned by methods </li>
 </ul>
 

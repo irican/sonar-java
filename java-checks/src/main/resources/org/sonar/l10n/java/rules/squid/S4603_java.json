@@ -1,5 +1,5 @@
 {
-  "title": "\"@Import\"s should be preferred to \"@ComponentScan\"s",
+  "title": "\"@Import\"s 应优先于\"@ComponentScan\"s",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,15 +1,15 @@
-<p>While <code>hashCode</code> and <code>toString</code> are available on arrays, they are largely useless. <code>hashCode</code> returns the array's
-"identity hash code", and <code>toString</code> returns nearly the same value. Neither method's output actually reflects the array's contents.
-Instead, you should pass the array to the relevant static <code>Arrays</code> method.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然数组上可以使用 <code>hashCode</code> 和 <code>toString</code> ，但它们在很大程度上是无用的。 <code>hashCode</code> 
+返回数组的“标识哈希码（identity hash code）”， <code>toString</code> 返回几乎相同的值。 这两种方法的输出都没有实际反映数组的内容。 
+相反，您应该将数组传递给相关的静态 <code>Arrays</code> 方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public static void main( String[] args )
 {
-    String argStr = args.toString(); // Noncompliant
-    int argHash = args.hashCode(); // Noncompliant
+    String argStr = args.toString(); // 不合规
+    int argHash = args.hashCode(); // 不合规
 
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public static void main( String[] args )
 {

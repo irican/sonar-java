@@ -1,6 +1,5 @@
-<p>Exclusions for default interceptors can be declared either in xml or as class annotations. Since annotations are more visible to maintainers, they
-are preferred.</p>
-<h2>Noncompliant Code Example</h2>
+<p>排除默认拦截器可以通过在xml中声明，或使用类的注解来实现。由于注解对维护人员来说可见性更好，因此作为首选的方案。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 &lt;assembly-descriptor&gt;
       &lt;interceptor-binding&gt;
@@ -14,7 +13,7 @@ are preferred.</p>
 
 &lt;/assembly-descriptor&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @ExcludeDefaultInterceptors
 public class MyExcludedClass implements MessageListener
@@ -23,7 +22,7 @@ public class MyExcludedClass implements MessageListener
   @ExcludeClassInterceptors
   @ExcludeDefaultInterceptors
   public void doTheThing() {
-    // ...
+    // ……
   }
 </pre>
 

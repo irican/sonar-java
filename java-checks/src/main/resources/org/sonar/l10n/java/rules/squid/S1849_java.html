@@ -1,7 +1,7 @@
-<p>Calling <code>Iterator.hasNext()</code> is not supposed to have any side effects, and therefore should not change the state of the iterator.
-<code>Iterator.next()</code> advances the iterator by one item. So calling it inside <code>Iterator.hasNext()</code>, breaks the
-<code>hasNext()</code> contract, and will lead to unexpected behavior in production.</p>
-<h2>Noncompliant Code Example</h2>
+<p>调用 <code>Iterator.hasNext()</code> 不应该有任何副作用（side effect），因此不应该更改迭代器的状态。
+<code>Iterator.next()</code> 将迭代器向前推进一项。因此，在 <code>Iterator.hasNext()</code>中调用它会破坏
+<code>hasNext()</code> 合约，并导致生产中出现意外行为。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class FibonacciIterator implements Iterator&lt;Integer&gt;{
 ...

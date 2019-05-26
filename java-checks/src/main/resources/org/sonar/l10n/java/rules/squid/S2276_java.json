@@ -1,5 +1,5 @@
 {
-  "title": "\"wait(...)\" should be used instead of \"Thread.sleep(...)\" when a lock is held",
+  "title": "当持有锁时，应该使用\"wait(...)\" 来替代 \"Thread.sleep(...)\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

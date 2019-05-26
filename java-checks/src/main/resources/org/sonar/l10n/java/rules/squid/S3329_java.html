@@ -1,20 +1,18 @@
-<p>In encryption, when Cipher Block Chaining (CBC) is used, the Initialization Vector (IV) must be random and unpredictable. Otherwise, the encrypted
-value is vulnerable to crypto-analysis attacks such as the "Chosen-Plaintext Attack".</p>
-<p>An IV value should be associated to one, and only one encryption cycle, because the IV's purpose is to ensure that the same plaintext encrypted
-twice will yield two different ciphertexts.</p>
-<p>To that end, IV's should be:</p>
+<p>在加密中，当使用密码块链接（CBC）时，初始化向量（IV）必须是随机且不可预测的。 否则，加密值很容易受到加密分析攻击，例如“选择 - 明文攻击”。</p>
+<p>IV值应与一个加密周期相关联，因为IV的目的是确保加密两次相同的明文将产生两个不同的密文。</p>
+<p>为此，IV应该是：</p>
 <ul>
-  <li> random </li>
-  <li> unpredictable </li>
-  <li> publishable (IV's frequently are published) </li>
-  <li> authenticated, along with the ciphertext, with a Message Authentication Code (MAC) </li>
+  <li> 随机的 </li>
+  <li> 不可预测的 </li>
+  <li> 可发布的 (IV's 经常发布更新) </li>
+  <li> 与密文一起使用消息验证代码（MAC）进行身份验证</li>
 </ul>
-<p>This rule raises an issue when the IV is:</p>
+<p>当IV为以下数值时，此规则引发了一个问题</p>
 <ul>
-  <li> hard-coded </li>
-  <li> created using <code>java.util.Random</code> rather than <code>java.security.SecureRandom</code>. </li>
+  <li> 硬编码（hard-coded） </li>
+  <li> 使用 <code>java.util.Random</code> 进行创建，而不是使用 <code>java.security.SecureRandom</code>. </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyCbcClass {
 
@@ -27,14 +25,14 @@ public class MyCbcClass {
 
     /* Ciphering */
     Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);  // Noncompliant because IV hard coded and cannot vary with each ciphering round
+    cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);  // 不合规，因为IV硬编码并且不能随着每个加密轮而变化
     byte[] encryptedBytes = cipher.doFinal(plainText.getBytes("UTF-8"));
-    return DatatypeConverter.printBase64Binary(bytesIV) // IV is typically published
+    return DatatypeConverter.printBase64Binary(bytesIV) // IV是照常发布的
             + ";" + DatatypeConverter.printBase64Binary(encryptedBytes);
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class MyCbcClass {
 
@@ -57,7 +55,7 @@ public class MyCbcClass {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/330">MITRE, CWE-330</a> - Use of Insufficiently Random Values </li>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>

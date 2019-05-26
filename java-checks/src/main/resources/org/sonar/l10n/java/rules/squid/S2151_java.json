@@ -1,5 +1,5 @@
 {
-  "title": "\"runFinalizersOnExit\" should not be called",
+  "title": "不应该调用 \"runFinalizersOnExit\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

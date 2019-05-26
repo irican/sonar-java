@@ -1,32 +1,30 @@
-<p>When arithmetic is performed on integers, the result will always be an integer. You can assign that result to a <code>long</code>,
-<code>double</code>, or <code>float</code> with automatic type conversion, but having started as an <code>int</code> or <code>long</code>, the result
-will likely not be what you expect. </p>
-<p>For instance, if the result of <code>int</code> division is assigned to a floating-point variable, precision will have been lost before the
-assignment. Likewise, if the result of multiplication is assigned to a <code>long</code>, it may have already overflowed before the assignment.</p>
-<p>In either case, the result will not be what was expected. Instead, at least one operand should be cast or promoted to the final type before the
-operation takes place.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对整数执行算术运算时，结果将始终为整数。您可以使用自动类型转换将结果赋给一个 <code>long</code>，<code>double</code>，
+或 <code>float</code>类型，但是已经以一个 <code>int</code> 或 <code>long</code> 类型开始，结果可能不是您所期望的。 </p>
+<p>例如，如果将 <code>int</code> 除法的结果赋给浮点变量，则在赋值之前精度将丢失。同样，如果将乘法结果赋给 <code>long</code>，
+则它可能在赋值之前已经溢出。</p>
+<p>在这两种情况下，结果都不会像预期的那样。相反，在操作发生之前，至少应该将一个操作数强制转换或提升为最终类型。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-float twoThirds = 2/3; // Noncompliant; int division. Yields 0.0
-long millisInYear = 1_000*3_600*24*365; // Noncompliant; int multiplication. Yields 1471228928
-long bigNum = Integer.MAX_VALUE + 2; // Noncompliant. Yields -2147483647
-long bigNegNum =  Integer.MIN_VALUE-1; //Noncompliant, gives a positive result instead of a negative one.
-Date myDate = new Date(seconds * 1_000); //Noncompliant, won't produce the expected result if seconds &gt; 2_147_483
+float twoThirds = 2/3; // 不合规； int 除法。产生 0.0
+long millisInYear = 1_000*3_600*24*365; // 不合规； int 乘法。 产生 1471228928
+long bigNum = Integer.MAX_VALUE + 2; // 不合规。 产生 -2147483647
+long bigNegNum =  Integer.MIN_VALUE-1; //不合规， 给出正的结果而不是负的。
+Date myDate = new Date(seconds * 1_000); //不合规， 如果seconds&gt，将不会产生预期的结果； 2_147_483
 ...
 public long compute(int factor){
-  return factor * 10_000;  //Noncompliant, won't produce the expected result if factor &gt; 214_748
+  return factor * 10_000;  //不合规，如果 factor &gt，将不会产生预期的结果； 214_748
 }
 
 public float compute2(long factor){
-  return factor / 123;  //Noncompliant, will be rounded to closest long integer
+  return factor / 123;  //不合规 ，将四舍五入为最接近的long整数
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-float twoThirds = 2f/3; // 2 promoted to float. Yields 0.6666667
-long millisInYear = 1_000L*3_600*24*365; // 1000 promoted to long. Yields 31_536_000_000
-long bigNum = Integer.MAX_VALUE + 2L; // 2 promoted to long. Yields 2_147_483_649
-long bigNegNum =  Integer.MIN_VALUE-1L; // Yields -2_147_483_649
+float twoThirds = 2f/3; // 2 提升为浮点数。产生 0.6666667
+long millisInYear = 1_000L*3_600*24*365; // 1000 提升到 long。 产生 31_536_000_000
+long bigNum = Integer.MAX_VALUE + 2L; // 2 提升到 long。 产生 2_147_483_649
+long bigNegNum =  Integer.MIN_VALUE-1L; // 产生 -2_147_483_649
 Date myDate = new Date(seconds * 1_000L);
 ...
 public long compute(int factor){
@@ -37,10 +35,10 @@ public float compute2(long factor){
   return factor / 123f;
 }
 </pre>
-<p>or</p>
+<p>或</p>
 <pre>
-float twoThirds = (float)2/3; // 2 cast to float
-long millisInYear = (long)1_000*3_600*24*365; // 1_000 cast to long
+float twoThirds = (float)2/3; // 2 强制转换为 float
+long millisInYear = (long)1_000*3_600*24*365; // 1_000 强制转换 long
 long bigNum = (long)Integer.MAX_VALUE + 2;
 long bigNegNum =  (long)Integer.MIN_VALUE-1;
 Date myDate = new Date((long)seconds * 1_000);
@@ -53,7 +51,7 @@ public float compute2(float factor){
   return factor / 123;
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C++:2008, 5-0-8 - An explicit integral or floating-point conversion shall not increase the size of the underlying type of a cvalue
   expression. </li>

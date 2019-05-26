@@ -1,6 +1,5 @@
-<p>The old, much-derided <code>Date</code> and <code>Calendar</code> classes have always been confusing and difficult to use properly, particularly in
-a multi-threaded context. <code>JodaTime</code> has long been a popular alternative, but now an even better option is built-in. Java 8's JSR 310
-implementation offers specific classes for:</p>
+<p>旧的、备受嘲笑的 <code>Date</code> 和 <code>Calendar</code> 类一直令人困惑，难以正确使用，尤其是在多线程上下文中。
+<code>JodaTime</code> 长期以来一直是一种流行的替代方案，但现在内置了一个更好的选项。Java 8的JSR 310实现提供了以下特定的类:</p>
 <table>
   <tbody>
     <tr>
@@ -9,69 +8,69 @@ implementation offers specific classes for:</p>
     </tr>
     <tr>
       <td>LocalDate</td>
-      <td>a date, without time of day, offset, or zone</td>
+      <td>日期，没有时间，偏移或区域</td>
     </tr>
     <tr>
       <td>LocalTime</td>
-      <td>the time of day, without date, offset, or zone</td>
+      <td>一天中的时间，没有日期，偏移或区域</td>
     </tr>
     <tr>
       <td>LocalDateTime</td>
-      <td>the date and time, without offset, or zone</td>
+      <td>日期和时间，没有偏移，或区域</td>
     </tr>
     <tr>
       <td>OffsetDate</td>
-      <td>a date with an offset such as +02:00, without time of day, or zone</td>
+      <td>带有偏移量的日期，例如+02：00，没有时间或区域</td>
     </tr>
     <tr>
       <td>OffsetTime</td>
-      <td>the time of day with an offset such as +02:00, without date, or zone</td>
+      <td>带有偏移量的时间，例如+02：00，没有日期或区域</td>
     </tr>
     <tr>
       <td>OffsetDateTime</td>
-      <td>the date and time with an offset such as +02:00, without a zone</td>
+      <td>带有偏移量的日期和时间，例如+02：00，没有区域</td>
     </tr>
     <tr>
       <td>ZonedDateTime</td>
-      <td>the date and time with a time zone and offset</td>
+      <td>带有时区和偏移的日期和时间</td>
     </tr>
     <tr>
       <td>YearMonth</td>
-      <td>a year and month</td>
+      <td>一年又一个月</td>
     </tr>
     <tr>
       <td>MonthDay</td>
-      <td>month and day</td>
+      <td>月和日</td>
     </tr>
     <tr>
       <td>Year/MonthOfDay/DayOfWeek/...</td>
-      <td>classes for the important fields</td>
+      <td>重要字段的类</td>
     </tr>
     <tr>
       <td>DateTimeFields</td>
-      <td>stores a map of field-value pairs which may be invalid</td>
+      <td>存储可能无效的字段 - 值对的映射（map）</td>
     </tr>
     <tr>
       <td>Calendrical</td>
-      <td>access to the low-level API</td>
+      <td>访问低级API</td>
     </tr>
     <tr>
       <td>Period</td>
-      <td>a descriptive amount of time, such as "2 months and 3 days"</td>
+      <td>描述性的时间量，例如“2个月和3天”</td>
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-Date now = new Date();  // Noncompliant
+Date now = new Date();  // 不合规 
 DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-Calendar christmas  = Calendar.getInstance();  // Noncompliant
+Calendar christmas  = Calendar.getInstance();  // 不合规
 christmas.setTime(df.parse("25.12.2020"));
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-LocalDate now = LocalDate.now();  // gets calendar date. no time component
-LocalTime now2 = LocalTime.now(); // gets current time. no date component
+LocalDate now = LocalDate.now();  // 得到日历日期。没有时间部分
+LocalTime now2 = LocalTime.now(); // 当前时间。没有日期部分
 LocalDate christmas = LocalDate.of(2020,12,25);
 </pre>
 

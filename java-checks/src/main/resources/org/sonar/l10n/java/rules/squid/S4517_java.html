@@ -1,27 +1,23 @@
-<p>According to the Java documentation, any implementation of the <code>InputSteam.read()</code> method is supposed to read the next byte of data from
-the input stream. The value byte must be an <code>int</code> in the range 0 to 255. If no byte is available because the end of the stream has been
-reached, the value -1 is returned.</p>
-<p>But in Java, the <code>byte</code> primitive data type is an 8-bit signed two's complement integer. It has a minimum value of -128 and a maximum
-value of 127. So by contract, the implementation of an <code>InputSteam.read()</code> method should never directly return a <code>byte</code>
-primitive data type. A conversion into an unsigned byte must be done before by applying a bitmask.</p>
-<h2>Noncompliant Code Example</h2>
+<p>根据Java文档，<code>InputSteam.read()</code> 方法的任何实现都应该从输入流中读取下一个数据字节。值字节必须是<code>int</code> 范围为0到255.如果没有字节可用，因为已到达流的末尾，则返回值-1。</p>
+<p>但在Java中，<code>byte</code>原语数据类型是一个8位有符号二进制补码整数。它的最小值为-128，最大值为127.因此，通过契约，<code>InputSteam.read()</code> 方法的实现永远不应该直接返回<code> byte </code>原语数据类型。必须先通过应用位掩码转换为无符号字节。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @Override
 public int read() throws IOException {
   if (pos == buffer.length()) {
     return -1;
   }
-  return buffer.getByte(pos++); // Noncompliant, a signed byte value is returned
+  return buffer.getByte(pos++); // 不合规，返回带符号的字节值
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 @Override
 public int read() throws IOException {
   if (pos == buffer.length()) {
     return -1;
   }
-  return buffer.getByte(pos++) &amp; 0xFF; // The 0xFF bitmask is applied
+  return buffer.getByte(pos++) &amp; 0xFF; // 应用0xFF位掩码
 }
 </pre>
 

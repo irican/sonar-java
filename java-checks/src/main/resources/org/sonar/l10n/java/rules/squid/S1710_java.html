@@ -1,9 +1,8 @@
-<p>Before Java 8 if you needed to use multiple instances of the same annotation, they had to be wrapped in a container annotation. With Java 8, that's
-no longer necessary, allowing for cleaner, more readable code.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在Java 8之前，如果需要使用同一个注解（annotation）的多个实例，就必须将它们封装在容器注释中。在Java 8中，这不再是必需的，允许更干净、更可读的代码。</p>
+<p><strong>注意</strong> 当项目的 <code>sonar.java.source</code> 低于 <code>8</code>时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-@SomeAnnotations({  // Noncompliant
+@SomeAnnotations({  // 不合规
   @SomeAnnotation(..a..),
   @SomeAnnotation(..b..),
   @SomeAnnotation(..c..),
@@ -12,7 +11,7 @@ public class SomeClass {
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @SomeAnnotation(..a..)
 @SomeAnnotation(..b..)

@@ -1,7 +1,7 @@
-<p>Shared coding conventions make it possible for a team to collaborate efficiently.</p>
-<p>This rule makes it mandatory to place closing curly braces on the same line as the next <code>else</code>, <code>catch</code> or
-<code>finally</code> keywords.</p>
-<h2>Noncompliant Code Example</h2>
+<p>共享编码约定使团队可以高效协作。</p>
+<p>此规则使得必须将后花括号放在与下一个 <code>else</code>， <code>catch</code> 或
+<code>finally</code> 关键字相同的行上。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void myMethod() {
   if(something) {
@@ -9,7 +9,7 @@ public void myMethod() {
   } else if (somethingElse) {
     doSomethingElse();
   }
-  else {                               // Noncompliant
+  else {                               // 不合规
      generateError();
   }
 
@@ -18,12 +18,12 @@ public void myMethod() {
   } catch (Exception e) {
     log(e);
   }
-  finally {                            // Noncompliant
+  finally {                            // 不合规
     closeConnection();
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void myMethod() {
   if(something) {

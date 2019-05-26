@@ -1,5 +1,5 @@
 {
-  "title": "JUnit test cases should call super methods",
+  "title": "JUnit测试用例应该调用超级方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

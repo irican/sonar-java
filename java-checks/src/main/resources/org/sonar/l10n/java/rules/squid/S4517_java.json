@@ -1,5 +1,5 @@
 {
-  "title": "InputSteam.read() implementation should not return a signed byte",
+  "title": "InputSteam.read() 实现不应返回带符号的字节",
   "type": "BUG",
   "status": "ready",
   "remediation": {

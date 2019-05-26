@@ -1,26 +1,25 @@
-<p>Using <code>File.createTempFile</code> as the first step in creating a temporary directory causes a race condition and is inherently unreliable and
-insecure. Instead, <code>Files.createTempDirectory</code> (Java 7+) or a library function such as Guava's similarly-named
-<code>Files.createTempDir</code> should be used.</p>
-<p>This rule raises an issue when the following steps are taken in immediate sequence:</p>
+<p>使用<code>File.createTempFile</code>作为创建临时目录的第一步会导致竞争条件，并且本质上是不可靠和不安全的。相反，应该使用
+<code>Files.createTempDirectory</code> (Java 7+) 或库函数，如Guava的同名函数<code>Files.createTempDir</code>。</p>
+<p>当按下列步骤依次执行时，这条规则会产生问题：</p>
 <ul>
-  <li> call to <code>File.createTempFile</code> </li>
-  <li> delete resulting file </li>
-  <li> call <code>mkdir</code> on the File object </li>
+  <li> 调用<code>File.createTempFile</code> </li>
+  <li> 删除生成的文件 </li>
+  <li> 在文件对象上调用<code>mkdir</code> </li>
 </ul>
 <p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>7</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 File tempDir;
 tempDir = File.createTempFile("", ".");
 tempDir.delete();
-tempDir.mkdir();  // Noncompliant
+tempDir.mkdir();  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Path tempPath = Files.createTempDirectory("");
 File tempDir = tempPath.toFile();
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A9 - Using Components with Known Vulnerabilities </li>
 </ul>

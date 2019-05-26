@@ -1,5 +1,5 @@
 {
-  "title": "Exceptions should be either logged or rethrown but not both",
+  "title": "异常应该记录（log）或重新抛出，但不能同时记录或重新抛出",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Loggers should be \"private static final\" and should share a naming convention",
+  "title": "日志记录器应该是 \"private static final\" ，并且应该共享命名约定",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

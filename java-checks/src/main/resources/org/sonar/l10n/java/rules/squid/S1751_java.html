@@ -1,16 +1,15 @@
-<p>A loop with at most one iteration is equivalent to the use of an <code>if</code> statement to conditionally execute one piece of code. No developer
-expects to find such a use of a loop statement. If the initial intention of the author was really to conditionally execute one piece of code, an
-<code>if</code> statement should be used instead.</p>
-<p>At worst that was not the initial intention of the author and so the body of the loop should be fixed to use the nested <code>return</code>,
-<code>break</code> or <code>throw</code> statements in a more appropriate way.</p>
-<h2>Noncompliant Code Example</h2>
+<p>具有至多一次迭代的循环等效于使用<code>if</code>语句来有条件地执行一段代码。没有开发人员希望找到循环语句的这种用法。
+如果作者的最初意图确实是有条件地执行一段代码，则应该使用<code>if</code>语句。</p>
+<p>在最坏的情况下，这并不是作者最初的意图，所以循环体应该被修复，以更合适的方式使用嵌套的 <code>return</code>，<code>break</code> 
+或 <code>throw</code> 语句。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-for (int i = 0; i &lt; 10; i++) { // noncompliant, loop only executes once
+for (int i = 0; i &lt; 10; i++) { // 不合规，循环只执行了一次
   printf("i is %d", i);
   break;
 }
 ...
-for (int i = 0; i &lt; 10; i++) { // noncompliant, loop only executes once
+for (int i = 0; i &lt; 10; i++) { // 不合规，循环只执行了一次
   if(i == x) {
     break;
   } else {
@@ -19,7 +18,7 @@ for (int i = 0; i &lt; 10; i++) { // noncompliant, loop only executes once
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 for (int i = 0; i &lt; 10; i++) {
   printf("i is %d", i);

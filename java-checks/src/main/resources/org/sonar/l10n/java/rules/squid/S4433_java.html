@@ -1,27 +1,26 @@
-<p>An un-authenticated LDAP connection can lead to transactions without access control. Authentication, and with it, access control, are the last line
-of defense against LDAP injections and should not be disabled.</p>
-<p>This rule raises an issue when an LDAP connection is created with <code>Context.SECURITY_AUTHENTICATION</code> set to <code>"none"</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>未经身份验证的LDAP连接可能导致无访问控制的事务。身份验证以及访问控制是防止LDAP注入的最后一道防线，不应该被禁用。</p>
+<p>当使用<code> Context.SECURITY_AUTHENTICATION </code>设置为<code>“none”</code>创建LDAP连接时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-// Set up the environment for creating the initial context
+//设置创建初始context的环境
 Hashtable&lt;String, Object&gt; env = new Hashtable&lt;String, Object&gt;();
 env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 env.put(Context.PROVIDER_URL, "ldap://localhost:389/o=JNDITutorial");
 
-// Use anonymous authentication
-env.put(Context.SECURITY_AUTHENTICATION, "none"); // Noncompliant
+// 使用匿名身份验证
+env.put(Context.SECURITY_AUTHENTICATION, "none"); //不合规的
 
-// Create the initial context
+// 创建初始context
 DirContext ctx = new InitialDirContext(env);
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
-// Set up the environment for creating the initial context
+// 设置创建初始context的环境
 Hashtable&lt;String, Object&gt; env = new Hashtable&lt;String, Object&gt;();
 env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 env.put(Context.PROVIDER_URL, "ldap://localhost:389/o=JNDITutorial");
 
-// Use simple authentication
+// 使用简单身份验证
 env.put(Context.SECURITY_AUTHENTICATION, "simple");
 env.put(Context.SECURITY_PRINCIPAL, "cn=S. User, ou=NewHires, o=JNDITutorial");
 env.put(Context.SECURITY_CREDENTIALS, getLDAPPassword());
@@ -29,7 +28,7 @@ env.put(Context.SECURITY_CREDENTIALS, getLDAPPassword());
 // Create the initial context
 DirContext ctx = new InitialDirContext(env);
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/521.html">CWE-521</a> - Weak Password Requirements </li>
   <li> OWASP Top 10 2017 Category A2 - Broken Authentication </li>

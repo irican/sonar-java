@@ -1,5 +1,5 @@
 {
-  "title": "\"==\" and \"!=\" should not be used when \"equals\" is overridden",
+  "title": "当 \"equals\" 被重写时，不应使用\"==\" 和 \"!=\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

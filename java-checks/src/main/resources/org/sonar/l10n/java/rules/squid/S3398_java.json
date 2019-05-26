@@ -1,5 +1,5 @@
 {
-  "title": "\"private\" methods called only by inner classes should be moved to those classes",
+  "title": "仅由内部类调用的\"private\" 方法应该移动到那些类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

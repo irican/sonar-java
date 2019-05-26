@@ -1,16 +1,15 @@
-<p>There are valid cases for passing a variable multiple times into the same method call, but usually doing so is a mistake, and something else was
-intended for one of the arguments.</p>
-<h2>Noncompliant Code Example</h2>
+<p>有一些有效的例子可以将变量多次传递到同一个方法调用中，但通常这样做是错误的，而其他一些参数也是如此。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-if (compare(myPoint.x, myPoint.x) != 0) { // Noncompliant
+if (compare(myPoint.x, myPoint.x) != 0) { // 不合规的
 &nbsp;&nbsp;//...
 }
 
-if (compare(getNextValue(), getNextValue()) != 0) { // Noncompliant
+if (compare(getNextValue(), getNextValue()) != 0) { // 不合规的
 &nbsp;&nbsp;// ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 if (compare(myPoint.x, myPoint.y) != 0) {
 &nbsp;&nbsp;//...
@@ -22,6 +21,6 @@ if (compare(v1, v2) != 0) {
 &nbsp;&nbsp;// ...
 }
 </pre>
-<h2>Deprecated</h2>
-<p>This rule is deprecated, and will eventually be removed.</p>
+<h2>已过时</h2>
+<p>此规则已弃用，最终将被删除。</p>
 

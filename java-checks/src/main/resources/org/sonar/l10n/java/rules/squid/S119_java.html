@@ -1,15 +1,13 @@
-<p>Shared naming conventions make it possible for a team to collaborate efficiently. Following the established convention of single-letter type
-parameter names helps users and maintainers of your code quickly see the difference between a type parameter and a poorly named class.</p>
-<p>This rule check that all type parameter names match a provided regular expression. The following code snippets use the default regular
-expression.</p>
-<h2>Noncompliant Code Example</h2>
+<p>共享命名约定使团队可以高效协作。遵循既定的单字母类型参数名称约定，可以帮助代码的用户和维护者快速查看类型参数和命名不佳的类之间的区别。</p>
+<p>此规则检查所有类型参数名称是否与提供的正则表达式匹配。以下代码段使用默认正则表达式。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class MyClass&lt;TYPE&gt; { // Noncompliant
-  &lt;TYPE&gt; void method(TYPE t) { // Noncompliant
+public class MyClass&lt;TYPE&gt; { // 不合规
+  &lt;TYPE&gt; void method(TYPE t) { // 不合规
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class MyClass&lt;T&gt; {
   &lt;T&gt; void method(T t) {

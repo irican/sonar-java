@@ -1,13 +1,13 @@
-<p><code>transient</code> is used to mark fields in a <code>Serializable</code> class which will not be written out to file (or stream). In a class
-that does not implement <code>Serializable</code>, this modifier is simply wasted keystrokes, and should be removed.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>transient</code> 用于标记 <code>Serializable</code> 类中的字段，这些字段不会写入文件（或流）。 在没有实现 <code>Serializable</code>的类中，
+此修饰符只是浪费的按键，应该被删除。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-class Vegetable {  // does not implement Serializable
-  private transient Season ripe;  // Noncompliant
+class Vegetable {  // 没有实现Serializable
+  private transient Season ripe;  // 不合规
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class Vegetable {
   private Season ripe;

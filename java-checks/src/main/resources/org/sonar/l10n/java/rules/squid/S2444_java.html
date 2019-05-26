@@ -1,16 +1,14 @@
-<p>In a multi-threaded situation, un-<code>synchronized</code> lazy initialization of static fields could mean that a second thread has access to a
-half-initialized object while the first thread is still creating it. Allowing such access could cause serious bugs. Instead. the initialization block
-should be <code>synchronized</code>.</p>
-<p>Similarly, updates of such fields should also be <code>synchronized</code>.</p>
-<p>This rule raises an issue whenever a lazy static initialization is done on a class with at least one <code>synchronized</code> method, indicating
-intended usage in multi-threaded applications.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在多线程的情况下，非<code>synchronized</code> 对静态字段的延迟初始化可能意味着第二个线程在第一个线程仍然在创建一个未初始化的对象时可以访问它。
+允许这样的访问可能会导致严重的错误。相反，初始化块应该是 <code>synchronized</code>。</p>
+<p>类似地，此类字段的更新也应该<code>synchronized</code>。</p>
+<p>每当对至少有一个 <code>synchronized</code> 方法的类执行延迟静态初始化时，该规则就会引发一个问题，这表明在多线程应用程序中使用该方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private static Properties fPreferences = null;
 
 private static Properties getPreferences() {
         if (fPreferences == null) {
-            fPreferences = new Properties(); // Noncompliant
+            fPreferences = new Properties(); // 不合规
             fPreferences.put("loading", "true");
             fPreferences.put("filterstack", "true");
             readPreferences();
@@ -19,7 +17,7 @@ private static Properties getPreferences() {
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private static Properties fPreferences = null;
 

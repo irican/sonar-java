@@ -1,19 +1,19 @@
-<p><code>Object.finalize()</code> is called by the Garbage Collector at some point after the object becomes unreferenced.</p>
-<p>In general, overloading <code>Object.finalize()</code> is a bad idea because:</p>
+<p>垃圾收集器在对象变为未引用后的某个时刻调用<code>Object.finalize()</code> 。</p>
+<p>通常，重载 <code>Object.finalize()</code> 不是个好主意，因为：</p>
 <ul>
-  <li> The overload may not be called by the Garbage Collector. </li>
-  <li> Users are not expected to call <code>Object.finalize()</code> and will get confused. </li>
+  <li> 垃圾收集器可能无法调用重载。 </li>
+  <li> 用户不应该调用 <code>Object.finalize()</code> ，这会让用户感到困惑。 </li>
 </ul>
-<p>But beyond that it's a terrible idea to name a method "finalize" if it doesn't actually override <code>Object.finalize()</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>但是除此之外，如果方法实际上没有重写 <code>Object.finalize()</code>，那么将其命名为“finalize”是一个糟糕的主意。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public int finalize(int someParameter) {        // Noncompliant
+public int finalize(int someParameter) {        // 不合规
   /* ... */
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public int someBetterName(int someParameter) {  // Compliant
+public int someBetterName(int someParameter) {  // 合规
   /* ... */
 }
 </pre>

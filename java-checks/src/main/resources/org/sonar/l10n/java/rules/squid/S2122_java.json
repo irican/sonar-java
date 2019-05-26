@@ -1,5 +1,5 @@
 {
-  "title": "\"ScheduledThreadPoolExecutor\" should not have 0 core threads",
+  "title": "\"ScheduledThreadPoolExecutor\" 不应该有0个核心线程",
   "type": "BUG",
   "status": "ready",
   "remediation": {

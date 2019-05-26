@@ -1,8 +1,7 @@
-<p>Boxing is the process of putting a primitive value into an analogous object, such as creating an <code>Integer</code> to hold an <code>int</code>
-value. Unboxing is the process of retrieving the primitive value from such an object.</p>
-<p>Since the original value is unchanged during boxing and unboxing, there's no point in doing either when not needed. This also applies to autoboxing
-and auto-unboxing (when Java implicitly handles the primitive/object transition for you).</p>
-<h2>Noncompliant Code Example</h2>
+<p>装箱（Box）是将原始类型值放入类似对象的过程，例如创建 <code>Integer</code> 来保存 <code>int</code> 值。
+拆箱（Unbox）是从这样的对象中检索原始值的过程。</p>
+<p>由于在装箱和拆箱过程中原始值没有变化，因此在不需要时做任何一个都没有意义。这也适用于自动装箱和自动拆箱（当Java隐式处理原始类型/对象转换时）。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void examineInt(int a) {
   //...
@@ -17,18 +16,18 @@ public void func() {
   Integer iger1 = Integer.valueOf(0);
   double d = 1.0;
 
-  int dIntValue = new Double(d).intValue(); // Noncompliant
+  int dIntValue = new Double(d).intValue(); // 不合规
 
-  examineInt(new Integer(i).intValue()); // Noncompliant; explicit box/unbox
-  examineInt(Integer.valueOf(i));  // Noncompliant; boxed int will be auto-unboxed
+  examineInt(new Integer(i).intValue()); // 不合规；显式的装箱/拆箱
+  examineInt(Integer.valueOf(i));  // 不合规； 装箱 int 将自动拆箱
 
-  examineInteger(i); // Compliant; value is boxed but not then unboxed
-  examineInteger(iger1.intValue()); // Noncompliant; unboxed int will be autoboxed
+  examineInteger(i); // 合规； 值被装箱但不会马上拆箱
+  examineInteger(iger1.intValue()); // 不合规； 拆箱 int 将会自动装箱
 
-  Integer iger2 = new Integer(iger1); // Noncompliant; unnecessary unboxing, value can be reused
+  Integer iger2 = new Integer(iger1); // 不合规；不必要的拆箱，值可以重用
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void examineInt(int a) {
   //...

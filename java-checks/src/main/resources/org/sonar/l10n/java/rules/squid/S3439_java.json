@@ -1,5 +1,5 @@
 {
-  "title": "\"DefaultMessageListenerContainer\" instances should not drop messages during restarts",
+  "title": "\"DefaultMessageListenerContainer\" 实例不应在重新启动期间丢弃消息",
   "type": "BUG",
   "status": "ready",
   "remediation": {

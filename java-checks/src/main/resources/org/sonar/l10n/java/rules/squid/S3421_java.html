@@ -1,13 +1,11 @@
-<p>Deprecated features are those that have been retained temporarily for backward compatibility, but which will eventually be removed. In effect,
-deprecation announces a grace period to allow the smooth transition from the old features to the new ones. In that period, no use of the deprecated
-features should be added, and all existing uses should be gradually removed.</p>
-<p>This rule raises an issue when <code>${pom.*}</code> properties are used in a pom.</p>
-<h2>Noncompliant Code Example</h2>
+<p>不推荐使用的功能是为了向后兼容而暂时保留的功能，但最终将被删除。 实际上，弃用会宣布一个宽限期，以允许从旧功能平滑过渡到新功能。 在此期间，不应添加已弃用的功能，并应逐步删除所有现有用途。</p>
+<p>当在pom中使用<code>${pom.*}</code> 属性时，此规则会引发问题。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
   &lt;build&gt;
     &lt;finalName&gt;${pom.artifactId}-${pom.version}&lt;/finalName&gt;  &lt;!-- Noncompliant --&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
   &lt;build&gt;
     &lt;finalName&gt;${project.artifactId}-${project.version}&lt;/finalName&gt;

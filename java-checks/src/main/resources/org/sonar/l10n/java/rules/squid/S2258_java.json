@@ -1,5 +1,5 @@
 {
-  "title": "\"javax.crypto.NullCipher\" should not be used for anything other than testing",
+  "title": "\"javax.crypto.NullCipher\" 不应用于测试之外的任何其他内容",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

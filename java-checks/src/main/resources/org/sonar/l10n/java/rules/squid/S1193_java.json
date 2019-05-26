@@ -1,5 +1,5 @@
 {
-  "title": "Exception types should not be tested using \"instanceof\" in catch blocks",
+  "title": "不应使用catch块中的 \"instanceof\" 测试异常类型",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

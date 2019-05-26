@@ -1,12 +1,11 @@
-<p>Rather than creating a boxed primitive from a <code>String</code> to extract the primitive value, use the relevant <code>parse</code> method
-instead. It will be clearer and more efficient.</p>
-<h2>Noncompliant Code Example</h2>
+<p>与其从 <code>String</code> 创建装箱的原始类型（boxed primitive）来提取原始类型值，不如使用相关的 <code>parse</code> 方法。它会更清晰，更有效率。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String myNum = "12.2";
 
-float f = (new Float(myNum)).floatValue();  // Noncompliant; creates &amp; discards a Float
+float f = (new Float(myNum)).floatValue();  // 不合规； 创建 &amp； 抛弃 Float
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String myNum = "12.2";
 

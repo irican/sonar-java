@@ -1,5 +1,5 @@
 {
-  "title": "Locks should be released",
+  "title": "锁应该被释放开",
   "type": "BUG",
   "status": "ready",
   "remediation": {

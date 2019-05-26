@@ -1,5 +1,5 @@
 {
-  "title": "Security constraints should be defined",
+  "title": "应该定义安全约束",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

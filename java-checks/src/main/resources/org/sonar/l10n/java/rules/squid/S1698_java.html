@@ -1,57 +1,57 @@
-<p>It is equivalent to use the equality <code>==</code> operator and the <code>equals</code> method to compare two objects if the <code>equals</code>
-method inherited from <code>Object</code> has not been overridden. In this case both checks compare the object references.</p>
-<p>But as soon as <code>equals</code> is overridden, two objects not having the same reference but having the same value can be equal. This rule spots
-suspicious uses of <code>==</code> and <code>!=</code> operators on objects whose <code>equals</code> methods are overridden.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果继承自 <code>Object</code> 的 <code>equals</code> 方法没有被重写，则使用等于<code>==</code> 运算符和 <code>equals</code> 
+方法来比较两个对象是等价的，在这种情况下，两个检查都比较对象引用。</p>
+<p>但是只要重写 <code>equals</code> ，两个没有相同引用但具有相同值的对象就可以相等。此规则发现在 <code>equals</code> 方法被重写的对象上，
+有对于 <code>==</code> 和 <code>!=</code> 运算符可疑地使用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-String firstName = getFirstName(); // String overrides equals
+String firstName = getFirstName(); // 字符串重写 equals
 String lastName = getLastName();
 
-if (firstName == lastName) { ... }; // Non-compliant; false even if the strings have the same value
+if (firstName == lastName) { ... }; // 不合规； 即使字符串具有相同的值，也是false
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String firstName = getFirstName();
 String lastName = getLastName();
 
 if (firstName != null &amp;&amp; firstName.equals(lastName)) { ... };
 </pre>
-<h2>Exceptions</h2>
-<p>Comparing two instances of the <code>Class</code> object will not raise an issue:</p>
+<h2>例外</h2>
+<p>比较<code>Class</code>对象的两个实例不会报告问题：</p>
 <pre>
 Class c;
-if(c == Integer.class) { // No issue raised
+if(c == Integer.class) { // 不报告问题
 }
 </pre>
-<p>Comparing <code>Enum</code> will not raise an issue:</p>
+<p>比较<code>Enum</code>不会报告问题：</p>
 <pre>
 public enum Fruit {
    APPLE, BANANA, GRAPE
 }
 public boolean isFruitGrape(Fruit candidateFruit) {
-  return candidateFruit == Fruit.GRAPE; // it's recommended to activate S4551 to enforce comparison of Enums using ==
+  return candidateFruit == Fruit.GRAPE; // 建议激活S4551以使用==强制对Enums进行比较
 }
 </pre>
-<p>Comparing with <code>final</code> reference will not raise an issue:</p>
+<p>与 <code>final</code> 引用相比较，不会报告问题：</p>
 <pre>
 private static final Type DEFAULT = new Type();
 
 void foo(Type other) {
-  if (other == DEFAULT) { // Compliant
+  if (other == DEFAULT) { // 合规
   //...
   }
 }
 </pre>
-<p>Comparing with <code>this</code> will not raise an issue:</p>
+<p>与 <code>this</code> 相比较，不会报告问题：</p>
 <pre>
   public boolean equals(Object other) {
-    if (this == other) {  // Compliant
+    if (this == other) {  // 合规
       return false;
     }
  }
 </pre>
-<p>Comparing with <code>java.lang.String</code> and boxed types <code>java.lang.Integer</code>, ... will not raise an issue. </p>
-<h2>See</h2>
+<p>与 <code>java.lang.String</code> 和装箱（boxed）类型 <code>java.lang.Integer</code> 比较， ... 不会报告问题。</p>
+<h2>请参阅</h2>
 <ul>
   <li> {rule:squid:S4973} - Strings and Boxed types should be compared using "equals()" </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/595.html">MITRE, CWE-595</a> - Comparison of Object References Instead of Object Contents </li>

@@ -1,5 +1,5 @@
 {
-  "title": "\"public static\" fields should be constant",
+  "title": "\"public static\" 字段应该是常量",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

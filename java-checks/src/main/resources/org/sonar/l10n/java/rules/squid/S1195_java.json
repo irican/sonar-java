@@ -1,5 +1,5 @@
 {
-  "title": "Array designators \"[]\" should be located after the type in method signatures",
+  "title": "数组指示符 \"[]\" 应位于方法签名中的类型之后",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

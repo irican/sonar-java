@@ -1,21 +1,20 @@
-<p>A <code>@RequestMapping</code> method handles all matching requests by default. That means that a method you intended only to be
-<code>POST</code>-ed to could also be called by a <code>GET</code>, thereby allowing hackers to call the method inappropriately. For example a
-"transferFunds" method might be invoked like so: <code>&lt;img
+<p><code>@RequestMapping</code> 方法默认处理所有匹配的请求。 这意味着你想要的方法
+<code>POST</code>-ed 也可以通过<code>GET</code>, 调用，从而允许黑客不恰当地调用该方法。 例如，可以像这样调用“transferFunds”方法：<code>&lt;img
 src="http://bank.com/actions/transferFunds?reciepientRouting=000000&amp;receipientAccount=11111111&amp;amount=200.00" width="1"
 height="1"/&gt;</code></p>
-<p>For that reason, you should always explicitly list the single HTTP method with which you expect your <code>@RequestMapping</code> Java method to be
-called. This rule raises an issue when <code>method</code> is missing.</p>
-<h2>Noncompliant Code Example</h2>
+<p>出于这个原因，您应该始终明确列出您期望<code>@RequestMapping</code> Java方法的单个HTTP方法
+调用。 当缺少 <code>method</code> 时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-@RequestMapping("/greet")  // Noncompliant
+@RequestMapping("/greet")  // 不合规的
 public String greet(String greetee) {
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
   @RequestMapping("/greet", method = GET)
   public String greet(String greetee) {
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/352.html">MITRE, CWE-352</a> - Cross-Site Request Forgery (CSRF) </li>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>

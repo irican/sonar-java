@@ -1,5 +1,5 @@
 {
-  "title": "\"static\" members should be accessed statically",
+  "title": " 静态访问\"静态\"成员",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

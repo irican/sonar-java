@@ -1,5 +1,5 @@
 {
-  "title": "Non-serializable classes should not be written",
+  "title": "不应编写非序列化的类",
   "type": "BUG",
   "status": "ready",
   "remediation": {

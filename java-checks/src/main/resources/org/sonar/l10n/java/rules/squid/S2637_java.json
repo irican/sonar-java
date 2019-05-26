@@ -1,5 +1,5 @@
 {
-  "title": "\"@NonNull\" values should not be set to null",
+  "title": "\"@NonNull\" 值不应设置为null",
   "type": "BUG",
   "status": "ready",
   "remediation": {

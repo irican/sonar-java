@@ -1,6 +1,5 @@
-<p>When the value of a private field is always assigned to in a class' methods before being read, then it is not being used to store class
-information. Therefore, it should become a local variable in the relevant methods to prevent any misunderstanding.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当私有字段的值总是在读取之前分配给类的方法时，则不会使用它来存储类信息。因此，它应该成为相关方法中的局部变量，以防止任何误解。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo {
   private int a;
@@ -21,7 +20,7 @@ public class Foo {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方法</h2>
 <pre>
 public class Foo {
 
@@ -39,6 +38,6 @@ public class Foo {
   }
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule doesn't raise any issue on annotated field.</p>
+<h2>例外</h2>
+<p>此规则不会在带注释的字段上报告任何问题。</p>
 

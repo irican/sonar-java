@@ -1,10 +1,9 @@
-<p>Testing equality of an enum value with <code>equals</code> is perfectly valid because an enum is an Object and every Java developer knows "=="
-should not be used to compare the content of an Object. At the same time, using "==" on enums:</p>
-<p>- provides the same expected comparison (content) as <code>equals</code></p>
-<p>- is more null-safe than equals()</p>
-<p>- provides compile-time (static) checking rather than runtime checking</p>
-<p>For these reasons, use of "==" should be preferred to <code>equals</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>equals</code> 测试枚举值的相等性是完全有效的，因为枚举是一个对象，并且每个Java开发人员都知道“==”不应该用于比较对象的内容。同时，在枚举上应使用“==”：</p>
+<p>- 提供与 <code>equals</code>相同预期的比较（内容）</p>
+<p>- 相比较与equals方法调用而言，不会产生空指针的安全问题。（null-safe：这里指空指针安全性）</p>
+<p>-  - 提供编译时（静态）检查而不是运行时检查</p>
+<p>由于这些原因，使用“==”应优先于 <code>equals</code>.</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public enum Fruit {
    APPLE, BANANA, GRAPE
@@ -15,25 +14,25 @@ public enum Cake {
 }
 
 public boolean isFruitGrape(Fruit candidateFruit) {
-  return candidateFruit.equals(Fruit.GRAPE); // Noncompliant; this will raise an NPE if candidateFruit is NULL
+  return candidateFruit.equals(Fruit.GRAPE); // 不合规; 如果candidateFruit为NULL，这将引发NPE
 }
 
 public boolean isFruitGrape(Cake candidateFruit) {
-  return candidateFruit.equals(Fruit.GRAPE); // Noncompliant; always returns false
+  return candidateFruit.equals(Fruit.GRAPE); // 不合规; 总是返回false
 }
 
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public boolean isFruitGrape(Fruit candidateFruit) {
-  return candidateFruit == Fruit.GRAPE; // Compliant; there is only one instance of Fruit.GRAPE - if candidateFruit is a GRAPE it will have the same reference as Fruit.GRAPE
+  return candidateFruit == Fruit.GRAPE; // 合规的; 只有一个Fruit.GRAPE实例 - 如果candidateFruit是GRAPE，它将与Fruit.GRAPE具有相同的引用
 }
 
-public boolean isFruitGrape(Cake candidateFruit) {
-  return candidateFruit == Fruit.GRAPE; // Compliant; compilation time failure
+public boolean isFruitGrape(Cake candidateCake) {
+  return candidateCake == Fruit.GRAPE; // 合规;编译错误
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.javaworld.com/article/2074292/core-java/use-----or-----to-compare-java-enums.html">Use == (or !=) to Compare Java
   Enums</a> </li>

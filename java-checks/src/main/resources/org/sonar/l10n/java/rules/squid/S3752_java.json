@@ -1,5 +1,5 @@
 {
-  "title": "\"@RequestMapping\" methods should specify HTTP method",
+  "title": "“@ RequestMapping ”方法应指定HTTP方法",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

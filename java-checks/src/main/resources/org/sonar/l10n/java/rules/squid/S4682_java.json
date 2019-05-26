@@ -1,5 +1,5 @@
 {
-  "title": "\"@CheckForNull\" or \"@Nullable\" should not be used on primitive types",
+  "title": "\"@CheckForNull\" 或 \"@Nullable\" 不应用于基本类型",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

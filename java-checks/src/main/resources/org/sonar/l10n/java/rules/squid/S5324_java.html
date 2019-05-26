@@ -1,12 +1,12 @@
-<p>In Android applications, accessing external storage is security-sensitive. For example, it has led in the past to the following vulnerability:</p>
+<p>在Android应用程序中，访问外部存储是安全敏感的。 例如，它过去曾导致以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-15004">CVE-2018-15004</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-15002">CVE-2018-15002</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-14995">CVE-2018-14995</a> </li>
 </ul>
-<p>Any application having the permissions <code>WRITE_EXTERNAL_STORAGE</code> or <code>READ_EXTERNAL_STORAGE</code> can access files stored on an
-external storage, be it a private or a public file.</p>
-<p>This rule raises an issue when the following functions are called:</p>
+<p>具有权限 <code>WRITE_EXTERNAL_STORAGE</code> 或 <code>READ_EXTERNAL_STORAGE</code> 的任何应用程序都可以访问存储在外部存储上的文件，
+无论是私有文件还是公共文件。</p>
+<p>调用以下函数时，此规则会报告问题：</p>
 <ul>
   <li> <code>android.os.Environment.getExternalStorageDirectory</code> </li>
   <li> <code>android.os.Environment.getExternalStoragePublicDirectory</code> </li>
@@ -18,16 +18,16 @@ external storage, be it a private or a public file.</p>
   <li> <code>android.content.Context.getObbDir</code> </li>
   <li> <code>android.content.Context.getObbDirs</code> </li>
 </ul>
-<h2>Ask Yourself Whether</h2>
+<h2>检查自己是否存在以下问题</h2>
 <ul>
-  <li> Data written to the external storage is security-sensitive and is not encrypted. </li>
-  <li> Data read from files is not validated. </li>
+  <li> 写入外部存储的数据是安全敏感的，并且没有加密。 </li>
+  <li> 从文件读取的数据未经过验证。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Validate any data read from files.</p>
-<p>Avoid writing sensitive information to an external storage. If this is required, make sure that the data is encrypted properly.</p>
-<h2>Sensitive Code Example</h2>
+<p>如果您对这些问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码实践</h2>
+<p>验证从文件读取的任何数据。</p>
+<p>避免将敏感信息写入外部存储。如果需要，请确保数据已正确加密。</p>
+<h2>敏感代码示例</h2>
 <pre>
 import android.content.Context;
 import android.os.Environment;
@@ -35,12 +35,12 @@ import android.os.Environment;
 public class AccessExternalFiles {
 
     public void accessFiles(Context context) {
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // Sensitive
-        context.getExternalFilesDir(Environment.DIRECTORY_PICTURES); // Sensitive
+        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // 敏感
+        context.getExternalFilesDir(Environment.DIRECTORY_PICTURES); // 敏感
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://developer.android.com/training/articles/security-tips#ExternalStorage">Android Security tips on external file storage</a>
   </li>

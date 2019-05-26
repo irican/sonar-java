@@ -1,10 +1,10 @@
-<p>There are several reasons for a method not to have a method body:</p>
+<p>方法没有方法体有以下几个原因:</p>
 <ul>
-  <li> It is an unintentional omission, and should be fixed to prevent an unexpected behavior in production. </li>
-  <li> It is not yet, or never will be, supported. In this case an <code>UnsupportedOperationException</code> should be thrown. </li>
-  <li> The method is an intentionally-blank override. In this case a nested comment should explain the reason for the blank override. </li>
+  <li> 这是一种无意的遗漏，应该加以纠正，以防止生产中出现意外行为。 </li>
+  <li> 它尚未被支持或永远不会支持。在这种情况下，应抛出 <code>UnsupportedOperationException</code> 。 </li>
+  <li> 该方法是一个有意为空的重写。在这种情况下，嵌套注释应该解释空白重写的原因。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething() {
 }
@@ -12,11 +12,11 @@ public void doSomething() {
 public void doSomethingElse() {
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Override
 public void doSomething() {
-  // Do nothing because of X and Y.
+  // 因为X和Y，什么都不做。
 }
 
 @Override
@@ -24,11 +24,11 @@ public void doSomethingElse() {
   throw new UnsupportedOperationException();
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Default (no-argument) constructors are ignored when there are other constructors in the class, as are empty methods in abstract classes.</p>
+<h2>例外</h2>
+<p>当类中有其他构造函数时，将忽略缺省（无参数）构造函数，抽象类中的空方法也是如此。</p>
 <pre>
 public abstract class Animal {
-  void speak() {  // default implementation ignored
+  void speak() {  // 缺省实现被忽略
   }
 }
 </pre>

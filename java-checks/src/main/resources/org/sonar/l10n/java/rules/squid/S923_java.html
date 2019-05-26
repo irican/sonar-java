@@ -1,13 +1,18 @@
-<p>As stated per effective java : </p>
+<p>正如每个有效的java所述：</p>
 <blockquote>
-  <p>Varargs methods are a convenient way to define methods that require a variable number of arguments, but they should not be overused. They can
-  produce confusing results if used inappropriately.</p>
+  <p>Varargs方法是定义可变数量参数方法的便捷方法，但不应过度使用它。如果使用不当，它会产生令人困惑的结果。</p>
 </blockquote>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-void fun ( String... strings )	// Noncompliant
+void fun ( String... strings )	// 不合规
 {
   // ...
 }
 </pre>
+<h2>请参阅</h2>
+<ul>
+  <li> MISRA C:2004, 16.1 - Functions shall not be defined with a variable number of arguments. </li>
+  <li> MISRA C++:2008, 8-4-1 - Functions shall not be defined using the ellipsis notation. </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/i4CW">CERT, DCL50-CPP.</a> - Do not define a C-style variadic function </li>
+</ul>
 

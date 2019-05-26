@@ -1,9 +1,7 @@
-<p>When implementing the <code>Comparable&lt;T&gt;.compareTo</code> method, the parameter's type has to match the type used in the
-<code>Comparable</code> declaration. When a different type is used this creates an overload instead of an override, which is unlikely to be the
-intent.</p>
-<p>This rule raises an issue when the parameter of the <code>compareTo</code> method of a class implementing <code>Comparable&lt;T&gt;</code> is not
-same as the one used in the <code>Comparable</code> declaration.</p>
-<h2>Noncompliant Code Example</h2>
+<p>实现<code> Comparable＆lt; T＆gt; .compareTo </code>方法时，参数的类型必须与<code> Comparable </code>声明中使用的类型相匹配。 当使用不同的类型时，这会创建一个重载而不是重写，这不太可能是意图。</p>
+<p>当实现<code> Comparable＆lt; T＆gt; </code>的类的<code> compareTo </code>方法的参数不是时，此规则会引发问题
+与<code> Comparable </code>声明中使用的相同。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo {
   static class Bar implements Comparable&lt;Bar&gt; {
@@ -13,13 +11,13 @@ public class Foo {
   }
 
   static class FooBar extends Bar {
-    public int compareTo(FooBar rhs) {  // Noncompliant: Parameter should be of type Bar
+    public int compareTo(FooBar rhs) {  // 不合规的: 参数应为Bar类型
       return 0;
     }
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class Foo {
   static class Bar implements Comparable&lt;Bar&gt; {

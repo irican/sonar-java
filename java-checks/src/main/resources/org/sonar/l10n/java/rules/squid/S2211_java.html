@@ -1,14 +1,13 @@
-<p>Shared coding conventions allow teams to collaborate effectively. While types for lambda arguments are optional, specifying them anyway makes the
-code clearer and easier to read.</p>
-<h2>Noncompliant Code Example</h2>
+<p>共享编码约定允许团队有效协作。 虽然lambda参数的类型是可选的，但无论如何都要指定它们会使代码更清晰，更容易阅读。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Arrays.sort(rosterAsArray,
-    (a, b) -&gt; {  // Noncompliant
+    (a, b) -&gt; {  // 不合规的
         return a.getBirthday().compareTo(b.getBirthday());
     }
 );
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 Arrays.sort(rosterAsArray,
     (Person a, Person b) -&gt; {
@@ -16,10 +15,9 @@ Arrays.sort(rosterAsArray,
     }
 );
 </pre>
-<h2>Exceptions</h2>
-<p>When the lambda has one or two parameters and does not have a block this rule will not fire up an issue as things are considered more readable in
-those cases.</p>
+<h2>例外</h2>
+<p>当lambda有一个或两个参数且没有块时，这个规则不会引发问题，因为在这些情况下，这些参数被认为更具可读性。</p>
 <pre>
-stream.map((a, b) -&gt; a.length); // compliant
+stream.map((a, b) -&gt; a.length); // 合规的
 </pre>
 

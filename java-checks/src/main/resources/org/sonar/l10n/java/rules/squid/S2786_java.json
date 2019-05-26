@@ -1,5 +1,5 @@
 {
-  "title": "Nested \"enum\"s should not be declared static",
+  "title": "嵌套的\"enum\"不应该声明为静态的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

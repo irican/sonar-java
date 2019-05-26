@@ -1,5 +1,5 @@
 {
-  "title": "\"StringBuilder\" and \"StringBuffer\" should not be instantiated with a character ",
+  "title": "\"StringBuilder\" 和 \"StringBuffer\" 不应该用字符实例化 ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

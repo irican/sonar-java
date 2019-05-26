@@ -1,14 +1,12 @@
-<p>Double-checked locking is the practice of checking a lazy-initialized object's state both before and after a <code>synchronized</code> block is
-entered to determine whether or not to initialize the object.</p>
-<p>It does not work reliably in a platform-independent manner without additional synchronization for mutable instances of anything other than
-<code>float</code> or <code>int</code>. Using double-checked locking for the lazy initialization of any other type of primitive or mutable object
-risks a second thread using an uninitialized or partially initialized member while the first thread is still creating it, and crashing the
-program.</p>
-<p>There are multiple ways to fix this. The simplest one is to simply not use double checked locking at all, and synchronize the whole method instead.
-With early versions of the JVM, synchronizing the whole method was generally advised against for performance reasons. But <code>synchronized</code>
-performance has improved a lot in newer JVMs, so this is now a preferred solution. If you prefer to avoid using <code>synchronized</code> altogether,
-you can use an inner <code>static class</code> to hold the reference instead. Inner static classes are guaranteed to load lazily.</p>
-<h2>Noncompliant Code Example</h2>
+<p>双重检查锁定（Double-checked locking）是在输入 <code>synchronized</code> 块之前和之后检查延迟初始化对象（lazy-initialized object）
+的状态以确定是否初始化对象的做法。</p>
+<p>如果没有对 <code>float</code> 或 <code>int</code>以外的任何可变实例进行额外同步，它将无法以独立于平台的方式可靠地工作。 
+对于任何其他类型的原始类型或可变对象的延迟初始化，使用双重检查锁定会使第二个线程使用未初始化或部分初始化的成员，而第一个线程仍在创建它，
+并使程序崩溃。</p>
+<p>有多种方法可以解决这个问题。最简单的方法是根本不使用双重检查锁定，而是同步整个方法。对于JVM的早期版本，出于性能原因，通常建议不要同步整个方法。
+但是 <code>synchronized</code> 性能在较新的JVM中有了很大的改进，所以现在这是一个首选的解决方案。如果您希望完全避免使用 <code>synchronized</code> ，
+则可以使用内部 <code>static class</code> 来保存引用。内部静态类保证延迟加载。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @NotThreadSafe
 public class DoubleCheckedLocking {
@@ -29,7 +27,7 @@ public class DoubleCheckedLocking {
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @ThreadSafe
 public class SafeLazyInitialization {
@@ -45,7 +43,7 @@ public class SafeLazyInitialization {
     }
 }
 </pre>
-<p>With inner static holder:</p>
+<p>使用内部 static holder:</p>
 <pre>
 @ThreadSafe
 public class ResourceFactory {
@@ -61,7 +59,7 @@ public class ResourceFactory {
     }
 }
 </pre>
-<p>Using "volatile":</p>
+<p>使用 "volatile":</p>
 <pre>
 class ResourceFactory {
   private volatile Resource resource;
@@ -83,7 +81,7 @@ class ResourceFactory {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">The "Double-Checked Locking is Broken" Declaration</a> </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/IgAZAg">CERT, LCK10-J.</a> - Use a correct form of the double-checked locking idiom

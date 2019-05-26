@@ -1,5 +1,5 @@
 {
-  "title": "\"Object.wait(...)\" should never be called on objects that implement \"java.util.concurrent.locks.Condition\"",
+  "title": "绝不应在实现 \"java.util.concurrent.locks.Condition\" 的对象上调用 \"Object.wait(...)\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

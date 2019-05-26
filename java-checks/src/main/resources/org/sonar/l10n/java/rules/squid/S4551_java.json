@@ -1,5 +1,5 @@
 {
-  "title": "Enum values should be compared with \"==\"",
+  "title": "应将枚举值与\"==\"进行比较",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

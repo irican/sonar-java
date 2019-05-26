@@ -1,5 +1,5 @@
 {
-  "title": "Dependencies should not have \"system\" scope",
+  "title": "依赖关系不应具有/系统/范围",
   "type": "BUG",
   "status": "ready",
   "remediation": {

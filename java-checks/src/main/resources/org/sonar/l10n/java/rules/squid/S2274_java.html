@@ -1,41 +1,38 @@
-<p>According to the documentation of the Java <code>Condition</code> interface:</p>
+<p>根据Java的<code>Condition</code>接口的文档：</p>
 <blockquote>
-  <p>When waiting upon a <code>Condition</code>, a "spurious wakeup" is permitted to occur, in general, as a concession to the underlying platform
-  semantics. This has little practical impact on most application programs as a Condition should always be waited upon in a loop, testing the state
-  predicate that is being waited for. An implementation is free to remove the possibility of spurious wakeups but it is recommended that applications
-  programmers always assume that they can occur and so always wait in a loop.</p>
+  <p>在等待<code>Condition</code>时，通常会允许“虚假唤醒”作为对底层平台语义的让步。 这对大多数应用程序几乎没有实际影响，因为条件应始终在循环中等待，测试正在等待的状态谓词。 一个实现可以自由地消除虚假唤醒的可能性，但是建议应用程序程序员总是假设它们可以发生，因此总是在循环中等待。</p>
 </blockquote>
-<p>The same advice is also found for the <code>Object.wait(...)</code> method:</p>
+<p>对于<code>Object.wait(...)</code>方法也有同样的建议：</p>
 <blockquote>
-  <p>waits should always occur in loops, like this one:</p>
+  <p>等待应该总是出现在循环中，如下所示：</p>
   <pre>
 synchronized (obj) {
   while (&lt;condition does not hold&gt;){
     obj.wait(timeout);
   }
-   ... // Perform action appropriate to condition
+   ... // 执行适合条件的操作
 }
 </pre>
 </blockquote>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 synchronized (obj) {
   if (!suitableCondition()){
-    obj.wait(timeout);   //the thread can wake up even if the condition is still false
+    obj.wait(timeout);   //即使条件仍为假，线程也可以唤醒
   }
-   ... // Perform action appropriate to condition
+   ... // 执行适合条件的操作
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 synchronized (obj) {
   while (!suitableCondition()){
     obj.wait(timeout);
   }
-   ... // Perform action appropriate to condition
+   ... // 执行适合条件的操作
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/9QIhAQ">CERT THI03-J.</a> - Always invoke wait() and await() methods inside a loop
   </li>

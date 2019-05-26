@@ -1,57 +1,55 @@
-<p>Sending emails is security-sensitive. For example, it has led in the past to the following vulnerabilities:</p>
+<p>发送电子邮件是安全敏感的。例如，它在过去导致了以下漏洞:</p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9801">CVE-2017-9801</a></p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4803">CVE-2016-4803</a></p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-8878">CVE-2014-8878</a></p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-7893">CVE-2015-7893</a></p>
-<p>Emails can create multiple vulnerabilities:</p>
-<p><strong>Information exposure</strong></p>
-<p> Emails often contain sensitive information which might be exposed to an attacker.</p>
-<p><strong>Injecting dangerous content</strong></p>
-<p> Emails can contain html and javascript code, thus they can be used for XSS attacks.</p>
-<p><strong>Email Header Injection</strong></p>
-<p> This is one of the most common attacks.</p>
-<p>Email fields such as <code>subject</code>, <code>to</code>, <code>cc</code>, <code>bcc</code>, <code>from</code> are set in Email "headers". Those
-headers are separated by <code>CR</code> ("carriage return" often represented as <code>\r</code>) or <code>LF</code> ("line feed" often represented as
-<code>\n</code>) characters.</p>
-<p>If an unsanitized input is provided to a header field, it becomes vulnerable to Email Header Injection attacks. An attacker can then add fields in
-the header or even modify the message.</p>
-<p>For example, providing the following value to the <code>From</code> field</p>
+<p>电子邮件可能会造成多个漏洞:</p>
+<p><strong>信息曝光</strong></p>
+<p> 电子邮件通常包含敏感信息，这些信息可能会暴露给攻击者。</p>
+<p><strong>注入危险内容</strong></p>
+<p> 电子邮件可以包含html和javascript代码，因此可以用于XSS攻击。</p>
+<p><strong>电子邮件标题（header）注入</strong></p>
+<p> 这是最常见的攻击之一。</p>
+<p>电子邮件字段，例如 <code>subject</code>， <code>to</code>， <code>cc</code>， <code>bcc</code>， <code>from</code> 在电子邮件“标题（header）”中。 
+这些标题由 <code>CR</code> （“回车”通常表示为 <code>\r</code>）或 <code>LF</code> （“换行符”通常表示为 <code>\n</code>）字符。</p>
+<p>如果未净化的输入被提供给标题（header）字段，它将很容易受到电子邮件标题注入攻击。然后攻击者可以在消息头中添加字段，甚至修改消息。</p>
+<p>例如，向 <code>From</code> 字段提供以下值</p>
 <pre>
 me@example.com\nCc:injectedrecipient@otherexample.com\nBcc:yetanother@myexample.com,andagain@thisisdangerous.net
 </pre>
-<p>would result in injecting two additional fields (CC and BCC):</p>
+<p>会导致注入两个额外的字段（CC和BCC）：</p>
 <pre>
 FROM: me@example.com
 CC: injectedrecipient@otherexample.com
 BCC: yetanother@myexample.com,andagain@thisisdangerous.net
 </pre>
-<p>This rule raises an issue when an API sending emails is called.</p>
-<h2>Ask Yourself Whether</h2>
-<p> * Email headers are provided by users and are not sanitized.</p>
-<p> * Email content contains data provided by users and it is not sanitized.</p>
-<p> * The email is not sent using a strong protocol.</p>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p> * Use an email library which sanitizes headers.</p>
-<p> * Sanitize every piece of data sent via emails, especially when the mime type is html.</p>
-<p> * Use a strong protocol to send your emails, i.e. secure versions of SSL or TLS.</p>
-<h2>Sensitive Code Example</h2>
+<p>调用API发送电子邮件时，此规则会报告问题。</p>
+<h2>检查自己是否存在以下问题：</h2>
+<p> * 电子邮件标题（header）由用户提供，不会进行净化。</p>
+<p> * 电子邮件内容包含用户提供的数据，并且未进行净化。</p>
+<p> * 电子邮件不是使用强协议（strong protocol）发送的。</p>
+<p>如果您对这些问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码实践</h2>
+<p> * 使用净化标题的电子邮件库。</p>
+<p> * 净化通过电子邮件发送的每一条数据，尤其是当mime类型为html时。</p>
+<p> * 使用强协议发送您的电子邮件，即SSL或TLS的安全版本。</p>
+<h2>敏感代码示例</h2>
 <pre>
 import javax.mail.*;
 import javax.mail.internet.MimeMessage;
 
 public class Main {
     public static void sendEmail (Session session, String subject) throws MessagingException{
-        Message message = new MimeMessage(session);  // Sensitive
+        Message message = new MimeMessage(session);  // 敏感的
 
-        // For example the setSubject method is vulnerable to Header injection before
-        // version 1.5.6 of javamail
+        // 例如，setSubject方法之前容易受到Header注入的攻击
+        // javamail的1.5.6版
         message.setSubject(subject);
         // ...
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.damonkohler.com/2008/12/email-injection.html">Email Injection</a> </li>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A1-Injection">OWASP Top 10 2017 Category A1</a> - Injection </li>

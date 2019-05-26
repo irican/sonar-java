@@ -1,16 +1,14 @@
-<p>There is no need to multiply the output of <code>Random</code>'s <code>nextDouble</code> method to get a random integer. Use the
-<code>nextInt</code> method instead.</p>
-<p>This rule raises an issue when the return value of any of <code>Random</code>'s methods that return a floating point value is converted to an
-integer.</p>
-<h2>Noncompliant Code Example</h2>
+<p>无需将 <code>Random</code> 的 <code>nextDouble</code> 方法的输出相乘以获得随机整数。请改用 <code>nextInt</code> 方法。</p>
+<p>当返回浮点值的任何 <code>Random</code>方法的返回值转换为整数时，此规则会报告问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Random r = new Random();
-int rand = (int)r.nextDouble() * 50;  // Noncompliant way to get a pseudo-random value between 0 and 50
-int rand2 = (int)r.nextFloat(); // Noncompliant; will always be 0;
+int rand = (int)r.nextDouble() * 50;  // 获取0到50之间的伪随机值的不合规方法
+int rand2 = (int)r.nextFloat(); // 不合规； 将总是 0;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Random r = new Random();
-int rand = r.nextInt(50);  // returns pseudo-random value between 0 and 50
+int rand = r.nextInt(50);  // 返回0到50之间的伪随机值
 </pre>
 

@@ -1,5 +1,5 @@
 {
-  "title": "Extensions and implementations should not be redundant",
+  "title": "不应该有多余的扩展和实现",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

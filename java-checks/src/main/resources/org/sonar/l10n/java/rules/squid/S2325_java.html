@@ -1,21 +1,20 @@
-<p><code>private</code> methods that don't access instance data can be <code>static</code> to prevent any misunderstanding about the contract of the
-method.</p>
-<h2>Noncompliant Code Example</h2>
+<p>不访问实例数据的<code>private</code> 方法可以是 <code>static</code> ，以防止对合同的任何误解。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class Utilities {
   private static String magicWord = "magic";
 
-  private String getMagicWord() { // Noncompliant
+  private String getMagicWord() { // 不合规的
     return magicWord;
   }
 
-  private void setMagicWord(String value) { // Noncompliant
+  private void setMagicWord(String value) { // 不合规的
     magicWord = value;
   }
 
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 class Utilities {
   private static String magicWord = "magic";
@@ -30,8 +29,8 @@ class Utilities {
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p>When <code>java.io.Serializable</code> is implemented the following three methods are excluded by the rule:</p>
+<h2>例外</h2>
+<p>当实现 <code>java.io.Serializable</code> 时，规则将排除以下三种方法：</p>
 <ul>
   <li> <code>private void writeObject(java.io.ObjectOutputStream out) throws IOException;</code> </li>
   <li> <code>private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;</code> </li>

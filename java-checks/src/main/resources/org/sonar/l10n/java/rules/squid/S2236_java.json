@@ -1,5 +1,5 @@
 {
-  "title": "Methods \"wait(...)\", \"notify()\" and \"notifyAll()\" should not be called on Thread instances",
+  "title": "不应在Thread实例上调用方法 \"wait(...)\", \"notify()\" 和 \"notifyAll()\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

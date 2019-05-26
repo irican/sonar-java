@@ -1,20 +1,20 @@
-<p>Naming a method <code>tostring</code>, <code>hashcode()</code> or <code>equal</code> is either:</p>
+<p>将一个方法命名为 <code>tostring</code>， <code>hashcode()</code> 或 <code>equal</code> 是：</p>
 <ul>
-  <li> A bug in the form of a typo. Overriding <code>toString</code>, <code>Object.hashCode()</code> (note the camelCasing) or
-  <code>Object.equals</code> (note the 's' on the end) was meant, and the application does not behave as expected. </li>
-  <li> Done on purpose. The name however will confuse every other developer, who may not notice the naming difference, or who will think it is a bug.
+  <li> 排印形式中的一个bug。重写 <code>toString</code>， <code>Object.hashCode()</code> （注意camelCasing命名法）或
+  <code>Object.equals</code> （注意结尾的's'）意味着，并且应用程序不会按照预期行动。 </li>
+  <li> 故意这样做的。但是这个名称会使其他开发人员感到困惑，他们可能没有注意到命名的差异，或者认为这是一个bug。
   </li>
 </ul>
-<p>In both cases, the method should be renamed.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在这两种情况下，都应该重命名方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public int hashcode() { /* ... */ }  // Noncompliant
+public int hashcode() { /* ... */ }  // 不合规
 
-public String tostring() { /* ... */ } // Noncompliant
+public String tostring() { /* ... */ } // 不合规
 
-public boolean equal(Object obj) { /* ... */ }  // Noncompliant
+public boolean equal(Object obj) { /* ... */ }  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方法</h2>
 <pre>
 @Override
 public int hashCode() { /* ... */ }

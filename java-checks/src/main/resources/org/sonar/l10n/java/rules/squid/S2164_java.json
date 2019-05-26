@@ -1,5 +1,5 @@
 {
-  "title": "Math should not be performed on floats",
+  "title": "不应该在浮点数上执行数学运算",
   "type": "BUG",
   "status": "ready",
   "remediation": {

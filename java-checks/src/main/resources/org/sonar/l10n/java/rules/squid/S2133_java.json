@@ -1,5 +1,5 @@
 {
-  "title": "Objects should not be created only to \"getClass\"",
+  "title": "不应该只为 \"getClass\" 而创建对象",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "\"equals(Object obj)\" and \"hashCode()\" should be overridden in pairs",
+  "title": "\"equals(Object obj)\" 和 \"hashCode()\" 应该成对重写",
   "type": "BUG",
   "status": "ready",
   "remediation": {

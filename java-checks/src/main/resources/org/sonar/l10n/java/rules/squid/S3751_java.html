@@ -1,23 +1,20 @@
-<p>A method with a <code>@RequestMapping</code> annotation part of a class annotated with <code>@Controller</code> (directly or indirectly through a
-meta annotation - <code>@RestController</code> from Spring Boot is a good example) will be called to handle matching web requests. That will happen
-even if the method is <code>private</code>, because Spring invokes such methods via reflection, without checking visibility. </p>
-<p>So marking a sensitive method <code>private</code> may seem like a good way to control how such code is called. Unfortunately, not all Spring
-frameworks ignore visibility in this way. For instance, if you've tried to control web access to your sensitive, <code>private</code>,
-<code>@RequestMapping</code> method by marking it <code>@Secured</code> ... it will still be called, whether or not the user is authorized to access
-it. That's because AOP proxies are not applied to non-public methods.</p>
-<p>In addition to <code>@RequestMapping</code>, this rule also considers the annotations introduced in Spring Framework 4.3: <code>@GetMapping</code>,
+<p>使用<code> @Controller </code>注释的类的<code> @RequestMapping </code>注释部分的方法（直接或间接通过元注释 -  <code> @RestController </code>从Spring Boot是一个很好的例子）将被调用来处理匹配的Web请求。即使方法是<code> private </code>，也会发生这种情况，因为Spring通过反射调用这些方法，而不检查可见性。</p>
+<p>因此，标记敏感方法<code> private </code>似乎是控制如何调用此类代码的好方法。不幸的是，并非所有Spring框架都以这种方式忽略了可见性。例如，如果您尝试控制对敏感的<code> private </code>的Web访问，
+<code> @RequestMapping </code>方法，将其标记为<code> @Secured </code> ...无论用户是否有权访问，它仍将被调用
+它。那是因为AOP代理不适用于非公开方法。</p>
+<p>除了<code> @RequestMapping </code>之外，此规则还考虑了Spring Framework 4.3中引入的注释： <code>@GetMapping</code>,
 <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>, <code>@PatchMapping</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @RequestMapping("/greet", method = GET)
-private String greet(String greetee) {  // Noncompliant
+private String greet(String greetee) {  // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @RequestMapping("/greet", method = GET)
 public String greet(String greetee) {
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>
 </ul>

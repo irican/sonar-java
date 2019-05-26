@@ -1,5 +1,5 @@
 {
-  "title": "Members of Spring components should be injected",
+  "title": "应该注入Spring组件的成员",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

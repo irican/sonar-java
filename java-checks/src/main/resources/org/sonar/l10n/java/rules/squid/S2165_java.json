@@ -1,5 +1,5 @@
 {
-  "title": "\"finalize\" should not set fields to \"null\"",
+  "title": "\"finalize\" 不应该将字段设置为 \"null\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

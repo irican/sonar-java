@@ -1,30 +1,29 @@
-<p>Assignments within sub-expressions are hard to spot and therefore make the code less readable. Ideally, sub-expressions should not have
-side-effects.</p>
-<h2>Noncompliant Code Example</h2>
+<p>子表达式（sub-expression）中的赋值很难发现，因此使代码的可读性降低。理想情况下，子表达式不应该有副作用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-if ((str = cont.substring(pos1, pos2)).isEmpty()) {  // Noncompliant
+if ((str = cont.substring(pos1, pos2)).isEmpty()) {  // 不合规
   //...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 str = cont.substring(pos1, pos2);
 if (str.isEmpty()) {
   //...
 </pre>
-<h2>Exceptions</h2>
-<p>Assignments in <code>while</code> statement conditions, and assignments enclosed in relational expressions are ignored.</p>
+<h2>例外</h2>
+<p> <code>while</code> 语句条件中的赋值以及关系表达式中包含的赋值将被忽略。</p>
 <pre>
 BufferedReader br = new BufferedReader(/* ... */);
 String line;
 while ((line = br.readLine()) != null) {...}
 </pre>
-<p>Chained assignments, including compound assignments, are ignored.</p>
+<p>链式的赋值（包括复合赋值）将被忽略。</p>
 <pre>
 int i = j = 0;
 int k = (j += 1);
 result = (bresult = new byte[len]);
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 13.1 - Assignment operators shall not be used in expressions that yield a Boolean value </li>
   <li> MISRA C++:2008, 6-2-1 - Assignment operators shall not be used in sub-expressions </li>

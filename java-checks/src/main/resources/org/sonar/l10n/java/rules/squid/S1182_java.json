@@ -1,5 +1,5 @@
 {
-  "title": "Classes that override \"clone\" should be \"Cloneable\" and call \"super.clone()\"",
+  "title": "重写 \"clone\" 的类应该是 \"Cloneable\" 并调用 \"super.clone()\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

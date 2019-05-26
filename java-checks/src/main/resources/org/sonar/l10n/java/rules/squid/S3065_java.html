@@ -1,35 +1,35 @@
-<p>When using <code>Math.min()</code> and <code>Math.max()</code> together for bounds checking, it's important to feed the right operands to each
-method. <code>Math.min()</code> should be used with the <strong>upper</strong> end of the range being checked, and <code>Math.max()</code> should be
-used with the <strong>lower</strong> end of the range. Get it backwards, and the result will always be the same end of the range.</p>
-<h2>Noncompliant Code Example</h2>
+<p>同时使用 <code>Math.min()</code> 和 <code>Math.max()</code> 做边界检查时，向每个方法提供正确的操作数非常重要。<code>Math.min()</code> 
+应与被检查范围的 <strong>上界</strong> 一起使用，而 <code>Math.max()</code> 应与被检查范围的 <strong>下界</strong> 一起使用。
+即使将顺序调换，结果也是一样的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
   private static final int UPPER = 20;
   private static final int LOWER = 0;
 
-  public int doRangeCheck(int num) {    // Let's say num = 12
+  public int doRangeCheck(int num) {    // 假设 num = 12
     int result = Math.min(LOWER, num);  // result = 0
-    return Math.max(UPPER, result);     // Noncompliant; result is now 20: even though 12 was in the range
+    return Math.max(UPPER, result);     // 不合规，结果变成20。12本身在给定的范围里
   }
 </pre>
-<h2>Compliant Solution</h2>
-<p>Swapping method <code>min()</code> and <code>max()</code> invocations without changing parameters.</p>
+<h2>合规的解决方案</h2>
+<p>不改变参数，将 <code>min()</code> 与 <code>max()</code> 的调用调换。</p>
 <pre>
   private static final int UPPER = 20;
   private static final int LOWER = 0;
 
-  public int doRangeCheck(int num) {    // Let's say num = 12
+  public int doRangeCheck(int num) {    // 假设 num = 12
     int result = Math.max(LOWER, num);  // result = 12
-    return Math.min(UPPER, result);     // Compliant; result is still 12
+    return Math.min(UPPER, result);     // 合规，结果仍是 12
   }
 </pre>
-<p>or swapping bounds <code>UPPER</code> and <code>LOWER</code> used as parameters without changing the invoked methods.</p>
+<p>或者不改变调用的方法，而是将参数中的边界 <code>UPPER</code> 和 <code>LOWER</code> 互换。</p>
 <pre>
   private static final int UPPER = 20;
   private static final int LOWER = 0;
 
-  public int doRangeCheck(int num) {    // Let's say num = 12
+  public int doRangeCheck(int num) {    // 假设 num = 12
     int result = Math.min(UPPER, num);  // result = 12
-    return Math.max(LOWER, result);     // Compliant; result is still 12
+    return Math.max(LOWER, result);     // 合规，结果仍是 12
   }
 </pre>
 

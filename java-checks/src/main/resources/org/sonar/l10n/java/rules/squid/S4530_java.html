@@ -1,25 +1,23 @@
-<p>Using Struts 1 ActionForm is security-sensitive. For example, their use has led in the past to the following vulnerability:</p>
+<p>使用Struts 1 ActionForm对安全性敏感。例如，它们的使用在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0114">CVE-2014-0114</a> </li>
 </ul>
-<p>All classes extending <code>org.apache.struts.action.Action</code> are potentially remotely reachable. The <code>ActionForm</code> object provided
-as a parameter of the <code>execute</code> method is automatically instantiated and populated with the HTTP parameters. One should review the use of
-these parameters to be sure they are used safely. </p>
-<p>This rule is there to allow a security auditor to quickly find some potential hotspots to review.</p>
-<h2>Ask Yourself Whether</h2>
+<p>所有扩展<code> org.apache.struts.action.Action </code>的类都可以远程访问。提供了<code> ActionForm </code>对象
+作为<code> execute </code>方法的参数自动实例化并使用HTTP参数填充。应该检查这些参数的使用，以确保它们被安全使用。 </p>
+<p>此规则允许安全审核员快速找到一些潜在的热点进行审核。</p>
+<h2>请检查是否存在下列情况</h2>
 <ul>
-  <li> some parameters of the ActionForm might not have been validated properly. </li>
-  <li> dangerous parameter names are accepted. Example: accept a "class" parameter and use the form to populate JavaBean properties (see the
-  CVE-2014-0114 above). </li>
-  <li> there are unused fields which are not empty or undefined. </li>
+  <li> ActionForm的某些参数可能未经过正确验证。 </li>
+  <li> 接受危险参数名称。示例：接受“class”参数并使用该表单填充JavaBean属性（请参阅上面的CVE-2014-0114）。 </li>
+  <li> 有未使用的字段，这些字段不为空或未定义。 </li>
 </ul>
-<p>You are at risk if you answered to any of these questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>All ActionForm's properties should be validated, including their size. Whenever possible, filter the parameters with a whitelist of valid values.
-Otherwise, escape any sensitive character and constrain the values as much as possible.</p>
-<p>Allow only non security-sensitive property names. All the ActionForm's property names should be whitelisted.</p>
-<p>Unused fields should be constrained so that they are either empty or undefined.</p>
-<h1>Noncompliant Code Example</h1>
+<p>如果您回答上述任何问题，您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p>应验证所有ActionForm的属性，包括其大小。尽可能使用有效值的白名单过滤参数。
+否则，请转义任何敏感字符并尽可能限制值。</p>
+<p>仅允许非安全敏感的属性名称。所有ActionForm的属性名称都应列入白名单。</p>
+<p>应该约束未使用的字段，使它们为空或未定义。</p>
+<h1>不符合规范的代码示例</h1>
 <pre>
 // Struts 1.1+
 public final class CashTransferAction extends Action {
@@ -28,13 +26,13 @@ public final class CashTransferAction extends Action {
   public String toAccount = "";
 
   public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest req, HttpServletResponse res) throws Exception {
-    // usage of the "form" object to call some services doing JDBC actions
+    // 使用“form”对象来调用一些执行JDBC操作的服务
     [...]
     return mapping.findForward(resultat);
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A1 - Injection </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/105.html">MITRE, CWE-105</a>: Struts Form Field Without Validator </li>

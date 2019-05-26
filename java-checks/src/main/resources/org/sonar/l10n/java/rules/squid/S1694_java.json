@@ -1,5 +1,5 @@
 {
-  "title": "An abstract class should have both abstract and concrete methods",
+  "title": "抽象类应该同时具有抽象方法和具体方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

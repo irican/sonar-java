@@ -1,18 +1,16 @@
-<p>When using null-related annotations at global scope level, for instance using <code>javax.annotation.ParametersAreNonnullByDefault</code> (from
-JSR-305) at package level, it means that all the parameters to all the methods included in the package will, or should, be considered
-Non-<code>null</code>. It is equivalent to annotating every parameter in every method with non-null annotations (such as <code>@Nonnull</code>).</p>
-<p>The rule raises an issue every time a parameter could be <code>null</code> for a method invocation, where the method is annotated as forbidding
-null parameters.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在全局范围级别使用与空相关的注释时，例如在包级别使用<code> javax.annotation.ParametersAreNonnullByDefault </code>（来自JSR-305），这意味着包含所有方法的所有参数在包中将或应该被视为非<code> null </code>。它相当于使用非null注释注释每个方法中的每个参数（例如<code> @Nonnull </code>）。</p>
+<p>每次参数可以为<code> null </code>进行方法调用时，该规则都会引发一个问题，其中该方法被注释为禁止使用
+null参数</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @javax.annotation.ParametersAreNonnullByDefault
 class A {
 
   void foo() {
-    bar(getValue()); // Noncompliant - method 'bar' do not expect 'null' values as parameter
+    bar(getValue()); // 不合规 - 方法'bar'不要指'null'值作为参数
   }
 
-  void bar(Object o) { // 'o' is by contract expected never to be null
+  void bar(Object o) { //'o'是合约，期望永远不会为null
     // ...
   }
 
@@ -20,8 +18,8 @@ class A {
   abstract Object getValue();
 }
 </pre>
-<h2>Compliant Solution</h2>
-<p>Two solutions are possible: </p>
+<h2>合规解决方案</h2>
+<p>两个解决方案是有可能可行的：</p>
 <ul>
   <li> The signature of the method is correct, and null check should be done prior to the call. </li>
   <li> The signature of the method is not coherent and should be annotated to allow null values being passed as parameter </li>
@@ -33,7 +31,7 @@ abstract class A {
   void foo() {
       Object o = getValue();
       if (o != null) {
-        bar(); // Compliant - 'o' can not be null
+        bar(); // 合规 - 'o'不能为空
       }
   }
 
@@ -45,7 +43,7 @@ abstract class A {
   abstract Object getValue();
 }
 </pre>
-<p>or </p>
+<p>或 </p>
 <pre>
 @javax.annotation.ParametersAreNonnullByDefault
 abstract class A {
@@ -54,7 +52,7 @@ abstract class A {
     bar(getValue());
   }
 
-  void bar(@javax.annotation.Nullable Object o) { // annotation was missing
+  void bar(@javax.annotation.Nullable Object o) { //缺少注释
     // ...
   }
 

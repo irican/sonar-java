@@ -1,5 +1,5 @@
 {
-  "title": "\"toString()\" should never be called on a String object",
+  "title": "绝不应该在String对象上调用 \"toString()\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

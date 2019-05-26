@@ -1,5 +1,5 @@
 {
-  "title": "\"@Override\" should be used on overriding and implementing methods",
+  "title": "\"@Override\" 应该用于重写和实现方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

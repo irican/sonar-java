@@ -1,5 +1,5 @@
 {
-  "title": "Generic exceptions should never be thrown",
+  "title": "永远不应抛出泛型异常",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

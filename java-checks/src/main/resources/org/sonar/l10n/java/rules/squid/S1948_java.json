@@ -1,5 +1,5 @@
 {
-  "title": "Fields in a \"Serializable\" class should either be transient or serializable",
+  "title": " \"Serializable\" 类中的字段应该是瞬态的或可序列化的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

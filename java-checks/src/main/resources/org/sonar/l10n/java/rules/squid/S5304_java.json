@@ -1,5 +1,5 @@
 {
-  "title": "Using environment variables is security-sensitive",
+  "title": "使用环境变量是安全敏感的",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "tags": [

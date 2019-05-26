@@ -1,5 +1,5 @@
 {
-  "title": "Exceptions should not be thrown from servlet methods",
+  "title": "不应该从servlet方法中抛出异常",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

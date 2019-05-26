@@ -1,17 +1,13 @@
-<p>By contract, the <code>equals(Object)</code> method, from <code>java.lang.Object</code>, should accept a <code>null</code> argument. Among all the
-other cases, the <code>null</code> case is even explicitly detailed in the <code>Object.equals(...)</code> Javadoc, stating "_For any non-null
-reference value x, x.equals(null) should return false._"</p>
-<p>Assuming that the argument to <code>equals</code> is always non-null, and enforcing that assumption with an annotation is not only a fundamental
-violation of the contract of <code>equals</code>, but it is also likely to cause problems in the future as the use of the class evolves over time.</p>
-<p>The rule raises an issue when the <code>equals</code> method is overridden and its parameter annotated with any kind of <code>@Nonnull</code>
-annotation.</p>
-<h2>Noncompliant Code Example</h2>
+<p>通过契约，来自 <code>java.lang.Object</code> 的 <code>equals(Object)</code>方法应该接受 <code>null</code> 参数。在所有其他情况中， <code>null</code> 情况甚至在<code>Object.equals(...)</code> Javadoc中明确详细说明“_对于任何非空引用值x， x.equals（null）应返回false ._”</p>
+<p>假设<code>equals</code> 的参数始终为非null，并且使用注释强制执行该假设不仅违反了<code>equals</code>的合同，而且随着课程的使用随着时间的推移而发展，也可能在未来引起问题。</p>
+<p>当覆盖 <code>equals</code> 方法且其参数使用任何 <code>@Nonnull</code>注释时，该规则会引发问题</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-public boolean equals(@javax.annotation.Nonnull Object obj) { // Noncompliant
+public boolean equals(@javax.annotation.Nonnull Object obj) { // 不合规的
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public boolean equals(Object obj) {
   if (obj == null) {

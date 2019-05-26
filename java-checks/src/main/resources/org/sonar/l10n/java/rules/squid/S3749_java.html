@@ -1,18 +1,16 @@
-<p>Spring <code>@Controller</code>, <code>@Service</code>, and <code>@Repository</code> classes are singletons by default, meaning only one instance
-of the class is ever instantiated in the application. Typically such a class might have a few <code>static</code> members, such as a logger, but all
-non-<code>static</code> members should be managed by Spring. That is, they should have one of these annotations: <code>@Resource</code>,
-<code>@Inject</code>, <code>@Autowired</code> or <code>@Value</code>.</p>
-<p>Having non-injected members in one of these classes could indicate an attempt to manage state. Because they are singletons, such an attempt is
-almost guaranteed to eventually expose data from User1's session to User2. </p>
-<p>This rule raises an issue when a singleton <code>@Controller</code>, <code>@Service</code>, or <code>@Repository</code> has non-<code>static</code>
-members that are not annotated with one of:</p>
+<p> Spring <code> @Controller </code>，<code> @Service </code>和<code> @Repository </code>类默认是单例，这意味着只有一个类实例被实例化在申请中。通常，这样的类可能有一些<code> static </code>成员，例如logger，但所有非<code> static </code>成员都应该由Spring管理。也就是说，它们应该具有以下注释之一：<code> @Resource </code>，
+<code> @Inject </code>，<code> @Autowired </code>或<code> @Value </code>。</p>
+<p>在其中一个类中使用非注入成员可能表示尝试管理状态。因为它们是单例，所以这种尝试几乎可以保证最终将User1会话中的数据暴露给User2。 </p>
+<p>当单例<code> @Controller </code>，<code> @Service </code>或<code> @Repository </code>具有非<code> static时，此规则会引发问题</code>
+未注释以下内容的成员：</p>
+
 <ul>
   <li> <code>org.springframework.beans.factory.annotation.Autowired</code> </li>
   <li> <code>org.springframework.beans.factory.annotation.Value</code> </li>
   <li> <code>javax.annotation.Inject</code> </li>
   <li> <code>javax.annotation.Resource</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @Controller
 public class HelloWorld {
@@ -26,11 +24,11 @@ public class HelloWorld {
       this.name = greetee;
     }
 
-    return "Hello " + this.name;  // if greetee is null, you see the previous user's data
+    return "Hello " + this.name;  // 如果greetee为null，则会看到上一个用户的数据
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
 </ul>

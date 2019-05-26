@@ -1,17 +1,16 @@
-<p><code>AtomicInteger</code>, and <code>AtomicLong</code> extend <code>Number</code>, but they're distinct from <code>Integer</code> and
-<code>Long</code> and should be handled differently. <code>AtomicInteger</code> and <code>AtomicLong</code> are designed to support lock-free,
-thread-safe programming on single variables. As such, an <code>AtomicInteger</code> will only ever be "equal" to itself. Instead, you should
-<code>.get()</code> the value and make comparisons on it.</p>
-<p>This applies to all the atomic, seeming-primitive wrapper classes: <code>AtomicInteger</code>, <code>AtomicLong</code>, and
+<p><code>AtomicInteger</code>,和 <code>AtomicLong</code> 扩展 <code>Number</code>，但它们与<code>Integer</code> 和
+<code>Long</code> 不同，应该以不同的方式处理。<code>AtomicInteger</code> 和 <code>AtomicLong</code> 旨在支持单变量的无锁，线程安全编程。 因此， <code>AtomicInteger</code> 只会与自身“相等”。 相反，您应该
+<code>.get()</code> 该值并对其进行比较。</p>
+<p>这适用于所有原子，看似原始的包装类： <code>AtomicInteger</code>, <code>AtomicLong</code>, 以及
 <code>AtomicBoolean</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 AtomicInteger aInt1 = new AtomicInteger(0);
 AtomicInteger aInt2 = new AtomicInteger(0);
 
-if (aInt1.equals(aInt2)) { ... }  // Noncompliant
+if (aInt1.equals(aInt2)) { ... }  // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 AtomicInteger aInt1 = new AtomicInteger(0);
 AtomicInteger aInt2 = new AtomicInteger(0);

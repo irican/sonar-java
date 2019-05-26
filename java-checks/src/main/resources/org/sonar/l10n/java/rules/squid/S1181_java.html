@@ -1,18 +1,16 @@
-<p><code>Throwable</code> is the superclass of all errors and exceptions in Java. <code>Error</code> is the superclass of all errors, which are not
-meant to be caught by applications.</p>
-<p>Catching either <code>Throwable</code> or <code>Error</code> will also catch <code>OutOfMemoryError</code> and <code>InternalError</code>, from
-which an application should not attempt to recover.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>Throwable</code> 是Java中所有错误和异常的超类。 <code>Error</code> 是所有错误的超类，不应被应用程序捕获。</p>
+<p>捕获 <code>Throwable</code> 或 <code>Error</code> 也会捕获 <code>OutOfMemoryError</code> 和 <code>InternalError</code>，应用程序不应该试图从中恢复。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 try { /* ... */ } catch (Throwable t) { /* ... */ }
 try { /* ... */ } catch (Error e) { /* ... */ }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 try { /* ... */ } catch (RuntimeException e) { /* ... */ }
 try { /* ... */ } catch (MyException e) { /* ... */ }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/396.html">MITRE, CWE-396</a> - Declaration of Catch for Generic Exception </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/BIB3AQ">CERT, ERR08-J.</a> - Do not catch NullPointerException or any of its ancestors

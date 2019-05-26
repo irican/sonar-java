@@ -1,5 +1,5 @@
 {
-  "title": "Spring \"@Controller\" classes should not use \"@Scope\"",
+  "title": "Spring “@ Controller ”类不应该使用“@ Scope ”",
   "type": "BUG",
   "status": "ready",
   "remediation": {

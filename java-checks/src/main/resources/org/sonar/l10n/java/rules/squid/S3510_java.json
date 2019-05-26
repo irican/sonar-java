@@ -1,5 +1,5 @@
 {
-  "title": "\"HostnameVerifier.verify\" should not always return true",
+  "title": "\"HostnameVerifier.verify \"不应该总是返回true",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

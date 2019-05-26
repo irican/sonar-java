@@ -1,5 +1,5 @@
 {
-  "title": "Inner classes which do not reference their owning classes should be \"static\"",
+  "title": "不引用所属类的内部类应该是\"static\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

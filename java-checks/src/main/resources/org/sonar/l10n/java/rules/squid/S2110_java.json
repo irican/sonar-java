@@ -1,5 +1,5 @@
 {
-  "title": "Invalid \"Date\" values should not be used",
+  "title": "不应该使用无效的 \"Date\" 值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

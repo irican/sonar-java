@@ -1,5 +1,5 @@
 {
-  "title": "\"Arrays.stream\" should be used for primitive arrays",
+  "title": "\"Arrays.stream\" 应该用于原始数组",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

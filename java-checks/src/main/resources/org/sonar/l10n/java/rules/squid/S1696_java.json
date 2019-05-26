@@ -1,5 +1,5 @@
 {
-  "title": "\"NullPointerException\" should not be caught",
+  "title": "不应捕获 \"NullPointerException\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

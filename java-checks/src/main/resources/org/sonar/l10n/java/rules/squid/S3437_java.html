@@ -1,41 +1,36 @@
-<p>According to the documentation,</p>
+<p>根据文件,</p>
 <blockquote>
-  A program may produce unpredictable results if it attempts to distinguish two references to equal values of a value-based class, whether directly
-  via reference equality or indirectly via an appeal to synchronization, identity hashing, serialization...
+  如果程序试图将两个引用区分为基于值的类的相等值，无论是直接通过引用相等还是间接通过引发同步，身份哈希，序列化等，程序可能会产生不可预测的结果......
 </blockquote>
-<p>For example (credit to Brian Goetz), imagine Foo is a value-based class:</p>
+<p>例如，想象一下Foo是一个基于价值的类：</p>
 <pre>
 Foo[] arr = new Foo[2];
 arr[0] = new Foo(0);
 arr[1] = new Foo(0);
 </pre>
-<p>Serialization promises that on deserialization of arr, elements 0 and 1 will not be aliased. Similarly, in:</p>
+<p>序列化保证了在arr的反序列化时，元素0和1将不会被别名化。同样，在：</p>
 <pre>
 Foo[] arr = new Foo[2];
 arr[0] = new Foo(0);
 arr[1] = arr[0];
 </pre>
-<p>Serialization promises that on deserialization of <code>arr</code>, elements 0 and 1 <strong>will</strong> be aliased.</p>
-<p>While these promises are coincidentally fulfilled in current implementations of Java, that is not guaranteed in the future, particularly when true
-value types are introduced in the language.</p>
-<p>This rule raises an issue when a <code>Serializable</code> class defines a non-transient, non-static field field whose type is a known serializable
-value-based class. Known serializable value-based classes are: all the classes in the <code>java.time</code> package except <code>Clock</code>; the
-date classes for alternate calendars: <code>HijrahDate</code>, <code>JapaneseDate</code>, <code>MinguoDate</code>, <code>ThaiBuddhistDate</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>序列化保证了在<code>arr</code>的反序列化时，元素0和1 <strong>将要</strong>被别名化。</p>
+<p>当<code> Serializable </code>类定义非瞬态非静态字段字段时，此规则会引发问题，该字段的类型是已知的可序列化的基于值的类。已知的可序列化的基于值的类是：<code> java.time </code>包中的除了<code> Clock </code>的所有类;备用日历的日期类：<code> HijrahDate </code>，<code> JapaneseDate </code>，<code> MinguoDate </code>，<code> ThaiBuddhistDate </code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class MyClass implements Serializable {
-  private HijrahDate date;  // Noncompliant; mark this transient
+  private HijrahDate date;  // 不合规;标记这种瞬态
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class MyClass implements Serializable {
   private transient HijrahDate date;
   // ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html">Value-based classes</a> </li>
 </ul>

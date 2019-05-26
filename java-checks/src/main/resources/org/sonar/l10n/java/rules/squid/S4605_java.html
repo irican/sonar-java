@@ -1,8 +1,5 @@
-<p>Spring beans belonging to packages that are not included in a <code>@ComponentScan</code> configuration will not be accessible in the Spring
-Application Context. Therefore, it's likely to be a configuration mistake that will be detected by this rule. <strong>Note:</strong> the
-<code>@ComponentScan</code> is implicit in the <code>@SpringBootApplication</code> annotation, case in which Spring Boot will auto scan for components
-in the package containing the Spring Boot main class and its sub-packages.</p>
-<h2>Noncompliant Code Example</h2>
+<p> Spring Application Application中无法访问属于未包含在<code> @ComponentScan </code>配置中的包的Spring bean。因此，这可能是此规则将检测到的配置错误。 <strong>注意：</strong> <code> @ComponentScan </code>隐含在<code> @SpringBootApplication </code>注释中，Spring Boot将自动扫描包含Spring的包中的组件引导主类及其子包。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @Configuration
 @ComponentScan("com.mycompany.app.beans")
@@ -13,11 +10,11 @@ public class Application {
 package com.mycompany.app.web;
 
 @Controller
-public class MyController { // Noncompliant; MyController belong to "com.mycompany.app.web" while the ComponentScan is looking for beans in "com.mycompany.app.beans" package
+public class MyController { //不合规; MyController属于“com.mycompany.app.web”，而ComponentScan正在“com.mycompany.app.beans”包中查找bean
 ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 @Configuration
 @ComponentScan({"com.mycompany.app.beans","com.mycompany.app.web"})
@@ -28,7 +25,7 @@ public class Application {
 package com.mycompany.app.web;
 
 @Controller
-public class MyController { // Compliant; "com.mycompany.app.web" is referenced by a @ComponentScan annotated class
+public class MyController { //合规的；“com.mycompany.app.web”由@ComponentScan带注释的类引用
 ...
 }
 </pre>

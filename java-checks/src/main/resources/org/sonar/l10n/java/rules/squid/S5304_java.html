@@ -1,46 +1,44 @@
-<p>Using environment variables is security-sensitive. For example, their use has led in the past to the following vulnerabilities:</p>
+<p>使用环境变量是安全敏感的。例如，它们的使用在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278">CVE-2014-6278</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-3464">CVE-2019-3464</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1000402">CVE-2018-1000402</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-10530">CVE-2016-10530</a> </li>
 </ul>
-<p>Environment variables are sensitive to injection attacks, just like any other input.</p>
-<p>Note also that environment variables can be exposed in multiple ways, storing sensitive information in them should be done carefully:</p>
+<p>与任何其他输入一样，环境变量对注入攻击很敏感。</p>
+<p>另请注意，环境变量可以通过多种方式公开，应在其中存储敏感信息：</p>
 <ul>
-  <li> on Unix systems environment variables of one process can be read by another process running with the same UID. </li>
-  <li> environment variables <a href="https://docs.oracle.com/javase/tutorial/essential/environment/env.html">might be forwarded to child
-  processes</a>. </li>
-  <li> application running in debug mode often exposes their environment variable. </li>
+  <li> 在Unix系统上，一个进程的环境变量可以由另一个运行相同UID的进程读取。 </li>
+  <li> 环境变量 <a href="https://docs.oracle.com/javase/tutorial/essential/environment/env.html">可能被转发给子进程</a>. </li>
+  <li> 在调试模式下运行的应用程序经常暴露其环境变量。 </li>
 </ul>
-<p>This rule raises an issue when environment variables are read.</p>
-<h2>Ask Yourself Whether</h2>
+<p>读取环境变量时，此规则会报告问题。</p>
+<h2>检查自己是否存在以下问题：</h2>
 <ul>
-  <li> Environment variables are used without being sanitized. </li>
-  <li> You store sensitive information in environment variables and other processes might be able to access them. </li>
+  <li> 使用环境变量而不进行净化。</li>
+  <li> 您将敏感信息存储在环境变量中，其他进程可能能够访问它们。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Sanitize every environment variable before using its value.</p>
-<p>If you store sensitive information in an environment variable, make sure that no other process can access them, i.e. the process runs with a
-separate user account and child processes don't have access to their parent's environment.</p>
-<p>Don't run your application in debug mode if it has access to sensitive information, including environment variables.</p>
-<h2>Sensitive Code Example</h2>
+<p>如果您对这些问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码实践</h2>
+<p>在使用其值之前净化每个环境变量。</p>
+<p>如果将敏感信息存储在环境变量中，请确保没有其他进程可以访问它们，即该进程使用单独的用户帐户运行，并且子进程无权访问其父级环境。</p>
+<p>如果应用程序可以访问敏感信息（包括环境变量），请不要在调试模式下运行应用程序。</p>
+<h2>敏感代码示例</h2>
 <pre>
 public class Main {
     public static void main (String[] args) {
-        System.getenv();  // Sensitive
-        System.getenv("myvar");  // Sensitive
+        System.getenv();  // 敏感
+        System.getenv("myvar");  // 敏感
 
         ProcessBuilder processBuilder = new ProcessBuilder();
-        Map&lt;String, String&gt; environment = processBuilder.environment();  // Sensitive
+        Map&lt;String, String&gt; environment = processBuilder.environment();  // 敏感
         environment.put("VAR", "value");
 
-        Runtime.getRuntime().exec("ping", new String[]{"env=val"});   // Sensitive
+        Runtime.getRuntime().exec("ping", new String[]{"env=val"});   // 敏感
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/526.html">MITRE, CWE-526</a> - Information Exposure Through Environmental Variables </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/74.html">MITRE, CWE-74</a> - Improper Neutralization of Special Elements in Output Used by a

@@ -1,17 +1,16 @@
-<p>Having a class and some of its methods sharing the same name is misleading, and leaves others to wonder whether it was done that way on purpose, or
-was the methods supposed to be a constructor.</p>
-<h2>Noncompliant Code Example</h2>
+<p>让一个类和它的一些方法共享相同的名称是误导性的，并让其他人想知道它是否是故意这样做的，或者该方法应该是一个构造函数。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Foo {
    public Foo() {...}
-   public void Foo(String label) {...}  // Noncompliant
+   public void Foo(String label) {...}  // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Foo {
    public Foo() {...}
-   public void foo(String label) {...}  // Compliant
+   public void foo(String label) {...}  // 合规
 }
 </pre>
 

@@ -1,15 +1,12 @@
-<p>Dynamically loaded classes could contain malicious code executed by a static class initializer. I.E. you wouldn't even have to instantiate or
-explicitly invoke methods on such classes to be vulnerable to an attack.</p>
-<p>This rule raises an issue for each use of dynamic class loading.</p>
-<h2>Noncompliant Code Example</h2>
+<p>动态加载的类可能包含由静态类初始化器执行的恶意代码。也就是说，甚至不需要实例化或显式地调用这些类上的方法来抵御攻击。</p>
+<p>每次使用动态类加载，此规则都会引发一个问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String className = System.getProperty("messageClassName");
-Class clazz = Class.forName(className);  // Noncompliant
+Class clazz = Class.forName(className);  // 不合规
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
-  <li> <a href="https://cwe.mitre.org/data/definitions/470.html">MITRE, CWE-470</a> - Use of Externally-Controlled Input to Select Classes or Code
-  ('Unsafe Reflection') </li>
   <li> OWASP Top 10 2017 Category A1 - Injection </li>
 </ul>
 

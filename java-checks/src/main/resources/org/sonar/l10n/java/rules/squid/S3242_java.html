@@ -1,31 +1,30 @@
-<p>For maximum reusability, methods should accept parameters with as little specialization as possible. So unless specific features from a child class
-are required by a method, a type higher up the class hierarchy should be used instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p>为了得到最大的可重用性，方法参数的专门化程度应尽可能的低。因此除非方法需要某个子类的具体的特性，否则应使用在继承关系上层次较
+高的类型。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public void printSize(ArrayList&lt;Object&gt; list) {  // Collection can be used instead
+public void printSize(ArrayList&lt;Object&gt; list) {  // 可换用Collection
     System.out.println(list.size());
 }
 
-public static void loop(List&lt;Object&gt; list) { // java.lang.Iterable can be used instead
+public static void loop(List&lt;Object&gt; list) { // 可换用java.lang.Iterable
    for (Object o : list) {
      o.toString();
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public void printSize(Collection&lt;?&gt; list) {  // Collection can be used instead
+public void printSize(Collection&lt;?&gt; list) {  // 可换用Collection
     System.out.println(list.size());
 }
 
-public static void loop(Iterable&lt;?&gt; list) { // java.lang.Iterable can be used instead
+public static void loop(Iterable&lt;?&gt; list) { // 可换用java.lang.Iterable
    for (Object o : list) {
      o.toString();
   }
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Parameters in non-public methods are not checked, because such methods are not intended to be generally reusable. <code>java.lang.String</code>
-parameters are excluded, because String is immutable and can not be always substituted for more generic type. Parameters used in any other context
-than method invocation or enhanced for loop are also excluded.</p>
+<h2>例外</h2>
+<p>非public方法的参数不作检查，因为这样的方法一般不考虑进行重用。<code>java.lang.String</code> 参数也被排除在外，因为String
+是不可变的，并且无法总是替换为更一般的类型。除了方法调用和增强的for循环外，用于任何其他环境的参数也排除在此规则外。</p>
 

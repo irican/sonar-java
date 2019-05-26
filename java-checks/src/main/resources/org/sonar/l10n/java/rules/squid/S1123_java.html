@@ -1,13 +1,12 @@
-<p>Deprecation should be marked with both the <code>@Deprecated</code> annotation and @deprecated Javadoc tag. The annotation enables tools such as
-IDEs to warn about referencing deprecated elements, and the tag can be used to explain when it was deprecated, why, and how references should be
-refactored. </p>
-<p>Further, Java 9 adds two additional arguments to the annotation:</p>
+<p>应使用<code> @Deprecated </code>注释和@deprecated Javadoc标记（tag）来标记弃用（deprecation）。该注释使IDE等工具能够警告引用了不推荐使用的元素，
+并且该标记可用于解释何时弃用，弃用原因以及如何重构引用。 </p>
+<p>此外，Java 9为注释添加了两个额外的参数：</p>
 <ul>
-  <li> <code>since</code> allows you to describe when the deprecation took place </li>
-  <li> <code>forRemoval</code>, indicates whether the deprecated element will be removed at some future date </li>
+  <li> <code>since</code> 允许您描述弃用发生的时间 </li>
+  <li> <code>forRemoval</code>， 表示是否将在以后某一天删除已弃用的元素 </li>
 </ul>
-<p>If your compile level is Java 9 or higher, you should be using one or both of these arguments.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果编译级别为Java 9或更高版本，则应使用其中一个或两个参数。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class MyClass {
 
@@ -18,12 +17,12 @@ class MyClass {
   /**
     * @deprecated
     */
-  public void foo2() {    // Noncompliant
+  public void foo2() {    // 不合规
   }
 
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class MyClass {
 
@@ -52,9 +51,8 @@ class MyClass {
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p>The members and methods of a deprecated class or interface are ignored by this rule. The classes and interfaces themselves are still subject to
-it.</p>
+<h2>例外</h2>
+<p>此规则将忽略已弃用的类或接口的成员和方法。类和接口本身仍然受制于它。</p>
 <pre>
 /**
  * @deprecated (when, why, etc...)
@@ -62,7 +60,7 @@ it.</p>
 @Deprecated
 class Qix  {
 
-  public void foo() {} // Compliant; class is deprecated
+  public void foo() {} // 合规；类被弃用
 
 }
 

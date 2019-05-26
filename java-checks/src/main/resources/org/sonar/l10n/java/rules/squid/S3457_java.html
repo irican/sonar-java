@@ -1,34 +1,32 @@
-<p>Because <code>printf</code>-style format strings are interpreted at runtime, rather than validated by the compiler, they can contain errors that
-result in the wrong strings being created. This rule statically validates the correlation of <code>printf</code>-style format strings to their
-arguments when calling the <code>format(...)</code> methods of <code>java.util.Formatter</code>, <code>java.lang.String</code>,
-<code>java.io.PrintStream</code>, <code>MessageFormat</code>, and <code>java.io.PrintWriter</code> classes and the <code>printf(...)</code> methods of
-<code>java.io.PrintStream</code> or <code>java.io.PrintWriter</code> classes. </p>
-<h2>Noncompliant Code Example</h2>
+<p>因为 <code>printf</code>样式的格式字符串在运行时被解释，而不是由编译器验证，所以它们可能包含导致创建错误字符串的错误。在调用 <code>java.util.Formatter</code>的<code>format(...)</code>方法时，此规则静态验证 <code>printf</code> 样式格式字符串与其参数的相关性， <code>java.lang.String</code>,
+<code>java.io.PrintStream</code>, <code>MessageFormat</code>, 和 <code>java.io.PrintWriter</code> 类和<code>printf(...)</code> 方法
+<code>java.io.PrintStream</code>或者 <code>java.io.PrintWriter</code> 类。 </p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-String.format("First {0} and then {1}", "foo", "bar");  //Noncompliant. Looks like there is a confusion with the use of {{java.text.MessageFormat}}, parameters "foo" and "bar" will be simply ignored here
-String.format("Display %3$d and then %d", 1, 2, 3);   //Noncompliant; the second argument '2' is unused
-String.format("Too many arguments %d and %d", 1, 2, 3);  //Noncompliant; the third argument '3' is unused
-String.format("First Line\n");   //Noncompliant; %n should be used in place of \n to produce the platform-specific line separator
-String.format("Is myObject null ? %b", myObject);   //Noncompliant; when a non-boolean argument is formatted with %b, it prints true for any nonnull value, and false for null. Even if intended, this is misleading. It's better to directly inject the boolean value (myObject == null in this case)
-String.format("value is " + value); // Noncompliant
-String s = String.format("string without arguments"); // Noncompliant
+String.format("First {0} and then {1}", "foo", "bar");  //不合规的，看起来使用{{java.text.MessageFormat}}会产生混淆，参数“foo”和“bar”在这里将被忽略
+String.format("Display %3$d and then %d", 1, 2, 3);   //不合规的; 第二个参数'2'未使用
+String.format("Too many arguments %d and %d", 1, 2, 3);  //不合规的; 不符合要求;第三个参数'3'未使用
+String.format("First Line\n");   //不合规的; 应使用％n代替\ n来生成特定于平台的行分隔符
+String.format("Is myObject null ? %b", myObject);   //不合规的; 当使用％b格式化非布尔参数时，它会为任何非空值输出true，对于null显示false。即使有意，这也是误导。最好直接注入布尔值（在这种情况下myObject == null）
+String.format("value is " + value); // 不合规的
+String s = String.format("string without arguments"); // 不合规的
 
-MessageFormat.format("Result '{0}'.", value); // Noncompliant; String contains no format specifiers. (quote are discarding format specifiers)
-MessageFormat.format("Result {0}.", value, value);  // Noncompliant; 2nd argument is not used
-MessageFormat.format("Result {0}.", myObject.toString()); // Noncompliant; no need to call toString() on objects
+MessageFormat.format("Result '{0}'.", value); // 不合规的;String不包含格式说明符。 （quote引用是丢弃格式说明符）
+MessageFormat.format("Result {0}.", value, value);  // 不合规的; 不使用第二个参数
+MessageFormat.format("Result {0}.", myObject.toString()); // 不合规的; 无需在对象上调用toString（）
 
 java.util.Logger logger;
-logger.log(java.util.logging.Level.SEVERE, "Result {0}.", myObject.toString()); // Noncompliant; no need to call toString() on objects
-logger.log(java.util.logging.Level.SEVERE, "Result.", new Exception()); // compliant, parameter is an exception
-logger.log(java.util.logging.Level.SEVERE, "Result '{0}'", 14); // Noncompliant {{String contains no format specifiers.}}
+logger.log(java.util.logging.Level.SEVERE, "Result {0}.", myObject.toString()); // 不合规的; 无需在对象上调用toString（）
+logger.log(java.util.logging.Level.SEVERE, "Result.", new Exception()); // 合规的，参数是一个例外
+logger.log(java.util.logging.Level.SEVERE, "Result '{0}'", 14); // 不合规的 {{String不包含格式说明符。}}
 
 org.slf4j.Logger slf4jLog;
 org.slf4j.Marker marker;
 
 slf4jLog.debug(marker, "message {}");
-slf4jLog.debug(marker, "message ", 1); // Noncompliant {{String contains no format specifiers.}}
+slf4jLog.debug(marker, "message ", 1); // 不合规的，{{String不包含格式说明符。}}
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 String.format("First %s and then %s", "foo", "bar");
 String.format("Display %2$d and then %d", 1, 3);
@@ -53,7 +51,7 @@ org.slf4j.Marker marker;
 slf4jLog.debug(marker, "message {}");
 slf4jLog.debug(marker, "message {}", 1);
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/wQA1">CERT, FIO47-C.</a> - Use valid format strings </li>
 </ul>

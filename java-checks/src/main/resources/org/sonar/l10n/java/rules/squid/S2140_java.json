@@ -1,5 +1,5 @@
 {
-  "title": "Methods of \"Random\" that return floating point values should not be used in random integer generation",
+  "title": "返回浮点值的 \"Random\" 方法不应该用于随机整数生成",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

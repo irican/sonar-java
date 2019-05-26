@@ -1,15 +1,14 @@
-<p>Since <code>assert</code> statements aren't executed by default (they must be enabled with JVM flags) developers should never rely on their
-execution the evaluation of any logic required for correct program function.</p>
-<h2>Noncompliant Code Example</h2>
+<p>由于<code> assert </code>语句默认情况下不会执行（它们必须使用JVM标志启用），因此开发人员不应该依赖于它们的执行来评估正确的程序功能所需的任何逻辑。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-assert myList.remove(myList.get(0));  // Noncompliant
+assert myList.remove(myList.get(0));  // 不符合规范的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 boolean removed = myList.remove(myList.get(0));
 assert removed;
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/vwG7AQ">CERT, EXP06-J.</a> - Expressions used in assertions must not produce side
   effects </li>

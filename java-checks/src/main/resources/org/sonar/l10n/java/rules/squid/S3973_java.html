@@ -1,9 +1,7 @@
-<p>In the absence of enclosing curly braces, the line immediately after a conditional is the one that is conditionally executed. By both convention
-and good practice, such lines are indented. In the absence of both curly braces and indentation the intent of the original programmer is entirely
-unclear and perhaps not actually what is executed. Additionally, such code is highly likely to be confusing to maintainers.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在没有括号花括号的情况下，紧跟在条件之后的行是有条件执行的行。 通过惯例和良好实践，这些线是缩进的。 在没有花括号和缩进的情况下，原始程序员的意图完全不清楚，也许实际上并不是执行的内容。 此外，这样的代码很可能会让维护者感到困惑。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-if (condition)  // Noncompliant
+if (condition)  // 不符合规范的
 doTheThing();
 
 doTheOtherThing();
@@ -11,7 +9,7 @@ somethingElseEntirely();
 
 foo();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 if (condition)
   doTheThing();

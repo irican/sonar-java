@@ -1,9 +1,8 @@
-<p>Most of the time a block of code is empty when a piece of code is really missing. So such empty block must be either filled or removed.</p>
-<h2>Noncompliant Code Example</h2>
+<p>大多数情况下，当一段代码缺失时，代码块是空的。因此必须填充或移除这样的空块。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-for (int i = 0; i &lt; 42; i++){}  // Empty on purpose or missing piece of code ?
+for (int i = 0; i &lt; 42; i++){}  // 是故意为空还是缺少一段代码？
 </pre>
-<h2>Exceptions</h2>
-<p>When a block contains a comment, this block is not considered to be empty unless it is a <code>synchronized</code> block. <code>synchronized</code>
-blocks are still considered empty even with comments because they can still affect program flow.</p>
+<h2>例外</h2>
+<p>当块包含注释时，除非它是<code>synchronized</code> 块，否则不认为该块为空。即使使用注释，<code>synchronized</code>块依然被视为空，因为它仍会影响程序流。</p>
 

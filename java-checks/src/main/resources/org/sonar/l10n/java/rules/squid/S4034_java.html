@@ -1,11 +1,10 @@
-<p>When using the <code>Stream</code> API, call chains should be simplified as much as possible. Not only does it make the code easier to read, it
-also avoid creating unnecessary temporary objects.</p>
-<p>This rule raises an issue when one of the following substitution is possible:</p>
+<p>使用<code> Stream </code> API时，应尽可能简化调用链。它不仅使代码更容易阅读，还避免创建不必要的临时对象。</p>
+<p>当可能发生以下替换之一时，此规则会引发问题：</p>
 <table>
   <tbody>
     <tr>
-      <th>Original</th>
-      <th>Preferred</th>
+      <th>Original（初始）</th>
+      <th>Preferred（优先）</th>
     </tr>
     <tr>
       <td><code>stream.filter(predicate).findFirst().isPresent()</code></td>
@@ -29,11 +28,11 @@ also avoid creating unnecessary temporary objects.</p>
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 boolean hasRed = widgets.stream().filter(w -&gt; w.getColor() == RED).findFirst().isPresent(); // Noncompliant
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 boolean hasRed = widgets.stream().anyMatch(w -&gt; w.getColor() == RED);
 </pre>

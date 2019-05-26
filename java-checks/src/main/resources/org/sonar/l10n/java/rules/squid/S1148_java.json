@@ -1,5 +1,5 @@
 {
-  "title": "Throwable.printStackTrace(...) should not be called",
+  "title": "不应该调用Throwable.printStackTrace(...) ",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

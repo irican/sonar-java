@@ -1,6 +1,5 @@
-<p>While it is <em>possible</em> to access <code>static</code> members from a class instance, it's bad form, and considered by most to be misleading
-because it implies to the readers of your code that there's an instance of the member per class instance.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然可以说 <em>很可能</em> 从类实例访问<code>static</code> 成员，但它是不好的形式，并且被大多数人认为是误导性的，因为它暗示了代码的读者 每个类实例都有一个成员实例。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public class A {
   public static int counter = 0;
@@ -11,12 +10,12 @@ public class B {
   private A second = new A();
 
   public void runUpTheCount() {
-    first.counter ++;  // Noncompliant
-    second.counter ++;  // Noncompliant. A.counter is now 2, which is perhaps contrary to expectations
+    first.counter ++;  // 不合规的
+    second.counter ++;  //不合规的。 A.counter现在是2，这可能与预期相反
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class A {
   public static int counter = 0;
@@ -27,8 +26,8 @@ public class B {
   private A second = new A();
 
   public void runUpTheCount() {
-    A.counter ++;  // Compliant
-    A.counter ++;  // Compliant
+    A.counter ++;  // 合规的
+    A.counter ++;  // 合规的
   }
 }
 </pre>

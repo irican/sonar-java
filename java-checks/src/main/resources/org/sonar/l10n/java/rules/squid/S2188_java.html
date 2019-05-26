@@ -1,17 +1,15 @@
-<p>Overriding a parent class method prevents that method from being called unless an explicit <code>super</code> call is made in the overriding
-method. In some cases not calling the <code>super</code> method is acceptable, but not with <code>setUp</code> and <code>tearDown</code> in a JUnit 3
-<code>TestCase</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>重写父类方法会阻止调用该方法，除非在重写方法中进行明确的<code> super </code>调用。在某些情况下，不能调用<code> super </code>方法，但不能使用JUnit 3<code> TestCase </code>中的<code> setUp </code>和<code> tearDown </code></p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClassTest extends MyAbstractTestCase {
 
   private MyClass myClass;
     @Override
-    protected void setUp() throws Exception {  // Noncompliant
+    protected void setUp() throws Exception {  // 不合规的
       myClass = new MyClass();
     }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class MyClassTest extends MyAbstractTestCase {
 

@@ -1,5 +1,5 @@
 {
-  "title": "The members of an interface or class declaration should appear in a pre-defined order",
+  "title": "接口或类声明的成员应以预定义的顺序出现",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

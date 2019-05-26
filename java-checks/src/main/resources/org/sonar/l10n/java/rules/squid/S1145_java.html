@@ -1,13 +1,12 @@
-<p><code>if</code> statements with conditions that are always false have the effect of making blocks of code non-functional. <code>if</code>
-statements with conditions that are always true are completely redundant, and make the code less readable.</p>
-<p>There are three possible causes for the presence of such code: </p>
+<p><code>if</code> 语句的条件始终为false，则会使代码块失去功能。 <code>if</code>语句的条件始终为true，则完全是冗余的，这会降低代码的可读性。</p>
+<p>存在此类代码有三种可能的原因： </p>
 <ul>
-  <li> An if statement was changed during debugging and that debug code has been committed. </li>
-  <li> Some value was left unset. </li>
-  <li> Some logic is not doing what the programmer thought it did. </li>
+  <li> 调试期间更改了if语句，并且已提交调试代码。 </li>
+  <li> 有些值没有设置。 </li>
+  <li> 有些逻辑并没有做程序员认为它做的事情。 </li>
 </ul>
-<p>In any of these cases, unconditional <code>if</code> statements should be removed.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在任何这些情况下，应删除条件不恰当的 <code>if</code> 语句。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 if (true) {
   doSomething();
@@ -17,25 +16,25 @@ if (false) {
   doSomethingElse();
 }
 
-if (2 &lt; 3 ) { ... }  // Noncompliant; always false
+if (2 &lt; 3 ) { ... }  // 不合规；总是 false
 
 int i = 0;
 int j = 0;
 // ...
 j = foo();
 
-if (j &gt; 0 &amp;&amp; i &gt; 0) { ... }  // Noncompliant; always false - i never set after initialization
+if (j &gt; 0 &amp;&amp; i &gt; 0) { ... }  // 不合规；总是 false - 在初始化后i永远不会被处理
 
 boolean b = true;
 //...
-if (b || !b) { ... }  // Noncompliant
+if (b || !b) { ... }  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 doSomething();
 ...
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - Leftover Debug Code </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/570.html">MITRE, CWE-570</a> - Expression is Always False </li>
@@ -43,6 +42,6 @@ doSomething();
   <li> MISRA C:2004, 13.7 - Boolean operations whose results are invariant shall not be permitted. </li>
   <li> MISRA C:2012, 14.3 - Controlling expressions shall not be invariant </li>
 </ul>
-<h2>Deprecated</h2>
-<p>This rule is deprecated; use {rule:squid:S2583} instead.</p>
+<h2>已弃用</h2>
+<p>此规则已弃用; 请改用 {rule:squid:S2583}。</p>
 

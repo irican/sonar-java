@@ -1,6 +1,5 @@
-<p>Without OAEP in RSA encryption, it takes less work for an attacker to decrypt the data or infer patterns from the ciphertext. This rule logs an
-issue as soon as a literal value starts with <code>RSA/NONE</code>. </p>
-<h2>Noncompliant Code Example</h2>
+<p>如果没有rsa加密中的OAEP，攻击者解密数据或从密文推断模式所需的工作就会更少。当文字值以<code>RSA/NONE</code>开头时，此规则立即记录一个问题。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 Cipher rsa = javax.crypto.Cipher.getInstance("RSA/NONE/NoPadding");
 </pre>
@@ -8,7 +7,7 @@ Cipher rsa = javax.crypto.Cipher.getInstance("RSA/NONE/NoPadding");
 <pre>
 Cipher rsa = javax.crypto.Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/780.html">MITRE CWE-780</a> - Use of RSA Algorithm without OAEP </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/327.html">MITRE CWE-327</a> - Use of a Broken or Risky Cryptographic Algorithm </li>

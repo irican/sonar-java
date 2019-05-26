@@ -1,24 +1,20 @@
-<p>When reading bytes in order to build other primitive values such as <code>int</code>s or <code>long</code>s, the <code>byte</code> values are
-automatically promoted, but that promotion can have unexpected results.</p>
-<p>For instance, the binary representation of the integer 640 is <code>0b0000_0010_1000_0000</code>, which can also be written with the array of
-(unsigned) bytes <code>[2, 128]</code>. However, since Java uses two's complement, the representation of the integer in signed bytes will be <code>[2,
--128]</code> (because the <code>byte</code> <code>0b1000_0000</code> is promoted to the <code>int</code>
-<code>0b1111_1111_1111_1111_1111_1111_1000_0000</code>). Consequently, trying to reconstruct the initial integer by shifting and adding the values of
-the bytes without taking care of the sign will not produce the expected result. </p>
-<p>To prevent such accidental value conversion, use bitwise and (<code>&amp;</code>) to combine the <code>byte</code> value with <code>0xff</code>
-(255) and turn all the higher bits back off.</p>
-<p>This rule raises an issue any time a <code>byte</code> value is used as an operand without <code>&amp; 0xff</code>, when combined with shifts.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当读取字节以构建其他原始值，如<code>int</code>s 或 <code>long</code>s，时，会自动提升<code>byte</code> 值，但这种提升可能会产生意想不到的结果。</p>
+<p>例如，整数640的二进制表示形式是<code>0b0000_0010_1000_0000</code>，也可以用(无符号)字节数组 <code>[2, 128]</code>编写。
+但是，由于Java使用2的补码，整数的带符号字节表示形式将是<code>[2,-128]</code> (因为 <code>byte</code> <code>0b1000_0000</code> 被提升为 <code>int</code>
+<code>0b1111_1111_1111_1111_1111_1111_1000_0000</code>)。因此，试图通过移位和添加字节的值来重构初始整数，而不考虑符号，将不会产生预期的结果。</p>
+<p>为了防止这种意外的值转换，使用按位和(<code>&amp;</code>)将<code>byte</code>值与<code>0xff</code>(255)相结合，并关闭所有较高的位。</p>
+<p>每当将<code>byte</code>值用作操作数而不使用<code>&amp; 0xff</code>，结合移位时，此规则都会引发一个问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
   int intFromBuffer() {
     int result = 0;
     for (int i = 0; i &lt; 4; i++) {
-      result = (result &lt;&lt; 8) | readByte(); // Noncompliant
+      result = (result &lt;&lt; 8) | readByte(); // 不合规
     }
     return result;
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
   int intFromBuffer() {
     int result = 0;
@@ -28,7 +24,7 @@ the bytes without taking care of the sign will not produce the expected result. 
     return result;
   }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/SAHEAw">CERT, NUM52-J.</a> - Be aware of numeric promotion behavior </li>
 </ul>

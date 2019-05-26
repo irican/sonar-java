@@ -1,15 +1,14 @@
-<p>The methods declared in an <code>interface</code> are <code>public</code> and <code>abstract</code> by default. Any variables are automatically
-<code>public static final</code>. There is no need to explicitly declare them so.</p>
-<p>Since annotations are implicitly interfaces, the same holds true for them as well.</p>
-<p>Similarly, the <code>final</code> modifier is redundant on any method of a <code>final</code> class, and <code>private</code> is redundant on the
-constructor of an <code>Enum</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>interface</code>中声明的方法默认为 <code>public</code> 和 <code>abstract</code>  任何变量都是自动的
+<code>public static final</code>.没有必要明确声明它们。</p>
+<p>由于注释是隐式接口，因此它们也适用。</p>
+<p>类似地， <code>final</code> 修饰符在<code>final</code> 类的任何方法上都是多余的，并且<code>private</code> 在<code>Enum</code>的构造函数上是多余的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public interface Vehicle {
 
-  public void go(int speed, Direction direction);  // Noncompliant
+  public void go(int speed, Direction direction);  // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public interface Vehicle {
 

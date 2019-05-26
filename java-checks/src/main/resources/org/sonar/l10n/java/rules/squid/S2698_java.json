@@ -1,5 +1,5 @@
 {
-  "title": "JUnit assertions should include messages",
+  "title": "JUnit断言应该包含消息",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

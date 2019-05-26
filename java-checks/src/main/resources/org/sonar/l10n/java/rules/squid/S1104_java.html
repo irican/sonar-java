@@ -1,27 +1,27 @@
-<p>Public class variable fields do not respect the encapsulation principle and has three main disadvantages:</p>
+<p>公共类变量字段不遵循封装原则，并且有三个主要缺点：</p>
 <ul>
-  <li> Additional behavior such as validation cannot be added. </li>
-  <li> The internal representation is exposed, and cannot be changed afterwards. </li>
-  <li> Member values are subject to change from anywhere in the code and may not meet the programmer's assumptions. </li>
+  <li> 无法添加其他行为，例如验证（validation）。 </li>
+  <li> 内部表示（internal representation）是暴露的，以后不能更改。 </li>
+  <li> 成员值可能会在代码中的任何位置发生变化，并且可能程序员所想的不一样。 </li>
 </ul>
-<p>By using private attributes and accessor methods (set and get), unauthorized modifications are prevented.</p>
-<h2>Noncompliant Code Example</h2>
+<p>通过使用私有属性和访问器（accessor）方法（set和get），可以防止未经授权的修改。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClass {
 
-  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked
+  public static final int SOME_CONSTANT = 0;     // 合规 - 不检查常量
 
-  public String firstName;                       // Noncompliant
+  public String firstName;                       // 不合规
 
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class MyClass {
 
-  public static final int SOME_CONSTANT = 0;     // Compliant - constants are not checked
+  public static final int SOME_CONSTANT = 0;     // 合规 - 不检查常量
 
-  private String firstName;                      // Compliant
+  private String firstName;                      // 合规
 
   public String getFirstName() {
     return firstName;
@@ -33,9 +33,9 @@ public class MyClass {
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Because they are not modifiable, this rule ignores <code>public final</code> fields.</p>
-<h2>See</h2>
+<h2>例外</h2>
+<p>因为它们不可修改，所以此规则忽略 <code>public final</code> 字段。</p>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/493.html">MITRE, CWE-493</a> - Critical Public Variable Without Final Modifier </li>
 </ul>

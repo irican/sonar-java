@@ -1,5 +1,5 @@
 {
-  "title": "\"compareTo\" should not return \"Integer.MIN_VALUE\"",
+  "title": "\"compareTo\" 不应返回 \"Integer.MIN_VALUE\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

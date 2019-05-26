@@ -1,5 +1,5 @@
 {
-  "title": "Lambdas and anonymous classes should not have too many lines of code",
+  "title": "Lambdas和匿名类不应该有太多行代码",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

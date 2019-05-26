@@ -1,14 +1,12 @@
-<p>While some <code>TestRule</code> classes have the desired effect without ever being directly referenced by a test, several others do not, and
-there's no reason to leave them cluttering up the file if they're not in use.</p>
-<p>This rule raises an issue when <code>Test</code> class fields of the following types aren't used by any of the test methods:
-<code>TemporaryFolder</code>, and <code>TestName</code>.</p>
-<p>This rule also applies to the JUnit 5 equivalent classes: <code>TempDir</code>, and <code>TestInfo</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然一些<code>TestRule</code>类在没有被测试直接引用的情况下就能达到预期的效果，但是其他一些类没有，如果不使用这些类，就没有理由让它们弄乱文件。</p>
+<p>当以下类型的<code>Test</code>类字段不被任何测试方法使用时，该规则会引发一个问题：<code>TemporaryFolder</code>，和<code>TestName</code>。</p>
+<p>这个规则也适用于JUnit 5等价类：<code>TempDir</code>，和<code>TestInfo</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class ProjectDefinitionTest {
 
   @Rule
-  public TemporaryFolder temp = new TemporaryFolder();  // Noncompliant
+  public TemporaryFolder temp = new TemporaryFolder();  // 不合规
 
   @Test
   public void shouldSetKey() {
@@ -18,7 +16,7 @@ public class ProjectDefinitionTest {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class ProjectDefinitionTest {
 

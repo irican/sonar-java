@@ -1,5 +1,5 @@
 {
-  "title": "The signature of \"finalize()\" should match that of \"Object.finalize()\"",
+  "title": " \"finalize()\" 的签名应该与 \"Object.finalize()\" 的签名匹配",
   "type": "BUG",
   "status": "ready",
   "remediation": {

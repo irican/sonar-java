@@ -1,8 +1,6 @@
-<p>While it is technically correct to use a <code>Thread</code> where a <code>Runnable</code> is called for, the semantics of the two objects are
-different, and mixing them is a bad practice that will likely lead to headaches in the future.</p>
-<p>The crux of the issue is that <code>Thread</code> is a larger concept than <code>Runnable</code>. A <code>Runnable</code> is an object whose
-running should be managed. A <code>Thread</code> expects to manage the running of itself or other <code>Runnables</code>. </p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然在技术上使用 <code>Thread</code> 并在其中调用 <code>Runnable</code> 是正确的，但是这两个对象的语义是不同的，混合它们是一种不好的做法， 将来可能会导致头痛。</p>
+<p>问题的关键在于 <code>Thread</code> 是一个比 <code>Runnable</code>更大的概念。 A <code>Runnable</code> 是一个应该管理其运行的对象。 <code>Thread</code> 期望管理自身的运行或其他 <code> Runnables </code>的运行. </p>
+<h2>不合规的解决方案</h2>
 <pre>
 	public static void main(String[] args) {
 		Thread r =new Thread() {
@@ -13,9 +11,9 @@ running should be managed. A <code>Thread</code> expects to manage the running o
 					System.out.println("a");
 			}
 		};
-		new Thread(r).start();  // Noncompliant
+		new Thread(r).start();  // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 	public static void main(String[] args) {
 		Runnable r =new Runnable() {

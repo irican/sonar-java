@@ -1,6 +1,6 @@
-<p>To prevent URL spoofing, <code>HostnameVerifier.verify()</code> methods should do more than simply <code>return true</code>. Doing so may get you
-quickly past an exception, but that comes at the cost of opening a security hole in your application. </p>
-<h2>Noncompliant Code Example</h2>
+<p>为防止URL欺骗，<code> HostnameVerifier.verify（）</code>方法应该不仅仅是<code> return true </code>。 这样做可能会让你
+快速通过异常，但这是以在应用程序中打开安全漏洞为代价的。 </p>
+<h2>不合格代码示例</h2>
 <pre>
 SSLContext sslcontext = SSLContext.getInstance( "TLS" );
 sslcontext.init(null, new TrustManager[]{new X509TrustManager() {
@@ -13,11 +13,11 @@ sslcontext.init(null, new TrustManager[]{new X509TrustManager() {
 Client client = ClientBuilder.newBuilder().sslContext(sslcontext).hostnameVerifier(new HostnameVerifier() {
   @Override
   public boolean verify(String requestedHost, SSLSession remoteServerSession) {
-    return true;  // Noncompliant
+    return true;  // 不合规的
   }
 }).build();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 SSLContext sslcontext = SSLContext.getInstance( "TLSv1.2" );
 sslcontext.init(null, new TrustManager[]{new X509TrustManager() {
@@ -33,11 +33,11 @@ sslcontext.init(null, new TrustManager[]{new X509TrustManager() {
 Client client = ClientBuilder.newBuilder().sslContext(sslcontext).hostnameVerifier(new HostnameVerifier() {
   @Override
   public boolean verify(String requestedHost, SSLSession remoteServerSession) {
-    return requestedHost.equalsIgnoreCase(remoteServerSession.getPeerHost()); // Compliant
+    return requestedHost.equalsIgnoreCase(remoteServerSession.getPeerHost()); // 合规的
   }
 }).build();
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/295.html">MITRE, CWE-295</a> - Improper Certificate Validation </li>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>

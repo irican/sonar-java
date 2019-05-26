@@ -1,18 +1,17 @@
-<p><code>Optional</code> value can hold either a value or not. The value held in the <code>Optional</code> can be accessed using the
-<code>get()</code> method, but it will throw a </p>
-<p><code>NoSuchElementException</code> if there is no value present. To avoid the exception, calling the <code>isPresent()</code> method should always
-be done before any call to <code>get()</code>.</p>
-<p>Alternatively, note that other methods such as <code>orElse(...)</code>, <code>orElseGet(...)</code> or <code>orElseThrow(...)</code> can be used
-to specify what to do with an empty <code>Optional</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p> <code>可选</code>值可以包含值，也可以不包含值。可以使用以下命令访问<code> Optional </code>中保存的值
+<code> get（）</code>方法，但它会抛出一个</p>
+<p><code> NoSuchElementException </code>如果没有值存在。为避免异常，应始终调用<code> isPresent（）</code>方法
+在任何对<code> get（）</code>的调用之前完成。</p>
+<p>或者，请注意其他方法，例如<code> orElse（...）</code>，<code> orElseGet（...）</code>或<code> orElseThrow（...）</code>可用于指定如何处理空<code>可选</code>。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Optional&lt;String&gt; value = this.getOptionalValue();
 
 // ...
 
-String stringValue = value.get(); // Noncompliant
+String stringValue = value.get(); // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 Optional&lt;String&gt; value = this.getOptionalValue();
 
@@ -30,7 +29,7 @@ Optional&lt;String&gt; value = this.getOptionalValue();
 
 String stringValue = value.orElse("default");
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/476.html">MITRE, CWE-476</a> - NULL Pointer Dereference </li>
 </ul>

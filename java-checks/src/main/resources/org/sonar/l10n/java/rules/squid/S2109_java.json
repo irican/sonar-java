@@ -1,5 +1,5 @@
 {
-  "title": "Reflection should not be used to check non-runtime annotations",
+  "title": "不应使用反射来检查非运行时注解（annotation）",
   "type": "BUG",
   "status": "ready",
   "remediation": {

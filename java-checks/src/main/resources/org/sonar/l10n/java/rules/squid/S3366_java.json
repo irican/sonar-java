@@ -1,5 +1,5 @@
 {
-  "title": "\"this\" should not be exposed from constructors",
+  "title": "\"this\" 不应该从构造函数中暴露出来",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

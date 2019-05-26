@@ -1,5 +1,5 @@
 {
-  "title": "Redundant casts should not be used",
+  "title": "不应该使用多余的类型转换",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

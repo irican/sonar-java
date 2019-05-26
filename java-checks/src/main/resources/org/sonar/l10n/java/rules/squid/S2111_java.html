@@ -1,29 +1,26 @@
-<p>Because of floating point imprecision, you're unlikely to get the value you expect from the <code>BigDecimal(double)</code> constructor. </p>
-<p>From <a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html#BigDecimal(double)">the JavaDocs</a>:</p>
+<p>由于浮点不精确，您不太可能从 <code>BigDecimal(double)</code> 构造函数中获得您期望的值。 </p>
+<p>来自 <a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html#BigDecimal(double)">the JavaDocs</a>：</p>
 <blockquote>
-  The results of this constructor can be somewhat unpredictable. One might assume that writing new BigDecimal(0.1) in Java creates a BigDecimal which
-  is exactly equal to 0.1 (an unscaled value of 1, with a scale of 1), but it is actually equal to
-  0.1000000000000000055511151231257827021181583404541015625. This is because 0.1 cannot be represented exactly as a double (or, for that matter, as a
-  binary fraction of any finite length). Thus, the value that is being passed in to the constructor is not exactly equal to 0.1, appearances
-  notwithstanding.
+  这个构造函数的结果可能有些不可预测。有人可能会假设用Java编写新的BigDecimal(0.1)会创建一个恰好等于0.1的BigDecimal(未缩放值为1，比例为1)，
+  但实际上它等于0.1000000000000000055511151231257827021181583404541015625。这是因为0.1不能精确地表示为双精度(或者，就此而言，
+  不能表示为任何有限长度的二进制分数)。因此，传递给构造函数的值并不完全等于0.1，尽管看起来是这样。
 </blockquote>
-<p>Instead, you should use <code>BigDecimal.valueOf</code>, which uses a string under the covers to eliminate floating point rounding errors, or the
-constructor that takes a <code>String</code> argument.</p>
-<h2>Noncompliant Code Example</h2>
+<p>相反，您应该使用 <code>BigDecimal.valueOf</code>，它在底层使用一个字符串来消除浮点四舍五入错误，或者使用 <code>String</code> 参数的构造函数。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 double d = 1.1;
 
-BigDecimal bd1 = new BigDecimal(d); // Noncompliant; see comment above
-BigDecimal bd2 = new BigDecimal(1.1); // Noncompliant; same result
+BigDecimal bd1 = new BigDecimal(d); // 不合规； 参见上面的注释
+BigDecimal bd2 = new BigDecimal(1.1); // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 double d = 1.1;
 
 BigDecimal bd1 = BigDecimal.valueOf(d);
-BigDecimal bd2 = new BigDecimal("1.1"); // using String constructor will result in precise value
+BigDecimal bd2 = new BigDecimal("1.1"); // 使用字符串构造函数将产生精确的值
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/NQAVAg">CERT, NUM10-J.</a> - Do not construct BigDecimal objects from floating-point
   literals </li>

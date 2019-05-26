@@ -1,5 +1,5 @@
 {
-  "title": "Sets with elements that are enum values should be replaced with EnumSet",
+  "title": "具有同一枚举值的元素的集合应替换为EnumSet",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

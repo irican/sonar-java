@@ -1,5 +1,5 @@
 {
-  "title": "Classes with only \"static\" methods should not be instantiated",
+  "title": "不应实例化仅具有“静态（static）”方法的类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

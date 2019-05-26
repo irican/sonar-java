@@ -1,23 +1,22 @@
-<p><code>Cloneable</code> is the marker <code>Interface</code> that indicates that <code>clone()</code> may be called on an object. Overriding
-<code>clone()</code> without implementing <code>Cloneable</code> can be useful if you want to control how subclasses clone themselves, but otherwise,
-it's probably a mistake.</p>
-<p>The usual convention for <code>Object.clone()</code> according to Oracle's Javadoc is:</p>
+<p><code>Cloneable</code> 是标记 <code>Interface</code> ，表示可以在对象上调用 <code>clone()</code> 。如果要控制子类克隆自身的方式，
+那么在不实现 <code>Cloneable</code> 的情况下重写<code>clone()</code> 会很有用，但除此之外，它可能是一个错误。</p>
+<p>根据Oracle的Javadoc， <code>Object.clone()</code> 的通常惯例是：</p>
 <ol>
   <li> <code>x.clone() != x</code> </li>
   <li> <code>x.clone().getClass() == x.getClass()</code> </li>
   <li> <code>x.clone().equals\(x\)</code> </li>
 </ol>
-<p>Obtaining the object that will be returned by calling <code>super.clone()</code> helps to satisfy those invariants:</p>
+<p>通过调用 <code>super.clone()</code> 来获得将要返回的对象，有助于满足这些不变量:</p>
 <ol>
-  <li> <code>super.clone()</code> returns a new object instance </li>
-  <li> <code>super.clone()</code> returns an object of the same type as the one <code>clone()</code> was called on </li>
-  <li> <code>Object.clone()</code> performs a shallow copy of the object's state </li>
+  <li> <code>super.clone()</code> 返回一个新的对象实例 </li>
+  <li> <code>super.clone()</code> 返回一个与调用的 <code>clone()</code> 相同类型的对象 </li>
+  <li> <code>Object.clone()</code> 执行对象状态的浅副本（shallow copy） </li>
 </ol>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-class BaseClass {  // Noncompliant; should implement Cloneable
+class BaseClass {  //不合规； 应有 implement Cloneable
   @Override
-  public Object clone() throws CloneNotSupportedException {    // Noncompliant; should return the super.clone() instance
+  public Object clone() throws CloneNotSupportedException {    // 不合规； 应返回 super.clone() 实例
     return new BaseClass();
   }
 }
@@ -33,15 +32,15 @@ class DerivedClass extends BaseClass implements Cloneable {
 class Application {
   public static void main(String[] args) throws Exception {
     DerivedClass instance = new DerivedClass();
-    ((DerivedClass) instance.clone()).sayHello();              // Throws a ClassCastException because invariant #2 is violated
+    ((DerivedClass) instance.clone()).sayHello();              // 抛出 ClassCastException，因为违反了不变量#2
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class BaseClass implements Cloneable {
   @Override
-  public Object clone() throws CloneNotSupportedException {    // Compliant
+  public Object clone() throws CloneNotSupportedException {    // 合规
     return super.clone();
   }
 }
@@ -57,11 +56,11 @@ class DerivedClass extends BaseClass implements Cloneable {
 class Application {
   public static void main(String[] args) throws Exception {
     DerivedClass instance = new DerivedClass();
-    ((DerivedClass) instance.clone()).sayHello();              // Displays "Hello, world!" as expected. Invariant #2 is satisfied
+    ((DerivedClass) instance.clone()).sayHello();              // 显示“Hello，world！” 正如所料。不变量＃2令人满意
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/580.html">MITRE, CWE-580</a> - clone() Method Without super.clone() </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/CQHEAw">CERT, MET53-J.</a> - Ensure that the clone() method calls super.clone() </li>

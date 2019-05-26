@@ -1,12 +1,11 @@
-<p>Failure to password-protect a database is so careless or naive as to be almost negligent. Databases should always be password protected, but the
-use of a database connection with an empty password is a clear indication of a database that is not protected.</p>
-<p>This rule flags database connections with empty passwords.</p>
-<h2>Noncompliant Code Example</h2>
+<p>未能密码保护（password-protect）数据库是如此粗心或幼稚，几乎总是疏忽。数据库应始终受密码保护，但使用带有空密码的数据库连接清楚地表明数据库未受保护。</p>
+<p>此规则标记具有空密码的数据库连接。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Connection conn = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true", "AppLogin", "");
 Connection conn2 = DriverManager.getConnection("jdbc:derby:memory:myDB;create=true?user=user&amp;password=");
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 DriverManager.getConnection("jdbc:derby:memory:myDB;create=true?user=user&amp;password=password");
 
@@ -20,9 +19,8 @@ props.setProperty("user", "fred");
 props.setProperty("password", "secret");
 DriverManager.getConnection(url, props);
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
-  <li> <a href="https://cwe.mitre.org/data/definitions/521.html">MITRE, CWE-521</a> - Weak Password Requirements </li>
   <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
 </ul>
 

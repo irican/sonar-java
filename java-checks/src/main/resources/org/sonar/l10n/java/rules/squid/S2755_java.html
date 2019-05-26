@@ -1,22 +1,17 @@
-<p>Allowing external entities in untrusted documents to be processed could lay your systems bare to attackers. Imagine if these entities were
-parsed:</p>
+<p>允许处理不受信任文档中的外部实体可能会使得系统暴露给攻击者。想象一下，如果对以下实体进行解析：</p>
 <pre>
 &lt;!ENTITY xxe SYSTEM "file:///etc/passwd" &gt;]&gt;&lt;foo&gt;&amp;xxe;&lt;/foo&gt;
 &lt;!ENTITY xxe SYSTEM "http://www.attacker.com/text.txt" &gt;]&gt;&lt;foo&gt;&amp;xxe;&lt;/foo&gt;
 </pre>
-<p>If you must parse untrusted XML, the best way to protect yourself is to use a local, static DTD during parsing and igore any DTD's included in
-included in the document.</p>
-<p>This rule raises an issue when any of the following are used without first disabling external entity processing:
-<code>javax.xml.validation.Validator</code>, JAXP's <code>DocumentBuilderFactory</code>, <code>SAXParserFactory</code>, Xerces 1 and Xerces 2 StAX's
-<code>XMLInputFactory</code> and <code>XMLReaderFactory</code>.</p>
-<p>To disable external entity processing for <code>XMLInputFactory</code>, configure one of the properties
-<code>XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES</code> or <code>XMLInputFactory.SUPPORT_DTD</code> to false.</p>
-<p>To disable external entity processing for <code>SAXParserFactory</code>, <code>XMLReader</code> or <code>DocumentBuilderFactory</code> configure
-one of the features <code>XMLConstants.FEATURE_SECURE_PROCESSING</code> or <code>"http://apache.org/xml/features/disallow-doctype-decl"</code> to
-true.</p>
-<p>To disable external entity processing for <code>Validator</code>, configure both properties <code>XMLConstants.ACCESS_EXTERNAL_DTD</code>,
-<code>XMLConstants.ACCESS_EXTERNAL_SCHEMA</code> to the empty string <code>""</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果必须解析不受信任的XML，保护自己的最佳方法是在解析期间使用本地静态DTD，忽略文档中包含的所有DTD。</p>
+<p>当使用下列任何一项而不首先禁用外部实体处理时，此规则会引发问题:
+<code>javax.xml.validation.Validator</code>，JAXP的<code>DocumentBuilderFactory</code>，<code>SAXParserFactory</code>，Xerces 1 和 Xerces 2 StAX的
+<code>XMLInputFactory</code> 和 <code>XMLReaderFactory</code>。</p>
+<p>要禁用 <code>XMLInputFactory</code>的外部实体处理，请将其中一个属性<code>XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES</code> 或 <code>XMLInputFactory.SUPPORT_DTD</code> 配置为 false。</p>
+<p>要禁用<code>SAXParserFactory</code>的外部实体处理，<code>XMLReader</code> 或 <code>DocumentBuilderFactory</code> 配置一个属性 <code>XMLConstants.FEATURE_SECURE_PROCESSING</code> 
+或 <code>"http://apache.org/xml/features/disallow-doctype-decl"</code> 为true。</p>
+<p>要禁用 <code>Validator</code> 的外部实体处理，请将两个属性 <code>XMLConstants.ACCESS_EXTERNAL_DTD</code>，<code>XMLConstants.ACCESS_EXTERNAL_SCHEMA</code> 配置为空字符串" <code>""</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 /* Load XML stream and display content */
 String maliciousSample = "xxe.xml";
@@ -24,28 +19,29 @@ XMLInputFactory factory = XMLInputFactory.newInstance();
 
 try (FileInputStream fis = new FileInputStream(malicousSample)) {
   // Load XML stream
-  XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(fis);  // Noncompliant; reader is vulnerable
+  XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(fis);  // 不合规；读者都崩溃了
 
   //...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-/* Load XML stream and display content */
+/* 加载XML流并显示内容 */
 String maliciousSample = "xxe.xml";
 XMLInputFactory factory = XMLInputFactory.newInstance();
 
-// disable external entities
+//禁用外部实体
 factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, Boolean.FALSE);
 factory.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.FALSE);
 
 try (FileInputStream fis = new FileInputStream(malicousSample)) {
-    // Load XML stream
+    // 加载XML流
     XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(fis);
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/611.html">MITRE, CWE-611</a> - Information Exposure Through XML External Entity Reference </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/827.html">MITRE, CWE-827</a> - Improper Control of Document Type Definition </li>
+  <li> OWASP Top 10 2017 Category A1 - Injection </li>
   <li> OWASP Top 10 2017 Category A4 - XML External Entities (XXE) </li>
   <li> <a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet">OWASP XXE Prevention Cheat Sheet</a> </li>
   <li> Derived from FindSecBugs rule <a href="https://find-sec-bugs.github.io/bugs.htm#XXE_XMLSTREAMREADER">XXE_XMLSTREAMREADER</a> </li>

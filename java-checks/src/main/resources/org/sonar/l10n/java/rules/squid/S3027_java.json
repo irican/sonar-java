@@ -1,5 +1,5 @@
 {
-  "title": "String function use should be optimized for single characters",
+  "title": "字符串函数的使用应该优化为单个字符",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

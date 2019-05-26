@@ -1,9 +1,7 @@
-<p>There is no reason to have a <code>main</code> method in a web application. It may have been useful for debugging during application development,
-but such a method should never make it into production. Having a <code>main</code> method in a web application opens a door to the application logic
-that an attacker may never be able to reach (but watch out if one does!), but it is a sloppy practice and indicates that other problems may be
-present.</p>
-<p>This rule raises an issue when a <code>main</code> method is found in a servlet or an EJB.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在web应用程序中没有理由使用<code>main</code> 方法。它可能对应用程序开发期间的调试很有用，但是这种方法不应该投入生产。
+在web应用程序中使用<code>main</code> 方法打开了一扇通往应用程序逻辑的大门，攻击者可能永远无法触及该逻辑(但是要注意如果攻击者触及了该逻辑)，但是这是一种草率的做法，并表明可能存在其他问题。</p>
+<p>当在servlet或EJB中发现<code>main</code>方法时，该规则会引发一个问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyServlet extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -12,12 +10,12 @@ public class MyServlet extends HttpServlet {
     }
   }
 
-  public static void main(String[] args) { // Noncompliant
+  public static void main(String[] args) { // 不合规
     updatePrices(req);
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - Leftover Debug Code </li>
   <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>

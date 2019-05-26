@@ -1,25 +1,24 @@
-<p>Overriding the <code>Object.finalize()</code> method must be done with caution to dispose some system resources.</p>
-<p>Calling the <code>super.finalize()</code> at the end of this method implementation is highly recommended in case parent implementations must also
-dispose some system resources.</p>
-<h2>Noncompliant Code Example</h2>
+<p>必须谨慎地重写 <code>Object.finalize()</code> 方法，以处理一些系统资源。</p>
+<p>如果父实现（parent implementations）还必须部署一些系统资源，强烈建议在此方法实现结束时调用 <code>super.finalize()</code> 。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-protected void finalize() {   // Noncompliant; no call to super.finalize();
+protected void finalize() {   // 不合规；没有调用 super.finalize();
   releaseSomeResources();
 }
 
 protected void finalize() {
-  super.finalize();  // Noncompliant; this call should come last
+  super.finalize();  // 不合规；这个调用应放在最后
   releaseSomeResources();
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 protected void finalize() {
   releaseSomeResources();
   super.finalize();
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/568.html">MITRE, CWE-568</a> - finalize() Method Without super.finalize() </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/H4cbAQ">CERT, MET12-J.</a> - Do not use finalizers </li>

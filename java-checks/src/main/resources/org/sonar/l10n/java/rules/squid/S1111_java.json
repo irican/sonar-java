@@ -1,5 +1,5 @@
 {
-  "title": "The Object.finalize() method should not be called",
+  "title": "不应调用 Object.finalize() 方法",
   "type": "BUG",
   "status": "ready",
   "remediation": {

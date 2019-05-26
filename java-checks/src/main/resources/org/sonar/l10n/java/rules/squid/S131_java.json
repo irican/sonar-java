@@ -1,5 +1,5 @@
 {
-  "title": "\"switch\" statements should have \"default\" clauses",
+  "title": "\"switch\" 语句应有 \"default\" 子句",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,7 +8,6 @@
   },
   "tags": [
     "cwe",
-    "based-on-misra",
     "misra",
     "cert"
   ],

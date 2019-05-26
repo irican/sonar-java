@@ -1,5 +1,5 @@
 {
-  "title": "Member variable visibility should be specified",
+  "title": "应指定成员变量可见性",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

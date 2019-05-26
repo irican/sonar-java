@@ -1,5 +1,5 @@
 {
-  "title": "Assertions should be complete",
+  "title": "断言应该是完整的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

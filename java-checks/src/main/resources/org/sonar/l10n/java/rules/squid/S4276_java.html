@@ -1,7 +1,6 @@
-<p>The <code>java.util.function</code> package provides a large array of functional interface definitions for use in lambda expressions and method
-references. In general it is recommended to use the more specialised form to avoid auto-boxing. For instance <code>IntFunction&lt;Foo&gt;</code>
-should be preferred over <code>Function&lt;Integer, Foo&gt;</code>.</p>
-<p>This rule raises an issue when any of the following substitution is possible:</p>
+<p>The <code>java.util.function</code> 包提供了大量功能接口定义，供lambda表达式和方法引用使用。通常，建议使用更专业的表单来避免自动装箱。例如<code>IntFunction&lt;Foo&gt;</code>
+应优先于<code>Function&lt;Integer, Foo&gt;</code>.</p>
+<p>当可能进行以下任何替换时，此规则会引发问题：</p>
 <table>
   <tbody>
     <tr>
@@ -142,16 +141,16 @@ should be preferred over <code>Function&lt;Integer, Foo&gt;</code>.</p>
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的解决方案</h2>
 <pre>
-public class Foo implements Supplier&lt;Integer&gt; {  // Noncompliant
+public class Foo implements Supplier&lt;Integer&gt; {  // 不合规的
     @Override
     public Integer get() {
       // ...
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class Foo implements IntSupplier {
 

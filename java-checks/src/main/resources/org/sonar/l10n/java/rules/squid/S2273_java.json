@@ -1,5 +1,5 @@
 {
-  "title": "\"wait\", \"notify\" and \"notifyAll\" should only be called when a lock is obviously held on an object",
+  "title": "应该只在对象明显保持锁定时调用\"wait\", \"notify\" 和 \"notifyAll\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

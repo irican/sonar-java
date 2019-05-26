@@ -1,5 +1,5 @@
 {
-  "title": "Standard functional interfaces should not be redefined",
+  "title": "不应重新定义标准函数接口",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

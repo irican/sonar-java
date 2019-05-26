@@ -1,5 +1,5 @@
 {
-  "title": "Mutable members should not be stored or returned directly",
+  "title": "不应直接存储或返回可变成员",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

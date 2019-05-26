@@ -1,5 +1,5 @@
 {
-  "title": "\"Thread.sleep\" should not be used in tests",
+  "title": "在测试中不应该使用\"Thread.sleep\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

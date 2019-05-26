@@ -1,7 +1,5 @@
-<p>If <code>Thread.sleep(...)</code> is called when the current thread holds a lock, it could lead to performance and scalability issues, or even
-worse to deadlocks because the execution of the thread holding the lock is frozen. It's better to call <code>wait(...)</code> on the monitor object to
-temporarily release the lock and allow other threads to run.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果当前线程持有锁时调用<code>Thread.sleep(...)</code> 则可能导致性能和可伸缩性问题，甚至更糟糕的死锁，因为执行持有锁的线程是冻结。 最好在监视器对象上调用 <code>wait(...)</code> 来临时释放锁并允许其他线程运行。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething(){
   synchronized(monitor) {
@@ -13,7 +11,7 @@ public void doSomething(){
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void doSomething(){
   synchronized(monitor) {
@@ -25,7 +23,7 @@ public void doSomething(){
   ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/FgG7AQ">CERT, LCK09-J.</a> - Do not perform operations that can block while holding a
   lock </li>

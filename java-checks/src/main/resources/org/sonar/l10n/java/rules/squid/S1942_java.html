@@ -1,16 +1,16 @@
-<p>Java's <code>import</code> mechanism allows the use of simple class names. Therefore, using a class' fully qualified name in a file that
-<code>import</code>s the class is redundant and confusing.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Java的 <code>import</code> 机制允许使用简单的类名。因此，在 <code>import</code> 的文件中使用类的完全限定名（fully qualified name）是多余的，
+而且容易混淆。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 import java.util.List;
 import java.sql.Timestamp;
 
 //...
 
-java.util.List&lt;String&gt; myList;  // Noncompliant
-java.sql.Timestamp tStamp; // Noncompliant
+java.util.List&lt;String&gt; myList;  // 不合规
+java.sql.Timestamp tStamp; // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 import java.util.List;
 import java.sql.Timestamp;

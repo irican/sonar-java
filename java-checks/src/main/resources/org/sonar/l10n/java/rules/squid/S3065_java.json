@@ -1,5 +1,5 @@
 {
-  "title": "Min and max used in combination should not always return the same value",
+  "title": "组合使用的min与max方法不应总是返回一样的值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

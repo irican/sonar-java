@@ -1,11 +1,9 @@
-<p>Setting JavaBean properties is security sensitive. Doing it with untrusted values has led in the past to the following vulnerability:</p>
+<p>设置JavaBean属性对安全性敏感。使用不受信任的值执行此操作会导致以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0114">CVE-2014-0114</a> </li>
 </ul>
-<p>JavaBeans can have their properties or nested properties set by population functions. An attacker can leverage this feature to push into the
-JavaBean malicious data that can compromise the software integrity. A typical attack will try to manipulate the ClassLoader and finally execute
-malicious code.</p>
-<p>This rule raises an issue when:</p>
+<p>JavaBeans可以通过填充函数设置其属性或嵌套属性。攻击者可以利用此功能推送可能危及软件完整性的JavaBean恶意数据。典型的攻击会尝试操纵ClassLoader并最终执行恶意代码。</p>
+<p>此规则在以下情况下将会引发问题：</p>
 <ul>
   <li> BeanUtils.populate(...) or BeanUtilsBean.populate(...) from <a href="http://commons.apache.org/proper/commons-beanutils/">Apache Commons
   BeanUtils</a> are called </li>

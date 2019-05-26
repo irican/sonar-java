@@ -1,5 +1,5 @@
 {
-  "title": "Collection.isEmpty() should be used to test for emptiness",
+  "title": "应该用 Collection.isEmpty() 来测试空白",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

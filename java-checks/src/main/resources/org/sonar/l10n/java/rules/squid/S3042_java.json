@@ -1,5 +1,5 @@
 {
-  "title": "\"writeObject\" should not be the only \"synchronized\" code in a class",
+  "title": "\"writeObject\" 不应成为类中唯一的 \"synchronized\" 代码",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,18 +1,17 @@
-<p>When the modulus of a negative number is calculated, the result will either be negative or zero. Thus, comparing the modulus of a variable for
-equality with a positive number (or a negative one) could result in unexpected results. </p>
-<h2>Noncompliant Code Example</h2>
+<p>当计算负数的模数时，结果将为负或零。 因此，比较变量的模数与正数（或负数）相等可能会导致意外结果。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public boolean isOdd(int x) {
-  return x % 2 == 1;  // Noncompliant; if x is an odd negative, x % 2 == -1
+  return x % 2 == 1;  // 不合规的; 如果x是奇数负数,则 x % 2 == -1
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public boolean isOdd(int x) {
   return x % 2 != 0;
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/xAHAAQ">CERT, NUM51-J.</a> - Do not assume that the remainder operator always returns a
   nonnegative result for integral operands </li>

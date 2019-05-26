@@ -1,13 +1,13 @@
-<p><code>java.util.concurrent.ScheduledThreadPoolExecutor</code>'s pool is sized with <code>corePoolSize</code>, so setting <code>corePoolSize</code>
-to zero means the executor will have no threads and run nothing.</p>
-<p>This rule detects instances where <code>corePoolSize</code> is set to zero, via either its setter or the object constructor.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>java.util.concurrent.ScheduledThreadPoolExecutor</code> 的池的大小取决于 <code>corePoolSize</code>，因此将 <code>corePoolSize</code>
+设置为零意味着执行器将没有线程，并且什么也不运行。</p>
+<p>此规则通过其setter或对象构造函数检测 <code>corePoolSize</code> 设置为零的实例。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void do(){
 
-  ScheduledThreadPoolExecutor stpe1 = new ScheduledThreadPoolExecutor(0); // Noncompliant
+  ScheduledThreadPoolExecutor stpe1 = new ScheduledThreadPoolExecutor(0); // 不合规
 
   ScheduledThreadPoolExecutor stpe2 = new ScheduledThreadPoolExecutor(POOL_SIZE);
-  stpe2.setCorePoolSize(0);  // Noncompliant
+  stpe2.setCorePoolSize(0);  // 不合规
 </pre>
 

@@ -1,24 +1,23 @@
-<p>Making a <code>public</code> constant just <code>final</code> as opposed to <code>static final</code> leads to duplicating its value for every
-instance of the class, uselessly increasing the amount of memory required to execute the application.</p>
-<p>Further, when a non-<code>public</code>, <code>final</code> field isn't also <code>static</code>, it implies that different instances can have
-different values. However, initializing a non-<code>static final</code> field in its declaration forces every instance to have the same value. So such
-fields should either be made <code>static</code> or initialized in the constructor.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使 <code>public</code> 常量为 <code>final</code> 而不是 <code>static final</code> 会导致为类的每个实例复制它的值，
+从而毫无用处地增加执行应用程序所需的内存量。</p>
+<p>此外，当非-<code>public</code>， <code>final</code> 字段也不是 <code>static</code>时，它意味着不同的实例可以具有不同的值。
+但是，在其声明中初始化非-<code>static final</code> 段会强制每个实例具有相同的值。因此，这些字段应该是 <code>static</code> 或在构造函数中初始化。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Myclass {
   public final int THRESHOLD = 3;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Myclass {
-  public static final int THRESHOLD = 3;    // Compliant
+  public static final int THRESHOLD = 3;    // 合规
 }
 </pre>
-<h2>Exceptions</h2>
-<p>No issues are reported on final fields of inner classes whose type is not a primitive or a String. Indeed according to the Java specification:</p>
+<h2>例外</h2>
+<p>对于类型不是基本类型或字符串的内部类的final字段，不会报告任何问题。根据Java规范：</p>
 <blockquote>
-  <p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers (§8.7)
-  or member interfaces. Inner classes may not declare static members, unless they are compile-time constant fields (§15.28).</p>
+  <p>内部类是未显式或隐式声明为static的嵌套类。内部类可能不会声明static初始化器 (ยง8.7)或成员接口。
+  内部类可能不会声明static成员，除非它们是编译时常量字段 (ยง15.28)。</p>
 </blockquote>
 

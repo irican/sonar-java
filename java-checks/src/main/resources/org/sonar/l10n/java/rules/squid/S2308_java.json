@@ -1,5 +1,5 @@
 {
-  "title": "\"deleteOnExit\" should not be used",
+  "title": "不应该使用\"deleteOnExit\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,18 +1,17 @@
-<p>The difference between <code>private</code> and <code>protected</code> visibility is that child classes can see and use <code>protected</code>
-members, but they cannot see <code>private</code> ones. Since a <code>final</code> class will have no children, marking the members of a
-<code>final</code> class <code>protected</code> is confusingly pointless.</p>
-<p>Note that the <code>protected</code> members of a class can also be seen and used by other classes that are placed within the same package, this
-could lead to accidental, unintended access to otherwise private members.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>private</code> 和 <code>protected</code> 可见性之间的区别在于，子类可以查看和使用 <code>protected</code>成员，
+但是他们看不到 <code>private</code> 成员。 由于 <code>final</code> 类将没有子类，所以标记一个<code>final</code> 类 <code>protected</code> 
+的成员是没有意义的。</p>
+<p>请注意，类的 <code>protected</code> 成员也可以被放置在同一个包中的其他类看到并使用，这可能导致意外的，无意的访问其他私有成员。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public final class MyFinalClass {
 
-  protected String name = "Fred";  // Noncompliant
-  protected void setName(String name) {  // Noncompliant
+  protected String name = "Fred";  // 不合规
+  protected void setName(String name) {  // 不合规
     // ...
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public final class MyFinalClass {
 
@@ -21,16 +20,15 @@ public final class MyFinalClass {
     // ...
   }
 </pre>
-<h2>Exceptions</h2>
-<p>Members annotated with Guava's <code>@VisibleForTesting</code> annotation are ignored, as it indicates that visibility has been purposely relaxed
-to make the code testable.</p>
+<h2>例外</h2>
+<p>使用Guava的 <code>@VisibleForTesting</code> 注解（annotation）来注解的成员将被忽略，因为它表明已经有意放宽了可见性以使代码可测试。</p>
 <pre>
 public final class MyFinalClass {
   @VisibleForTesting
-  protected Logger logger; // Compliant
+  protected Logger logger; // 合规
 
   @VisibleForTesting
-  protected int calculateSomethingComplex(String input) { // Compliant
+  protected int calculateSomethingComplex(String input) { // 合规
     // ...
   }
 }

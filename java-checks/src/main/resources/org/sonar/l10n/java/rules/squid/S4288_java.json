@@ -1,5 +1,5 @@
 {
-  "title": "Spring components should use constructor injection",
+  "title": "Spring组件应该使用构造函数注入",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

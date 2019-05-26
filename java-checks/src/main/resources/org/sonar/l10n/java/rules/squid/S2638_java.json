@@ -1,5 +1,5 @@
 {
-  "title": "Method overrides should not change contracts",
+  "title": "方法重写不应更改契约",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

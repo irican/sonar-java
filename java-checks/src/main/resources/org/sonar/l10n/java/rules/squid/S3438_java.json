@@ -1,5 +1,5 @@
 {
-  "title": "\"SingleConnectionFactory\" instances should be set to \"reconnectOnException\"",
+  "title": "\"SingleConnectionFactory \"实例应设置为“reconnectOnException”",
   "type": "BUG",
   "status": "ready",
   "remediation": {

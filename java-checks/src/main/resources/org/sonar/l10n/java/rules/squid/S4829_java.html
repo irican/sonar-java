@@ -1,30 +1,29 @@
-<p>Reading Standard Input is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>阅读标准输入是安全敏感的。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-2337">CVE-2005-2337</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11449">CVE-2017-11449</a> </li>
 </ul>
-<p>It is common for attackers to craft inputs enabling them to exploit software vulnerabilities. Thus any data read from the standard input (stdin)
-can be dangerous and should be validated.</p>
-<p>This rule flags code that reads from the standard input.</p>
-<h2>Ask Yourself Whether</h2>
+<p>攻击者通常会制作输入，使他们能够利用软件漏洞。因此，从标准输入（stdin）读取的任何数据都可能是危险的，应该进行验证。</p>
+<p>此规则标记从标准输入读取的代码。</p>
+<h2>问自己是否...</h2>
 <ul>
-  <li> data read from the standard input is not sanitized before being used. </li>
+  <li> 从标准输入读取的数据在使用之前不会被清理。</li>
 </ul>
-<p>You are at risk if you answered yes to this question.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p><a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> all data read from the standard input before using it.</p>
-<h2>Questionable Code Example</h2>
+<p>如果您对此问题的回答是肯定的，则存在风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p><a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize（净化）</a>使用前从标准输入读取的所有数据。</p>
+<h2>可疑的代码示例</h2>
 <pre>
 class A {
     void foo(String fmt, Object args) throws Exception {
-        // Questionable. Check how the standard input is used.
+        //  可疑的。检查标准输入的使用方式。
         System.in.read();
 
-        // Questionable. Check how safe this new InputStream is.
+        // 可疑的。检查这个新InputStream的安全性。
         System.setIn(new java.io.FileInputStream("test.txt"));
 
         java.io.Console console = System.console();
-        // Questionable. All the following calls should be reviewed as they use the standard input.
+        //可疑的。在使用标准输入时，应检查以下所有呼叫。
         console.reader();
         console.readLine();
         console.readLine(fmt, args);
@@ -33,12 +32,11 @@ class A {
     }
 }
 </pre>
-<h2>Exceptions</h2>
-<p>All references to <code>System.in</code> will create issues except direct calls to <code>System.in.close()</code>.</p>
-<p>Command line parsing libraries such as JCommander often read standard input when asked for passwords. However this rule doesn't raise any issue in
-this case as another hotspot rule covers command line arguments.</p>
-<h2>See:</h2>
+<h2>例外</h2>
+<p>对<code> System.in </code>的所有引用都会产生问题，除了直接调用<code> System.in.close（）</code>.</p>
+<p>命令行解析库（如JCommander）在询问密码时经常读取标准输入。但是，在这种情况下，此规则不会引发任何问题，因为另一个热点规则涵盖了命令行参数。</p>
+<h2>请详见：</h2>
 <ul>
-  <li> <a href="https://cwe.mitre.org/data/definitions/20.html">MITRE, CWE-20</a> - Improper Input Validation </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/20.html">MITRE, CWE-20</a> - 错误的输入验证 </li>
 </ul>
 

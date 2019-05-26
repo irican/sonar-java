@@ -1,27 +1,26 @@
-<p>Creating a new <code>Random</code> object each time a random value is needed is inefficient and may produce numbers which are not random depending
-on the JDK. For better efficiency and randomness, create a single <code>Random</code>, then store, and reuse it.</p>
-<p>The <code>Random()</code> constructor tries to set the seed with a distinct value every time. However there is no guarantee that the seed will be
-random or even uniformly distributed. Some JDK will use the current time as seed, which makes the generated numbers not random at all.</p>
-<p>This rule finds cases where a new <code>Random</code> is created each time a method is invoked and assigned to a local random variable.</p>
-<h2>Noncompliant Code Example</h2>
+<p>每次需要随机值时，创建一个新的 <code>Random</code> 对象是低效的，并且可能产生非随机的数字，具体取决于JDK。 为了更好的效率和随机性，
+创建一个 <code>Random</code>，然后存储并重用它。</p>
+<p>构造函数 <code>Random()</code> 每次都尝试用不同的值设置种子。然而，并不能保证种子是随机的，甚至是均匀分布的。一些JDK将使用当前时间作为种子，
+这使得生成的数字完全不是随机的。</p>
+<p>此规则查找每次调用方法并将其分配给本地随机变量时都会创建新的 <code>Random</code> 的情况。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomethingCommon() {
-  Random rand = new Random();  // Noncompliant; new instance created with each invocation
+  Random rand = new Random();  // 不合规； 每次调用（invocation）时创建的新实例
   int rValue = rand.nextInt();
   //...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-private Random rand = SecureRandom.getInstanceStrong();  // SecureRandom is preferred to Random
+private Random rand = SecureRandom.getInstanceStrong();  // SecureRandom比Random更受欢迎
 
 public void doSomethingCommon() {
   int rValue = this.rand.nextInt();
   //...
 </pre>
-<h2>Exceptions</h2>
-<p>A class which uses a <code>Random</code> in its constructor or in a static <code>main</code> function and nowhere else will be ignored by this
-rule.</p>
-<h2>See</h2>
+<h2>例外</h2>
+<p>此规则将忽略在其构造函数或静态 <code>main</code> 函数中使用 <code>Random</code> 而不在其他地方使用的类。</p>
+<h2>请参阅</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>
 </ul>

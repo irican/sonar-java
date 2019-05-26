@@ -1,5 +1,5 @@
 {
-  "title": "Lambdas should be replaced with method references",
+  "title": "应该用方法引用替换Lambdas",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

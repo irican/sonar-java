@@ -1,5 +1,5 @@
 {
-  "title": "Multiple loops over the same set should be combined",
+  "title": "对同一组数据的多次循环应予以整合",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

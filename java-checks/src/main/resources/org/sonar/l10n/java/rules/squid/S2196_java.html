@@ -1,9 +1,8 @@
-<p>Since Java 7, <code>String</code>s can be used as <code>switch</code> arguments. So when a single <code>String</code> is tested against three or
-more values in an <code>if</code>/<code>else if</code> structure, it should be converted to a switch instead for greater readability.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>7</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>从Java 7开始， <code>String</code>可以用作 <code>switch</code> 参数。因此，当 <code>if</code>/<code>else if</code> 结构中的 <code>String</code> 针对三个或更多值进行测试时，应将其转换为 switch 以提高可读性。</p>
+<p><strong>注意</strong>当项目的 <code>sonar.java.source</code> 低于 <code>7</code> 时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-if ("red".equals(choice)) {  // Noncompliant
+if ("red".equals(choice)) {  // 不合规
   dispenseRed();
 } else if ("blue".equals(choice)) {
   dispenseBlue();
@@ -13,7 +12,7 @@ if ("red".equals(choice)) {  // Noncompliant
   promptUser();
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 switch(choice) {
   case "Red":

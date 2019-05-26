@@ -1,5 +1,5 @@
 {
-  "title": "Non-constructor methods should not have the same name as the enclosing class",
+  "title": "非构造函数方法不应该具有与所包含类相同的名称",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

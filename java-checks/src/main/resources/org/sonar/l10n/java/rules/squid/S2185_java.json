@@ -1,5 +1,5 @@
 {
-  "title": "Silly math should not be performed",
+  "title": "不应该做愚蠢的数学运算",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

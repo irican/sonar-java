@@ -1,22 +1,22 @@
-<p>Early classes of the Java API, such as <code>Vector</code>, <code>Hashtable</code> and <code>StringBuffer</code>, were synchronized to make them
-thread-safe. Unfortunately, synchronization has a big negative impact on performance, even when using these collections from a single thread.</p>
-<p>It is better to use their new unsynchronized replacements:</p>
+<p>Java API的早期类，比如 <code>Vector</code>， <code>Hashtable</code> 和 <code>StringBuffer</code>，已经过同步以使它们具有线程安全性（thread-safe）。
+但不幸的是，即使从单个线程使用这些集合，同步（synchronization）也会对性能产生很大的负面影响。</p>
+<p>最好使用新的非同步替换（unsynchronized replacements）：</p>
 <ul>
-  <li> <code>ArrayList</code> or <code>LinkedList</code> instead of <code>Vector</code> </li>
-  <li> <code>Deque</code> instead of <code>Stack</code> </li>
-  <li> <code>HashMap</code> instead of <code>Hashtable</code> </li>
-  <li> <code>StringBuilder</code> instead of <code>StringBuffer</code> </li>
+  <li> 使用 <code>ArrayList</code> 或 <code>LinkedList</code> 而不是 <code>Vector</code> </li>
+  <li> 使用<code>Deque</code> 而不是 <code>Stack</code> </li>
+  <li> 使用<code>HashMap</code> 而不是 <code>Hashtable</code> </li>
+  <li> 使用<code>StringBuilder</code> 而不是 <code>StringBuffer</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 Vector cats = new Vector();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 ArrayList cats = new ArrayList();
 </pre>
-<h2>Exceptions</h2>
-<p>Use of those synchronized classes is ignored in the signatures of overriding methods.</p>
+<h2>例外</h2>
+<p>在重写方法（overriding method）的签名中忽略这些同步类的使用。</p>
 <pre>
 @Override
 public Vector getCats() {...}

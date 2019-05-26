@@ -1,13 +1,9 @@
-<p>Storing users' passwords in clear-text in a database is definitely not safe as hackers may have read access to all user accounts stored in the
-database. It's common then to hash passwords and only store these hashes in the database. When running the authentication process, the hash of the
-password provided by the user is compared to the hash stored in the database. If both matches, the access is granted. </p>
-<p>This looks like a perfect solution but some algorithms such as MD5 and its successor, SHA-1, are no longer considered secure, because it is too
-easy to create hash collisions with them.</p>
-<p>That is, it takes too little computational effort to come up with a different input that produces the same MD5 or SHA-1 hash, and using the new,
-same-hash value gives an attacker the same access as if he had the originally-hashed value. This applies as well to the other Message-Digest
-algorithms: MD2, MD4, MD6, HAVAL-128, HMAC-MD5, DSA (which uses SHA-1), RIPEMD, RIPEMD-128, RIPEMD-160, HMACRIPEMD160.</p>
-<p>For this reason, when <code>PasswordEncoder</code> is used to authenticate user in a Spring application, it should use a secure algorithm. The
-following algorithms are considered not safe and should not be used:</p>
+<p>在数据库中以明文形式存储用户密码绝对不安全，因为黑客可能对存储在数据库中的所有用户帐户具有读取权限。通常，哈希密码只会在数据库中存储这些哈希值。
+运行身份验证过程时，会将用户提供的密码的哈希值与存储在数据库中的哈希值进行比较。如果两者都匹配，则授予访问权限。 </p>
+<p>这看起来是一个完美的解决方案，但是一些算法（如MD5及其后续版本SHA-1）不再被认为是安全的，因为它太容易与它们产生哈希碰撞。</p>
+<p>也就是说，生成相同的MD5或SHA-1散列的不同输入只需要很少的计算工作，使用新的、相同的散列值使攻击者具有与原始散列值相同的访问权限。
+这也适用于其他消息摘要算法:MD2、MD4、MD6、HAVAL-128、HMAC-MD5、DSA(使用SHA-1)、RIPEMD、RIPEMD-128、RIPEMD-160、HMACRIPEMD160。</p>
+<p>因此，当使用 <code>PasswordEncoder</code> 在Spring应用程序中对用户进行身份验证时，它应该使用安全算法。以下算法被认为是不安全的，不应使用：</p>
 <ul>
   <li> <code>org.springframework.security.authentication.encoding.ShaPasswordEncoder</code> (Spring Security 4.2.x) </li>
   <li> <code>org.springframework.security.authentication.encoding.Md5PasswordEncoder</code> (Spring Security 4.2.x) </li>
@@ -18,27 +14,27 @@ following algorithms are considered not safe and should not be used:</p>
   <li> <code>org.springframework.security.crypto.password.StandardPasswordEncoder</code> (Spring Security 5.0.x) </li>
   <li> <code>org.springframework.security.crypto.scrypt.SCryptPasswordEncoder</code> (Spring Security 5.0.x) </li>
 </ul>
-<p>Consider using safer alternatives, such as <code>org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder</code> (preferred) or
-<code>org.springframework.security.crypto.password.Pbkdf2PasswordEncoder</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>考虑使用更安全的替代方案，例如 <code>org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder</code> （首选）或
+<code>org.springframework.security.crypto.password.Pbkdf2PasswordEncoder</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT * FROM users WHERE username = ?")
-                .passwordEncoder(new StandardPasswordEncoder()); // Noncompliant
+                .passwordEncoder(new StandardPasswordEncoder()); // 不合规
         // OR
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("SELECT * FROM users WHERE username = ?"); // Noncompliant; default uses plain-text
+                .usersByUsernameQuery("SELECT * FROM users WHERE username = ?"); // 不合规； 默认使用纯文本
         // OR
-        auth.userDetailsService(...); // Noncompliant; default uses plain-text
+        auth.userDetailsService(...); // 不合规； 默认使用纯文本
         // OR
-        auth.userDetailsService(...).passwordEncoder(new StandardPasswordEncoder()); // Noncompliant
+        auth.userDetailsService(...).passwordEncoder(new StandardPasswordEncoder()); // 不合规
     }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
@@ -50,7 +46,7 @@ following algorithms are considered not safe and should not be used:</p>
         auth.userDetailsService(null).passwordEncoder(new BCryptPasswordEncoder());
     }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A2-Broken_Authentication">OWASP Top 10 2017 Category A2</a> - Broken Authentication </li>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A6-Security_Misconfiguration">OWASP Top 10 2017 Category A6</a> - Security

@@ -1,12 +1,8 @@
-<p>There are two classes in the Java standard library that deal with iterations: <code>Iterable&lt;T&gt;</code> and <code>Iterator&lt;T&gt;</code>. An
-<code>Iterable&lt;T&gt;</code> represents a data structure that can be the target of the "for-each loop" statement, and an
-<code>Iterator&lt;T&gt;</code> represents the state of an ongoing traversal. An <code>Iterable&lt;T&gt;</code> is generally expected to support
-multiple traversals.</p>
-<p>An <code>Iterator&lt;T&gt;</code> that also implements <code>Iterable&lt;t&gt;</code> by returning itself as its <code>iterator()</code> will not
-support multiple traversals since its state will be carried over.</p>
-<p>This rule raises an issue when the <code>iterator()</code> method of a class implementing both <code>Iterable&lt;T&gt;</code> and
-<code>Iterator&lt;t&gt;</code> returns <code>this</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Java标准库中有两个类处理迭代：<code> Iterable＆lt; T＆gt; </code>和<code> Iterator＆lt; T＆gt; </code>。 <code> Iterable＆lt; T＆gt; </code>表示可以作为“for-each loop”语句的目标的数据结构，<code> Iterator＆lt; T＆gt; </code>表示正在进行的状态遍历。通常希望<code> Iterable＆lt; T＆gt; </code>支持多次遍历。</p>
+<p> <code> Iterator＆lt; T＆gt; </code>，它还通过返回自身来实现<code> Iterable＆lt; t＆gt; </code>，因为它的<code> iterator（）</ code>将不支持多次遍历它的状态将被延续。</p>
+<p> <code> Iterator＆lt; T＆gt; </code>，它还通过返回自身来实现<code> Iterable＆lt; t＆gt; </code>，因为它的<code> iterator（）</ code>将不支持多次遍历它的状态将被延续。</p>
+<p>当实现<code> Iterable＆lt; T＆gt; </code>和<code> Iterator＆lt; t＆gt; </code>的类的<code> iterator（）</code>方法返回时，此规则引发了一个问题<code>this</code> </p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class FooIterator implements Iterator&lt;Foo&gt;, Iterable&lt;Foo&gt; {
   private Foo[] seq;
@@ -21,12 +17,12 @@ class FooIterator implements Iterator&lt;Foo&gt;, Iterable&lt;Foo&gt; {
   }
 
   public Iterator&lt;Foo&gt; iterator() {
-    return this; // Noncompliant
+    return this; // 不合规的解决方案
   }
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class FooSequence implements Iterable&lt;Foo&gt; {
   private Foo[] seq;

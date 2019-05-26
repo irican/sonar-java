@@ -1,21 +1,19 @@
-<p>According to its JavaDocs, <code>java.util.Stream.peek()</code> “exists mainly to support debugging” purposes. Although this does not mean that
-using it for other purposes is discouraged, relying on <code>peek()</code> without careful consideration can lead to error-prone code such as:</p>
+<p>根据其JavaDocs，<code> java.util.Stream.peek（）</code>“主要用于支持调试”的目的。虽然这并不意味着
+不鼓励将其用于其他目的，依赖<code> peek（）</code>而不经过仔细考虑会导致容易出错的代码，例如：</p>
 <ul>
-  <li> If the stream pipeline does not include a terminal operation, no elements will be consumed and the <code>peek()</code> action will not be
-  invoked at all. </li>
-  <li> As long as a stream implementation can reach the final step, it can freely optimize processing by only producing some elements or even none at
-  all (e.g. relying on other collection methods for counting elements). Accordingly, the <code>peek()</code> action will be invoked for fewer elements
-  or not at all. </li>
+  <li> 如果流管道不包含终端操作，则不会消耗任何元素，并且<code> peek（）</code>操作将不会
+  完全被引用。 </li>
+  <li> 只要流实现可以到达最后一步，它就可以通过仅生成一些元素甚至根本不生成一些元素来自由地优化处理（例如，依赖于其他集合方法来计算元素）。因此，<code> peek（）</code>操作将针对更少的元素调用或根本不调用。 </li>
 </ul>
-<p>This rule raises an issue for each use of <code>peek()</code> to be sure that it is challenged and validated by the team to be meant for production
-debugging/logging purposes.</p>
-<h2>Noncompliant Code Example</h2>
+<p>此规则针对<code> peek（）</code>的每次使用提出了一个问题，以确保团队对其进行质疑和验证以用于生产
+调试/记录目的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Stream.of("one", "two", "three", "four")
          .filter(e -&gt; e.length() &gt; 3)
-         .peek(e -&gt; System.out.println("Filtered value: " + e)); // Noncompliant
+         .peek(e -&gt; System.out.println("Filtered value: " + e)); // 不合规的
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#peek-java.util.function.Consumer-">Java 8 API Documentation</a>
   </li>

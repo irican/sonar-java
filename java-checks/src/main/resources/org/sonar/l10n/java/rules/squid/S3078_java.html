@@ -1,21 +1,20 @@
-<p>Using compound operators as well as increments and decrements (and toggling, in the case of <code>boolean</code>s) on primitive fields are not
-atomic operations. That is, they don't happen in a single step. For instance, when a <code>volatile</code> primitive field is incremented or
-decremented you run the risk of data loss if threads interleave in the steps of the update. Instead, use a guaranteed-atomic class such as
-<code>AtomicInteger</code>, or synchronize the access.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对原始字段使用复合运算符以及递增递减运算（还有布尔值的切换，这是对于 <code>boolean</code> 类型而言的）并不是原子操作。也就
+是说，它们不会一步步地进行。举例来说，当一个 <code>volatile</code> 的原始字段递增或递减时，如果有线程在它更新的过程中插入，此时
+是存在着数据丢失的风险的。因此，应使用一个保证原子的类例如 <code>AtomicInteger</code>，或者进行同步访问。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private volatile int count = 0;
 private volatile boolean boo = false;
 
 public void incrementCount() {
-  count++;  // Noncompliant
+  count++;  // 不合规
 }
 
 public void toggleBoo(){
-  boo = !boo;  // Noncompliant
+  boo = !boo;  // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private AtomicInteger count = 0;
 private boolean boo = false;
@@ -28,7 +27,7 @@ public synchronized void toggleBoo() {
   boo = !boo;
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/RIFJAg">CERT, VNA02-J.</a> - Ensure that compound operations on shared variables are
   atomic </li>

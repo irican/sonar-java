@@ -1,5 +1,5 @@
 {
-  "title": "Catches should be combined",
+  "title": "Catche块应合并",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

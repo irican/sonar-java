@@ -1,5 +1,5 @@
 {
-  "title": "Class variable fields should not have public accessibility",
+  "title": "类变量字段不应具有公共（public）可访问性",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

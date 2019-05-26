@@ -1,5 +1,5 @@
 {
-  "title": "Static fields should not be updated in constructors",
+  "title": "静态字段不应该在构造函数中更新",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

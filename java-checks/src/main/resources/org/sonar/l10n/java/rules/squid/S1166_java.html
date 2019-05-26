@@ -1,53 +1,51 @@
-<p>When handling a caught exception, the original exception's message and stack trace should be logged or passed forward.</p>
-<h2>Noncompliant Code Example</h2>
+<p>处理捕获的异常时，应记录或传递原始异常的消息和堆栈跟踪。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 try {
   /* ... */
-} catch (Exception e) {   // Noncompliant - exception is lost
+} catch (Exception e) {   // 不合规 - 异常丢失
   LOGGER.info("context");
 }
 
 try {
   /* ... */
-} catch (Exception e) {  // Noncompliant - exception is lost (only message is preserved)
+} catch (Exception e) {  // 不合规 - 异常丢失（仅保留消息）
   LOGGER.info(e.getMessage());
 }
 
 try {
   /* ... */
-} catch (Exception e) {  // Noncompliant - original exception is lost
+} catch (Exception e) {  // 不合规 - 原始异常丢失
   throw new RuntimeException("context");
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 try {
   /* ... */
 } catch (Exception e) {
-  LOGGER.info(e);  // exception is logged
+  LOGGER.info(e);  // 异常被记录
 }
 
 try {
   /* ... */
 } catch (Exception e) {
-  throw new RuntimeException(e);   // exception stack trace is propagated
+  throw new RuntimeException(e);   // 传播异常堆栈跟踪
 }
 
 try {
   /* ... */
 } catch (RuntimeException e) {
   doSomething();
-  throw e;  // original exception passed forward
+  throw e;  // 原始异常传递
 } catch (Exception e) {
-  throw new RuntimeException(e);  // Conversion into unchecked exception is also allowed
+  throw new RuntimeException(e);  // 也允许转换为未检查的异常
 }
 </pre>
-<h2>Exceptions</h2>
-<p><code>InterruptedException</code>, <code>NumberFormatException</code>, <code>DateTimeParseException</code>, <code>ParseException</code> and
-<code>MalformedURLException</code> exceptions are arguably used to indicate nonexceptional outcomes. Similarly, handling
-<code>NoSuchMethodException</code> is often required when dealing with the Java reflection API.</p>
-<p>Because they are part of Java, developers have no choice but to deal with them. This rule does not verify that those particular exceptions are
-correctly handled.</p>
+<h2>例外</h2>
+<p><code>InterruptedException</code>， <code>NumberFormatException</code>， <code>DateTimeParseException</code>， <code>ParseException</code> 和
+<code>MalformedURLException</code> 等异常可以用来表示非异常结果。类似地，在处理Java反射API时，常常需要处理 <code>NoSuchMethodException</code> 。</p>
+<p>因为它们是Java的一部分，开发人员别无选择，只能处理它们。此规则不验证是否正确处理了这些特定异常。</p>
 <pre>
 int myInteger;
 try {
@@ -57,8 +55,7 @@ try {
   myInteger = 0;
 }
 </pre>
-<p>Furthermore, no issue will be raised if the exception message is logged with additional information, as it shows that the developer added some
-context to the error message.</p>
+<p>此外，如果使用附加信息记录异常消息，则不会报告任何问题，因为它表明开发人员向错误消息添加了一些上下文。</p>
 <pre>
 try {
   /* ... */
@@ -67,7 +64,7 @@ try {
   LOGGER.warn(message); // Compliant - exception message logged with some contextual information
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/6gEqAQ">CERT, ERR00-J.</a> - Do not suppress or ignore checked exceptions </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/778.html">MITRE, CWE-778</a> - Insufficient Logging </li>

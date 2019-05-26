@@ -1,5 +1,5 @@
 {
-  "title": "Map values should not be replaced unconditionally",
+  "title": "不应无条件地替换地图值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

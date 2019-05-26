@@ -1,5 +1,5 @@
 {
-  "title": "Math operands should be cast before assignment",
+  "title": "数学操作数应在赋值之前进行强制转换",
   "type": "BUG",
   "status": "ready",
   "remediation": {
@@ -9,7 +9,6 @@
   "tags": [
     "cwe",
     "overflow",
-    "based-on-misra",
     "sans-top25-risky",
     "misra",
     "cert"

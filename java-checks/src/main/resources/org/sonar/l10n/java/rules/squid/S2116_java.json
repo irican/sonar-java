@@ -1,5 +1,5 @@
 {
-  "title": "\"hashCode\" and \"toString\" should not be called on array instances",
+  "title": "不应在数组实例上调用 \"hashCode\" 和 \"toString\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,17 +1,15 @@
-<p>It is possible for a call to <code>hashCode</code> to return <code>Integer.MIN_VALUE</code>. Take the absolute value of such a hashcode and you'll
-still have a negative number. Since your code is likely to assume that it's a positive value instead, your results will be unreliable.</p>
-<p>Similarly, <code>Integer.MIN_VALUE</code> could be returned from <code>Random.nextInt()</code> or any object's <code>compareTo</code> method, and
-<code>Long.MIN_VALUE</code> could be returned from <code>Random.nextLong()</code>. Calling <code>Math.abs</code> on values returned from these methods
-is similarly ill-advised.</p>
-<h2>Noncompliant Code Example</h2>
+<p>调用<code>hashCode</code> 可以返回 <code>Integer.MIN_VALUE</code>。取这样一个hashcode的绝对值，仍然会得到一个负数。因为你的代码可能会假设它是一个正值，所以结果将是不可靠的。</p>
+<p>类似地，<code>Integer.MIN_VALUE</code>可以从<code>Random.nextInt()</code> 或任何对象的<code>compareTo</code>方法，<code>Long.MIN_VALUE</code> 可以从 <code>Random.nextLong()</code>返回。
+从这些方法返回的值调用<code>Math.abs</code>也是不明智的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething(String str) {
-  if (Math.abs(str.hashCode()) &gt; 0) { // Noncompliant
+  if (Math.abs(str.hashCode()) &gt; 0) { // 不合规
     // ...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething(String str) {
   if (str.hashCode() != 0) {

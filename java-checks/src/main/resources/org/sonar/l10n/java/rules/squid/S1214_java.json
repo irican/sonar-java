@@ -1,5 +1,5 @@
 {
-  "title": "Constants should not be defined in interfaces",
+  "title": "不应在接口中定义常量",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

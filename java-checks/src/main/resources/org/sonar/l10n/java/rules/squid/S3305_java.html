@@ -1,13 +1,12 @@
-<p>When <code>@Autowired</code> is used, dependencies need to be resolved when the class is instantiated, which may cause early initialization of
-beans or lead the context to look in places it shouldn't to find the bean. To avoid this tricky issue and optimize the way the context loads,
-dependencies should be requested as late as possible. That means using parameter injection instead of field injection for dependencies that are only
-used in a single <code>@Bean</code> method.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>@Autowired</code> 时，需要在类的实例化时解决依赖项，而这可能会导致bean的过早初始化，或者导致上下文去查看它不应该
+查找bean的地方。为了避免这个棘手的问题，以优化加载上下文的方式，应尽可能晚地请求依赖项。这意味着对于仅用在单个 <code>@Bean</code> 
+方法的依赖项使用参数注入而不是字段注入。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @Configuration
 public class ​FooConfiguration {
 
-  @Autowired private ​DataSource dataSource​;  // Noncompliant
+  @Autowired private ​DataSource dataSource​;  // 不合规
 
   @Bean
   public ​MyService myService() {
@@ -15,7 +14,7 @@ public class ​FooConfiguration {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Configuration
 public class ​FooConfiguration {
@@ -26,7 +25,6 @@ public class ​FooConfiguration {
   }
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Fields used in methods that are called directly by other methods in the application (as opposed to being invoked automatically by the Spring
-framework) are ignored by this rule so that direct callers don't have to provide the dependencies themselves.</p>
+<h2>例外</h2>
+<p>应用程序中，被其他方法直接调用的方法中的字段（而不是由Spring框架自动调用）被此规则忽略，这样那些直接调用者就不必自己提供依赖项。</p>
 

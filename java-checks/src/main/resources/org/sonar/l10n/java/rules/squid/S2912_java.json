@@ -1,5 +1,5 @@
 {
-  "title": "\"indexOf\" checks should use a start position",
+  "title": "\"indexOf\"检查应该使用起始位置",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,20 +1,19 @@
-<p>Clear, communicative naming is important in code. It helps maintainers and API users understand the intentions for and uses of a unit of code.
-Using "exception" in the name of a class that does not extend <code>Exception</code> or one of its subclasses is a clear violation of the expectation
-that a class' name will indicate what it is and/or does.</p>
-<h2>Noncompliant Code Example</h2>
+<p>清晰，沟通性的命名在代码中很重要。它可以帮助维护者和API用户理解代码单元的意图和使用。在不扩展 
+<code>Exception</code> 或其子类之一的类的名称中使用“exception”明显违反了类的名称将指示它是什么和/或做什么的期望。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class FruitException {  // Noncompliant; this has nothing to do with Exception
+public class FruitException {  // 不合规； 这与 Exception 无关
   private Fruit expected;
   private String unusualCharacteristics;
   private boolean appropriateForCommercialExploitation;
   // ...
 }
 
-public class CarException {  // Noncompliant; the extends clause was forgotten?
+public class CarException {  // 不合规； extends子句被遗忘了吗？
   public CarException(String message, Throwable cause) {
   // ...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class FruitSport {
   private Fruit expected;

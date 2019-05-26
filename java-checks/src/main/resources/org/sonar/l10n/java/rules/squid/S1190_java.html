@@ -1,6 +1,5 @@
-<p>Through Java's evolution keywords have been added. While code that uses those words as identifiers may be compilable under older versions of Java,
-it will not be under modern versions. </p>
-<p>Following keywords are marked as invalid identifiers </p>
+<p>添加了一些 Java更新的关键字。 虽然使用这些单词作为标识符的代码可以在旧版本的Java下编译，但在现代版本下就不能编译了。 </p>
+<p>以下关键字被标记为无效标识符 </p>
 <table>
   <tbody>
     <tr>
@@ -17,17 +16,16 @@ it will not be under modern versions. </p>
     </tr>
   </tbody>
 </table>
-<p><code>assert</code> and <code>strictfp</code> are another example of valid identifiers which became keywords in later versions, however as
-documented in SONARJAVA-285, it is not easily possible to support parsing of the code for such old versions, therefore they are not supported by this
-rule.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>assert</code> 和 <code>strictfp</code> 是有效标识符的另一个示例，它在以后的版本中成为关键字，但是如SONARJAVA-285中所述，
+支持解析代码并不容易。 这些旧版本因此不受此规则支持。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething() {
-  int enum = 42;            // Noncompliant
-  String _ = "";   // Noncompliant
+  int enum = 42;            // 不合规
+  String _ = "";   // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething() {
   int magic = 42;

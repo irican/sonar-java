@@ -1,5 +1,5 @@
 {
-  "title": "Maps with keys that are enum values should be replaced with EnumMap",
+  "title": "具有枚举（enum）值的键的映射（Map）应替换为EnumMap",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "\"java.nio.Files#delete\" should be preferred",
+  "title": "\"java.nio.Files#delete\" 应该是首选的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

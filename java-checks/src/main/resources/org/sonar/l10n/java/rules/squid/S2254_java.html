@@ -1,27 +1,25 @@
-<p>According to the Oracle Java API, the <code>HttpServletRequest.getRequestedSessionId()</code> method:</p>
+<p>根据 the Oracle Java API, the <code>HttpServletRequest.getRequestedSessionId()</code> 方法：</p>
 <blockquote>
-  <p>Returns the session ID specified by the client. This may not be the same as the ID of the current valid session for this request. If the client
-  did not specify a session ID, this method returns null.</p>
+  <p>返回客户端指定的会话ID。这可能与此请求的当前有效会话的ID不同。如果客户端未指定会话ID，则此方法返回null。</p>
 </blockquote>
-<p>The session ID it returns is either transmitted in a cookie or a URL parameter so by definition, nothing prevents the end-user from manually
-updating the value of this session ID in the HTTP request. </p>
-<p>Here is an example of a updated HTTP header:</p>
+<p>它返回的会话ID要么在cookie或URL参数中传输，所以根据定义，没有什么能阻止最终用户在HTTP请求中手动更新此会话ID的值。  </p>
+<p>以下是更新的HTTP标头的示例：</p>
 <pre>
 GET /pageSomeWhere HTTP/1.1
 Host: webSite.com
 User-Agent: Mozilla/5.0
 Cookie: JSESSIONID=Hacked_Session_Value'''"&gt;
 </pre>
-<p>Due to the ability of the end-user to manually change the value, the session ID in the request should only be used by a servlet container (E.G.
-Tomcat or Jetty) to see if the value matches the ID of an an existing session. If it does not, the user should be considered unauthenticated.
-Moreover, this session ID should never be logged to prevent hijacking of active sessions.</p>
-<h2>Noncompliant Code Example</h2>
+<p>
+由于最终用户能够手动更改值，因此请求中的会话ID只能由servlet容器(E.G.Tomcat 或 Jetty)使用，以查看该值是否与现有ID相匹配会话。如果没有，则应将用户视为未经身份验证。
+此外，永远不应记录此会话ID以防止劫持活动会话。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 if(isActiveSession(request.getRequestedSessionId()) ){
   ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/807">MITRE, CWE-807</a> - Reliance on Untrusted Inputs in a Security Decision </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>

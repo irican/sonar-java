@@ -1,40 +1,39 @@
-<p>Conditional expressions which are always <code>true</code> or <code>false</code> can lead to dead code. Such code is always buggy and should never
-be used in production.</p>
-<h2>Noncompliant Code Example</h2>
+<p>总是 <code>true</code> 或 <code>false</code>的条件表达式可以导致死代码。这样的代码总是有bug，不应该在生产中使用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 a = false;
-if (a) { // Noncompliant
-  doSomething(); // never executed
+if (a) { // 不合规
+  doSomething(); // 没有执行
 }
 
-if (!a || b) { // Noncompliant; "!a" is always "true", "b" is never evaluated
+if (!a || b) { // 不合规; "!a"总是为"true"，"b"永远不会被判断
   doSomething();
 } else {
-  doSomethingElse(); // never executed
+  doSomethingElse(); // 没有执行
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule will not raise an issue in either of these cases:</p>
+<h2>例外</h2>
+<p>这条规则在这两种情况下都不会引起问题：</p>
 <ul>
-  <li> When the condition is a single <code>final boolean</code> </li>
+  <li> 当条件为单个<code>final boolean</code>时 </li>
 </ul>
 <pre>
 final boolean debug = false;
 //...
 if (debug) {
-  // Print something
+  // 输出些什么
 }
 </pre>
 <ul>
-  <li> When the condition is literally <code>true</code> or <code>false</code>. </li>
+  <li> 当条件字面上是<code>true</code> 或 <code>false</code>时：</li>
 </ul>
 <pre>
 if (true) {
-  // do something
+  // 实现些什么功能
 }
 </pre>
-<p>In these cases it is obvious the code is as intended.</p>
-<h2>See</h2>
+<p>在这些情况下，代码的意图是显而易见的。</p>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 13.7 - Boolean operations whose results are invariant shall not be permitted. </li>
   <li> MISRA C:2012, 14.3 - Controlling expressions shall not be invariant </li>

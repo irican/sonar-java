@@ -1,7 +1,5 @@
-<p>In the past, it was required to load a JDBC driver before creating a <code>java.sql.Connection</code>. Nowadays, when using JDBC 4.0 drivers, this
-is no longer required and <code>Class.forName()</code> can be safely removed because JDBC 4.0 (JDK 6) drivers available in the classpath are
-automatically loaded.</p>
-<p>This rule raises an issue when <code>Class.forName()</code> is used with one of the following values:</p>
+<p>过去，在创建<code> java.sql.Connection </code>之前，需要加载JDBC驱动程序。现在，当使用JDBC 4.0驱动程序时，不再需要它，并且可以安全地删除<code> Class.forName（）</code>，因为类路径中可用的JDBC 4.0（JDK 6）驱动程序会自动加载。</p>
+<p>当<code> Class.forName（）</code>与以下某个值一起使用时，此规则引发了一个问题：</p>
 <ul>
   <li> <code>com.mysql.jdbc.Driver</code> </li>
   <li> <code>oracle.jdbc.driver.OracleDriver</code> </li>
@@ -18,7 +16,7 @@ automatically loaded.</p>
   <li> <code>org.firebirdsql.jdbc.FBDriver</code> </li>
   <li> <code>net.sourceforge.jtds.jdbc.Driver</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,12 +27,12 @@ public class Demo {
   private final Connection connection;
 
   public Demo(String serverURI) throws SQLException, ClassNotFoundException {
-    Class.forName(DRIVER_CLASS_NAME); // Noncompliant; no longer required to load the JDBC Driver using Class.forName()
+    Class.forName(DRIVER_CLASS_NAME); // 不符合要求的; 不再需要使用Class.forName（）加载JDBC驱动程序
     connection = DriverManager.getConnection(serverURI);
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 import java.sql.Connection;
 import java.sql.DriverManager;

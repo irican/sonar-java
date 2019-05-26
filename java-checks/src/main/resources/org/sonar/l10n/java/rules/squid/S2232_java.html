@@ -1,19 +1,17 @@
-<p>There are several reasons to avoid <code>ResultSet.isLast()</code>. First, support for this method is optional for <code>TYPE_FORWARD_ONLY</code>
-result sets. Second, it can be expensive (the driver may need to fetch the next row to answer the question). Finally, the specification is not clear
-on what should be returned when the <code>ResultSet</code> is empty, so some drivers may return the opposite of what is expected.</p>
-<h2>Noncompliant Code Example</h2>
+<p>有几个理由可以避免 <code>ResultSet.isLast()</code>. 首先，对于<code>TYPE_FORWARD_ONLY</code>结果集的支持是可选的。其次，这可能是昂贵的（驱动程序可能需要获取下一行来回答问题）。最后，规范不清楚当 <code>ResultSet</code> 为空时应返回的内容，因此某些驱动程序可能会返回与预期的相反。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 stmt.executeQuery("SELECT name, address FROM PERSON");
 ResultSet rs = stmt.getResultSet();
-while (! rs.isLast()) { // Noncompliant
-  // process row
+while (! rs.isLast()) { // 不合规的
+  // 过程行
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 ResultSet rs = stmt.executeQuery("SELECT name, address FROM PERSON");
 while (! rs.next()) {
-  // process row
+  // 过程行
 }
 </pre>
 

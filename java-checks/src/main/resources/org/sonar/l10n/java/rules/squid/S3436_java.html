@@ -1,33 +1,26 @@
-<p>According to the documentation,</p>
+<p>根据文件,</p>
 <blockquote>
-  A program may produce unpredictable results if it attempts to distinguish two references to equal values of a value-based class, whether directly
-  via reference equality or indirectly via an appeal to synchronization...
+   如果程序试图将两个引用区分为基于值的类的相等值，无论是直接通过引用相等还是间接通过同步诉求，程序都可能产生不可预测的结果......
 </blockquote>
-<p>This is because value-based classes are intended to be wrappers for value types, which will be primitive-like collections of data (similar to
-<code>struct</code>s in other languages) that will come in future versions of Java.</p>
+<p>这是因为基于值的类旨在成为值类型的包装器，它将是未来版本中的基本类似数据集合（类似于其他语言中的<code> struct </code>） Java。</p>
 <blockquote>
-  <p> Instances of a value-based class ... </p>
+  <p> 基于价值的类的实例...... </p>
   <ul>
-    <li> do not have accessible constructors, but are instead instantiated through factory methods which make no committment as to the identity of
-    returned instances; </li>
+    <li> 没有可访问的构造函数，而是通过工厂方法实例化，这些方法不会对返回的实例的id做出承诺; </li>
   </ul>
 </blockquote>
-<p>Which means that you can't be sure you're the only one trying to lock on any given instance of a value-based class, opening your code up to
-contention and deadlock issues.</p>
-<p>Under Java 8 breaking this rule may not actually break your code, but there are no guarantees of the behavior beyond that.</p>
-<p>This rule raises an issue when a known value-based class is used for synchronization. That includes all the classes in the <code>java.time</code>
-package except <code>Clock</code>; the date classes for alternate calendars, <code>HijrahDate</code>, <code>JapaneseDate</code>,
-<code>MinguoDate</code>, <code>ThaiBuddhistDate</code>; and the optional classes: <code>Optional</code>, <code>OptionalDouble</code>,
-<code>OptionalLong</code>, <code>OptionalInt</code>.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>这意味着你不能确定你是唯一一个试图锁定基于值的类的任何给定实例的人，将代码打开到竞争和死锁问题。</p>
+<p>在Java 8下，违反此规则可能实际上不会破坏您的代码，但除此之外无法保证其行为。</p>
+<p>当使用已知的基于值的类进行同步时，此规则会引发问题。这包括<code> java.time </code>包中的所有类，除了<code> Clock </code>;备用日历的日期类，<code> HijrahDate </code>，<code> JapaneseDate </code>，<code> MinguoDate </code>，<code> ThaiBuddhistDate </code>;和可选类：<code>可选</code>，<code> OptionalDouble </code>，<code> OptionalLong </code>，<code> OptionalInt </code>。</p>
+<p> <strong>注意</strong>当项目的<code> sonar.java.source </code>低于<code> 8 </code>时，会自动禁用此规则。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Optional&lt;Foo&gt; fOpt = doSomething();
-synchronized (fOpt) {  // Noncompliant
+synchronized (fOpt) {  //不符合规范的
   // ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html">Value-based classes</a> </li>
 </ul>

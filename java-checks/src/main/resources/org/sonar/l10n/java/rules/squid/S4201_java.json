@@ -1,5 +1,5 @@
 {
-  "title": "Null checks should not be used with \"instanceof\"",
+  "title": "空检查不应与“instanceof ”一起使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

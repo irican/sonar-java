@@ -1,5 +1,5 @@
 {
-  "title": "Authentication should not rely on insecure \"PasswordEncoder\"",
+  "title": "身份验证不应该依赖于不安全的 \"PasswordEncoder\"",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

@@ -1,24 +1,22 @@
-<p>Synchronizing on a class field synchronizes not on the field itself, but on the object assigned to it. So synchronizing on a non-<code>final</code>
-field makes it possible for the field's value to change while a thread is in a block synchronized on the old value. That would allow a second thread,
-synchronized on the new value, to enter the block at the same time.</p>
-<p>The story is very similar for synchronizing on parameters; two different threads running the method in parallel could pass two different object
-instances in to the method as parameters, completely undermining the synchronization.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在类字段上同步不是在字段本身上同步，而是在分配给它的对象上同步。因此，在非<code>final</code>字段上进行同步，可以在线程处于与旧值同步的块中时更改字段的值。
+这将允许第二个线程(在新值上同步)同时进入块。</p>
+<p>在参数同步方面，情况非常相似;并行运行方法的两个不同线程可以将两个不同的对象实例作为参数传递给方法，这完全破坏了同步。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private String color = "red";
 
 private void doSomething(){
-  synchronized(color) {  // Noncompliant; lock is actually on object instance "red" referred to by the color variable
+  synchronized(color) {  // 不合规; 锁实际上位于color变量引用的实例对象"red"上
     //...
-    color = "green"; // other threads now allowed into this block
+    color = "green"; // 在允许其他线程进入这个块
     // ...
   }
-  synchronized(new Object()) { // Noncompliant this is a no-op.
+  synchronized(new Object()) { // 不合规 这是无效的。
      // ...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private String color = "red";
 private final Object lockObj = new Object();
@@ -31,7 +29,7 @@ private void doSomething(){
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/412.html">MITRE, CWE-412</a> - Unrestricted Externally Accessible Lock </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/413">MITRE, CWE-413</a> - Improper Resource Locking </li>

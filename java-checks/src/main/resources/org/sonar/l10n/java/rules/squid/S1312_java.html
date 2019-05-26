@@ -1,20 +1,19 @@
-<p>Regardless of the logging framework in use (logback, log4j, commons-logging, java.util.logging, ...), loggers should be:</p>
+<p>无论使用什么日志框架（logback， log4j， commons-logging， java.util.logging， ...），记录器（loggers）应该是：</p>
 <ul>
-  <li> <code>private</code>: never be accessible outside of its parent class. If another class needs to log something, it should instantiate its own
-  logger. </li>
-  <li> <code>static</code>: not be dependent on an instance of a class (an object). When logging something, contextual information can of course be
-  provided in the messages but the logger should be created at class level to prevent creating a logger along with each object. </li>
-  <li> <code>final</code>: be created once and only once per class. </li>
+  <li> <code>private</code>：永远不能在其父类之外访问。 如果另一个类需要记录某些东西，它应该实例化它自己的记录器。 </li>
+  <li> <code>static</code>： 不依赖于类(对象)的实例。在记录某些内容时，当然可以在消息中提供上下文信息，但是应该在类级别创建日志程序，
+  以防止随着每个对象一起创建日志程序。 </li>
+  <li> <code>final</code>： 每个类中只创建一次。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
-<p>With a default regular expression of <code>LOG(?:GER)?</code>:</p>
+<h2>不合规的代码示例</h2>
+<p>默认正则表达式为 <code>LOG(?:GER)?</code>：</p>
 <pre>
-public Logger logger = LoggerFactory.getLogger(Foo.class);  // Noncompliant
+public Logger logger = LoggerFactory.getLogger(Foo.class);  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private static final Logger LOGGER = LoggerFactory.getLogger(Foo.class);
 </pre>
-<h2>Exceptions</h2>
-<p>Variables of type <code>org.apache.maven.plugin.logging.Log</code> are ignored.</p>
+<h2>例外</h2>
+<p><code>org.apache.maven.plugin.logging.Log</code> 类型的变量将被忽略。</p>
 

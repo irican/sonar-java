@@ -1,5 +1,5 @@
 {
-  "title": "JUnit rules should be used",
+  "title": "应该使用JUnit规则",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

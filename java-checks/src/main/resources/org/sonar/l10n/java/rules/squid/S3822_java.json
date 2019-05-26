@@ -1,5 +1,5 @@
 {
-  "title": "Hibernate should not update database schemas",
+  "title": "Hibernate不应该更新数据库模式",
   "type": "BUG",
   "status": "ready",
   "remediation": {

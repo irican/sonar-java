@@ -1,18 +1,18 @@
-<p>This rule is meant to be used as a way to track code which is marked as being deprecated. Deprecated code should eventually be removed.</p>
-<h2>Noncompliant Code Example</h2>
+<p>此规则旨在跟踪那些被标记为已弃用（deprecated）的代码。最终应删除弃用的代码。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class Foo {
   /**
    * @deprecated
    */
-  public void foo() {    // Noncompliant
+  public void foo() {    // 不合规
   }
 
-  @Deprecated            // Noncompliant
+  @Deprecated            // 不合规
   public void bar() {
   }
 
-  public void baz() {    // Compliant
+  public void baz() {    // 合规
   }
 }
 </pre>

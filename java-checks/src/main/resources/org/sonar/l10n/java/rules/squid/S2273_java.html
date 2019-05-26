@@ -1,13 +1,12 @@
-<p>By contract, the method <code>Object.wait(...)</code>, <code>Object.notify()</code> and <code>Object.notifyAll()</code> should be called by a
-thread that is the owner of the object's monitor. If this is not the case an <code>IllegalMonitorStateException</code> exception is thrown. This rule
-reinforces this constraint by making it mandatory to call one of these methods only inside a <code>synchronized</code> method or statement. </p>
-<h2>Noncompliant Code Example</h2>
+<p>按照协议，方法 <code>Object.wait(...)</code>, <code>Object.notify()</code> 和 <code>Object.notifyAll()</code> 应该由作为对象监视器所有者的线程调用。如果不是这种情况，则抛出 <code>IllegalMonitorStateException</code> 异常。此规则通过强制仅在 <code>synchronized</code> 方法或语句中调用其中一个方法来强化此约束。
+</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private void removeElement() {
   while (!suitableCondition()){
     obj.wait();
   }
-  ... // Perform removal
+  ... // 执行删除
 }
 </pre>
 <p>or</p>
@@ -16,27 +15,27 @@ private void removeElement() {
   while (!suitableCondition()){
     wait();
   }
-  ... // Perform removal
+  ... // 执行删除
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 private void removeElement() {
   synchronized(obj) {
     while (!suitableCondition()){
       obj.wait();
     }
-    ... // Perform removal
+    ... // 执行删除
   }
 }
 </pre>
-<p>or</p>
+<p>或者</p>
 <pre>
 private synchronized void removeElement() {
   while (!suitableCondition()){
     wait();
   }
-  ... // Perform removal
+  ... // 执行删除
 }
 </pre>
 

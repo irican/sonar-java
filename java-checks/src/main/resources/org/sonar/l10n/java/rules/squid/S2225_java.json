@@ -1,5 +1,5 @@
 {
-  "title": "\"toString()\" and \"clone()\" methods should not return null",
+  "title": "\"toString()\" 和 \"clone()\" 方法不应返回null",
   "type": "BUG",
   "status": "ready",
   "remediation": {

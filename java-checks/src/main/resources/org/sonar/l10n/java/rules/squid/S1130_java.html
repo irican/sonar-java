@@ -1,30 +1,29 @@
-<p>An exception in a <code>throws</code> declaration in Java is superfluous if it is:</p>
+<p>Java里 <code>throws</code> 声明中的异常是多余的，如果它是:</p>
 <ul>
-  <li> listed multiple times </li>
-  <li> a subclass of another listed exception </li>
-  <li> a <code>RuntimeException</code>, or one of its descendants </li>
-  <li> completely unnecessary because the declared exception type cannot actually be thrown </li>
+  <li> 列出多次 </li>
+  <li> 另一个列出的异常的子类（subclass）</li>
+  <li> <code>RuntimeException</code>，或其子类（descendant）之一 </li>
+  <li> 完全没必要，因为实际上不能抛出声明的异常类型 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-void foo() throws MyException, MyException {}  // Noncompliant; should be listed once
-void bar() throws Throwable, Exception {}  // Noncompliant; Exception is a subclass of Throwable
-void baz() throws RuntimeException {}  // Noncompliant; RuntimeException can always be thrown
+void foo() throws MyException, MyException {}  // 不合规； 应列出一次
+void bar() throws Throwable, Exception {}  // 不合规； Exception 是 Throwable 的子类
+void baz() throws RuntimeException {}  // 不合规； 始终可以抛出RuntimeException 
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 void foo() throws MyException {}
 void bar() throws Throwable {}
 void baz() {}
 </pre>
-<h2>Exceptions</h2>
-<p>The rule will not raise any issue for exceptions that cannot be thrown from the method body:</p>
+<h2>例外</h2>
+<p>对于无法从方法体（method body）中抛出的异常，该规则不会报告任何问题:</p>
 <ul>
-  <li> in overriding and implementation methods </li>
-  <li> in interface <code>default</code> methods </li>
-  <li> in non-private methods that only <code>throw</code>, have empty bodies, or a single return statement . </li>
-  <li> in overridable methods (non-final, or not member of a final class, non-static, non-private), if the exception is documented with a proper
-  javadoc. </li>
+  <li> 在重写和实现方法中 </li>
+  <li> 在接口 <code>default</code> 方法中 </li>
+  <li> 在非私有方法中只有 <code>throw</code>， 有空的方法体或单个return语句。 </li>
+  <li> 在可覆盖的方法中（非final，或不是final类的成员，非静态，非私有），如果使用恰当的javadoc记录异常。 </li>
 </ul>
 <pre>
 class A extends B {
@@ -46,7 +45,7 @@ class A extends B {
   /**
    * @throws IOException Overriding classes may throw this exception if they print values into a file
    */
-  protected void print() throws IOException { // no issue, method is overridable and the exception has proper javadoc
+  protected void print() throws IOException { // 没问题，方法可重写而且异常有恰当的javadoc记录
     System.out.println("foo");
   }
 }

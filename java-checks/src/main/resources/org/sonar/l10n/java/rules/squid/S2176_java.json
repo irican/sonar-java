@@ -1,5 +1,5 @@
 {
-  "title": "Class names should not shadow interfaces or superclasses",
+  "title": "类名不应混淆接口或超类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

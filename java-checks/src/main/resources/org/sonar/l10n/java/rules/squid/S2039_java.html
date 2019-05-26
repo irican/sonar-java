@@ -1,32 +1,30 @@
-<p>Failing to explicitly declare the visibility of a member variable could result it in having a visibility you don't expect, and potentially leave it
-open to unexpected modification by other classes. </p>
-<h2>Noncompliant Code Example</h2>
+<p>如果没有显式地声明成员变量的可见性，可能会导致它具有您意料之外的可见性，并且可能会让其他类对其进行意外的修改。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 class Ball {
-    String color="red";  // Noncompliant
+    String color="red";  // 不合规
 }
 enum A {
   B;
   int a;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class Ball {
-    private String color="red";  // Compliant
+    private String color="red";  // 合规
 }
 enum A {
   B;
   private int a;
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Members annotated with Guava's <code>@VisibleForTesting</code> annotation are ignored, as it indicates that visibility has been purposely relaxed
-to make the code testable.</p>
+<h2>例外</h2>
+<p>使用 Guava 的 <code>@VisibleForTesting</code> 注解（annotation）来注解的成员将被忽略，因为它表明已经有意放宽了可见性以使代码可测试。</p>
 <pre>
 class Cone {
   @VisibleForTesting
-  Logger logger; // Compliant
+  Logger logger; // 合规
 }
 </pre>
 

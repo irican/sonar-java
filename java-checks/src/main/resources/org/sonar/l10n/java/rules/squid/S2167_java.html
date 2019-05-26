@@ -1,15 +1,14 @@
-<p>It is the sign, rather than the magnitude of the value returned from <code>compareTo</code> that matters. Returning <code>Integer.MIN_VALUE</code>
-does <em>not</em> convey a higher degree of inequality, and doing so can cause errors because the return value of <code>compareTo</code> is sometimes
-inversed, with the expectation that negative values become positive. However, inversing <code>Integer.MIN_VALUE</code> yields
-<code>Integer.MIN_VALUE</code> rather than <code>Integer.MAX_VALUE</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>重要的是符号，而不是 <code>compareTo</code> 返回的值的大小（magnitude）。 返回 <code>Integer.MIN_VALUE</code> 使 <em>not</em> 传达更高的不等式等级，
+这样做会导致错误，因为 <code>compareTo</code> 的返回值有时会期望负值变为正值，从而被反转 。但是，反转 <code>Integer.MIN_VALUE</code>会产生
+<code>Integer.MIN_VALUE</code> 而不是 <code>Integer.MAX_VALUE</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public int compareTo(MyClass) {
   if (condition) {
-    return Integer.MIN_VALUE;  // Noncompliant
+    return Integer.MIN_VALUE;  // 不合规的 
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public int compareTo(MyClass) {
   if (condition) {

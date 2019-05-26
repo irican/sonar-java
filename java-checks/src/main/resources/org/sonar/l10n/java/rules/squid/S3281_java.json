@@ -1,5 +1,5 @@
 {
-  "title": "Default EJB interceptors should be declared in \"ejb-jar.xml\"",
+  "title": "默认的EJB拦截器应在 \"ejb-jar.xml\" 中声明",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

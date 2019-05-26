@@ -1,5 +1,5 @@
 {
-  "title": "Classes and enums with private members should have a constructor",
+  "title": "具有私有成员的类和枚举应该具有构造函数",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

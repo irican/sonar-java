@@ -1,5 +1,5 @@
 {
-  "title": "Classes should not be empty",
+  "title": "类不应该是空的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

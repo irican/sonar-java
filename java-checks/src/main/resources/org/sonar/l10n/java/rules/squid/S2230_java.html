@@ -1,10 +1,8 @@
-<p>Marking a non-public method <code>@Transactional</code> is both useless and misleading because Spring doesn't "see" non-<code>public</code>
-methods, and so makes no provision for their proper invocation. Nor does Spring make provision for the methods invoked by the method it called.</p>
-<p>Therefore marking a <code>private</code> method, for instance, <code>@Transactional</code> can only result in a runtime error or exception if the
-method is actually written to be <code>@Transactional</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>标记非公共方法 <code>@Transactional</code> 既无用又具有误导性，因为Spring没有“查看”非 <code>public</code>方法，因此没有为它们的正确调用做任何准备。Spring也没有为它调用的方法做准备。</p>
+<p>因此例如标记一个<code>private</code>（私有）方法，<code>@Transactional</code>（@事务性）只有在实际将方法写入<code>@Transactional</code>（@事务性）时才会导致运行时错误或异常。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-@Transactional  // Noncompliant
+@Transactional  // 不合规的
 private void doTheThing(ArgClass arg) {
   // ...
 }

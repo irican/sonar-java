@@ -1,5 +1,5 @@
 {
-  "title": "Asserts should not be used to check the parameters of a public method",
+  "title": "Asserts 不应该用于检查公共方法的参数",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

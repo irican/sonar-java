@@ -1,5 +1,5 @@
 {
-  "title": "Checked exceptions should not be thrown",
+  "title": "不应抛出已检查的异常",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,18 +1,16 @@
-<p>The writer of an annotation can set one of three retention policies for it:</p>
+<p>注解（annotation）的编写者可以为其设置三个保留策略（retention policies）之一：</p>
 <ul>
-  <li> <code>RetentionPolicy.SOURCE</code> - these annotations are dropped during compilation, E.G. <code>@Override</code>,
+  <li> <code>RetentionPolicy.SOURCE</code> - 这些注解在编译过程中被删除， E.G. <code>@Override</code>,
   <code>@SuppressWarnings</code>. </li>
-  <li> <code>RetentionPolicy.CLASS</code> - these annotations are present in a compiled class but not loaded into the JVM at runtime. This is the
-  default. </li>
-  <li> <code>RetentionPolicy.RUNTIME</code> - these annotations are present in the class file and loaded into the JVM. </li>
+  <li> <code>RetentionPolicy.CLASS</code> - 这些注解存在于已编译的类中，但未在运行时加载到JVM中。这是默认的。 </li>
+  <li> <code>RetentionPolicy.RUNTIME</code> - 这些注解存在于类文件中并加载到JVM中。 </li>
 </ul>
-<p>Only annotations that have been given a <code>RUNTIME</code> retention policy will be available to reflection. Testing for annotations with any
-other retention policy is simply an error, since the test will always return false.</p>
-<p>This rule checks that reflection is not used to detect annotations that do not have <code>RUNTIME</code> retention.</p>
-<h2>Noncompliant Code Example</h2>
+<p>只有已被赋予 <code>RUNTIME</code> 保留策略的注解才可用于反射。使用任何其他保留策略测试注解都只是一个错误，因为测试总是返回false。</p>
+<p>此规则检查反射是否未用于检测没有 <code>RUNTIME</code> 保留的注解。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Method m = String.class.getMethod("getBytes", new Class[] {int.class,
 int.class, byte[].class, int.class});
-if (m.isAnnotationPresent(Override.class)) {  // Noncompliant; test will always return false, even when @Override is present in the code
+if (m.isAnnotationPresent(Override.class)) {  // 不合规； 即使代码中存在@Override，测试也总是返回false
 </pre>
 

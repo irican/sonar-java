@@ -1,5 +1,5 @@
 {
-  "title": "Close curly brace and the next \"else\", \"catch\" and \"finally\" keywords should be on two different lines",
+  "title": "一个后花括号应和下一个 \"else\"， \"catch\" 和 \"finally\" 关键字放在不同的行上",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

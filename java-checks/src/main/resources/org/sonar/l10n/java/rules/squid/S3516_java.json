@@ -1,5 +1,5 @@
 {
-  "title": "Methods returns should not be invariant",
+  "title": "方法返回不应该是不变的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

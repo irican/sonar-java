@@ -1,5 +1,5 @@
 {
-  "title": "Deprecated \"${pom}\" properties should not be used",
+  "title": "不应使用不推荐使用的 \"${pom}\"属性",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

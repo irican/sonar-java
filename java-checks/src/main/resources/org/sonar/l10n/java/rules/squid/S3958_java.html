@@ -1,12 +1,9 @@
-<p>There are two types of stream operations: intermediate operations, which return another stream, and terminal operations, which return something
-other than a stream. Intermediate operations are lazy, meaning they aren't actually executed until and unless a terminal stream operation is performed
-on their results. Consequently if the result of an intermediate stream operation is not fed to a terminal operation, it serves no purpose, which is
-almost certainly an error.</p>
-<h2>Noncompliant Code Example</h2>
+<p>有两种类型的流操作：中间操作（返回另一个流）和终端操作（返回流以外的其他内容）。 中间操作是惰性的，这意味着除非对其结果执行终端流操作，否则它们实际上不会被执行。 因此，如果中间流操作的结果没有送到终端操作，那么它没有用处，这几乎肯定是一个错误。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-widgets.stream().filter(b -&gt; b.getColor() == RED); // Noncompliant
+widgets.stream().filter(b -&gt; b.getColor() == RED); // 不符合规范的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 int sum = widgets.stream()
                       .filter(b -&gt; b.getColor() == RED)
@@ -17,6 +14,6 @@ Stream&lt;Widget&gt; pipeline = widgets.stream()
                                  .mapToInt(b -&gt; b.getWeight());
 sum = pipeline.sum();
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#StreamOps">Stream Operations</a></p>
 

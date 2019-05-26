@@ -1,22 +1,21 @@
-<p>By contract, a servlet container creates one instance of each servlet and then a dedicated thread is attached to each new incoming HTTP request to
-process the request. So all threads share the servlet instances and by extension their instance fields. To prevent any misunderstanding and unexpected
-behavior at runtime, all servlet fields should then be either <code>static</code> and/or <code>final</code>, or simply removed.</p>
-<p>With Struts 1.X, the same constraint exists on <code>org.apache.struts.action.Action</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>根据协议，servlet容器创建每个servlet的一个实例，然后将一个专用线程附加到每个新的传入HTTP请求以处理请求。因此，所有线程共享servlet实例，并通过扩展共享它们的实例字段。为了防止在运行时出现任何误解和意外行为，所有servlet字段应该是<code> static </code>和/或<code> final </code>，或者只是搬走删除。
+</p>
+<p>对于 Struts 1.X, 同样的约数存在于 <code>org.apache.struts.action.Action</code>上.</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public class MyServlet extends HttpServlet {
-  private String userName;  //As this field is shared by all users, it's obvious that this piece of information should be managed differently
+  private String userName;  //由于所有用户都共享此字段，因此显然应该以不同方式管理此信息
   ...
 }
 </pre>
-<p>or </p>
+<p>或者</p>
 <pre>
 public class MyAction extends Action {
-  private String userName;  //Same reason
+  private String userName;  //同理
   ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/EYBUC">CERT, MSC11-J.</a> - Do not let session information leak within a servlet </li>
 </ul>

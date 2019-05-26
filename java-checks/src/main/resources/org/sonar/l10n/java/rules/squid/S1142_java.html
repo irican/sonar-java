@@ -1,9 +1,8 @@
-<p>Having too many return statements in a method increases the method's essential complexity because the flow of execution is broken each time a
-return statement is encountered. This makes it harder to read and understand the logic of the method.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default threshold of 3:</p>
+<p>在方法中包含太多的return语句会增加方法的基本复杂性，因为每次遇到return语句时都会中断执行流程。这使得阅读和理解该方法的逻辑变得更加困难。</p>
+<h2>不合规的代码示例</h2>
+<p>默认阈值为3：</p>
 <pre>
-public boolean myMethod() { // Noncompliant; there are 4 return statements
+public boolean myMethod() { // 不合规； 有4个return语句
   if (condition1) {
     return true;
   } else {

@@ -1,5 +1,5 @@
 {
-  "title": "Fields should not be initialized to default values",
+  "title": "字段不应初始化为默认值",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

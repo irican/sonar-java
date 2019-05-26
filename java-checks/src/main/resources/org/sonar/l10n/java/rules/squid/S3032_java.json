@@ -1,5 +1,5 @@
 {
-  "title": "JEE applications should not \"getClassLoader\"",
+  "title": "JEE应用程序不应该\"getClassLoader\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

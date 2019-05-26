@@ -1,15 +1,13 @@
-<p>Because Double Brace Initialization (DBI) creates an anonymous class with a reference to the instance of the owning object, its use can lead to
-memory leaks if the anonymous inner class is returned and held by other objects. Even when there's no leak, DBI is so obscure that it's bound to
-confuse most maintainers. </p>
-<p>For collections, use <code>Arrays.asList</code> instead, or explicitly add each item directly to the collection.</p>
-<h2>Noncompliant Code Example</h2>
+<p>因为Double Brace Initialization（DBI）创建了一个匿名类，其引用了拥有对象的实例，如果匿名内部类被其他对象返回并保持，则它的使用可能导致内存泄漏。 即使没有泄漏，DBI也是如此模糊，以至于它会让大多数维护者感到困惑。</p>
+<p>对于集合，请改用<code> Arrays.asList </code>，或者将每个项目直接添加到集合中。
+<h2>不合规的代码示例</h2>
 <pre>
-Map source = new HashMap(){{ // Noncompliant
+Map source = new HashMap(){{ //不合规的
     put("firstName", "John");
     put("lastName", "Smith");
 }};
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Map source = new HashMap();
 // ...

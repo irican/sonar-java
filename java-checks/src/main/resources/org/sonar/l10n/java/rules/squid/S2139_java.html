@@ -1,8 +1,7 @@
-<p>In applications where the accepted practice is to log an <code>Exception</code> and then rethrow it, you end up with miles-long logs that contain
-multiple instances of the same exception. In multi-threaded applications debugging this type of log can be particularly hellish because messages from
-other threads will be interwoven with the repetitions of the logged-and-thrown <code>Exception</code>. Instead, exceptions should be either logged or
-rethrown, not both.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在应用程序中，公认的做法是记录一个 <code>Exception</code> ，然后重新抛出它，最终得到的日志长达数英里，其中包含同一个异常的多个实例。
+在多线程应用程序中，调试这种类型的日志可能特别麻烦，因为来自其他线程的消息将与多次登录并抛出的 <code>Exception</code>交织在一起。
+相反，应该记录或重新抛出异常，而不是同时记录和重新抛出异常。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 catch (SQLException e) {
   ...
@@ -10,14 +9,14 @@ catch (SQLException e) {
   throw new MySQLException(contextInfo, e);
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 catch (SQLException e) {
   ...
   throw new MySQLException(contextInfo, e);
 }
 </pre>
-<p>or </p>
+<p>或</p>
 <pre>
 catch (SQLException e) {
   ...

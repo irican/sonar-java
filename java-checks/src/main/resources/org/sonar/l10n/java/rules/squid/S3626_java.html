@@ -1,19 +1,18 @@
-<p>Jump statements such as <code>return</code> and <code>continue</code> let you change the default flow of program execution, but jump statements
-that direct the control flow to the original direction are just a waste of keystrokes.</p>
-<h2>Noncompliant Code Example</h2>
+<p>诸如<code> return </code>和<code> continue </code>之类的跳转语句允许您更改程序执行的默认流程，但是将控制流程指向原始方向的跳转语句只是浪费 击键。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public void foo() {
   while (condition1) {
     if (condition2) {
-      continue; // Noncompliant
+      continue; // 不合规的
     } else {
       doTheThing();
     }
   }
-  return; // Noncompliant; this is a void method
+  return; // 不合规; 这是一种无效方法
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void foo() {
   while (condition1) {

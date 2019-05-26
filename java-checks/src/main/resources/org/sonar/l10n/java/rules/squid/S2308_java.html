@@ -1,11 +1,11 @@
-<p>Use of <code>File.deleteOnExit()</code> is not recommended for the following reasons:</p>
+<p>出于以下原因，不建议使用<code>File.deleteOnExit()</code> ：</p>
 <ul>
-  <li> The deletion occurs only in the case of a normal JVM shutdown but not when the JVM crashes or is killed. </li>
-  <li> For each file handler, the memory associated with the handler is released only at the end of the process. </li>
+  <li> 仅在JVM正常关闭的情况下才会发生删除，但在JVM崩溃或被杀死时则不会发生删除。 </li>
+  <li> 对于每个文件处理程序，与处理程序关联的内存仅在进程结束时释放。 </li>
 </ul>
 <h2>Noncompliant Code Example</h2>
 <pre>
 File file = new File("file.txt");
-file.deleteOnExit();  // Noncompliant
+file.deleteOnExit();  // 不合规的
 </pre>
 

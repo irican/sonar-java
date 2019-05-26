@@ -1,5 +1,5 @@
 {
-  "title": "Methods should not call same-class methods with incompatible \"@Transactional\" values",
+  "title": "方法不应该使用不兼容的\"@Transactional\"（@事务性）值调用相同的类方法。 ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

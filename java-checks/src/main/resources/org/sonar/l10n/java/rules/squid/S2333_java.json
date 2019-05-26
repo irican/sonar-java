@@ -1,5 +1,5 @@
 {
-  "title": "Redundant modifiers should not be used",
+  "title": "不应使用冗余修饰符",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

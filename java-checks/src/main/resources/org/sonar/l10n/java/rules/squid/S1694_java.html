@@ -1,15 +1,14 @@
-<p>The purpose of an abstract class is to provide some heritable behaviors while also defining methods which must be implemented by sub-classes.</p>
-<p>A class with no abstract methods that was made abstract purely to prevent instantiation should be converted to a concrete class (i.e. remove the
-<code>abstract</code> keyword) with a private constructor.</p>
-<p>A class with only abstract methods and no inheritable behavior should be converted to an interface.</p>
-<h2>Noncompliant Code Example</h2>
+<p>抽象类的目的是提供一些可继承的行为，同时定义必须由子类实现的方法。</p>
+<p>没有抽象方法的类纯粹是为了防止实例化而被抽象化，应该用私有构造函数转换为具体类（即删除 <code>abstract</code> 关键字）。</p>
+<p>应将只具有抽象方法但无可继承行为的类转换为接口。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public abstract class Animal {  // Noncompliant; should be an interface
+public abstract class Animal {  // 不合规； 应该是一个接口
   abstract void move();
   abstract void feed();
 }
 
-public abstract class Color {  // Noncompliant; should be concrete with a private constructor
+public abstract class Color {  // 不合规； 应该是具体的有一个私有构造函数
   private int red = 0;
   private int green = 0;
   private int blue = 0;
@@ -19,7 +18,7 @@ public abstract class Color {  // Noncompliant; should be concrete with a privat
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public interface Animal {
   void move();

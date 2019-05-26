@@ -1,20 +1,17 @@
-<p>A non-static inner class has a reference to its outer class, and access to the outer class' fields and methods. That class reference makes the
-inner class larger and could cause the outer class instance to live in memory longer than necessary. </p>
-<p>If the reference to the outer class isn't used, it is more efficient to make the inner class <code>static</code> (also called nested). If the
-reference is used only in the class constructor, then explicitly pass a class reference to the constructor. If the inner class is anonymous, it will
-also be necessary to name it. </p>
-<p>However, while a nested/<code>static</code> class would be more efficient, it's worth noting that there are semantic differences between an inner
-class and a nested one:</p>
+<p>非静态内部类具有对其外部类的引用，并访问外部类的字段和方法。这个类引用会使内部类变大，并可能导致外部类实例在内存中驻留的时间超过必要的时间。</p>
+<p>如果没有使用对外部类的引用，则使内部类<code>static</code> (也称为嵌套类)更有效。如果引用只在类构造函数中使用，则显式地将类引用传递给构造函数。
+如果内部类是匿名的，那么也需要为它命名。</p>
+<p>然而，虽然嵌套的/<code>static</code>类会更有效，但值得注意的是，内部类和嵌套类之间存在语义差异：</p>
 <ul>
-  <li> an inner class can only be instantiated within the context of an instance of the outer class. </li>
-  <li> a nested (<code>static</code>) class can be instantiated independently of the outer class. </li>
+  <li> 内部类只能在外部类的实例上下文中实例化。 </li>
+  <li> 嵌套类(<code>static</code>)可以独立于外部类实例化。</li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Fruit {
   // ...
 
-  public class Seed {  // Noncompliant; there's no use of the outer class reference so make it static
+  public class Seed {  // 不合规；没有使用外部类引用，所以将它设置为静态
     int germinationDays = 0;
     public Seed(int germinationDays) {
       this.germinationDays = germinationDays;
@@ -25,7 +22,7 @@ public class Fruit {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Fruit {
   // ...

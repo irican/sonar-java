@@ -1,5 +1,5 @@
 {
-  "title": "\"private\" methods that don't access instance data should be \"static\"",
+  "title": "不访问实例数据的\"private\"方法应该为\"static\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,20 +1,19 @@
-<p>In Android applications, broadcasting intents is security-sensitive. For example, it has led in the past to the following vulnerability:</p>
+<p>在Android应用程序中，广播意图（intent）对安全性敏感。例如，它过去曾导致以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9489">CVE-2018-9489</a> </li>
 </ul>
-<p>By default, broadcasted intents are visible to every application, exposing all sensitive information they contain.</p>
-<p>This rule raises an issue when an intent is broadcasted without specifying any "receiver permission".</p>
-<h2>Ask Yourself Whether</h2>
+<p>默认情况下，广播意图对每个应用程序都是可见的，公开它们包含的所有敏感信息。</p>
+<p>在未指定任何“接收者许可”的情况下广播意图时，此规则会引发问题。</p>
+<h2>检查自己是否存在以下问题</h2>
 <ul>
-  <li> The intent contains sensitive information. </li>
-  <li> Intent reception is not restricted. </li>
+  <li> 意图包含敏感信息。 </li>
+  <li> 意图接收不受限制。</li>
 </ul>
-<p>You are at risk if you answered yes to all those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Restrict the access to broadcasted intents. See <a
-href="https://developer.android.com/guide/components/broadcasts.html#restricting_broadcasts_with_permissions">Android documentation</a> for more
-information.</p>
-<h2>Sensitive Code Example</h2>
+<p>如果对所有这些问题的回答是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码实践</h2>
+<p>限制对广播意图的访问。欲获得更多信息，参阅 <a
+href="https://developer.android.com/guide/components/broadcasts.html#restricting_broadcasts_with_permissions">Android文档</a> 。</p>
+<h2>敏感代码示例</h2>
 <pre>
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,15 +30,15 @@ public class MyIntentBroadcast {
                           BroadcastReceiver resultReceiver, Handler scheduler, int initialCode,
                           String initialData, Bundle initialExtras,
                           String broadcastPermission) {
-        context.sendBroadcast(intent); // Sensitive
-        context.sendBroadcastAsUser(intent, user); // Sensitive
+        context.sendBroadcast(intent); // 敏感
+        context.sendBroadcastAsUser(intent, user); // 敏感
 
         // Broadcasting intent with "null" for receiverPermission
-        context.sendBroadcast(intent, null); // Sensitive
-        context.sendBroadcastAsUser(intent, user, null); // Sensitive
-        context.sendOrderedBroadcast(intent, null); // Sensitive
+        context.sendBroadcast(intent, null); // 敏感
+        context.sendBroadcastAsUser(intent, user, null); // 敏感
+        context.sendOrderedBroadcast(intent, null); // 敏感
         context.sendOrderedBroadcastAsUser(intent, user, null, resultReceiver,
-                scheduler, initialCode, initialData, initialExtras); // Sensitive
+                scheduler, initialCode, initialData, initialExtras); // 敏感
 
         context.sendBroadcast(intent, broadcastPermission); // Ok
         context.sendBroadcastAsUser(intent, user, broadcastPermission); // Ok
@@ -49,7 +48,7 @@ public class MyIntentBroadcast {
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A3-Sensitive_Data_Exposure">OWASP Top 10 2017 Category A3</a> - Sensitive Data Exposure
   </li>

@@ -1,5 +1,5 @@
 {
-  "title": "Local constants should follow naming conventions for constants",
+  "title": "局部常量应遵循常量的命名约定",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

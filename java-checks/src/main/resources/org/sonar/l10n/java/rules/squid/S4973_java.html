@@ -1,20 +1,20 @@
-<p>It's almost always a mistake to compare two instances of <code>java.lang.String</code> or boxed types like <code>java.lang.Integer</code> using
-reference equality <code>==</code> or <code>!=</code>, because it is not comparing actual value but locations in memory.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用引用相等<code> == </code>比较<code> java.lang.String </code>的两个实例或像<code> java.lang.Integer </code>这样的盒装类型几乎总是错误的/ code>或<code>！= </code>，因为它不是比较实际值而是比较内存中的位置。</p>
+
+<h2>不符合规范的代码示例</h2>
 <pre>
-String firstName = getFirstName(); // String overrides equals
+String firstName = getFirstName(); // 字符串覆盖等价
 String lastName = getLastName();
 
-if (firstName == lastName) { ... }; // Non-compliant; false even if the strings have the same value
+if (firstName == lastName) { ... }; // 不合规;即使字符串具有相同的值也为false
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String firstName = getFirstName();
 String lastName = getLastName();
 
 if (firstName != null &amp;&amp; firstName.equals(lastName)) { ... };
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/595.html">MITRE, CWE-595</a> - Comparison of Object References Instead of Object Contents </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/597.html">MITRE, CWE-597</a> - Use of Wrong Operator in String Comparison </li>

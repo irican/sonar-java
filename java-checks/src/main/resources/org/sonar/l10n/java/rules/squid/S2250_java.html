@@ -1,7 +1,5 @@
-<p>The time complexity of method calls on collections is not always obvious. For instance, for most collections the <code>size()</code> method takes
-constant time, but the time required to execute <code>ConcurrentLinkedQueue.size()</code> is O(n), i.e. directly proportional to the number of
-elements in the collection. When the collection is large, this could therefore be an expensive operation. </p>
-<p>This rule raises an issue when the following O(n) methods are called outside of constructors on class fields:</p>
+<p>方法调用集合的时间复杂性并不总是很明显。例如，对于大多数集合， <code>size()</code> 方法需要恒定的时间，但执行 <code>ConcurrentLinkedQueue.size()</code> 所需的时间是O（n），即与集合中的元素数量。当收集很大时，这可能是昂贵的操作。 </p>
+<p>当在类字段上的构造函数之外调用以下O（n）方法时，此规则引发了一个问题：</p>
 <ul>
   <li> <code>ArrayList</code>
     <ul>
@@ -36,10 +34,10 @@ elements in the collection. When the collection is large, this could therefore b
       <li> <code>remove</code> </li>
     </ul> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 ConcurrentLinkedQueue queue = new ConcurrentLinkedQueue();
 //...
-log.info("Queue contains " + queue.size() + " elements");  // Noncompliant
+log.info("Queue contains " + queue.size() + " elements");  // 不合规
 </pre>
 

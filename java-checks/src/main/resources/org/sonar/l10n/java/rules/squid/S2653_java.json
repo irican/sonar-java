@@ -1,5 +1,5 @@
 {
-  "title": "Web applications should not have a \"main\" method",
+  "title": "Web应用程序不应该有\"main\" 方法",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

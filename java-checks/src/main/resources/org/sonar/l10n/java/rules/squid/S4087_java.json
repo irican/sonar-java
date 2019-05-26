@@ -1,5 +1,5 @@
 {
-  "title": "\"close()\" calls should not be redundant",
+  "title": "\"close()\" 调用不应该是多余的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

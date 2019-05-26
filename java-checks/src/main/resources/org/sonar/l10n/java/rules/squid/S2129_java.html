@@ -1,18 +1,17 @@
-<p>Constructors for <code>String</code>, <code>BigInteger</code>, <code>BigDecimal</code> and the objects used to wrap primitives should never be
-used. Doing so is less clear and uses more memory than simply using the desired value in the case of strings, and using <code>valueOf</code> for
-everything else.</p>
-<h2>Noncompliant Code Example</h2>
+<p>构造函数不应该用于 <code>String</code>， <code>BigInteger</code>， <code>BigDecimal</code> 和用来包装（wrap）原始类型（primitive）（即基本数据类型）的对象。 
+这样做要比在字符串中简单地使用所需的值以及对其他所有内容使用valueOf更不清楚，而且会占用更多的内存。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-String empty = new String(); // Noncompliant; yields essentially "", so just use that.
-String nonempty = new String("Hello world"); // Noncompliant
-Double myDouble = new Double(1.1); // Noncompliant; use valueOf
-Integer integer = new Integer(1); // Noncompliant
-Boolean bool = new Boolean(true); // Noncompliant
-BigInteger bigInteger1 = new BigInteger("3"); // Noncompliant
-BigInteger bigInteger2 = new BigInteger("9223372036854775807"); // Noncompliant
-BigInteger bigInteger3 = new BigInteger("111222333444555666777888999"); // Compliant, greater than Long.MAX_VALUE
+String empty = new String(); // 不合规； 本质上是 ""，所以直接用它。
+String nonempty = new String("Hello world"); // 不合规
+Double myDouble = new Double(1.1); // 不合规；使用 valueOf
+Integer integer = new Integer(1); // 不合规
+Boolean bool = new Boolean(true); // 不合规
+BigInteger bigInteger1 = new BigInteger("3"); // 不合规
+BigInteger bigInteger2 = new BigInteger("9223372036854775807"); // 不合规
+BigInteger bigInteger3 = new BigInteger("111222333444555666777888999"); // 合规； 大于 Long.MAX_VALUE
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String empty = "";
 String nonempty = "Hello world";
@@ -23,7 +22,6 @@ BigInteger bigInteger1 = BigInteger.valueOf(3);
 BigInteger bigInteger2 = BigInteger.valueOf(9223372036854775807L);
 BigInteger bigInteger3 = new BigInteger("111222333444555666777888999");
 </pre>
-<h2>Exceptions</h2>
-<p><code>BigDecimal</code> constructor with <code>double</code> argument is ignored as using <code>valueOf</code> instead might change resulting
-value. See {rule:squid:S2111}.</p>
+<h2>例外</h2>
+<p>带有 <code>double</code> 参数的 <code>BigDecimal</code> 构造函数被忽略，因为使用 <code>valueOf</code> 可能会改变结果值。 参阅 {rule:squid:S2111}。</p>
 

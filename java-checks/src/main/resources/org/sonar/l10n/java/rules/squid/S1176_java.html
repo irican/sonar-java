@@ -1,67 +1,67 @@
-<p>Try to imagine using the standard Java API (Collections, JDBC, IO, ...) without Javadoc. It would be a nightmare, because Javadoc is the only way
-to understand of the contract of the API. Documenting an API with Javadoc increases the productivity of the developers consuming it.</p>
-<p>On top of a main description for each member of a public API, the following Javadoc elements are required to be described:</p>
+<p>试着想象一下在没有Javadoc的情况下使用标准Java API(集合、JDBC、IO，…)。这将是一场噩梦，因为Javadoc是理解API契约的唯一方法。
+用Javadoc记录API可以提高使用它的开发人员的工作效率。</p>
+<p>在公共API的每个成员的主要描述之上，需要描述以下Javadoc元素:</p>
 <ul>
-  <li> Parameters, using <code>@param parameterName</code>. </li>
-  <li> Thrown exceptions, using <code>@throws exceptionName</code>. </li>
-  <li> Method return values, using <code>@return</code>. </li>
-  <li> Generic types, using <code>@param &lt;T&gt;</code>. </li>
+  <li> 参数，使用 <code>@param parameterName</code>。 </li>
+  <li> 抛出的异常，使用 <code>@throws exceptionName</code>。 </li>
+  <li> 方法返回值，使用 <code>@return</code>。 </li>
+  <li> 泛型类型， 使用 <code>@param &lt;T&gt;</code>。 </li>
 </ul>
-<p>Furthermore the following guidelines should be followed:</p>
+<p>此外，应遵循下列准则:</p>
 <ul>
-  <li> At least 1 line of description. </li>
-  <li> All parameters documented with <code>@param</code>, and names should match. </li>
-  <li> All checked exceptions documented with <code>@throws</code> </li>
-  <li> <code>@return</code> present and documented when not <code>void</code>. </li>
-  <li> Placeholders like "TODO", "FIXME", "..." should be avoided. </li>
+  <li> 至少一行描述。</li>
+  <li> 使用 <code>@param</code>记录的所有参数和名称都应匹配。</li>
+  <li> 使用 <code>@throws</code>记录所有已检查的异常。</li>
+  <li> 当非 <code>void</code> 时，<code>@return</code> 出现并记录。 </li>
+  <li> 应该避免使用诸如 "TODO", "FIXME", "..." 之类的占位符。</li>
 </ul>
-<p>The following public methods and constructors are not taken into account by this rule:</p>
+<p>此规则不考虑以下public方法和构造函数：</p>
 <ul>
-  <li> Getters and setters. </li>
-  <li> Methods overriding another method (usually decorated with <code>@Override</code>). </li>
-  <li> Empty constructors. </li>
-  <li> Static constants. </li>
+  <li> Getters 和 setters。 </li>
+  <li> Methods overriding another method （通常用 <code>@Override</code> 修饰）。 </li>
+  <li> 空构造函数。 </li>
+  <li> Static 常量。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 /**
-  * This is a Javadoc comment
+  * 这是一个Javadoc注释
   */
-public class MyClass&lt;T&gt; implements Runnable {    // Noncompliant - missing '@param &lt;T&gt;'
+public class MyClass&lt;T&gt; implements Runnable {    // 不合规 - 缺少 '@param &lt;T&gt;'
 
-  public static final DEFAULT_STATUS = 0;    // Compliant - static constant
-  private int status;                           // Compliant - not public
+  public static final DEFAULT_STATUS = 0;    // 不合规 - static 常量
+  private int status;                           // 合规 - 非 public
 
-  public String message;                  // Noncompliant
+  public String message;                  // 不合规
 
-  public MyClass() {                         // Noncompliant - missing documentation
+  public MyClass() {                         // 不合规 - 缺少记录
     this.status = DEFAULT_STATUS;
   }
 
-  public void setStatus(int status) {  // Compliant - setter
+  public void setStatus(int status) {  // 合规 - setter
     this.status = status;
   }
 
   @Override
-  public void run() {                          // Compliant - has @Override annotation
+  public void run() {                          // 合规 - 有 @Override 注释
   }
 
-  protected void doSomething() {    // Compliant - not public
+  protected void doSomething() {    // 合规 - 非 public
   }
 
-  public void doSomething2(int value) {  // Noncompliant
+  public void doSomething2(int value) {  // 不合规
   }
 
-  public int doSomething3(int value) {  // Noncompliant
+  public int doSomething3(int value) {  // 不合规
     return value;
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 /**
-  * This is a Javadoc comment
-  * @param &lt;T&gt; the parameter of the class
+  * 这是一个Javadoc注释
+  * @param &lt;T&gt； 类的参数
   */
 public class MyClass&lt;T&gt; implements Runnable {
 
@@ -69,12 +69,12 @@ public class MyClass&lt;T&gt; implements Runnable {
   private int status;
 
   /**
-    * This is a Javadoc comment
+    * 这是一个Javadoc注释
     */
   public String message;
 
   /**
-   * Class comment...
+   * Class 评论...
    */
   public MyClass() {
     this.status = DEFAULT_STATUS;
@@ -92,8 +92,8 @@ public class MyClass&lt;T&gt; implements Runnable {
   }
 
   /**
-    * Will do something.
-    * @param value the value to be used
+    * 将做点什么。
+    * @param 值要使用的值
     */
   public void doSomething(int value) {
 

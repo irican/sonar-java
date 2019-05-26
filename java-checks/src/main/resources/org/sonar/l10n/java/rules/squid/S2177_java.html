@@ -1,14 +1,12 @@
-<p>When a method in a child class has the same signature as a method in a parent class, it is assumed to be an override. However, that's not the case
-when:</p>
+<p>当子类中的方法与父类中的方法具有相同的签名时，假定它是重写。但是，在以下情况下情况并非如此：</p>
 <ul>
-  <li> the parent class method is <code>static</code> and the child class method is not. </li>
-  <li> the arguments or return types of the child method are in different packages than those of the parent method. </li>
-  <li> the parent class method is <code>private</code>. </li>
+  <li> 父类方法是 <code>static</code> ，而子类方法则不是。 </li>
+  <li> 子方法的参数或返回类型与父方法的在不同的包中。 </li>
+  <li> 父类方法是 <code>private</code>。 </li>
 </ul>
-<p>Typically, these things are done unintentionally; the private parent class method is overlooked, the <code>static</code> keyword in the parent
-declaration is overlooked, or the wrong class is imported in the child. But if the intent is truly for the child class method to be different, then
-the method should be renamed to prevent confusion. </p>
-<h2>Noncompliant Code Example</h2>
+<p>通常情况下，这些事情是无意中完成的; 忽略私有父类方法，忽略父声明中的 <code>static</code> 关键字，或者在子节点中导入错误的类。
+但是如果真正使子类方法的意图不同，那么应该重命名该方法以防止混淆。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 // Parent.java
 import computer.Pear;
@@ -27,17 +25,17 @@ public class Parent {
 import fruit.Pear;
 public class Child extends Parent {
 
-  public void doSomething(Pear p) {  // Noncompliant; this is not an override
+  public void doSomething(Pear p) {  // 不合规； 这不是一个重写
     // ...
   }
 
 
-  public void doSomethingElse() {  // Noncompliant; parent method is static
+  public void doSomethingElse() {  // 不合规； 父方法是 static
     //...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 // Parent.java
 import computer.Pear;
@@ -56,7 +54,7 @@ public class Parent {
 import computer.Pear;  // import corrected
 public class Child extends Parent {
 
-  public void doSomething(Pear p) {  // true override (see import)
+  public void doSomething(Pear p) {  // true override (看 import)
     //,,,
   }
 

@@ -1,5 +1,5 @@
 {
-  "title": "TrustManagers should not blindly accept any certificates",
+  "title": "TrustManagers不应盲目接受任何证书",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

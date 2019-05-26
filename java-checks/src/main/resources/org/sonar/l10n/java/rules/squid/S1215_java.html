@@ -1,11 +1,10 @@
-<p>Calling <code>System.gc()</code> or <code>Runtime.getRuntime().gc()</code> is a bad idea for a simple reason: there is no way to know exactly what
-will be done under the hood by the JVM because the behavior will depend on its vendor, version and options:</p>
+<p>调用 <code>System.gc()</code> 或 <code>Runtime.getRuntime().gc()</code> )是一个糟糕的主意，原因很简单:无法确切知道JVM将在底层做什么，
+因为行为将取决于它的供应商、版本和选项：</p>
 <ul>
-  <li> Will the whole application be frozen during the call? </li>
-  <li> Is the <code>-XX:DisableExplicitGC</code> option activated? </li>
-  <li> Will the JVM simply ignore the call? </li>
+  <li> 整个应用程序会在调用期间被冻结吗? </li>
+  <li> 是否激活了 <code>-XX:DisableExplicitGC</code> 选项？ </li>
+  <li> JVM会简单地忽略这个调用吗? </li>
   <li> ... </li>
 </ul>
-<p>An application relying on these unpredictable methods is also unpredictable and therefore broken. The task of running the garbage collector should
-be left exclusively to the JVM.</p>
+<p>依赖于这些不可预测的方法的应用程序也是不可预测的，因此会崩溃。运行垃圾收集器的任务应该完全留给JVM。</p>
 

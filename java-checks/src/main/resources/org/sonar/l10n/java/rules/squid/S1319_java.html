@@ -1,28 +1,27 @@
-<p>The purpose of the Java Collections API is to provide a well defined hierarchy of interfaces in order to hide implementation details.</p>
-<p>Implementing classes must be used to instantiate new collections, but the result of an instantiation should ideally be stored in a variable whose
-type is a Java Collection interface.</p>
-<p>This rule raises an issue when an implementation class:</p>
+<p>Java Collections API的目的是提供定义良好的接口层次结构，以便隐藏实现细节。</p>
+<p>实现类必须用于实例化新集合，但理想情况下，实例化的结果应该存储在类型为Java集合接口（Java Collection interface）的变量中。</p>
+<p>有一个实现类时，此规则会报告问题：</p>
 <ul>
-  <li> is returned from a <code>public</code> method. </li>
-  <li> is accepted as an argument to a <code>public</code> method. </li>
-  <li> is exposed as a <code>public</code> member. </li>
+  <li> 从 <code>public</code> 方法返回。 </li>
+  <li> 被接受为 <code>public</code> 方法的参数。 </li>
+  <li> 公开为 <code>public</code> 成员。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Employees {
-  private HashSet&lt;Employee&gt; employees = new HashSet&lt;Employee&gt;();  // Noncompliant - "employees" should have type "Set" rather than "HashSet"
+  private HashSet&lt;Employee&gt; employees = new HashSet&lt;Employee&gt;();  // 不合规 - "employees" 应该有 "Set" 类型而不是 "HashSet"
 
-  public HashSet&lt;Employee&gt; getEmployees() {                       // Noncompliant
+  public HashSet&lt;Employee&gt; getEmployees() {                       // 不合规
     return employees;
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Employees {
-  private Set&lt;Employee&gt; employees = new HashSet&lt;Employee&gt;();      // Compliant
+  private Set&lt;Employee&gt; employees = new HashSet&lt;Employee&gt;();      // 合规
 
-  public Set&lt;Employee&gt; getEmployees() {                           // Compliant
+  public Set&lt;Employee&gt; getEmployees() {                           // 合规
     return employees;
   }
 }

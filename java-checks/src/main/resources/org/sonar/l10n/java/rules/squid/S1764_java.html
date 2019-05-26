@@ -1,42 +1,41 @@
-<p>Using the same value on either side of a binary operator is almost always a mistake. In the case of logical operators, it is either a copy/paste
-error and therefore a bug, or it is simply wasted code, and should be simplified. In the case of bitwise operators and most binary mathematical
-operators, having the same value on both sides of an operator yields predictable results, and should be simplified.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在二元运算符的两侧使用相同的值几乎总是错误的。在为逻辑运算符的情况下，它是复制/粘贴错误，因此是一个bug，或者它只是没用的代码，应该简化。
+在为按位运算符和大多数二元数学运算符的情况下，在运算符的两侧具有相同的值会产生可预测的结果，并且应该简化。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-if ( a == a ) { // always true
+if ( a == a ) { // 总是 true
   doZ();
 }
-if ( a != a ) { // always false
+if ( a != a ) { // 总是 false
   doY();
 }
-if ( a == b &amp;&amp; a == b ) { // if the first one is true, the second one is too
+if ( a == b &amp;&amp; a == b ) { // 如果第一个是true，第二个也是
   doX();
 }
-if ( a == b || a == b ) { // if the first one is true, the second one is too
+if ( a == b || a == b ) { // 如果第一个是true，第二个也是
   doW();
 }
 
-int j = 5 / 5; //always 1
-int k = 5 - 5; //always 0
+int j = 5 / 5; //总是 1
+int k = 5 - 5; //总是 0
 
-c.equals(c); //always true
+c.equals(c); //总是 true
 </pre>
-<h2>Exceptions</h2>
+<h2>例外</h2>
 <ul>
-  <li> This rule ignores <code>*</code>, <code>+</code>, and <code>=</code>. </li>
-  <li> The specific case of testing a floating point value against itself is a valid test for <code>NaN</code> and is therefore ignored. </li>
-  <li> Similarly, left-shifting 1 onto 1 is common in the construction of bit masks, and is ignored. </li>
+  <li> 此规则忽略 <code>*</code>， <code>+</code>， 和 <code>=</code>。 </li>
+  <li> 针对自身测试浮点值的特定情况对于 <code>NaN</code> 是有效测试，因此被忽略。 </li>
+  <li> 类似地，左移1到1在位掩码的构造中是常见的，也被忽略。 </li>
 </ul>
 <pre>
 float f;
-if(f != f) { //test for NaN value
+if(f != f) { //测试 NaN 值
   System.out.println("f is NaN");
 }
 
-int i = 1 &lt;&lt; 1; // Compliant
-int j = a &lt;&lt; a; // Noncompliant
+int i = 1 &lt;&lt; 1; // 合规
+int j = a &lt;&lt; a; // 不合规
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - Detect and remove code that has no effect or is never
   executed </li>

@@ -1,26 +1,28 @@
-<p>Using cookies is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>使用cookie对安全性敏感。 它在过去导致了以下漏洞：</p>
 <ul>
-  <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-11639">CVE-2018-11639</a> </li>
+  <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7772">CVE-2018-7772</a> </li>
+  <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-10085">CVE-2018-10085</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6537">CVE-2016-6537</a> </li>
 </ul>
-<p>Attackers can use widely-available tools to read cookies, sensitive information written by the server will be exposed.</p>
-<p>This rule flags code that writes cookies.</p>
-<h2>Ask Yourself Whether</h2>
+<p>攻击者可以使用广泛使用的工具来读取和修改cookie，因此：</p>
 <ul>
-  <li> sensitive information is stored inside the cookie. </li>
+  <li> 将暴露服务器写入的敏感信息。</li>
+  <li> 客户端发送的cookie可以用来攻击服务器漏洞。 </li>
 </ul>
-<p>You are at risk if you answered yes to this question.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Cookies should only be used to manage the user session. The best practice is to keep all user-related information server-side and link them to the
-user session, never sending them to the client. In a very few corner cases, cookies can be used for non-sensitive information that need to live longer
-than the user session.</p>
-<p>Do not try to encode sensitive information in a non human-readable format before writing them in a cookie. The encoding can be reverted and the
-original information will be exposed.</p>
+<p>此规则标记读取或写入cookie的代码。</p>
+<h2>请检查是否遇到过下列问题</h2>
+<ul>
+  <li> 敏感信息存储在cookie中。 </li>
+  <li> 使用cookie值而不首先进行清理。 </li>
+</ul>
+<p>如果您对其中任何一个问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p> Cookie只应用于管理用户会话。最佳做法是将所有与用户相关的信息保存在服务器端，并将它们链接到用户会话，而不是将它们发送到客户端。在极少数极端情况下，cookie可用于需要比用户会话更长寿的非敏感信息。</p>
+<p>在将敏感信息写入cookie之前，请勿尝试以非人类可读格式对敏感信息进行编码。可以恢复编码并显示原始信息。</p>
+<p><a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> every information read from a cookie before using them.</p>
 <p>Using cookies only for session IDs doesn't make them secure. Follow <a
 href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Cookies">OWASP best practices</a> when you configure your cookies.</p>
-<p>As a side note, every information read from a cookie should be <a
-href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitized</a>.</p>
-<h2>Sensitive Code Example</h2>
+<h2>可疑代码示例</h2>
 <pre>
 // === javax.servlet ===
 import javax.servlet.http.Cookie;
@@ -29,8 +31,10 @@ import javax.servlet.http.HttpServletRequest;
 
 public class JavaxServlet {
     void aServiceMethodSettingCookie(HttpServletRequest request, HttpServletResponse response, String acctID) {
-        Cookie cookie = new Cookie("userAccountID", acctID);  // Sensitive
-        response.addCookie(cookie);  // Sensitive
+        Cookie cookie = new Cookie("userAccountID", acctID);  // 可疑的
+        response.addCookie(cookie);  // 可疑的
+
+        cookie.getValue();  // 可疑的。检查值的使用方式。
     }
 }
 </pre>
@@ -43,16 +47,17 @@ import javax.ws.rs.core.NewCookie;
 class JavaxWs {
     void jaxRsCookie(String comment, int maxAge, boolean secure, Date expiry, boolean httpOnly, String name,
             String value, String path, String domain, int version) {
-        Cookie cookie= new Cookie("name", "value");  // Sensitive
+        Cookie cookie= new Cookie("name", "value");  // 可疑的
+        cookie.getValue();  // 可疑的
 
-        new NewCookie(cookie);  // Sensitive
-        new NewCookie(cookie, comment, maxAge, secure);  // Sensitive
-        new NewCookie(cookie, comment, maxAge, expiry, secure, httpOnly);  // Sensitive
-        new NewCookie(name, value);  // Sensitive
-        new NewCookie(name, value, path, domain, version, comment, maxAge, secure);  // Sensitive
-        new NewCookie(name, value, path, domain, version, comment, maxAge, expiry, secure, httpOnly);  // Sensitive
-        new NewCookie(name, value, path, domain, comment, maxAge, secure);  // Sensitive
-        new NewCookie(name, value, path, domain, comment, maxAge, secure, httpOnly);  // Sensitive
+        new NewCookie(cookie);  // 可疑的
+        new NewCookie(cookie, comment, maxAge, secure);
+        new NewCookie(cookie, comment, maxAge, expiry, secure, httpOnly);
+        new NewCookie(name, value);
+        new NewCookie(name, value, path, domain, version, comment, maxAge, secure);
+        new NewCookie(name, value, path, domain, version, comment, maxAge, expiry, secure, httpOnly);
+        new NewCookie(name, value, path, domain, comment, maxAge, secure);
+        new NewCookie(name, value, path, domain, comment, maxAge, secure, httpOnly);
     }
 }
 </pre>
@@ -62,8 +67,9 @@ import java.net.HttpCookie;
 
 class JavaNet {
     void httpCookie(HttpCookie hc) {
-        HttpCookie cookie = new HttpCookie("name", "value");  // Sensitive
-        cookie.setValue("value");  // Sensitive
+        HttpCookie cookie = new HttpCookie("name", "value");  // 可疑的
+        cookie.setValue("value");  // 可疑的
+        cookie.getValue();  // 可疑的
     }
 }
 </pre>
@@ -74,8 +80,29 @@ import org.apache.shiro.web.servlet.SimpleCookie;
 class ApacheShiro {
 
     void shiroCookie(SimpleCookie cookie) {
-        SimpleCookie sc = new SimpleCookie(cookie);  // Sensitive
-        cookie.setValue("value");  // Sensitive
+        SimpleCookie sc = new SimpleCookie(cookie);  // 可疑的
+        cookie.setValue("value");  // 可疑的
+        cookie.getValue();  // 可疑的
+    }
+}
+</pre>
+<pre>
+// === spring ===
+import org.springframework.security.web.savedrequest.SavedCookie;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestMapping;
+import javax.servlet.http.Cookie;
+
+class Spring {
+    @RequestMapping("/mypage.html")
+    // Questionable. “myCookie” value is read from a cookie.
+    public String myPage(@CookieValue("cookieName") String myCookie) {
+        return "test";
+    }
+
+    void springCookie(Cookie cookie) {
+        SavedCookie savedCookie = new SavedCookie(cookie); // 可疑的
+        cookie.getValue(); // 可疑的
     }
 }
 </pre>
@@ -83,24 +110,29 @@ class ApacheShiro {
 // === Play ===
 import play.mvc.Http.Cookie;
 import play.mvc.Http.CookieBuilder;
+import scala.language;
 
 
 class Play {
-    void playCookie() {
-        CookieBuilder builder = Cookie.builder("name", "value");  // Sensitive
+    void playCookie(Cookie cookie) {
+        cookie.value();  // 可疑的
+
+        CookieBuilder builder = Cookie.builder("name", "value");  // 可疑的
         builder.withName("name")
-          .withValue("value")  // Sensitive
+          .withValue("value")  // 可疑的
           .build();
 
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A3-Sensitive_Data_Exposure">OWASP Top 10 2017 Category A3</a> - Sensitive Data Exposure
-  </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/312.html">MITRE, CWE-312</a> - Cleartext Storage of Sensitive Information </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/315.html">MITRE, CWE-315</a> - Cleartext Storage of Sensitive Information in a Cookie </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/565.html">MITRE CWE-565</a> - Reliance on Cookies without Validation and Integrity Checking
+  </li>
+  <li> OWASP Top 10 2017 Category A1 - Injection </li>
+  <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
   <li> <a href="https://wiki.sei.cmu.edu/confluence/display/java/FIO52-J.+Do+not+store+unencrypted+sensitive+information+on+the+client+side">CERT,
   FIO52-J.</a> - Do not store unencrypted sensitive information on the client side </li>
   <li> Derived from FindSecBugs rule <a href="https://find-sec-bugs.github.io/bugs.htm#COOKIE_USAGE">COOKIE_USAGE</a> </li>

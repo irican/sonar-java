@@ -1,19 +1,18 @@
-<p>Assigning a value to a <code>static</code> field in a constructor could cause unreliable behavior at runtime since it will change the value for all
-instances of the class.</p>
-<p>Instead remove the field's <code>static</code> modifier, or initialize it statically.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在构造函数中为 <code>static</code> 字段赋值可能在运行时导致不可靠的行为，因为它将更改该类的所有实例的值。</p>
+<p>相反，删除字段的<code>static</code>修饰符，或者静态初始化它。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Person {
   static Date dateOfBirth;
   static int expectedFingers;
 
   public Person(date birthday) {
-    dateOfBirth = birthday;  // Noncompliant; now everyone has this birthday
-    expectedFingers = 10;  // Noncompliant
+    dateOfBirth = birthday;  // 不合规；现在每个人都有这个birthday
+    expectedFingers = 10;  // 不合规
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Person {
   Date dateOfBirth;

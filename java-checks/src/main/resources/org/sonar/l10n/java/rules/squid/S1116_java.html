@@ -1,31 +1,31 @@
-<p>Empty statements, i.e. <code>;</code>, are usually introduced by mistake, for example because:</p>
+<p>空语句，即 <code>;</code>，通常是被错误引入的，例如：</p>
 <ul>
-  <li> It was meant to be replaced by an actual statement, but this was forgotten. </li>
-  <li> There was a typo which lead the semicolon to be doubled, i.e. <code>;;</code>. </li>
+  <li> 它本来应该是一条实际的语句，但被忘记了。 </li>
+  <li> 有一个拼写错误导致分号加倍，即 <code>;;</code>。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 void doSomething() {
-  ;                                                       // Noncompliant - was used as a kind of TODO marker
+  ;                                                       // 不合规 - 被用作一种TODO标记
 }
 
 void doSomethingElse() {
-  System.out.println("Hello, world!");;                     // Noncompliant - double ;
+  System.out.println("Hello, world!");;                     // 不合规 - 两个;
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 void doSomething() {}
 
 void doSomethingElse() {
   System.out.println("Hello, world!");
   ...
-  for (int i = 0; i &lt; 3; i++) ; // compliant if unique statement of a loop
+  for (int i = 0; i &lt; 3; i++) ; // 如果是单独的一行语句循环则合规
   ...
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 14.3 - Before preprocessing, a null statement shall only occur on a line by itself; it may be followed by a comment provided that
   the first character following the null statement is a white-space character. </li>

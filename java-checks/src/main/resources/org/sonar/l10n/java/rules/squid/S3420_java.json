@@ -1,5 +1,5 @@
 {
-  "title": "Artifact ids should follow a naming convention",
+  "title": "Artifact ids应该遵循命名约定",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

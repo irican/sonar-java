@@ -1,5 +1,5 @@
 {
-  "title": "\"Object.wait(...)\" and \"Condition.await(...)\" should be called inside a \"while\" loop",
+  "title": "\"Object.wait(...)\" 和 \"Condition.await(...)\" 应该在一个 \"while\" 循环中调用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

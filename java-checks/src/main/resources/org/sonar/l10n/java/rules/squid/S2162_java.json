@@ -1,5 +1,5 @@
 {
-  "title": "\"equals\" methods should be symmetric and work for subclasses",
+  "title": "\"equals\" 方法应该是对称的，并且适用于子类",
   "type": "BUG",
   "status": "ready",
   "remediation": {

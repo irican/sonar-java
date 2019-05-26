@@ -1,6 +1,6 @@
-<p>When <code>@Overrides</code> of <code>synchronized</code> methods are not themselves <code>synchronized</code>, the result can be improper
-synchronization as callers rely on the thread-safety promised by the parent class.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当<code>@Overrides</code>（重写）<code>synchronized</code>（同步）的方法本身不是<code>synchronized</code>（同步时） ，结果可能是不正确的同步，因为调用者依赖父类承诺的线程安全。 
+</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Parent {
 
@@ -12,13 +12,13 @@ public class Parent {
 public class Child extends Parent {
 
  @Override
-  public foo () {  // Noncompliant
+  public foo () {  // 不合规的
     // ...
     super.foo();
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class Parent {
 
@@ -36,7 +36,7 @@ public class Child extends Parent {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/XgAZAg">CERT, TSM00-J</a> - Do not override thread-safe methods with methods that are
   not thread-safe </li>

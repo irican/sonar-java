@@ -1,5 +1,5 @@
 {
-  "title": "\"java.time\" classes should be used for dates and times",
+  "title": "\"java.time\" 类应该用于日期和时间",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

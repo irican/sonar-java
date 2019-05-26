@@ -1,13 +1,12 @@
-<p>If wrapped primitive values (e.g. <code>Integers</code> and <code>Floats</code>) are used in a ternary operator (e.g. <code>a?b:c</code>), both
-values will be unboxed and coerced to a common type, potentially leading to unexpected results. To avoid this, add an explicit cast to a compatible
-type.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果在三元运算符（例如 <code>a?b:c</code>）中使用封装的原始类型值 （例如 <code>Integers</code> 和 <code>Floats</code>） 
+则两个值都将被拆箱并强制转换为公共类型（common type），可能会导致意外结果。要避免这种情况，请向兼容类型添加显式强制转换。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Integer i = 123456789;
 Float f = 1.0f;
-Number n = condition ? i : f;  // Noncompliant; i is coerced to float. n = 1.23456792E8
+Number n = condition ? i : f;  // 不合规； i 强制转换为float类型。 n = 1.23456792E8
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Integer i = 123456789;
 Float f = 1.0f;

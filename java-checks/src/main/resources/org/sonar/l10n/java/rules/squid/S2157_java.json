@@ -1,5 +1,5 @@
 {
-  "title": "\"Cloneables\" should implement \"clone\"",
+  "title": "\"Cloneables\" 应实现 \"clone\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

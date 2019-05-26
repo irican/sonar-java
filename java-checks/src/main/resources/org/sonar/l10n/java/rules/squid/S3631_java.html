@@ -1,18 +1,15 @@
-<p>For arrays of objects, <code>Arrays.asList(T ... a).stream()</code> and <code>Arrays.stream(array)</code> are basically equivalent in terms of
-performance. However, for arrays of primitives, using <code>Arrays.asList</code> will force the construction of a list of boxed types, and then use
-<em>that</em> list as a stream. On the other hand, <code>Arrays.stream</code> uses the appropriate primitive stream type (<code>IntStream</code>,
-<code>LongStream</code>, <code>DoubleStream</code>) when applicable, with much better performance.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对于对象数组，<code> Arrays.asList（T ... a）.stream（）</code>和<code> Arrays.stream（array）</code>在性能方面基本相同。 但是，对于基元数组，使用<code> Arrays.asList </code>将强制构造一个盒装类型列表，然后使用<em>that</em>列表作为流。 另一方面，<code> Arrays.stream </code>使用适当的基本流类型（<code> IntStream </code>，<code> LongStream </code>，<code> DoubleStream </code>） 适用，性能更好。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 Arrays.asList("a1", "a2", "b1", "c2", "c1").stream()
     .filter(...)
     .forEach(...);
 
-Arrays.asList(1, 2, 3, 4).stream() // Noncompliant
+Arrays.asList(1, 2, 3, 4).stream() // 不合规的
     .filter(...)
     .forEach(...);
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Arrays.asList("a1", "a2", "b1", "c2", "c1").stream()
     .filter(...)

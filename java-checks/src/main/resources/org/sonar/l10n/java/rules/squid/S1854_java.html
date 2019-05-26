@@ -1,19 +1,18 @@
-<p>A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value
-only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it's not an error, it is at best a waste of resources.
-Therefore all calculated values should be used.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当为局部变量分配一个未被任何后续指令读取的值时，就会发生死存储（dead store）。计算或检索一个值只是为了重写（overwrite）它或抛出它，
+可能表明代码中存在严重错误。即使这不是一个错误，它也是严重的浪费资源。因此，应使用所有计算值。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-i = a + b; // Noncompliant; calculation result not used before value is overwritten
+i = a + b; // 不合规；值被重写（overwrite）前未使用的计算结果
 i = compute();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 i = a + b;
 i += compute();
 </pre>
-<h2>Exceptions</h2>
-<p>This rule ignores initializations to -1, 0, 1, <code>null</code>, <code>true</code>, <code>false</code> and <code>""</code>.</p>
-<h2>See</h2>
+<h2>例外</h2>
+<p>此规则忽略对 -1， 0， 1， <code>null</code>， <code>true</code>， <code>false</code> 和 <code>""</code> 的初始化。 </p>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/563.html">MITRE, CWE-563</a> - Assignment to Variable without Use ('Unused Variable') </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/QYA5">CERT, MSC13-C.</a> - Detect and remove unused values </li>

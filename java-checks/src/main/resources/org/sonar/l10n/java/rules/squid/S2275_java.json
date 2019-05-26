@@ -1,5 +1,5 @@
 {
-  "title": "Printf-style format strings should not lead to unexpected behavior at runtime",
+  "title": "Printf样式的格式字符串不应导致运行时的意外行为",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,23 +1,21 @@
-<p>A Single Abstract Method (SAM) interface is a Java interface containing only one method. The Java API is full of SAM interfaces, such as
-<code>java.lang.Runnable</code>, <code>java.awt.event.ActionListener</code>, <code>java.util.Comparator</code> and
-<code>java.util.concurrent.Callable</code>. SAM interfaces have a special place in Java 8 because they can be implemented using Lambda expressions or
-Method references. </p>
-<p>Using <code>@FunctionalInterface</code> forces a compile break when an additional, non-overriding abstract method is added to a SAM, which would
-break the use of Lambda implementations.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>单抽象（Single Abstract）方法（SAM）接口是仅包含一个方法的Java接口。 Java API充满了SAM接口，例如 <code>java.lang.Runnable</code>， <code>java.awt.event.ActionListener</code>，
+<code>java.util.Comparator</code> 和 <code>java.util.concurrent.Callable</code>。SAM接口在Java 8中有一个特殊的地位，
+因为它们可以使用Lambda表达式或Method引用来实现。 </p>
+<p>使用 <code>@FunctionalInterface</code> 在向SAM添加一个额外的非重写抽象方法时强制执行编译中断，这将中断Lambda实现的使用。</p>
+<p><strong>注意</strong> 当项目的 <code>sonar.java.source</code> 低于 <code>8</code> 时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public interface Changeable&lt;T&gt; {
   public void change(T o);
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @FunctionalInterface
 public interface Changeable&lt;T&gt; {
   public void change(T o);
 }
 </pre>
-<h2>Deprecated</h2>
-<p>This rule is deprecated, and will eventually be removed.</p>
+<h2>弃用</h2>
+<p>此规则已弃用，最终将被删除。</p>
 

@@ -1,5 +1,5 @@
 {
-  "title": "Array designators \"[]\" should be on the type, not the variable",
+  "title": "数组指示符 \"[]\" 应该位于类型上，而不是变量",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

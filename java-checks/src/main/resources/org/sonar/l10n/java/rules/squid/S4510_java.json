@@ -1,5 +1,5 @@
 {
-  "title": "Deserializing with XMLDecoder is security-sensitive",
+  "title": "从不受信任的源反序列化XML对安全性敏感",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "remediation": {
@@ -13,7 +13,7 @@
   ],
   "standards": [
     "CWE",
-    "OWASP Top 10"
+    "OWASP Top Ten"
   ],
   "defaultSeverity": "Critical",
   "ruleSpecification": "RSPEC-4510",

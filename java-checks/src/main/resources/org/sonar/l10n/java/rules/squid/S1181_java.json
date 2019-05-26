@@ -1,5 +1,5 @@
 {
-  "title": "Throwable and Error should not be caught",
+  "title": "不应捕获可抛出的异常（Throwable）和错误",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

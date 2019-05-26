@@ -1,5 +1,5 @@
 {
-  "title": "Using unsafe Jackson deserialization configuration is security-sensitive",
+  "title": "使用不安全的Jackson反序列化配置是安全敏感的",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "remediation": {

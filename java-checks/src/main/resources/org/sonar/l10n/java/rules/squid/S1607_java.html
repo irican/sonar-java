@@ -1,20 +1,19 @@
-<p>When a test fails due, for example, to infrastructure issues, you might want to ignore it temporarily. But without some kind of notation about why
-the test is being ignored, it may never be reactivated. Such tests are difficult to address without comprehensive knowledge of the project, and end up
-polluting their projects.</p>
-<p>This rule raises an issue for each ignored test that does not have a notation about why it is being skipped.</p>
-<h2>Noncompliant Code Example</h2>
+<p>例如，当测试因基础架构问题而失败时，您可能希望暂时忽略它。但是，如果没有关于为什么忽略测试的某种注释（notation），它可能永远不会被重新激活。
+如果没有对项目的全面了解，这些测试很难解决，并且最终污染他们的项目。</p>
+<p>对于每个被忽略的测试，若是没有注释去说明为什么要跳过它，该规则都会报告一个问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-@Ignore  // Noncompliant
+@Ignore  // 不合规
 @Test
 public void testDoTheThing() {
   // ...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Test
 public void testDoTheThing() {
   // ...
 </pre>
-<h2>Exceptions</h2>
-<p>The rule doesn't raise an issue if there is a comment in the @Ignore annotation</p>
+<h2>例外</h2>
+<p>如果@Ignore注解（annotation）中有注释，则该规则不会报告问题</p>
 

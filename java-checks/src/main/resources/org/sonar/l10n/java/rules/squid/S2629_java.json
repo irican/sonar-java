@@ -1,5 +1,5 @@
 {
-  "title": "\"Preconditions\" and logging arguments should not require evaluation",
+  "title": "\"Preconditions\" 和日志参数不需要评估",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

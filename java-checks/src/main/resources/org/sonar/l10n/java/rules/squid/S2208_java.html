@@ -1,13 +1,12 @@
-<p>Blindly importing all the classes in a package clutters the class namespace and could lead to conflicts between classes in different packages with
-the same name. On the other hand, specifically listing the necessary classes avoids that problem and makes clear which versions were wanted.</p>
-<h2>Noncompliant Code Example</h2>
+<p>盲目地导入包中的所有类会使类命名空间变得混乱，并且可能导致具有相同名称的不同包中的类之间发生冲突。 另一方面，特别列出必要的类可以避免这个问题，并明确需要哪些版本。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-import java.sql.*; // Noncompliant
-import java.util.*; // Noncompliant
+import java.sql.*; // 不合规
+import java.util.*; // 不合规
 
-private Date date; // Date class exists in java.sql and java.util. Which one is this?
+private Date date; // 日期类存在于java.sql和java.util中。 这是哪一个？
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 import java.sql.Date;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 private Date date;
 </pre>
-<h2>Exceptions</h2>
+<h2>例外</h2>
 <p>Static imports are ignored by this rule. E.G.</p>
 <pre>
 import static java.lang.Math.*;

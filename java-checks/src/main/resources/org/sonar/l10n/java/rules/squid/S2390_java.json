@@ -1,5 +1,5 @@
 {
-  "title": "Classes should not access their own subclasses during initialization",
+  "title": "在初始化期间，类不应访问自己的子类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

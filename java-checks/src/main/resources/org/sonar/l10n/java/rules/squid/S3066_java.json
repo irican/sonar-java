@@ -1,5 +1,5 @@
 {
-  "title": "\"enum\" fields should not be publicly mutable",
+  "title": "\"enum\" 字段不应对外可变",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

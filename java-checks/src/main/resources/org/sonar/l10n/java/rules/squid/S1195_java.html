@@ -1,17 +1,16 @@
-<p>According to the Java Language Specification: </p>
+<p>根据Java语言规范：</p>
 <blockquote>
-  <p>For compatibility with older versions of the Java SE platform,</p>
-  <p>the declaration of a method that returns an array is allowed to place (some or all of) the empty bracket pairs that form the declaration of the
-  array type after the formal parameter list.</p>
-  <p>This obsolescent syntax should not be used in new code.</p>
+  <p>为了与旧版本的Java SE平台兼容，</p>
+  <p>返回数组的方法的声明允许放置（部分或全部）空括号对，这些空括号对在形式参数列表之后形成数组类型的声明。</p>
+  <p>不应在新代码中使用此过时语法。</p>
 </blockquote>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-public int getVector()[] { /* ... */ }    // Noncompliant
+public int getVector()[] { /* ... */ }    // 不合规
 
-public int[] getMatrix()[] { /* ... */ }  // Noncompliant
+public int[] getMatrix()[] { /* ... */ }  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public int[] getVector() { /* ... */ }
 

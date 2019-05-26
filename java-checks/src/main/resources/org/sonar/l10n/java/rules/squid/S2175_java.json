@@ -1,5 +1,5 @@
 {
-  "title": "Inappropriate \"Collection\" calls should not be made",
+  "title": "不应该进行不当的 \"Collection\" 调用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

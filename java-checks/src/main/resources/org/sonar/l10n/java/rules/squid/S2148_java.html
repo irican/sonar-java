@@ -1,39 +1,38 @@
-<p>Beginning with Java 7, it is possible to add underscores ('_') to numeric literals to enhance readability. The addition of underscores in this
-manner has no semantic meaning, but makes it easier for maintainers to understand the code.</p>
-<p>The number of digits to the left of a decimal point needed to trigger this rule varies by base.</p>
+<p>从Java 7开始，可以在数字文本中添加下划线('_')来增强可读性。以这种方式添加下划线没有语义意义，但使维护人员更容易理解代码。</p>
+<p>触发此规则所需的小数点左侧的位数因基数而异。</p>
 <table>
   <tbody>
     <tr>
-      <th>Base</th>
-      <th> Minimum digits</th>
+      <th>基数</th>
+      <th> 最小位数</th>
     </tr>
     <tr>
-      <td>binary</td>
+      <td>二进制</td>
       <td> 9 </td>
     </tr>
     <tr>
-      <td>octal</td>
+      <td>八进制</td>
       <td> 9 </td>
     </tr>
     <tr>
-      <td>decimal</td>
+      <td>十进制</td>
       <td> 6 </td>
     </tr>
     <tr>
-      <td>hexadecimal</td>
+      <td>十六进制</td>
       <td> 9 </td>
     </tr>
   </tbody>
 </table>
-<p>It is only the presence of underscores, not their spacing that is scrutinized by this rule.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>7</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>这条规则只检查下划线的存在，而不检查它们的间距。</p>
+<p><strong>注意</strong> 当项目的 <code>sonar.java.source</code> 低于 <code>7</code> 时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-int i = 10000000;  // Noncompliant; is this 10 million or 100 million?
-int  j = 0b01101001010011011110010101011110;  // Noncompliant
-long l = 0x7fffffffffffffffL;  // Noncompliant
+int i = 10000000;  // 不合规： 这是1000万还是1亿？
+int  j = 0b01101001010011011110010101011110;  // 不合规
+long l = 0x7fffffffffffffffL;  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 int i = 10_000_000;
 int  j = 0b01101001_01001101_11100101_01011110;

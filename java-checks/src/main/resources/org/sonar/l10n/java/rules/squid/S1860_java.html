@@ -1,9 +1,7 @@
-<p>Objects which are pooled and potentially reused should not be used for synchronization. If they are, it can cause unrelated threads to deadlock
-with unhelpful stacktraces. Specifically, <code>String</code> literals, and boxed primitives such as Integers should not be used as lock objects
-because they are pooled and reused. The story is even worse for <code>Boolean</code> objects, because there are only two instances of
-<code>Boolean</code>, <code>Boolean.TRUE</code> and <code>Boolean.FALSE</code> and every class that uses a Boolean will be referring to one of the
-two.</p>
-<h2>Noncompliant Code Example</h2>
+<p>被池化（pool）和可能被重用的对象不应用于同步。如果是，则可能导致无关的线程因无用的堆栈跟踪而死锁。具体来说， 
+<code>String</code> 文本和装箱（boxed）的原始类型（primitive）（如整数）不应该用作锁对象，因为它们被池化和重用的。<code>Boolean</code> 对象的情况更糟，
+因为 <code>Boolean</code> 只有两个实例，<code>Boolean.TRUE</code> 和 <code>Boolean.FALSE</code> 并且每个使用布尔值的类都将引用其中一个。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private static final Boolean bLock = Boolean.FALSE;
 private static final Integer iLock = Integer.valueOf(0);
@@ -11,17 +9,17 @@ private static final String sLock = "LOCK";
 
 public void doSomething() {
 
-  synchronized(bLock) {  // Noncompliant
+  synchronized(bLock) {  // 不合规
     // ...
   }
-  synchronized(iLock) {  // Noncompliant
+  synchronized(iLock) {  // 不合规
     // ...
   }
-  synchronized(sLock) {  // Noncompliant
+  synchronized(sLock) {  // 不合规
     // ...
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private static final Object lock1 = new Object();
 private static final Object lock2 = new Object();
@@ -39,7 +37,7 @@ public void doSomething() {
     // ...
   }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/rQGeAQ">CERT, LCK01-J.</a> - Do not synchronize on objects that may be reused </li>
 </ul>

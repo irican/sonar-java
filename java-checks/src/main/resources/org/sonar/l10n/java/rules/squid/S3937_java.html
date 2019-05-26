@@ -1,11 +1,10 @@
-<p>The use of punctuation characters to separate subgroups in a number can make the number more readable. For instance consider 1,000,000,000 versus
-1000000000. But when the grouping is irregular, such as 1,000,00,000; it indicates an error. </p>
-<p>This rule raises an issue when underscores (<code>_</code>) are used to break a number into irregular subgroups.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用标点符号分隔数字中的子组可以使数字更具可读性。例如，考虑1,000,000,000而不是10亿，但是当分组不规则时，例如1,000,000,000;它表示错误。</p> 
+<p>当使用下划线（<code> _ </code>）将数字分成不规则的子组时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 int duos = 1_00_00;
-int million = 1_000_00_000;  // Noncompliant
+int million = 1_000_00_000;  // 不合规的
 int thousand = 1000;
-int tenThousand = 100_00;  // Noncompliant
+int tenThousand = 100_00;  // 不合规的
 </pre>
 

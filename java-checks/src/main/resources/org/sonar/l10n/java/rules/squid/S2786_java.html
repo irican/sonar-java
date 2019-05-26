@@ -1,23 +1,23 @@
-<p>According to <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.9">the docs</a>:</p>
+<p>根据<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.9">文档</a>：</p>
 <blockquote>
-  Nested enum types are implicitly
-  <code>static</code>.
+  嵌套枚举类型是隐式的
+  <code>static</code>。
 </blockquote>
-<p>So there's no need to declare them <code>static</code> explicitly.</p>
-<h2>Noncompliant Code Example</h2>
+<p>因此，不需要显式地声明它们<code>static</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Flower {
-  static enum Color { // Noncompliant; static is redundant here
+  static enum Color { // 不合规的;静态是多余的
     RED, YELLOW, BLUE, ORANGE
   }
 
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Flower {
-  enum Color { // Compliant
+  enum Color { // 合理的
     RED, YELLOW, BLUE, ORANGE
   }
 

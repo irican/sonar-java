@@ -1,7 +1,6 @@
-<p>With Java 8's "default method" feature, any abstract class without direct or inherited field should be converted into an interface. However, this
-change may not be appropriate in libraries or other applications where the class is intended to be used as an API.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用Java 8的“默认方法（default method）”功能，任何没有直接或继承字段的抽象类都应转换为接口。但是，此更改可能不适用于要将该类用作API的库或其他应用程序。</p>
+<p><strong>注意</strong> 当项目的 <code>sonar.java.source</code> 低于 <code>8</code> 时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public abstract class Car {
   public abstract void start(Environment c);
@@ -11,7 +10,7 @@ public abstract class Car {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public interface Car {
   public void start(Environment c);

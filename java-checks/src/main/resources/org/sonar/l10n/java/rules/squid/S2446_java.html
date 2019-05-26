@@ -1,6 +1,6 @@
-<p><code>notify</code> and <code>notifyAll</code> both wake up sleeping threads, but <code>notify</code> only rouses one, while <code>notifyAll</code>
-rouses all of them. Since <code>notify</code> might not wake up the right thread, <code>notifyAll</code> should be used instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>notify</code> 和 <code>notifyAll</code> 都可以唤醒睡眠线程，但是<code>notify</code>只可以唤醒一个，而<code>notifyAll</code>可以唤醒所有。
+因此<code>notify</code>可能无法唤醒正确的线程，应该使用<code>notifyAll</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class MyThread extends Thread{
 
@@ -8,12 +8,12 @@ class MyThread extends Thread{
   public void run(){
     synchronized(this){
       // ...
-      notify();  // Noncompliant
+      notify();  // 不合规
     }
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class MyThread extends Thread{
 
@@ -26,7 +26,7 @@ class MyThread extends Thread{
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/OoAlAQ">CERT, THI02-J.</a> - Notify all waiting threads rather than a single thread
   </li>

@@ -1,15 +1,14 @@
-<p>When only the keys from a map are needed in a loop, iterating the <code>keySet</code> makes sense. But when both the key and the value are needed,
-it's more efficient to iterate the <code>entrySet</code>, which will give access to both the key and value, instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当循环中只需要映射中的键时，迭代<code>keySet</code> 是有意义的。但是，当同时需要键和值时，迭代<code>entrySet</code>更有效，这将同时访问键和值。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomethingWithMap(Map&lt;String,Object&gt; map) {
-  for (String key : map.keySet()) {  // Noncompliant; for each key the value is retrieved
+  for (String key : map.keySet()) {  // 不合规；对于每个键，都检索其值
     Object value = map.get(key);
     // ...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomethingWithMap(Map&lt;String,Object&gt; map) {
   for (Map.Entry&lt;String,Object&gt; entry : map.entrySet()) {

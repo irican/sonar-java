@@ -1,5 +1,5 @@
 {
-  "title": "\"Externalizable\" classes should have no-arguments constructors",
+  "title": "\"Externalizable\" 类应该有无参数构造函数",
   "type": "BUG",
   "status": "ready",
   "remediation": {

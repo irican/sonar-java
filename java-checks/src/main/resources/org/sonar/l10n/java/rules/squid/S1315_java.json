@@ -1,5 +1,5 @@
 {
-  "title": "Track uses of \"CHECKSTYLE:OFF\" suppression comments",
+  "title": "跟踪 \"CHECKSTYLE:OFF\" 抑制注释（suppression comment）的使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

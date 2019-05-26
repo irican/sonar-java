@@ -1,16 +1,15 @@
-<p>Sharing some naming conventions is a key point to make it possible for a team to efficiently collaborate. This rule allows to check that all
-<code>abstract</code> class names match a provided regular expression. If a non-abstract class match the regular expression, an issue is raised to
-suggest to either make it abstract or to rename it.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default regular expression: <code>^Abstract[A-Z][a-zA-Z0-9]*$</code>:</p>
+<p>共享一些命名约定是使团队有效协作的关键点。此规则允许检查所有 <code>abstract</code> 类名是否与提供的正则表达式匹配。 如果
+非抽象类（non-abstract class）与正则表达式匹配，此规则也会提出问题，建议将其设为抽象或重命名。</p>
+<h2>不合规的代码示例</h2>
+<p>使用默认的正则表达式：<code>^Abstract[A-Z][a-zA-Z0-9]*$</code>：</p>
 <pre>
-abstract class MyClass { // Noncompliant
+abstract class MyClass { // 不合规
 }
 
-class AbstractLikeClass { // Noncompliant
+class AbstractLikeClass { // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 abstract class MyAbstractClass {
 }

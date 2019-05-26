@@ -1,5 +1,5 @@
 {
-  "title": "Unnecessary semicolons should be omitted",
+  "title": "不必要的分号应该省略",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

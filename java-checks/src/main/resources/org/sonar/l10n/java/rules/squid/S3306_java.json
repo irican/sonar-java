@@ -1,5 +1,5 @@
 {
-  "title": "Constructor injection should be used instead of field injection",
+  "title": "应使用构造函数注入而不是字段注入",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Using non-standard cryptographic algorithms is security-sensitive",
+  "title": "使用非标准加密算法是安全敏感的",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "remediation": {

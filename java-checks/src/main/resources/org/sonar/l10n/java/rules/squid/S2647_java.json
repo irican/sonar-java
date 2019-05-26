@@ -1,5 +1,5 @@
 {
-  "title": "Basic authentication should not be used",
+  "title": "不应使用基本身份验证",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

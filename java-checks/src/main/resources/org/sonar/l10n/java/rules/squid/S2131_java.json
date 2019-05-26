@@ -1,5 +1,5 @@
 {
-  "title": "Primitives should not be boxed just for \"String\" conversion",
+  "title": "原始类型不应仅仅为了 \"String\" 转换将被装箱（boxed）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

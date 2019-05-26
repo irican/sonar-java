@@ -1,5 +1,5 @@
 {
-  "title": "Static non-final field names should comply with a naming convention",
+  "title": "静态非终（non-final）字段名应该符合命名约定",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

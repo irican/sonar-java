@@ -1,5 +1,5 @@
 {
-  "title": "Synchronization should not be based on Strings or boxed primitives",
+  "title": "同步不应基于字符串或装箱的原始类型（boxed primitive）",
   "type": "BUG",
   "status": "ready",
   "remediation": {

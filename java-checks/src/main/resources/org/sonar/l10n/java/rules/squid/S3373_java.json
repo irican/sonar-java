@@ -1,5 +1,5 @@
 {
-  "title": "\"action\" mappings should not have too many \"forward\" entries",
+  "title": "“action ”映射不应该有太多\"forward\"条目",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

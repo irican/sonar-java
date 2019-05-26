@@ -1,5 +1,5 @@
 {
-  "title": "Return values should not be ignored when they contain the operation status code",
+  "title": "当包含操作状态码时，不应忽略返回值",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

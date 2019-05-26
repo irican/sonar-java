@@ -1,18 +1,16 @@
-<p>It is highly recommended <strong>not</strong> to use wildcard types as return types. Because the type inference rules are fairly complex it is
-unlikely the user of that API will know how to use it correctly. </p>
-<p>Let's take the example of method returning a "List&lt;? extends Animal&gt;". Is it possible on this list to add a Dog, a Cat, ... we simply don't
-know. And neither does the compiler, which is why it will not allow such a direct use. The use of wildcard types should be limited to method
-parameters.</p>
-<p>This rule raises an issue when a method returns a wildcard type. </p>
-<h2>Noncompliant Code Example</h2>
+<p>强烈建议 <strong>不要</strong> 将通配符类型用作返回类型。因为类型推断规则相当复杂，所以该API的用户不太可能知道如何正确地使用它。</p>
+<p>让我们以返回 "List&lt;? extends Animal&gt;"的方法为例。有没有可能在这个清单上加上一只狗，一只猫，…… 我们根本就不知道。
+编译器也不允许，这就是为什么它不允许这样的直接使用。通配符类型的使用应该仅限于方法参数。</p>
+<p>当方法返回通配符类型时，此规则会报告问题。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 List&lt;? extends Animal&gt; getAnimals(){...}
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 List&lt;Animal&gt; getAnimals(){...}
 </pre>
-<p>or</p>
+<p>或者</p>
 <pre>
 List&lt;Dog&gt; getAnimals(){...}
 </pre>

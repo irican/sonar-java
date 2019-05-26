@@ -1,15 +1,14 @@
-<p>JNDI supports the deserialization of objects from LDAP directories, which is fundamentally insecure and can lead to remote code execution.</p>
-<p>This rule raises an issue when an LDAP search query is executed with <code>SearchControls</code> configured to allow deserialization.</p>
-<h2>Noncompliant Code Example</h2>
+<p> JNDI支持从LDAP目录反序列化对象，这从根本上是不安全的，并且可能导致远程代码执行。</p>
+<p>当使用 <code>SearchControls</code> 执行LDAP搜索查询以允许反序列化时，此规则会引发问题。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 DirContext ctx = new InitialDirContext();
 // ...
 ctx.search(query, filter,
         new SearchControls(scope, countLimit, timeLimit, attributes,
-            true, // Noncompliant; allows deserialization
-            deref));
+            true, // 不合规的; 允许反序列化));
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 DirContext ctx = new InitialDirContext();
 // ...
@@ -18,7 +17,7 @@ ctx.search(query, filter,
             false,
             deref));
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/502.html">MITRE, CWE-502</a> - Deserialization of Untrusted Data </li>
   <li> OWASP Top 10 2017 Category A8 - Insecure Deserialization </li>

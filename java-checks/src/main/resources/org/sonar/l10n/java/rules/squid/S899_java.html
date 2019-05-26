@@ -1,36 +1,35 @@
-<p>When the return value of a function call contain the operation status code, this value should be tested to make sure the operation completed
-successfully.</p>
-<p>This rule raises an issue when the return values of the following are ignored:</p>
+<p>当函数调用的返回值包含操作状态码时，应测试该值以确保操作成功完成。</p>
+<p>当忽略以下返回值时，此规则会提出问题：</p>
 <ul>
-  <li> <code>java.io.File</code> operations that return a status code (except <code>mkdirs</code>) </li>
+  <li> 返回状态码的 <code>java.io.File</code> 操作（ <code>mkdirs</code> 除外） </li>
   <li> <code>Iterator.hasNext()</code> </li>
   <li> <code>Enumeration.hasMoreElements()</code> </li>
   <li> <code>Lock.tryLock()</code> </li>
-  <li> non-void <code>Condition.await*</code> methods </li>
+  <li> 非void <code>Condition.await*</code>  方法</li>
   <li> <code>CountDownLatch.await(long, TimeUnit)</code> </li>
   <li> <code>Semaphore.tryAcquire</code> </li>
-  <li> <code>BlockingQueue</code>: <code>offer</code>, <code>remove</code> </li>
+  <li> <code>BlockingQueue</code>： <code>offer</code>， <code>remove</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething(File file, Lock lock) {
-  file.delete();  // Noncompliant
+  file.delete();  // 不合规
   // ...
-  lock.tryLock(); // Noncompliant
+  lock.tryLock(); // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething(File file, Lock lock) {
   if (!lock.tryLock()) {
-    // lock failed; take appropriate action
+    // 锁定（lock）失败；采取适当行动
   }
   if (!file.delete()) {
-    // file delete failed; take appropriate action
+    // 文件删除（delete）失败；采取适当行动
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 16.10 - If a function returns error information, then that error information shall be tested </li>
   <li> MISRA C++:2008, 0-1-7 - The value returned by a function having a non-void return type that is not an overloaded operator shall always be used.

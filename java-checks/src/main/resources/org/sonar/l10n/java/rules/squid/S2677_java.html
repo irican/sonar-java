@@ -1,14 +1,12 @@
-<p>When a method is called that returns data read from some data source, that data should be stored rather than thrown away. Any other course of
-action is surely a bug.</p>
-<p>This rule raises an issue when the return value of any of the following is ignored or merely null-checked: <code>BufferedReader.readLine()</code>,
-<code>Reader.read()</code>, and these methods in any child classes.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当调用返回从某个数据源读取的数据的方法时，应该存储而不是丢弃该数据。任何其他的做法都肯定是错误的。</p>
+<p>当下列函数忽略或仅检查空值时，此规则会引发一个问题：<code>BufferedReader.readLine()</code>，<code>Reader.read()</code>，以及任何子类中的这些方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomethingWithFile(String fileName) {
   BufferedReader buffReader = null;
   try {
     buffReader = new BufferedReader(new FileReader(fileName));
-    while (buffReader.readLine() != null) { // Noncompliant
+    while (buffReader.readLine() != null) { // 不合规
       // ...
     }
   } catch (IOException e) {
@@ -16,7 +14,7 @@ public void doSomethingWithFile(String fileName) {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomethingWithFile(String fileName) {
   BufferedReader buffReader = null;

@@ -1,7 +1,6 @@
-<p><code>NullPointerException</code> should be avoided, not caught. Any situation in which <code>NullPointerException</code> is explicitly caught can
-easily be converted to a <code>null</code> test, and any behavior being carried out in the catch block can easily be moved to the "is null" branch of
-the conditional.</p>
-<h2>Noncompliant Code Example</h2>
+<p>应该避免 <code>NullPointerException</code> ，而不是捕获。显式捕获<code>NullPointerException</code> 的任何情况都可以很容易地转换为 
+<code>null</code> 测试，并且在catch块中执行的任何行为都可以轻松地移动到“is null”条件的分支。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public int lengthPlus(String str) {
   int len = 2;
@@ -14,7 +13,7 @@ public int lengthPlus(String str) {
   return len;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public int lengthPlus(String str) {
   int len = 2;
@@ -28,7 +27,7 @@ public int lengthPlus(String str) {
   return len;
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/395.html">MITRE, CWE-395</a> - Use of NullPointerException Catch to Detect NULL Pointer
   Dereference </li>

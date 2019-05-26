@@ -1,5 +1,5 @@
 {
-  "title": "\"compareTo\" results should not be checked for specific values",
+  "title": "不应检查特定值的\"compareTo\"的结果。",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Classes that don't define \"hashCode()\" should not be used in hashes",
+  "title": "不定义 \"hashCode()\" 的类不应在散列（hashes）中使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

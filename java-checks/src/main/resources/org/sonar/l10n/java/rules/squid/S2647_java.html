@@ -1,22 +1,21 @@
-<p>Basic authentication's only means of obfuscation is Base64 encoding. Since Base64 encoding is easily recognized and reversed, it offers only the
-thinnest veil of protection to your users, and should not be used. </p>
-<h2>Noncompliant Code Example</h2>
+<p>基本身份验证惟一的混淆方法是Base64编码。由于Base64编码很容易识别和逆转，所以它只向用户提供了最薄弱的保护，不应该使用它。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-// Using HttpPost from Apache HttpClient
+// 从Apache HttpClient使用 HttpPost
 String encoding = Base64Encoder.encode ("login:passwd");
 org.apache.http.client.methods.HttpPost httppost = new HttpPost(url);
-httppost.setHeader("Authorization", "Basic " + encoding);  // Noncompliant
+httppost.setHeader("Authorization", "Basic " + encoding);  // 不合规
 
 or
 
-// Using HttpURLConnection
+// 使用 HttpURLConnection
 String encoding = Base64.getEncoder().encodeToString(("login:passwd").getBytes(‌"UTF‌​-8"​));
 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 conn.setRequestMethod("POST");
 conn.setDoOutput(true);
-conn.setRequestProperty("Authorization", "Basic " + encoding); // Noncompliant
+conn.setRequestProperty("Authorization", "Basic " + encoding); // 不合规
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/522">MITRE, CWE-522</a> - Insufficiently Protected Credentials </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/311">MITRE, CWE-311</a> - Missing Encryption of Sensitive Data </li>

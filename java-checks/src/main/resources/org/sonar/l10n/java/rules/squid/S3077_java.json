@@ -1,5 +1,5 @@
 {
-  "title": "Non-primitive fields should not be \"volatile\"",
+  "title": "非原始字段不应使用 \"volatile\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

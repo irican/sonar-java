@@ -1,11 +1,10 @@
-<p>According to Oracle Javadoc:</p>
+<p>根据文档 Oracle Javadoc:</p>
 <blockquote>
-  <p><code>IllegalMonitorStateException</code> is thrown when a thread has attempted to wait on an object's monitor or to notify other threads waiting
-  on an object's monitor without owning the specified monitor.</p>
+  <p><code>IllegalMonitorStateException</code> 在线程试图在对象的监视器上等待或在没有指定监视器的情况下通知在对象监视器上等待的其他线程时抛出</p>
 </blockquote>
-<p>In other words, this exception can be thrown only in case of bad design because <code>Object.wait(...)</code>, <code>Object.notify()</code> and
-<code>Object.notifyAll()</code> methods should never be called on an object whose monitor is not held. </p>
-<h2>Noncompliant Code Example</h2>
+<p>换句话说，只有在设计错误的情况下才会抛出此异常，因为<code>Object.wait(...)</code>, <code>Object.notify()</code> 而且
+不应该在未保存监视器的对象上调用<code>Object.notifyAll()</code>方法 </p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public void doSomething(){
   ...
@@ -18,7 +17,7 @@ public void doSomething(){
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void doSomething(){
   ...

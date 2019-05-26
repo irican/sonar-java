@@ -1,5 +1,5 @@
 {
-  "title": "Non-serializable objects should not be stored in \"HttpSession\" objects",
+  "title": "不可序列化的对象不应存储在“HttpSession ”对象中",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,11 +1,10 @@
-<p>The use of Unicode escape sequences should be reserved for characters that would otherwise be ambiguous, such as unprintable characters.</p>
-<p>This rule ignores sequences composed entirely of Unicode characters, but otherwise raises an issue for each Unicode character that represents a
-printable character.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Unicode转义序列的使用应该保留给那些模棱两可的字符，比如不可打印的字符。</p>
+<p>该规则忽略完全由Unicode字符组成的序列，但是对于表示可打印字符的每个Unicode字符都会产生问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-String prefix = "n\u00E9e"; // Noncompliant
+String prefix = "n\u00E9e"; // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String prefix = "née";
 </pre>

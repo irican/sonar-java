@@ -1,19 +1,17 @@
-<p>Simply implementing <code>Cloneable</code> without also overriding <code>Object.clone()</code> does not necessarily make the class cloneable. While
-the <code>Cloneable</code> interface does not include a <code>clone</code> method, it is required by convention, and ensures true cloneability.
-Otherwise the default JVM <code>clone</code> will be used, which copies primitive values and object references from the source to the target. I.e.
-without overriding <code>clone</code>, any cloned instances will potentially share members with the source instance.</p>
-<p>Removing the <code>Cloneable</code> implementation and providing a good copy constructor is another viable (some say preferable) way of allowing a
-class to be copied.</p>
-<h2>Noncompliant Code Example</h2>
+<p>只实现 <code>Cloneable</code> 而不重写 <code>Object.clone()</code> 并不一定使类可克隆。虽然 <code>Cloneable</code> 接口不包含 <code>clone</code> 方法，
+但它是惯例所必需的，并确保了真正的可克隆性。 否则，将使用默认的 JVM <code>clone</code> ，它将原始值和对象引用从源复制到目标。
+即如果不重写 <code>clone</code>，任何克隆的实例都可能与源实例共享成员。</p>
+<p>删除 <code>Cloneable</code> 实现并提供良好的复制构造函数是允许类复制的另一种可行的（一些说是更好的）方式。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-class Team implements Cloneable {  // Noncompliant
+class Team implements Cloneable {  // 不合规
   private Person coach;
   private List&lt;Person&gt; players;
   public void addPlayer(Person p) {...}
   public Person getCoach() {...}
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class Team implements Cloneable {
   private Person coach;

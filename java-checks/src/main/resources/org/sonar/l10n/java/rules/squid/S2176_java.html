@@ -1,12 +1,11 @@
-<p>While it's perfectly legal to give a class the same simple name as a class in another package that it extends or interface it implements, it's
-confusing and could cause problems in the future. </p>
-<h2>Noncompliant Code Example</h2>
+<p>虽然给类起一个与它扩展的包或实现的接口中的类相同的简单名称是完全合法的，但是这很容易混淆，并且可能在将来造成问题。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 package my.mypackage;
 
-public class Foo implements a.b.Foo { // Noncompliant
+public class Foo implements a.b.Foo { // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 package my.mypackage;
 

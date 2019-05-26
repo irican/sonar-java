@@ -1,12 +1,11 @@
-<p>By contract, the <code>NullCipher</code> class provides an "identity cipher" <del></del> one that does not transform or encrypt the plaintext in
-any way. As a consequence, the ciphertext is identical to the plaintext. So this class should be used for testing, and never in production code.</p>
-<h2>Noncompliant Code Example</h2>
+<p>通过约定， <code>NullCipher</code> 类提供了一个“标识密码”<del></del> 它不以任何方式转换或加密明文。因此，密文与明文完全相同。因此，这个类应该用于测试，而不是在生产代码中使用。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 NullCipher nc = new NullCipher();
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="http://cwe.mitre.org/data/definitions/327.html">MITRE, CWE-327</a> - Use of a Broken or Risky Cryptographic Algorithm </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/327.html">CWE-327</a> - Use of a Broken or Risky Cryptographic Algorithm </li>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>
 </ul>

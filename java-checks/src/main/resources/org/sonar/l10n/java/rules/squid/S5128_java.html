@@ -1,13 +1,10 @@
-<p><code>Bean Validation</code> as per defined by JSR 380 can be triggered programmatically or also executed by the <code>Bean Validation</code>
-providers. However something should tell the <code>Bean Validation</code> provider that a variable must be validated otherwise no validation will
-happen. This can be achieved by annotating a variable with <code>javax.validation.Valid</code> and unfortunally it's easy to forget to add this
-annotation on complex Beans.</p>
-<p>Not annotating a variable with <code>@Valid</code> means <code>Bean Validation</code> will not be triggered for this variable, but readers may
-overlook this omission and assume the variable will be validated.</p>
-<p>This rule will run by default on all <code>Class</code>'es and therefore can generate a lot of noise. This rule should be restricted to run only on
-certain layers. For this reason, the "Restrict Scope of Coding Rules" feature should be used to check for missing <code>@Valid</code> annotations only
-on some packages of the application.</p>
-<h2>Noncompliant Code Example</h2>
+<p>根据JSR 380定义的<code>Bean Validation</code> 可以通过编程方式触发，也可以由 <code>Bean Validation</code>提供程序执行。
+但是，应该告诉 <code>Bean Validation</code> 提供程序必须验证变量，否则不会进行验证。这可以通过使用 <code>javax.validation.Valid</code> 注解（annotation）变量来实现，
+不幸的是，很容易忘记在复杂的Beans上添加这个注解（annotation）。</p>
+<p>不使用 <code>@Valid</code> 注解变量意味着不会为此变量触发 <code>Bean Validation</code> ，但读者可能会忽略此遗漏并假设变量将被验证。</p>
+<p>默认情况下，此规则将在所有 <code>Class</code>'es 上运行，因此会产生大量噪音。应将此规则限制为仅在某些层（layer）上运行。
+因此，应该使用“限制编码规则范围”功能来检查应用程序的某些包上缺少的 <code>@Valid</code> 注解。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -19,15 +16,15 @@ public class User {
 
 public class Group {
   @NotNull
-  private List&lt;User&gt; users; // Noncompliant; User instances are not validated
+  private List&lt;User&gt; users; // 不合规；用户实例未经过验证
 }
 
 public class MyService {
-  public void login(User user) { // Noncompliant; parameter "user" is not validated
+  public void login(User user) { // 不合规；参数“user”未经过验证
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -40,19 +37,19 @@ public class User {
 public class Group {
   @Valid
   @NotNull
-  private List&lt;User&gt; users; // Compliant; User instances are validated
+  private List&lt;User&gt; users; // 合规；用户实例已经过验证
 
   @NotNull
-  // preferred style as of Bean Validation 2.0
-  private List&lt;@Valid User&gt; users2; // Compliant; User instances are validated
+  // Bean Validation 2.0中的首选样式
+  private List&lt;@Valid User&gt; users2; // 合规； 用户实例已经过验证
 }
 
 public class MyService {
-  public void login(@Valid User user) { // Compliant
+  public void login(@Valid User user) { // 合规
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://beanvalidation.org/2.0/spec/">Bean Validation 2.0 (JSR 380)</a> </li>
 </ul>

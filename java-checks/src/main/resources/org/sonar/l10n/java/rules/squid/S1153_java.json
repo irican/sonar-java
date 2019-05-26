@@ -1,5 +1,5 @@
 {
-  "title": "String.valueOf() should not be appended to a String",
+  "title": "不应将 String.valueOf() 附加到 String",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

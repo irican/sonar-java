@@ -1,5 +1,5 @@
 {
-  "title": "Intermediate Stream methods should not be left unused",
+  "title": "中间流方法不应该闲置",
   "type": "BUG",
   "status": "ready",
   "remediation": {

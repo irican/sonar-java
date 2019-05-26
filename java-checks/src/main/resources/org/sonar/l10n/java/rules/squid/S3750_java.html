@@ -1,16 +1,13 @@
-<p>Spring <code>@Controller</code>s, <code>@Service</code>s, and <code>@Repository</code>s have <code>singleton</code> scope by default, meaning only
-one instance of the class is ever instantiated in the application. Defining any other scope for one of these class types will result in needless churn
-as new instances are created and destroyed. In a busy web application, this could cause a significant amount of needless additional load on the
-server.</p>
-<p>This rule raises an issue when the <code>@Scope</code> annotation is applied to a <code>@Controller</code>, <code>@Service</code>, or
-<code>@Repository</code> with any value but "singleton". <code>@Scope("singleton")</code> is redundant, but ignored.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Spring <code> @Controller </code> s，<code> @Service </code> s，<code> @Repository </code>默认情况下有<code> singleton </code>范围， 意味着只有一个类的实例在应用程序中实例化。 为这些类类型中的一个定义任何其他范围将导致在创建和销毁新实例时不必要的流失。 在繁忙的Web应用程序中，这可能会导致服务器上出现大量不必要的额外负载。</p>
+<p>当<code> @Scope </code>注释应用于<code> @Controller </code>，<code> @Service </code>时，此规则会引发问题，或者
+<code> @Repository </code>，任何值，但“singleton”。 <code> @Scope（“singleton”）</code>是多余的，但是被忽略了。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-@Scope("prototype")  // Noncompliant
+@Scope("prototype")  // 不合规的
 @Controller
 public class HelloWorld {
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的代码示例</h2>
 <pre>
 @Controller
 public class HelloWorld {

@@ -1,16 +1,15 @@
-<p>Running finalizers on JVM exit is disabled by default. It can be enabled with <code>System.runFinalizersOnExit</code> and
-<code>Runtime.runFinalizersOnExit</code>, but both methods are deprecated because they are are inherently unsafe. </p>
-<p>According to the Oracle Javadoc:</p>
+<p>默认情况下禁用在JVM出口上运行终结器（finalizer）。它可以使用 <code>System.runFinalizersOnExit</code> 和
+<code>Runtime.runFinalizersOnExit</code>启用，但这两种方法都是不推荐使用的，因为它们本质上是不安全的。 </p>
+<p>根据Oracle Javadoc:</p>
 <blockquote>
-  <p>It may result in finalizers being called on live objects while other threads are concurrently manipulating those objects, resulting in erratic
-  behavior or deadlock.</p>
+  <p>它可能导致在活动对象上调用终结器，而其他线程同时操作这些对象，从而导致不稳定的行为或死锁。</p>
 </blockquote>
-<p>If you really want to be execute something when the virtual machine begins its shutdown sequence, you should attach a shutdown hook. </p>
-<h2>Noncompliant Code Example</h2>
+<p>如果您确实希望在虚拟机开始其关闭序列时执行某些操作，则应附加关闭一个 hook. </p>
+<h2>不合规的代码示例</h2>
 <pre>
 public static void main(String [] args) {
   ...
-  System.runFinalizersOnExit(true);  // Noncompliant
+  System.runFinalizersOnExit(true);  // 不合规
   ...
 }
 
@@ -18,7 +17,7 @@ protected void finalize(){
   doSomething();
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public static void main(String [] args) {
   Runtime.addShutdownHook(new Runnable() {
@@ -28,7 +27,7 @@ public static void main(String [] args) {
   });
   //...
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/H4cbAQ">CERT, MET12-J.</a> - Do not use finalizers </li>
 </ul>

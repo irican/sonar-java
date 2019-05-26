@@ -1,11 +1,10 @@
-<p>When a <code>private</code> method is only invoked by an inner class, there's no reason not to move it into that class. It will still have the same
-access to the outer class' members, but the outer class will be clearer and less cluttered.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当一个<code>private</code>方法仅由内部类调用时，没有理由不将它移动到该类中。它仍将具有对外部类成员的相同访问权限，但外部类将更清晰，更简洁。</p>
+<h2>不合规的解决方案</h2>
 <pre>
 public class Outie {
   private int i=0;
 
-  private void increment() {  // Noncompliant
+  private void increment() {  //不合规的
     i++;
   }
 
@@ -16,7 +15,7 @@ public class Outie {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Outie {
   private int i=0;

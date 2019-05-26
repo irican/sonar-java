@@ -1,14 +1,13 @@
-<p>According to the Java Language Specification:</p>
+<p>根据Java语言规范:</p>
 <blockquote>
-  <p>Unnamed packages are provided by the Java platform principally for convenience when developing small or temporary applications or when just
-  beginning development.</p>
+  <p>Java平台提供了未命名的包，主要是为了方便开发小型或临时应用程序或刚开始开发时。</p>
 </blockquote>
-<p>To enforce this best practice, classes located in default package can no longer be accessed from named ones since Java 1.4.</p>
-<h2>Noncompliant Code Example</h2>
+<p>为强制执行这种最佳惯例，自Java 1.4以来，位于默认包中的类不再可以从命名包中访问。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClass { /* ... */ }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 package org.example;
 

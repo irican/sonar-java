@@ -1,13 +1,12 @@
-<p>Using <code>Collection.size()</code> to test for emptiness works, but using <code>Collection.isEmpty()</code> makes the code more readable and can
-be more performant. The time complexity of any <code>isEmpty()</code> method implementation should be <code>O(1)</code> whereas some implementations
-of <code>size()</code> can be <code>O(n)</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>Collection.size()</code> 来测试空白（emptiness）是否有效，但使用 <code>Collection.isEmpty()</code> 可以使代码更具可读性，并且性能更高。
+任何 <code>isEmpty()</code> 方法实现的时间复杂度都应该是 <code>O(1)</code> ，而 <code>size()</code> 的某些实现可以是 <code>O(n)</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-if (myCollection.size() == 0) {  // Noncompliant
+if (myCollection.size() == 0) {  // 不合规
   /* ... */
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 if (myCollection.isEmpty()) {
   /* ... */

@@ -1,19 +1,19 @@
-<p>Looking for a given substring starting from a specified offset can be achieved by such code: <code>str.substring(beginIndex).indexOf(char1)</code>.
-This works well, but it creates a new <code>String</code> for each call to the <code>substring</code> method. When this is done in a loop, a lot of
-<code>Strings</code> are created for nothing, which can lead to performance problems if <code>str</code> is large.</p>
-<p>To avoid performance problems, <code>String.substring(beginIndex)</code> should not be chained with the following methods:</p>
+<p>通过以下代码可以实现从指定偏移量开始查找给定子字符串：<code> str.substring（beginIndex）.indexOf（char1）</code>。
+这很好用，但它为每次调用<code> substring </code>方法创建一个新的<code> String </code>。当这是在循环中完成时，很多
+<code>String</code>是创建后没有用的，如果<code> str </code>很大，可能会导致性能问题。</p>
+<p>为避免性能问题，<code> String.substring（beginIndex）</ code>不应使用以下方法链接：</p>
 <p>- <code>indexOf(int ch)</code></p>
 <p>- <code>indexOf(String str)</code></p>
 <p>- <code>lastIndexOf(int ch)</code></p>
 <p>- <code>lastIndexOf(String str)</code></p>
 <p>- <code>startsWith(String prefix)</code></p>
-<p>For each of these methods, another method with an additional parameter is available to specify an offset.</p>
-<p>Using these methods gives the same result while avoiding the creation of additional <code>String</code> instances.</p>
-<h2>Noncompliant Code Example</h2>
-<pre>
-str.substring(beginIndex).indexOf(char1); // Noncompliant; a new String is going to be created by "substring"
-</pre>
-<h2>Compliant Solution</h2>
+<p>对于这些方法中的每一种，可以使用另一个带附加参数的方法来指定偏移量。</p>
+<p>使用这些方法可以获得相同的结果，同时避免创建其他<code> String </code>实例。</p>
+<h2>不符合规范的代码示例</h2>
+<PRE>
+str.substring（的beginIndex）.indexOf（CHAR1）; //不合规;一个新的String将由“substring”创建
+</ PRE>
+<h2>合规解决方案</h2>
 <pre>
 str.indexOf(char1, beginIndex);
 </pre>

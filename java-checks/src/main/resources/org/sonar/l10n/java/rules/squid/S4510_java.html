@@ -1,38 +1,33 @@
-<p>Deserialization from an untrusted source using the XMLDecoder library can lead to unexpected code execution. For example, it has led in the past to
-the following vulnerability:</p>
+<p>使用XMLDecoder库从不受信任的源进行反序列化可能会导致意外的代码执行。例如，它过去曾导致以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-4221">CVE-2013-4221</a> </li>
 </ul>
-<p>XMLDecoder supports arbitrary method invocation. This capability is intended to call setter methods only but nothing prevents the execution of any
-other method.</p>
-<p>This rule raises an issue when XMLDecoder is instantiated. The call to "readObject" is also highlighted to show where the malicious code can be
-executed.</p>
-<h2>Ask Yourself Whether</h2>
+<p>XMLDecoder支持任意方法调用。此功能仅用于调用setter方法，但不会阻止任何其他方法的执行。</p>
+<p>当实例化XMLDecoder时，此规则引发了一个问题。对“readObject”的调用也会突出显示，以显示恶意代码的执行位置。</p>
+<h2>检查自己是否存在以下问题</h2>
 <ul>
-  <li> the XML input can come from an untrusted source and be tainted by a hacker. (*) </li>
-  <li> you require the advanced functionalities provided by the XMLDecoder class. If you simply need to deserialize XML you can use a more secure
-  deserialization function. </li>
+  <li> XML输入可能来自不受信任的来源，并受到黑客的污染。  (*) </li>
+  <li> 您需要XMLDecoder类提供的高级功能。如果您只需要反序列化XML，则可以使用更安全的反序列化函数。 </li>
 </ul>
-<p>(*) You are at risk if you answered yes to this question.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>If you only need a simple deserialization, use instead one of the deserialization libraries <a
+<p>(*) 如果您对此问题的回答是肯定的，则存在风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p>如果您只需要一个简单的反序列化，请使用其中一个反序列化库<a
 href="https://www.owasp.org/index.php/Deserialization_Cheat_Sheet#Mitigation_Tools.2FLibraries">recommended by OWASP</a>.</p>
-<p>If you really need to use XMLDecoder, make sure that the serialized data cannot be tampered with.</p>
-<h2>Sensitive Code Example</h2>
+<p>如果您确实需要使用XMLDecoder，请确保序列化数据不会被篡改。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public void decode(InputStream in) {
-  XMLDecoder d = new XMLDecoder(in); // Sensitive
+  XMLDecoder d = new XMLDecoder(in); // 不合规
   Object result = d.readObject();
   [...]
   d.close();
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A1-Injection">OWASP Top 10 2017 Category A1</a> - Injection </li>
-  <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A8-Insecure_Deserialization">OWASP Top 10 2017 Category A8</a> - Insecure Deserialization
-  </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/502.html">MITRE, CWE-502</a> - Deserialization of Untrusted Data </li>
+  <li> OWASP Top 10 2017 Category A1 - Injection </li>
+  <li> OWASP Top 10 2017 Category A8 - Insecure Deserialization </li>
   <li> <a href="https://www.owasp.org/index.php/Deserialization_of_untrusted_data">OWASP Deserialization of untrusted data</a> </li>
   <li> Derived from FindSecBugs rule <a href="https://find-sec-bugs.github.io/bugs.htm#XML_DECODER">XML_DECODER </a> </li>
 </ul>

@@ -1,22 +1,21 @@
-<p><code>instanceof</code> operators that always return <code>true</code> or <code>false</code> are either useless or the result of a misunderstanding
-which could lead to unexpected behavior in production.</p>
-<h2>Noncompliant Code Example</h2>
+<p>始终返回 <code>true</code> 或 <code>false</code> 的 <code>instanceof</code> 运算符要么无用，要么是误解的结果，这可能导致生产中的意外行为。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public boolean isSuitable(Integer param) {
 ...
   String name = null;
 
-  if (name instanceof String) { // Noncompliant; always false since name is null
+  if (name instanceof String) { // 不合规； 始终为false，因为name为null
     //...
   }
 
-  if(param instanceof Number) {  // Noncompliant; always true unless param is null, because param is an Integer
+  if(param instanceof Number) {  // 不合规； 除非param为null，否则总是为true，因为param是一个Integer
     doSomething();
   }
 ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public boolean isSuitable(Integer param) {
 ...
@@ -24,6 +23,6 @@ public boolean isSuitable(Integer param) {
 ...
 }
 </pre>
-<h2>Deprecated</h2>
-<p>This rule is deprecated; use {rule:squid:S2589} instead.</p>
+<h2>弃用</h2>
+<p>此规则已弃用; 请改用{rule：squid：S2589}。</p>
 

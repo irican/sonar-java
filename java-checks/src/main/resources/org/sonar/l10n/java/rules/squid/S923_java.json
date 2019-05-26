@@ -1,5 +1,5 @@
 {
-  "title": "Functions should not be defined with a variable number of arguments",
+  "title": "不应使用可变数量的参数来定义函数",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,6 +7,8 @@
     "constantCost": "1min"
   },
   "tags": [
+    "misra",
+    "cert",
     "pitfall"
   ],
   "defaultSeverity": "Info",

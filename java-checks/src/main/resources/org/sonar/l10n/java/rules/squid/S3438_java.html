@@ -1,22 +1,19 @@
-<p>Use of a Spring <code>SingleConnectionFactory</code> without enabling the <code>reconnectOnException</code> setting will prevent automatic
-connection recovery when the connection goes bad. </p>
-<p>That's because the <code>reconnectOnException</code> property defaults to <code>false</code>. As a result, even if the code that uses this
-connection factory (Spring's <code>DefaultMessageListenerContainer</code> or your own code) has reconnect logic, that code won't work because the
-<code>SingleConnectionFactory</code> will act like a single-connection pool by preventing connection <code>close</code> calls from actually closing
-anything. As a result, subsequent factory <code>create</code> operations will just hand back the original broken <code>Connection</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用Spring <code> SingleConnectionFactory </code>而不启用<code> reconnectOnException </code>设置将阻止自动
+连接变坏时的连接恢复。</p>
+<p>那是因为<code> reconnectOnException </code>属性默认为<code> false </code>。因此，即使使用此连接工厂的代码（Spring的<code> DefaultMessageListenerContainer </code>或您自己的代码）具有重新连接逻辑，该代码也将无效，因为<code> SingleConnectionFactory </ code>将起作用像单个连接池一样，阻止连接<code> close </code>调用实际关闭任何东西。因此，后续的工厂<code> create </code>操作将只返回原来损坏的<code> Connection </code>。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
  &lt;bean id="singleCF" class="org.springframework.jms.connection.SingleConnectionFactory"&gt;  &lt;!-- Noncompliant --&gt;
    &lt;constructor-arg ref="dummyConnectionFactory" /&gt;
  &lt;/bean&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
  &lt;bean id="singleCF" class="org.springframework.jms.connection.SingleConnectionFactory" p:reconnectOnException="true"&gt;
    &lt;constructor-arg ref="dummyConnectionFactory" /&gt;
  &lt;/bean&gt;
 </pre>
-<p>or</p>
+<p>或</p>
 <pre>
  &lt;bean id="singleCF" class="org.springframework.jms.connection.SingleConnectionFactory"&gt;
    &lt;constructor-arg ref="dummyConnectionFactory" /&gt;

@@ -1,5 +1,5 @@
 {
-  "title": "Classes named like \"Exception\" should extend \"Exception\" or a subclass",
+  "title": "名称像 \"Exception\" 这样的类应该扩展（extend） \"Exception\" 或子类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

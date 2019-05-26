@@ -1,7 +1,6 @@
-<p>Using <code>Thread.sleep</code> in a test is just generally a bad idea. It creates brittle tests that can fail unpredictably depending on
-environment ("Passes on my machine!") or load. Don't rely on timing (use mocks) or use libraries such as <code>Awaitility</code> for asynchroneous
-testing. </p>
-<h2>Noncompliant Code Example</h2>
+<p>在测试中使用<code>Thread.sleep</code>通常是一个坏主意。它创建了脆弱的测试，这些测试可能会不可预测地失败，这取决于环境(“在我的机器上传递!”)或负载。
+不要依赖计时(使用mock)或使用诸如<code>Awaitility</code> 之类的库进行异步测试。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @Test
 public void testDoTheThing(){
@@ -9,11 +8,11 @@ public void testDoTheThing(){
   MyClass myClass = new MyClass();
   myClass.doTheThing();
 
-  Thread.sleep(500);  // Noncompliant
-  // assertions...
+  Thread.sleep(500);  // 不合规
+  // 断言...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Test
 public void testDoTheThing(){
@@ -21,14 +20,14 @@ public void testDoTheThing(){
   MyClass myClass = new MyClass();
   myClass.doTheThing();
 
-  await().atMost(2, Duration.SECONDS).until(didTheThing());  // Compliant
-  // assertions...
+  await().atMost(2, Duration.SECONDS).until(didTheThing());  // 合规的
+  // 断言...
 }
 
 private Callable&lt;Boolean&gt; didTheThing() {
   return new Callable&lt;Boolean&gt;() {
     public Boolean call() throws Exception {
-      // check the condition that must be fulfilled...
+      // 检查必须满足的条件...
     }
   };
 }

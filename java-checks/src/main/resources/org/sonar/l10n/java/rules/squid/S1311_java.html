@@ -1,10 +1,9 @@
-<p>The Cyclomatic Complexity is measured by the number of <code>&amp;&amp;</code> and <code>||</code> operators and <code>if</code>,
-<code>while</code>, <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>, <code>switch</code>, <code>case</code>,
-<code>return</code> and <code>throw</code> statements in the body of a class plus one for each constructor, method, static initializer, or instance
-initializer in the class. The last return statement in method, if exists, is not taken into account.</p>
-<p>Even when the Cyclomatic Complexity of a class is very high, this complexity might be well distributed among all methods. Nevertheless, most of the
-time, a very complex class is a class which breaks the Single Responsibility Principle and which should be re-factored to be split in several
-classes.</p>
-<h2>Deprecated</h2>
-<p>This rule is deprecated, and will eventually be removed.</p>
+<p>对于类中的每个构造函数，方法，静态初始化程序或实例初始化程序来说，环路复杂度（Cyclomatic Complexity）
+是通过类的主体中的 <code>&amp;&amp;</code> 和 <code>||</code> 运算符的数量和 <code>if</code>，<code>while</code>， <code>do</code>， <code>for</code>， 
+<code>?:</code>， <code>catch</code>， <code>switch</code>， <code>case</code>，<code>return</code> 和 <code>throw</code> 每个语句加1来计算的，
+方法中的最后一个return语句（如果存在）不会被考虑在内。</p>
+<p>即使类的环路复杂度非常高，这种复杂度也可以很好地分布在所有方法中。然而，在大多数情况下，一个非常复杂的类会打破单一责任原则，
+它应该被重构为多个类。</p>
+<h2>弃用</h2>
+<p>此规则已弃用，最终将被删除。</p>
 

@@ -1,5 +1,5 @@
 {
-  "title": "\"Iterator.next()\" methods should throw \"NoSuchElementException\"",
+  "title": "\"Iterator.next()\" 方法应该抛出\"NoSuchElementException\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,17 +1,15 @@
-<p>When <code>java.io.File#delete</code> fails, this <code>boolean</code> method simply returns <code>false</code> with no indication of the cause. On
-the other hand, when <code>java.nio.Files#delete</code> fails, this <code>void</code> method returns one of a series of exception types to better
-indicate the cause of the failure. And since more information is generally better in a debugging situation, <code>java.nio.Files#delete</code> is the
-preferred option.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当<code> java.io.File＃delete </code>失败时，此<code> boolean </code>方法只返回<code> false </code>，但没有指示原因。 上
+另一方面，当<code> java.nio.Files＃delete </code>失败时，此<code> void </code>方法返回一系列异常类型之一，以更好地指出失败的原因。 并且由于在调试情况下通常更多信息更好，<code> java.nio.Files＃delete </code>是首选选项。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public void cleanUp(Path path) {
   File file = new File(path);
-  if (!file.delete()) {  // Noncompliant
+  if (!file.delete()) {  // 不合规的
     //...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void cleanUp(Path path) throws NoSuchFileException, DirectoryNotEmptyException, IOException{
   Files.delete(path);

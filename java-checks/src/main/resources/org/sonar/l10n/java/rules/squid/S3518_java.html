@@ -1,5 +1,5 @@
-<p>If the denominator to a division or modulo operation is zero it would result in a fatal error.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果除法或模运算的分母为零，则会导致致命错误。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 void test_divide() {
   int z = 0;
@@ -12,7 +12,7 @@ void test_divide() {
   z = 1 / z; // Noncompliant, possible division by zero
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 void test_divide() {
   int z = 0;
@@ -26,7 +26,7 @@ void test_divide() {
   z = 1 / z;
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/369.html">MITRE, CWE-369</a> - Divide by zero </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/KAGyAw">CERT, NUM02-J.</a> - Ensure that division and remainder operations do not

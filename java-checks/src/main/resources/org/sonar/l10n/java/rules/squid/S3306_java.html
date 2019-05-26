@@ -1,21 +1,19 @@
-<p>Field injection seems like a tidy way to get your classes what they need to do their jobs, but it's really a <code>NullPointerException</code>
-waiting to happen unless all your class constructors are <code>private</code>. That's because any class instances that are constructed by callers,
-rather than instantiated by a Dependency Injection framework compliant with the JSR-330 (Spring, Guice, ...), won't have the ability to perform the
-field injection.</p>
-<p>Instead <code>@Inject</code> should be moved to the constructor and the fields required as constructor parameters.</p>
-<p>This rule raises an issue when classes with non-<code>private</code> constructors (including the default constructor) use field injection.</p>
-<h2>Noncompliant Code Example</h2>
+<p>现场注入似乎是让你的课程完成工作所需要的一种整洁的方式，但它实际上是一个<code> NullPointerException </code>
+等待发生，除非你的所有类构造函数都是<code> private </code>。 这是因为由调用者构造的任何类实例，而不是由符合JSR-330（Spring，Guice，...）的依赖注入框架实例化，都不具备执行字段注入的能力。</p>
+<p>而应将<code> @Inject </code>移动到构造函数和构造函数参数所需的字段。</p>
+<p>当使用非<code> private </code>构造函数（包括默认构造函数）的类使用字段注入时，此规则会引发问题。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-class MyComponent {  // Anyone can call the default constructor
+class MyComponent {  // 任何人都可以调用默认构造函数
 
-  @Inject MyCollaborator collaborator;  // Noncompliant
 
+  @Inject MyCollaborator collaborator;  //不合规
   public void myBusinessMethod() {
-    collaborator.doSomething();  // this will fail in classes new-ed by a caller
+    collaborator.doSomething();  // 这将在调用者新编辑的类中出错
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 class MyComponent {
 

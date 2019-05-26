@@ -1,14 +1,13 @@
-<p>When a parent class references a member of a subclass during its own initialization, the results might not be what you expect because the child
-class might not have been initialized yet. This could create what is known as an "initialisation cycle", or even a deadlock in some extreme cases.</p>
-<p>To make things worse, these issues are very hard to diagnose so it is highly recommended you avoid creating this kind of dependencies.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当父类在其自己的初始化期间引用子类的成员时，结果可能不是您所期望的，因为子类可能尚未初始化。 这可能会产生所谓的“初始化周期”，甚至在某些极端情况下会出现死锁。</p>
+<p>更糟糕的是，这些问题很难诊断，因此强烈建议您避免创建此类依赖项。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class Parent {
-  static int field1 = Child.method(); // Noncompliant
+  static int field1 = Child.method(); // 不合规的
   static int field2 = 42;
 
   public static void main(String[] args) {
-    System.out.println(Parent.field1); // will display "0" instead of "42"
+    System.out.println(Parent.field1); // 将显示“0”而不是“42”
   }
 }
 
@@ -18,7 +17,7 @@ class Child extends Parent {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/display/java/DCL00-J.+Prevent+class+initialization+cycles">CERT, DCL00-J.</a> - Prevent
   class initialization cycles </li>

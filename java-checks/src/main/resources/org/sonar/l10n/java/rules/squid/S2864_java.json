@@ -1,5 +1,5 @@
 {
-  "title": "\"entrySet()\" should be iterated when both the key and value are needed",
+  "title": "当需要键和值时，应该迭代\"entrySet()\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,11 +1,10 @@
-<p>Invoking a method designed to return a string representation of an object which is already a string is a waste of keystrokes. This redundant
-construction may be optimized by the compiler, but will be confusing in the meantime.</p>
-<h2>Noncompliant Code Example</h2>
+<p>调用一个方法来返回已经是字符串的对象的字符串表示形式是一种按键浪费。编译器可以优化这种冗余结构，但同时也会造成混淆。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String message = "hello world";
-System.out.println(message.toString()); // Noncompliant;
+System.out.println(message.toString()); // 不合规；
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String message = "hello world";
 System.out.println(message);

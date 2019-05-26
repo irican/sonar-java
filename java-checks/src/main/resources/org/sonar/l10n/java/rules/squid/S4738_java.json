@@ -1,5 +1,5 @@
 {
-  "title": "Java 8 features should be preferred to Guava",
+  "title": "Java 8的功能应该优先于Guava",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

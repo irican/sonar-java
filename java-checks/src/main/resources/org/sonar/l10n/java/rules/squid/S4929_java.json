@@ -1,5 +1,5 @@
 {
-  "title": "\"read(byte[],int,int)\" should be overridden",
+  "title": "“read（byte[]，int，int）”应该被覆盖",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

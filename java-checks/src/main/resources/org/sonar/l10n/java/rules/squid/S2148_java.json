@@ -1,5 +1,5 @@
 {
-  "title": "Underscores should be used to make large numbers readable",
+  "title": "应该使用下划线来使大数字更具可读性",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

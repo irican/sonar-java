@@ -1,5 +1,5 @@
 {
-  "title": "Abstract classes without fields should be converted to interfaces",
+  "title": "没有字段的抽象类应该转换为接口",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Fields in non-serializable classes should not be \"transient\"",
+  "title": "非序列化类中的字段不应该是 \"transient\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

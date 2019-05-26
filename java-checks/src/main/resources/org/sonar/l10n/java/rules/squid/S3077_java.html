@@ -1,20 +1,19 @@
-<p>Marking an array <code>volatile</code> means that the array itself will always be read fresh and never thread cached, but the items <em>in</em> the
-array will not be. Similarly, marking a mutable object field <code>volatile</code> means the object <em>reference</em> is <code>volatile</code> but
-the object itself is not, and other threads may not see updates to the object state.</p>
-<p>This can be salvaged with arrays by using the relevant AtomicArray class, such as <code>AtomicIntegerArray</code>, instead. For mutable objects,
-the <code>volatile</code> should be removed, and some other method should be used to ensure thread-safety, such as synchronization, or ThreadLocal
-storage.</p>
-<h2>Noncompliant Code Example</h2>
+<p>将数组标为 <code>volatile</code> 意味着数组本身每次读取时都是最新更新的值，并且从不在线程中缓存。但数组 <em>内部</em> 的
+项目并不总是这样。同样地，将可变的对象字段设为 <code>volatile</code> 意味着对象的 <em>引用</em> 是 <code>volatile</code> 的，
+对象自身并不是，并且其他线程可能看不到对象状态的更新。</p>
+<p>这种情况可以通过相关的AtomicArray类使用数组来补救，例如 <code>AtomicIntegerArray</code>。对于可变字段，应移除 <code>volatile</code> 
+关键字，并使用一些其他的方法确保线程安全，比如同步或线程本地存储（ThreadLocal storage）。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-private volatile int [] vInts;  // Noncompliant
-private volatile MyObj myObj;  // Noncompliant
+private volatile int [] vInts;  // 不合规
+private volatile MyObj myObj;  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private AtomicIntegerArray vInts;
 private MyObj myObj;
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/twD1AQ">CERT, CON50-J.</a> - Do not assume that declaring a reference volatile
   guarantees safe publication of the members of the referenced object </li>

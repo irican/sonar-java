@@ -1,6 +1,5 @@
-<p>Overriding or shadowing a variable declared in an outer scope can strongly impact the readability, and therefore the maintainability, of a piece of
-code. Further, it could lead maintainers to introduce bugs because they think they're using one variable but are really using another.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用局部变量隐藏字段是一种不好的做法，会降低代码的可读性：它使得程序员很难知道字段或变量是否被使用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class Foo {
   public int myField;
@@ -11,11 +10,8 @@ class Foo {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
-  <li> <a href="https://wiki.sei.cmu.edu/confluence/display/c/DCL01-C.+Do+not+reuse+variable+names+in+subscopes">CERT, DCL01-C.</a> - Do not reuse
-  variable names in subscopes </li>
-  <li> <a href="https://wiki.sei.cmu.edu/confluence/display/java/DCL51-J.+Do+not+shadow+or+obscure+identifiers+in+subscopes">CERT, DCL51-J.</a> - Do
-  not shadow or obscure identifiers in subscopes </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/2ADEAw">CERT, DCL51-J.</a> - Do not shadow or obscure identifiers in subscopes </li>
 </ul>
 

@@ -1,15 +1,15 @@
-<p>Using <code>return</code>, <code>break</code>, <code>throw</code>, and so on from a <code>finally</code> block suppresses the propagation of any
-unhandled <code>Throwable</code> which was thrown in the <code>try</code> or <code>catch</code> block.</p>
-<p>This rule raises an issue when a jump statement (<code>break</code>, <code>continue</code>, <code>return</code>, <code>throw</code>, and
-<code>goto</code>) would force control flow to leave a <code>finally</code> block. </p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>finally</code> 块中的 <code>return</code>， <code>break</code>， <code>throw</code> 等功能，
+可以抑制在<code>try</code> 或 <code>catch</code> 块中抛出的任何未处理的 <code>Throwable</code> 的传播。</p>
+<p>当跳转语句 （<code>break</code>， <code>continue</code>， <code>return</code>， <code>throw</code>， 和
+<code>goto</code>）强制控制流离开 <code>finally</code> 块时，此规则会报告问题。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 public static void main(String[] args) {
   try {
     doSomethingWhichThrowsException();
-    System.out.println("OK");   // incorrect "OK" message is printed
+    System.out.println("OK");   // 打印出正确的 "OK" 信息
   } catch (RuntimeException e) {
-    System.out.println("ERROR");  // this message is not shown
+    System.out.println("ERROR");  // 此消息未显示
   }
 }
 
@@ -20,23 +20,23 @@ public static void doSomethingWhichThrowsException() {
     for (int i = 0; i &lt; 10; i ++) {
       //...
       if (q == i) {
-        break; // ignored
+        break; // 忽略
       }
     }
 
     /* ... */
-    return;      // Noncompliant - prevents the RuntimeException from being propagated
+    return;      // 不合规 - 阻止 RuntimeException 传播
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public static void main(String[] args) {
   try {
     doSomethingWhichThrowsException();
     System.out.println("OK");
   } catch (RuntimeException e) {
-    System.out.println("ERROR");  // "ERROR" is printed as expected
+    System.out.println("ERROR");  // “ERROR”按预期打印
   }
 }
 
@@ -47,7 +47,7 @@ public static void doSomethingWhichThrowsException() {
     for (int i = 0; i &lt; 10; i ++) {
       //...
       if (q == i) {
-        break; // ignored
+        break; // 忽略
       }
     }
 
@@ -55,7 +55,7 @@ public static void doSomethingWhichThrowsException() {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅 </h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/584.html">MITRE, CWE-584</a> - Return Inside Finally Block </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/mIEbAQ">CERT, ERR04-J.</a> - Do not complete abruptly from a finally block </li>

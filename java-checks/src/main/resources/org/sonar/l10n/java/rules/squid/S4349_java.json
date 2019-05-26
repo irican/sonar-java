@@ -1,5 +1,5 @@
 {
-  "title": "\"write(byte[],int,int)\" should be overridden",
+  "title": "\"write(byte[],int,int)\" 应该被重写",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

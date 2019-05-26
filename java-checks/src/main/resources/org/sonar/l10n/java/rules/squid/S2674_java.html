@@ -1,22 +1,19 @@
-<p>You cannot assume that any given stream reading call will fill the <code>byte[]</code> passed in to the method. Instead, you must check the value
-returned by the read method to see how many bytes were read. Fail to do so, and you introduce bug that is both harmful and difficult to reproduce.</p>
-<p>Similarly, you cannot assume that <code>InputStream.skip</code> will actually skip the requested number of bytes, but must check the value returned
-from the method.</p>
-<p>This rule raises an issue when an <code>InputStream.read</code> method that accepts a <code>byte[]</code> is called, but the return value is not
-checked, and when the return value of <code>InputStream.skip</code> is not checked. The rule also applies to <code>InputStream</code> child
-classes.</p>
-<h2>Noncompliant Code Example</h2>
+<p>不能认为任何给定的流都会读取来填充传入方法的<code>byte[]</code>。相反，您必须检查read方法返回的值，以查看读取了多少字节。如果不这样做，就会引入有害且难以复制的bug。</p>
+<p>类似地，不能认为<code>InputStream.skip</code>会跳过所请求的字节数，但必须检查方法返回的值。</p>
+<p>当调用了一个<code>InputStream.read</code> 方法，该方法接受一个<code>byte[]</code>，但是没有检查返回值，并且当没有检查<code>InputStream.skip</code> 的返回值时，该规则会引发一个问题。
+该规则也适用于<code>InputStream</code>子类。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething(String fileName) {
   try {
     InputStream is = new InputStream(file);
     byte [] buffer = new byte[1000];
-    is.read(buffer);  // Noncompliant
+    is.read(buffer);  // 不合规
     // ...
   } catch (IOException e) { ... }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合理的解决方案</h2>
 <pre>
 public void doSomething(String fileName) {
   try {
@@ -29,7 +26,7 @@ public void doSomething(String fileName) {
   } catch (IOException e) { ... }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/XACSAQ">CERT, FIO10-J.</a> - Ensure the array is filled when using read() to fill an
   array </li>

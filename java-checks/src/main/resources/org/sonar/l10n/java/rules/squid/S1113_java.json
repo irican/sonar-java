@@ -1,5 +1,5 @@
 {
-  "title": "The Object.finalize() method should not be overriden",
+  "title": "不应重新 Object.finalize() 方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

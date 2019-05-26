@@ -1,14 +1,14 @@
-<p>For small numbers, <code>float</code> math has enough precision to yield the expected value, but for larger numbers, it does not.
-<code>BigDecimal</code> is the best alternative, but if a primitive is required, use a <code>double</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对于小数字， <code>float</code> 类型有足够的精度来产生期望值，但是对于较大的数字，它不会。
+<code>BigDecimal</code> 是最好的选择，但是如果需要原始类型 ，使用 <code>double</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 float a = 16777216.0f;
 float b = 1.0f;
-float c = a + b; // Noncompliant; yields 1.6777216E7 not 1.6777217E7
+float c = a + b; // 不合规；产生 1.6777216E7 而不是  1.6777217E7
 
-double d = a + b; // Noncompliant; addition is still between 2 floats
+double d = a + b; // 不合规； 加号仍然在两个浮点数之间 
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 float a = 16777216.0f;
 float b = 1.0f;
@@ -16,13 +16,13 @@ BigDecimal c = BigDecimal.valueOf(a).add(BigDecimal.valueOf(b));
 
 double d = (double)a + (double)b;
 </pre>
-<h2>Exceptions</h2>
-<p>This rule doesn't raise an issue when the mathematical expression is only used to build a string.</p>
+<h2>例外</h2>
+<p>当数学表达式仅用于构建字符串时，此规则不会报告问题。</p>
 <pre>
 System.out.println("["+getName()+"] " +
            "\n\tMax time to retrieve connection:"+(max/1000f/1000f)+" ms.");
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/DgU">CERT, FLP02-C.</a> - Avoid using floating-point numbers when precise computation
   is needed </li>

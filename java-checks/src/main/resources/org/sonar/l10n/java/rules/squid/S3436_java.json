@@ -1,5 +1,5 @@
 {
-  "title": "Value-based classes should not be used for locking",
+  "title": "不应将基于值（value-based）的类用于锁定",
   "type": "BUG",
   "status": "ready",
   "remediation": {

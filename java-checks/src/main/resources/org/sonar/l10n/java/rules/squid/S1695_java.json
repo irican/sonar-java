@@ -1,5 +1,5 @@
 {
-  "title": "\"NullPointerException\" should not be explicitly thrown",
+  "title": "不应该显式抛出 \"NullPointerException\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

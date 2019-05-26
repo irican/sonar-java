@@ -1,13 +1,12 @@
-<p>Using <code>toLowerCase()</code> or <code>toUpperCase()</code> to make case insensitive comparisons is inefficient because it requires the creation
-of temporary, intermediate <code>String</code> objects.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>toLowerCase()</code> 或 <code>toUpperCase()</code> 进行不区分大小写的比较是低效的，因为它需要创建临时的中间（intermediate）<code>String</code> 对象。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-boolean result1 = foo.toUpperCase().equals(bar);             // Noncompliant
-boolean result2 = foo.equals(bar.toUpperCase());             // Noncompliant
-boolean result3 = foo.toLowerCase().equals(bar.LowerCase()); // Noncompliant
+boolean result1 = foo.toUpperCase().equals(bar);             // 不合规
+boolean result2 = foo.equals(bar.toUpperCase());             // 不合规
+boolean result3 = foo.toLowerCase().equals(bar.LowerCase()); // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-boolean result = foo.equalsIgnoreCase(bar);                  // Compliant
+boolean result = foo.equalsIgnoreCase(bar);                  // 合规
 </pre>
 

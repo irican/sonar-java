@@ -1,5 +1,5 @@
 {
-  "title": "Classes should not be compared by name",
+  "title": "不应按名称比较类",
   "type": "BUG",
   "status": "ready",
   "remediation": {

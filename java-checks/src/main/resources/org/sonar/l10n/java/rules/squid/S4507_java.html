@@ -1,25 +1,21 @@
-<p>Delivering code in production with debug features activated is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>在激活调试功能的情况下生成代码是安全敏感的。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1999007">CVE-2018-1999007</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5306">CVE-2015-5306</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-2006">CVE-2013-2006</a> </li>
 </ul>
-<p>An application's debug features enable developers to find bugs more easily. It often gives access to detailed information on both the system
-running the application and users. Sometime it even enables the execution of custom commands. Thus deploying on production servers an application
-which has debug features activated is extremely dangerous.</p>
-<h2>Ask Yourself Whether</h2>
+<p>应用程序的调试功能使开发人员能够更轻松地找到错误。它通常可以访问运行应用程序的系统和用户的详细信息。有时它甚至可以执行自定义命令。因此，在生产服务器上部署具有激活调试功能的应用程序是非常危险的。</p>
+<h2>请检查自己是否存在下列情况</h2>
 <ul>
-  <li> the code or configuration enabling the application debug features is deployed on production servers. </li>
-  <li> the application runs by default with debug features activated. </li>
+  <li> 启用应用程序调试功能的代码或配置部署在生产服务器上。 </li>
+  <li> 应用程序默认运行，并激活调试功能。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of these questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>The application should run by default in the most secure mode, i.e. as on production servers. This is to prevent any mistake. Enabling debug
-features should be explicitly asked via a command line argument, an environment variable or a configuration file.</p>
-<p>Check that every debug feature is controlled by only very few configuration variables: logging, exception/error handling, access control, etc... It
-is otherwise very easy to forget one of them.</p>
-<p>Do not enable debug features on production servers.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果您对上述任何问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p>默认情况下，应用程序应以最安全的模式运行，即在生产服务器上运行。这是为了防止任何错误。应通过命令行参数，环境变量或配置文件明确询问启用调试功能。</p>
+<p>检查每个调试功能是否只受极少数配置变量控制：日志记录，异常/错误处理，访问控制等......否则很容易忘记其中一个。</p>
+<p>不要在生产服务器上启用调试功能。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -41,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   // ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - Leftover Debug Code </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/215.html">MITRE, CWE-215</a> - Information Exposure Through Debug Information </li>

@@ -1,15 +1,14 @@
-<p>Java 7's try-with-resources structure automatically handles closing the resources that the <code>try</code> itself opens. Thus, adding an explicit
-<code>close()</code> call is redundant and potentially confusing.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Java 7的try-with-resources结构自动处理关闭<code> try </code>本身打开的资源。 因此，添加显式<code> close（）</code>调用是多余的，可能会造成混淆。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 try (PrintWriter writer = new PrintWriter(process.getOutputStream())) {
   String contents = file.contents();
   writer.write(new Gson().toJson(new MyObject(contents)));
   writer.flush();
-  writer.close();  // Noncompliant
+  writer.close();  // 不合规的
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 try (PrintWriter writer = new PrintWriter(process.getOutputStream())) {
   String contents = file.contents();

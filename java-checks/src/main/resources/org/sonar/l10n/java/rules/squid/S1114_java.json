@@ -1,5 +1,5 @@
 {
-  "title": "\"super.finalize()\" should be called at the end of \"Object.finalize()\" implementations",
+  "title": "应该在 \"Object.finalize()\" 实现的末尾调用 \"super.finalize()\" ",
   "type": "BUG",
   "status": "ready",
   "remediation": {

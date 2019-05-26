@@ -1,30 +1,29 @@
-<p>According to Joshua Bloch, author of "Effective Java":</p>
+<p>根据“Effective Java”的作者Joshua Bloch的说法：</p>
 <blockquote>
-  <p>The constant interface pattern is a poor use of interfaces. </p>
-  <p>That a class uses some constants internally is an implementation detail.</p>
-  <p>Implementing a constant interface causes this implementation detail to leak into the class's exported API. It is of no consequence to the users
-  of a class that the class implements a constant interface. In fact, it may even confuse them. Worse, it represents a commitment: if in a future
-  release the class is modified so that it no longer needs to use the constants, it still must implement the interface to ensure binary compatibility.
-  If a nonfinal class implements a constant interface,</p>
-  <p>all of its subclasses will have their namespaces polluted by the constants in the interface.</p>
+  <p>常量接口模式是一种对接口的糟糕使用方式。 </p>
+  <p>类在内部使用一些常量是一个实现（implementation）细节。</p>
+  <p>实现常量接口会导致此实现细节泄漏到类导出的API中。类实现常量接口对类的用户没有任何影响。事实上，这甚至可能让他们感到困惑。
+  更糟的是，它表示一种承诺:如果在将来的版本中修改该类，使其不再需要使用常量，那么它仍然必须实现接口，以确保二进制兼容性。
+  如果一个非final类实现了一个常量接口，</p>
+  <p>它的所有子类的命名空间都会被接口中的常量影响。</p>
 </blockquote>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-interface Status {                      // Noncompliant
+interface Status {                      // 不合规
    int OPEN = 1;
    int CLOSED = 2;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public enum Status {                    // Compliant
+public enum Status {                    // 合规
   OPEN,
   CLOSED;
 }
 </pre>
-<p>or</p>
+<p>或</p>
 <pre>
-public final class Status {             // Compliant
+public final class Status {             // 合规
    public static final int OPEN = 1;
    public static final int CLOSED = 2;
 }

@@ -1,5 +1,5 @@
 {
-  "title": "Threads should not be started in constructors",
+  "title": "线程不应该在构造函数中启动",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

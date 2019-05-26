@@ -1,5 +1,5 @@
 {
-  "title": "@FunctionalInterface annotation should be used to flag Single Abstract Method interfaces",
+  "title": "@FunctionalInterface 注解（annotation）应该用于标记单抽象（Single Abstract）方法接口",
   "type": "CODE_SMELL",
   "status": "deprecated",
   "remediation": {

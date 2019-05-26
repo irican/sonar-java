@@ -1,5 +1,5 @@
 {
-  "title": "Method parameters, caught exceptions and foreach variables' initial values should not be ignored",
+  "title": "不应忽略方法参数，捕获的异常和foreach变量的初始值",
   "type": "BUG",
   "status": "ready",
   "remediation": {
@@ -7,7 +7,6 @@
     "constantCost": "5min"
   },
   "tags": [
-    "based-on-misra",
     "misra"
   ],
   "defaultSeverity": "Minor",

@@ -1,21 +1,20 @@
-<p>The "secure" attribute prevents cookies from being sent over plaintext connections such as HTTP, where they would be easily eavesdropped upon.
-Instead, cookies with the secure attribute are only sent over encrypted HTTPS connections.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>“secure”属性阻止cookie通过明文连接(如HTTP)发送，因为它们很容易被窃听。相反，带有secure属性的cookie只通过加密的HTTPS连接发送。</p>
+<h2>推荐的安全编码实践</h2>
 <ul>
-  <li> call <code>setSecure(true)</code> on the <code>Cookie</code> object </li>
+  <li> 在 <code>Cookie</code> 对象上调用 <code>setSecure(true)</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
-Cookie c = new Cookie(SECRET, secret);  // Noncompliant; cookie is not secure
+Cookie c = new Cookie(SECRET, secret);  // 不合规； cookie 不安全
 response.addCookie(c);
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Cookie c = new Cookie(SECRET, secret);
 c.setSecure(true);
 response.addCookie(c);
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/311">MITRE, CWE-311</a> - Missing Encryption of Sensitive Data </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/315">MITRE, CWE-315</a> - Cleartext Storage of Sensitive Information in a Cookie </li>

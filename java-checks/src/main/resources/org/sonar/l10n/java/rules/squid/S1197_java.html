@@ -1,12 +1,11 @@
-<p>Array designators should always be located on the type for better code readability. Otherwise, developers must look both at the type and the
-variable name to know whether or not a variable is an array.</p>
-<h2>Noncompliant Code Example</h2>
+<p>数组指示符应始终位于类型上，以获得更好的代码可读性。否则，开发人员必须同时查看类型和变量名称以了解变量是否为数组。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-int matrix[][];   // Noncompliant
-int[] matrix[];   // Noncompliant
+int matrix[][];   // 不合规
+int[] matrix[];   // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-int[][] matrix;   // Compliant
+int[][] matrix;   // 合规
 </pre>
 

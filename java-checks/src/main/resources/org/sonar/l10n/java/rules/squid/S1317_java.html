@@ -1,11 +1,11 @@
-<p>Instantiating a <code>StringBuilder</code> or a <code>StringBuffer</code> with a character is misleading because most Java developers would expect
-the character to be the initial value of the <code>StringBuffer</code>. </p>
-<p>What actually happens is that the int representation of the character is used to determine the initial size of the <code>StringBuffer</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>用字符实例化 <code>StringBuilder</code> 或一个 <code>StringBuffer</code> 会产生误导，
+因为大多数Java开发人员都希望该字符是 <code>StringBuffer</code>的初始值。 </p>
+<p>实际上，字符的int表示形式用于确定 <code>StringBuffer</code>的初始大小。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-StringBuffer foo = new StringBuffer('x');   //equivalent to StringBuffer foo = new StringBuffer(120);
+StringBuffer foo = new StringBuffer('x');   //相当于 StringBuffer foo = new StringBuffer(120);
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 StringBuffer foo = new StringBuffer("x");
 </pre>

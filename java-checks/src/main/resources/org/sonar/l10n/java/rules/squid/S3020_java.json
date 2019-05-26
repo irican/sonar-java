@@ -1,5 +1,5 @@
 {
-  "title": "\"toArray\" should be passed an array of the proper type",
+  "title": "应该向\"toArray\"传递一个正确类型的数组",
   "type": "BUG",
   "status": "ready",
   "remediation": {

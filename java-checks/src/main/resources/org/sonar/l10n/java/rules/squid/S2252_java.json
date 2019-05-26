@@ -1,5 +1,5 @@
 {
-  "title": "Loop conditions should be true at least once",
+  "title": "循环条件应该至少为真一次",
   "type": "BUG",
   "status": "ready",
   "remediation": {

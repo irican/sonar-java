@@ -1,20 +1,17 @@
-<p>This rule raises an issue when an iteration over the items of a <code>Collection</code> is performed on a super-type of the type handled by the
-<code>Collection</code>.</p>
-<p>Relying on <code>Object</code> or any classes between <code>Object</code> and the real class handled by the <code>Collection</code> is not
-recommended. While it's accepted by the language, this practice reduces readability of the code and forces to down-cast the item of the
-<code>Collection</code> to be able to call a method on it while simply using the correct type in the iteration makes things more clear and simple.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当对<code> Collection </code>处理的类型的超类型执行对<code> Collection </code>项的迭代时，此规则会引发问题。</p>
+<p>不建议依赖<code> Object </code>或<code> Object </code>之间的任何类以及<code> Collection </code>处理的真实类。虽然它被语言所接受，但这种做法降低了代码的可读性，并强制降低<code> Collection </code>的项目以便能够在其上调用方法，同时在迭代中使用正确的类型使事情变得更加清晰和简单。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public Collection&lt;Person&gt; getPersons() { ... }
 
-for (Object item : getPersons()) { // Noncompliant
-  Person person = (Person) item; // Noncompliant; it's required to down-cast to the to correct type to use "item"
+for (Object item : getPersons()) { // 不符合规范
+  Person person = (Person) item; //不符合规范; 需要向下转换为正确的类型才能使用“item”
   person.getAdress();
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-for (Person person : getPersons()) { // Compliant
+for (Person person : getPersons()) { // 符合规范
   person.getAddress() ;
 }
 </pre>

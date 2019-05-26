@@ -1,20 +1,19 @@
-<p>From the Java API documentation:</p>
+<p>来自Java API文档:</p>
 <blockquote>
-  <p><code>Condition</code> factors out the <code>Object</code> monitor methods (<code>wait</code>, <code>notify</code> and <code>notifyAll</code>)
-  into distinct objects to give the effect of having multiple wait-sets per object, by combining them with the use of arbitrary Lock implementations.
-  Where a <code>Lock</code> replaces the use of <code>synchronized</code> methods and statements, a <code>Condition</code> replaces the use of the
-  <code>Object</code> monitor methods.</p>
+  <p><code>Condition</code> 将 <code>Object</code> 监视器方法（monitor methods）（<code>wait</code> ，<code>notify</code> 和 <code>notifyAll</code>）
+  分解为不同的对象，通过将它们与任意Lock实现结合使用，可以实现每个对象具有多个等待集（wait-set）的效果。 
+  当 <code>Lock</code> 替换 <code>synchronized</code> 方法和语句的使用时，<code>Condition</code> 取代了 <code>Object</code> 监视方法的使用。</p>
 </blockquote>
-<p>The purpose of implementing the <code>Condition</code> interface is to gain access to its more nuanced <code>await</code> methods. Therefore,
-calling the method <code>Object.wait(...)</code> on a class implementing the <code>Condition</code> interface is silly and confusing.</p>
-<h2>Noncompliant Code Example</h2>
+<p>实现 <code>Condition</code> 接口的目的是获得对其更细微的 <code>await</code> 方法的访问。 因此，在实现 <code>Condition</code> 接口的类上调用方法
+<code>Object.wait(...)</code> 是愚蠢和令人困惑的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 final Lock lock = new ReentrantLock();
 final Condition notFull  = lock.newCondition();
 ...
 notFull.wait();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 final Lock lock = new ReentrantLock();
 final Condition notFull  = lock.newCondition();

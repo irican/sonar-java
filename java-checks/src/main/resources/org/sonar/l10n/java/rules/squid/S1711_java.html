@@ -1,16 +1,15 @@
-<p>Just as there is little justification for writing your own String class, there is no good reason to re-define one of the existing, standard
-functional interfaces.</p>
-<p>Doing so may seem tempting, since it would allow you to specify a little extra context with the name. But in the long run, it will be a source of
-confusion, because maintenance programmers will wonder what is different between the custom functional interface and the standard one.</p>
-<h2>Noncompliant Code Example</h2>
+<p>正如没有正当理由编写自己的String类一样，也没有理由重新定义现有的标准函数接口。</p>
+<p>这样做似乎很有吸引力，因为它允许您用名称指定一些额外的上下文。但是从长远来看，这将是一个混乱的来源，
+因为维护程序员会想知道自定义函数接口和标准接口之间有什么不同。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @FunctionalInterface
-public interface MyInterface { // Noncompliant
+public interface MyInterface { // 不合规
 	double toDouble(int a);
 }
 
 @FunctionalInterface
-public interface ExtendedBooleanSupplier { // Noncompliant
+public interface ExtendedBooleanSupplier { // 不合规
   boolean get();
   default boolean isFalse() {
     return !get();
@@ -24,10 +23,10 @@ public class MyClass {
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @FunctionalInterface
-public interface ExtendedBooleanSupplier extends BooleanSupplier { // Compliant, extends java.util.function.BooleanSupplier
+public interface ExtendedBooleanSupplier extends BooleanSupplier { // 合规， extends java.util.function.BooleanSupplier
   default boolean isFalse() {
     return !getAsBoolean();
   }

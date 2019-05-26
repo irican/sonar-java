@@ -1,5 +1,5 @@
 {
-  "title": "Packages containing only \"package-info.java\" should be removed",
+  "title": "应删除仅包含“package-info.java ”的软件包",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

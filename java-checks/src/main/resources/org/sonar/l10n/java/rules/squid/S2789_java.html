@@ -1,26 +1,25 @@
-<p>The concept of <code>Optional</code> is that it will be used when <code>null</code> could cause errors. In a way, it replaces <code>null</code>,
-and when <code>Optional</code> is in use, there should never be a question of returning or receiving <code>null</code> from a call.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>Optional</code>的概念是，当<code>null</code>可能导致错误时，将使用它。在某种程度上，它替换了<code>null</code>，当使用<code>Optional</code> 时，从调用中返回或接收<code>null</code> 应该没有问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething () {
   Optional&lt;String&gt; optional = getOptional();
-  if (optional != null) {  // Noncompliant
-    // do something with optional...
+  if (optional != null) {  // 不合规
+    // 使用optional实现一些功能...
   }
 }
 
-@Nullable // Noncompliant
+@Nullable // 不合规
 public Optional&lt;String&gt; getOptional() {
   // ...
-  return null;  // Noncompliant
+  return null;  // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething () {
   Optional&lt;String&gt; optional = getOptional();
   optional.ifPresent(
-    // do something with optional...
+    // 使用optional实现一些功能...
   );
 }
 

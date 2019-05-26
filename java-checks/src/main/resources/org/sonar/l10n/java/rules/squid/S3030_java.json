@@ -1,5 +1,5 @@
 {
-  "title": "Classes should not have too many \"static\" imports",
+  "title": "类不应该有太多的\"static\"导入",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

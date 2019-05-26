@@ -1,18 +1,20 @@
-<p>If the <code>suite</code> method in a JUnit 3 <code>TestCase</code> is not declared correctly, it will not be used. Such a method must be named
-"suite", have no arguments, be <code>public static</code>, and must return either a <code>junit.framework.Test</code> or a
-<code>junit.framework.TestSuite</code>.</p>
-<p>Similarly, <code>setUp</code> and <code>tearDown</code> methods that aren't properly capitalized will also be ignored.</p>
+<p>如果未正确声明JUnit 3 <code> TestCase </code>中的<code> suite </code>方法，那么程序不会使用它。 要想使用，则必须命名这样的方法
+“suite”，没有参数，并且是<code> public static </code>（公共静态的），而且必须返回<code> junit.framework.Test </code>或者
+<code> junit.framework.TestSuite</code></p>
+<p>同样，如果没有正确大写，也会忽略未正确大写的<code> setUp </code>和<code> tearDown </code>方法。</p>
+<h2>不符合规范的代码示例</h2>
+
 <h2>Noncompliant Code Example</h2>
 <pre>
-Test suite() { ... }  // Noncompliant; must be public static
-public static boolean suite() { ... }  // Noncompliant; wrong return type
-public static Test suit() { ... }  // Noncompliant; typo in method name
-public static Test suite(int count) { ... } // Noncompliant; must be no-arg
+Test suite() { ... }  // 不合规; 必须是公共静态的（public static）
+public static boolean suite() { ... }  // 不合规; 错误的返回类型
+public static Test suit() { ... }  // 不合规; 方法名称中的拼写错误
+public static Test suite(int count) { ... } // 不合规; 必须是不带参数的(no-arg)
 
-public void setup() { ... } // Noncompliant; should be setUp
-public void tearDwon() { ... }  // Noncompliant; should be tearDown
+public void setup() { ... } // 不合规; 应该是 setUp
+public void tearDwon() { ... }  // 不合规; 应该是 tearDown
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public static Test suite() { ... }
 public void setUp() { ... }

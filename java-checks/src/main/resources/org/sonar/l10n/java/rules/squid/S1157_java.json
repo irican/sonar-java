@@ -1,5 +1,5 @@
 {
-  "title": "Case insensitive string comparisons should be made without intermediate upper or lower casing",
+  "title": "不区分大小写的字符串比较应该在没有中间大小写的情况下进行",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

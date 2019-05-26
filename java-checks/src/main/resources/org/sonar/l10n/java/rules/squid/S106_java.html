@@ -1,21 +1,20 @@
-<p>When logging a message there are several important requirements which must be fulfilled:</p>
+<p>记录日志消息时，必须满足以下几个重要要求：</p>
 <ul>
-  <li> The user must be able to easily retrieve the logs </li>
-  <li> The format of all logged message must be uniform to allow the user to easily read the log </li>
-  <li> Logged data must actually be recorded </li>
-  <li> Sensitive data must only be logged securely </li>
+  <li> 用户必须能够轻松检索日志 </li>
+  <li> 所有日志消息的格式必须统一，以便允许用户轻松读取日志 </li>
+  <li> 日志数据必须确实被记录了 </li>
+  <li> 敏感数据必须被安全的记录 </li>
 </ul>
-<p>If a program directly writes to the standard outputs, there is absolutely no way to comply with those requirements. That's why defining and using a
-dedicated logger is highly recommended.</p>
-<h2>Noncompliant Code Example</h2>
+<p>如果日志数据被程序直接写入标准输出，将无法满足上述要求，所以强烈建议定义和使用专用的记录器（Logger）。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-System.out.println("My Message");  // Noncompliant
+System.out.println("My Message");  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 logger.log("My Message");
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/RoElAQ">CERT, ERR02-J.</a> - Prevent exceptions while logging data </li>
 </ul>

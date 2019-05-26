@@ -1,12 +1,12 @@
-<p>A Spring <code>@Controller</code> that uses <code>@SessionAttributes</code> is designed to handle a stateful / multi-post form. Such
-<code>@Controller</code>s use the specified <code>@SessionAttributes</code> to store data on the server between requests. That data should be cleaned
-up when the session is over, but unless <code>setComplete()</code> is called on the <code>SessionStatus</code> object from a
-<code>@RequestMapping</code> method, neither Spring nor the JVM will know it's time to do that. Note that the <code>SessionStatus</code> object must
-be passed to that method as a parameter.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用<code> @SessionAttributes </code>的Spring <code> @Controller </code>旨在处理有状态/多帖子的表单。这样
+<code> @Controller </code>使用指定的<code> @SessionAttributes </code>在请求之间在服务器上存储数据。应该清理那些数据
+会话结束时，除非在<code> SessionStatus </code>对象上调用<code> setComplete（）</code>
+<code> @RequestMapping </code>方法，Spring和JVM都不知道是时候这样做了。请注意，<code> SessionStatus </code>对象必须
+作为参数传递给该方法。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @Controller
-@SessionAttributes("hello")  // Noncompliant; this doesn't get cleaned up
+@SessionAttributes("hello")  // 不符合规范的; 这不会被清理干净
 public class HelloWorld {
 
   @RequestMapping("/greet", method = GET)
@@ -16,7 +16,7 @@ public class HelloWorld {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Controller
 @SessionAttributes("hello")

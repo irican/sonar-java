@@ -1,17 +1,16 @@
-<p>When a method loops multiple over the same set of data, whether it's a list or a set of numbers, it is highly likely that the method could be made
-more efficient by combining the loops into a single set of iterations.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当一个方法对同一组数据进行了多次循环时，无论这是一个列表还是一组数字，将这些循环整合在一起都很可能提高该方法的效率。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomethingToAList(List&lt;String&gt; strings) {
   for (String str : strings) {
     doStep1(str);
   }
-  for (String str : strings) {  // Noncompliant
+  for (String str : strings) {  // 不合规
     doStep2(str);
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomethingToAList(List&lt;String&gt; strings) {
   for (String str : strings) {

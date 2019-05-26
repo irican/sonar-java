@@ -1,35 +1,33 @@
-<p>Connections, streams, files, and other classes that implement the <code>Closeable</code> interface or its super-interface,
-<code>AutoCloseable</code>, needs to be closed after use. Further, that <code>close</code> call must be made in a <code>finally</code> block otherwise
-an exception could keep the call from being made. Preferably, when class implements <code>AutoCloseable</code>, resource should be created using
-"try-with-resources" pattern and will be closed automatically.</p>
-<p>Failure to properly close resources will result in a resource leak which could bring first the application and then perhaps the box it's on to
-their knees.</p>
-<h2>Noncompliant Code Example</h2>
+<p>实现 <code>Closeable</code> 接口或其超级接口的连接，流，文件和其他类，<code>AutoCloseable</code>，需要在使用后关闭。 
+此外， <code>close</code> 调用必须在 <code>finally</code> 块中进行，否则异常可能会使调用无法进行。最好，当类实现<code>AutoCloseable</code>时，
+应该使用“try-with-resources”模式创建资源，并自动关闭资源。</p>
+<p>未能正确关闭资源将导致资源泄漏，这可能首先导致应用程序，然后可能导致应用程序上的box崩溃。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private void readTheFile() throws IOException {
   Path path = Paths.get(this.fileName);
   BufferedReader reader = Files.newBufferedReader(path, this.charset);
   // ...
-  reader.close();  // Noncompliant
+  reader.close();  // 不合规
   // ...
-  Files.lines("input.txt").forEach(System.out::println); // Noncompliant: The stream needs to be closed
+  Files.lines("input.txt").forEach(System.out::println); // 不合规； 该流需要关闭
 }
 
 private void doSomething() {
   OutputStream stream = null;
   try {
     for (String property : propertyList) {
-      stream = new FileOutputStream("myfile.txt");  // Noncompliant
+      stream = new FileOutputStream("myfile.txt");  // 不合规
       // ...
     }
   } catch (Exception e) {
     // ...
   } finally {
-    stream.close();  // Multiple streams were opened. Only the last is closed.
+    stream.close();  // 打开了多个流。 只有最后一个被关闭。
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private void readTheFile(String fileName) throws IOException {
     Path path = Paths.get(fileName);
@@ -57,8 +55,8 @@ private void doSomething() {
   }
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Instances of the following classes are ignored by this rule because <code>close</code> has no effect:</p>
+<h2>例外</h2>
+<p>此规则将忽略以下类的实例，因为 <code>close</code> 无效；</p>
 <ul>
   <li> <code>java.io.ByteArrayOutputStream</code> </li>
   <li> <code>java.io.ByteArrayInputStream</code> </li>
@@ -67,8 +65,7 @@ private void doSomething() {
   <li> <code>java.io.StringReader</code> </li>
   <li> <code>java.io.StringWriter</code> </li>
 </ul>
-<p>Java 7 introduced the try-with-resources statement, which implicitly closes <code>Closeables</code>. All resources opened in a try-with-resources
-statement are ignored by this rule. </p>
+<p>Java 7引入了try-with-resources语句，该语句隐式关闭 <code>Closeables</code>。此规则将忽略在try-with-resources语句中打开的所有资源。 </p>
 <pre>
 try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
   //...
@@ -77,7 +74,7 @@ catch ( ... ) {
   //...
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/459.html">MITRE, CWE-459</a> - Incomplete Cleanup </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/9gFqAQ">CERT, FIO04-J.</a> - Release resources when they are no longer needed </li>

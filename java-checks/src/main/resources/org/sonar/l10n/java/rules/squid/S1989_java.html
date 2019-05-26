@@ -1,18 +1,17 @@
-<p>Even though the signatures for methods in a servlet include <code>throws IOException, ServletException</code>, it's a bad idea to let such
-exceptions be thrown. Failure to catch exceptions in a servlet could leave a system in a vulnerable state, possibly resulting in denial-of-service
-attacks, or the exposure of sensitive information because when a servlet throws an exception, the servlet container typically sends debugging
-information back to the user. And that information could be very valuable to an attacker. </p>
-<p>This rule checks all exceptions in methods named "do*" are explicitly handled in servlet classes.</p>
-<h2>Noncompliant Code Example</h2>
+<p>尽管servlet中方法的签名包括 <code>throws IOException, ServletException</code>，但抛出这样的异常是个坏主意。
+未能捕获servlet中的异常可能会使系统处于易受攻击的状态，可能导致拒绝服务攻击，或者泄露敏感信息，因为当servlet抛出异常时，
+servlet容器通常会将调试信息发送回用户。这些信息对攻击者来说非常有价值。</p>
+<p>此规则检查名为“do *”的方法中的所有异常是否在servlet类中显式处理。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doGet(HttpServletRequest request, HttpServletResponse response)
   throws IOException, ServletException {
   String ip = request.getRemoteAddr();
-  InetAddress addr = InetAddress.getByName(ip); // Noncompliant; getByName(String) throws UnknownHostException
+  InetAddress addr = InetAddress.getByName(ip); // 不合规； getByName(String) 抛出 UnknownHostException
   //...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doGet(HttpServletRequest request, HttpServletResponse response)
   throws IOException, ServletException {
@@ -26,7 +25,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/600.html">MITRE, CWE-600</a> - Uncaught Exception in Servlet </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/s4EVAQ">CERT, ERR01-J.</a> - Do not allow exceptions to expose sensitive information

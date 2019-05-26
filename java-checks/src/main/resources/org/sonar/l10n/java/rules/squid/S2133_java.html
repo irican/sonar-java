@@ -1,11 +1,10 @@
-<p>Creating an object for the sole purpose of calling <code>getClass</code> on it is a waste of memory and cycles. Instead, simply use the class'
-<code>.class</code> property.</p>
-<h2>Noncompliant Code Example</h2>
+<p>仅仅为了调用对象上的 <code>getClass</code> 而创建对象是对内存和周期的浪费。相反，只需使用类的 <code>.class</code> 属性。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-MyObject myOb = new MyObject();  // Noncompliant
+MyObject myOb = new MyObject();  // 不合规
 Class c = myOb.getClass();
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 Class c = MyObject.class;
 </pre>

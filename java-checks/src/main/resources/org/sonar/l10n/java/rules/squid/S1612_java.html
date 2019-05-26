@@ -1,7 +1,7 @@
-<p>Method/constructor references are more compact and readable than using lambdas, and are therefore preferred. Similarly, <code>null</code> checks
-can be replaced with references to the <code>Objects::isNull</code> and <code>Objects::nonNull</code> methods.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>8</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>方法/构造函数引用比使用lambdas更紧凑和可读，因此是首选。类似地，<code>null</code> 检查可以替换为对 <code>Objects::isNull</code> 和
+<code>Objects::nonNull</code> 方法的引用。</p>
+<p><strong>注意</ strong>当项目的<code> sonar.java.source </code>低于<code> 8 </code>时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class A {
   void process(List&lt;A&gt; list) {
@@ -15,7 +15,7 @@ class A {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class A {
   void process(List&lt;A&gt; list) {

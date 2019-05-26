@@ -1,9 +1,8 @@
-<p>Mutable objects are those whose state can be changed. For instance, an array is mutable, but a String is not. Mutable class members should never be
-returned to a caller or accepted and stored directly. Doing so leaves you vulnerable to unexpected changes in your class state.</p>
-<p>Instead use an unmodifiable <code>Collection</code> (via <code>Collections.unmodifiableCollection</code>,
-<code>Collections.unmodifiableList</code>, ...) or make a copy of the mutable object, and store or return the copy instead.</p>
-<p>This rule checks that arrays, collections and Dates are not stored or returned directly.</p>
-<h2>Noncompliant Code Example</h2>
+<p>可变对象是那些状态可以改变的对象。 例如，数组是可变的，但String不是。 永远不应将可变类成员返回给调用者或直接接受和存储。 这样做会使您容易受到类状态的意外更改的影响。</p>
+<p>而是使用不可修改的 <code>Collection</code> (通过 <code>Collections.unmodifiableCollection</code>,
+<code>Collections.unmodifiableList</code>, ...) 或制作可变对象的副本，然后存储或返回副本。</p>
+<p>此规则检查数组，集合和日期是否未直接存储或返回。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class A {
   private String [] strings;
@@ -13,11 +12,11 @@ class A {
   }
 
   public String [] getStrings() {
-    return strings; // Noncompliant
+    return strings; // 不合规的
   }
 
   public void setStrings(String [] strings) {
-    this.strings = strings;  // Noncompliant
+    this.strings = strings;  //不合规的
   }
 }
 
@@ -58,7 +57,7 @@ public class B {
 }
 
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/374">MITRE, CWE-374</a> - Passing Mutable Objects to an Untrusted Method </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/375">MITRE, CWE-375</a> - Returning a Mutable Object to an Untrusted Caller </li>

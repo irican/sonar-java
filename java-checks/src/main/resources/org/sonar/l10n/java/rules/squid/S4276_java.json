@@ -1,5 +1,5 @@
 {
-  "title": "Functional Interfaces should be as specialised as possible",
+  "title": "功能接口应尽可能专业",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

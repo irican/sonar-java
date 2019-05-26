@@ -1,5 +1,5 @@
 {
-  "title": "Use Java 12 \"switch\" expression",
+  "title": "使用Java 12 \"switch\" 表达式",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

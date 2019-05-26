@@ -1,5 +1,5 @@
 {
-  "title": "Abstract methods should not be redundant",
+  "title": "抽象型方法不应重复",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

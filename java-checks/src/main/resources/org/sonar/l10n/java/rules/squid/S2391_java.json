@@ -1,5 +1,5 @@
 {
-  "title": "JUnit framework methods should be declared properly",
+  "title": "应正确声明JUnit框架方法",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

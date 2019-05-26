@@ -1,5 +1,5 @@
 {
-  "title": "Parentheses should be removed from a single lambda input parameter when its type is inferred",
+  "title": "当推断出单个lambda输入参数的类型时，应该删除该参数的括号",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

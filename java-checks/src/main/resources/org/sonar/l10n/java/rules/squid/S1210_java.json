@@ -1,5 +1,5 @@
 {
-  "title": "\"equals(Object obj)\" should be overridden along with the \"compareTo(T obj)\" method",
+  "title": "\"equals(Object obj)\" 应该与 \"compareTo(T obj)\" 方法一起被重写",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

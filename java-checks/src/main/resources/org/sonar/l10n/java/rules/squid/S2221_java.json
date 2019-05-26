@@ -1,5 +1,5 @@
 {
-  "title": "\"Exception\" should not be caught when not required by called methods",
+  "title": "当被调用的方法不需要时，不应该捕获“异常”",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

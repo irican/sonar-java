@@ -1,5 +1,5 @@
 {
-  "title": "Methods should not be named \"tostring\", \"hashcode\" or \"equal\"",
+  "title": "方法不应该被命名为 \"tostring\"， \"hashcode\" 或 \"equal\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

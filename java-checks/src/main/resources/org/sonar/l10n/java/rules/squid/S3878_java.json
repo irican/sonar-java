@@ -1,5 +1,5 @@
 {
-  "title": "Arrays should not be created for varargs parameters",
+  "title": "不应为varargs参数创建数组（Arrays）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

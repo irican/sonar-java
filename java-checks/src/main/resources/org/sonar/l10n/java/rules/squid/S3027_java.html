@@ -1,15 +1,14 @@
-<p>An <code>indexOf</code> or <code>lastIndexOf</code> call with a single letter <code>String</code> can be made more performant by switching to a
-call with a <code>char</code> argument.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用单个字母<code>String</code>的<code>indexOf</code>或<code>lastIndexOf</code> 调用可以通过切换到使用<code>char</code>参数的调用来提高性能。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String myStr = "Hello World";
 // ...
-int pos = myStr.indexOf("W");  // Noncompliant
+int pos = myStr.indexOf("W");  // 不合规
 // ...
-int otherPos = myStr.lastIndexOf("r"); // Noncompliant
+int otherPos = myStr.lastIndexOf("r"); // 不合规
 // ...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String myStr = "Hello World";
 // ...

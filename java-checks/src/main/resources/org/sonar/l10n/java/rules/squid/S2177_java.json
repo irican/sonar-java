@@ -1,5 +1,5 @@
 {
-  "title": "Child class methods named for parent class methods should be overrides",
+  "title": "应该重写以父类方法命名的子类方法",
   "type": "BUG",
   "status": "ready",
   "remediation": {

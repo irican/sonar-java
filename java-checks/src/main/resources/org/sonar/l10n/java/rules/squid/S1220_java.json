@@ -1,5 +1,5 @@
 {
-  "title": "The default unnamed package should not be used",
+  "title": "不应该使用默认的未命名包",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

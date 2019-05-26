@@ -1,5 +1,5 @@
 {
-  "title": "\"Lock\" objects should not be \"synchronized\"",
+  "title": "\"Lock\"对象不应该\"synchronized（同步）\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

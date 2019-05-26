@@ -1,11 +1,10 @@
-<p>JUnit assertions should not be made from the <code>run</code> method of a <code>Runnable</code>, because failed assertions result in
-<code>AssertionError</code>s being thrown. If the error is thrown from a thread other than the one that ran the test, the thread will exit but the
-test won't fail.</p>
-<h2>Noncompliant Code Example</h2>
+<p>JUnit断言（assertion）不应该形成自 <code>Runnable</code> 的 <code>run</code> 方法，因为失败的断言会导致抛出
+<code>AssertionError</code>。 如果从运行测试的线程以外的线程抛出错误，则线程将退出，但测试不会失败。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void run() {
   // ...
-  Assert.assertEquals(expected, actual);  // Noncompliant
+  Assert.assertEquals(expected, actual);  // 不合规
 }
 </pre>
 

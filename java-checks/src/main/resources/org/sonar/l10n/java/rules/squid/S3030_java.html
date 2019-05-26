@@ -1,12 +1,11 @@
-<p>Importing a class statically allows you to use its <code>public static</code> members without qualifying them with the class name. That can be
-handy, but if you import too many classes statically, your code can become confusing and difficult to maintain.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default threshold value: 4</p>
+<p>静态导入类允许使用它的<code>public static</code> 成员，而不需要用类名限定它们。这可能很方便，但是如果静态导入太多类，代码可能会变得混乱，难以维护。</p>
+<h2>不合规的代码示例</h2>
+<p>默认阈值为:4</p>
 <pre>
 import static java.lang.Math.*;
 import static java.util.Collections.*;
 import static com.myco.corporate.Constants.*;
 import static com.myco.division.Constants.*;
-import static com.myco.department.Constants.*;  // Noncompliant
+import static com.myco.department.Constants.*;  //不合规
 </pre>
 

@@ -1,5 +1,5 @@
 {
-  "title": "\"InterruptedException\" should not be ignored",
+  "title": "\"InterruptedException\" 不应该被忽略",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,29 +1,28 @@
-<p>Because <code>printf</code>-style format strings are interpreted at runtime, rather than validated by the Java compiler, they can contain errors
-that lead to unexpected behavior or runtime errors. This rule statically validates the good behavior of <code>printf</code>-style formats when calling
-the <code>format(...)</code> methods of <code>java.util.Formatter</code>, <code>java.lang.String</code>, <code>java.io.PrintStream</code>,
-<code>MessageFormat</code>, and <code>java.io.PrintWriter</code> classes and the <code>printf(...)</code> methods of <code>java.io.PrintStream</code>
-or <code>java.io.PrintWriter</code> classes. </p>
-<h2>Noncompliant Code Example</h2>
+<p>因为 <code>printf</code>-样式的格式字符串是在运行时解释的，而不是由Java编译器验证的，所以它们可能包含导致意外行为或运行时错误的错误。此规则在调用时静态验证 <code>printf</code>-样式格式的良好行为
+对于<code>格式（……)方法</code> methods of <code>java.util.Formatter</code>, <code>java.lang.String</code>, <code>java.io.PrintStream</code>,
+<code>MessageFormat</code>, 和 <code>java.io.PrintWriter</code> 类型和 <code>printf(...)</code> 方法<code>java.io.PrintStream</code>
+或者 <code>java.io.PrintWriter</code> 类。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
-String.format("The value of my integer is %d", "Hello World");  // Noncompliant; an 'int' is expected rather than a String
-String.format("Duke's Birthday year is %tX", c);  //Noncompliant; X is not a supported time conversion character
-String.format("Display %0$d and then %d", 1);   //Noncompliant; arguments are numbered starting from 1
-String.format("Not enough arguments %d and %d", 1);  //Noncompliant; the second argument is missing
-String.format("%&lt; is equals to %d", 2);   //Noncompliant; the argument index '&lt;' refers to the previous format specifier but there isn't one
+String.format("The value of my integer is %d", "Hello World");  // 不合规;期望'int'而不是String
+String.format("Duke's Birthday year is %tX", c);  //不符合要求; X不是受支持的时间转换字符
+String.format("Display %0$d and then %d", 1);   //不符合要求;参数从1开始编号
+String.format("Not enough arguments %d and %d", 1);  //不符合要求;缺少第二个参数
+String.format("%&lt; is equals to %d", 2);   //不符合要求;参数索引'＆lt;'是指先前的格式说明符，但没有一个
 
-MessageFormat.format("Result {1}.", value); // Noncompliant; Not enough arguments. (first element is {0})
-MessageFormat.format("Result {{0}.", value); // Noncompliant; Unbalanced number of curly brace (single curly braces should be escaped)
-MessageFormat.format("Result ' {0}", value); // Noncompliant; Unbalanced number of quotes (single quote must be escaped)
+MessageFormat.format("Result {1}.", value); // 不合规;没有足够的论据。 （第一个元素是{0}）
+MessageFormat.format("Result {{0}.", value); // 不合规;大括号的数量不均衡（单个花括号应该被转义）
+MessageFormat.format("Result ' {0}", value); // 不合规;不平衡的报价数量（单引号必须转义）
 
 java.util.logging.Logger logger;
-logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14); // Noncompliant {{Not enough arguments.}}
+logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14); // 不合规{{没有足够的论点。}}
 
 org.slf4j.Logger slf4jLog;
 org.slf4j.Marker marker;
 
-slf4jLog.debug(marker, "message {}"); // Noncompliant {{Not enough arguments.}}
+slf4jLog.debug(marker, "message {}"); // 不合规{{没有足够的论点。}}
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 String.format("The value of my integer is %d", 3);
 String.format("Duke's Birthday year is %tY", c);
@@ -36,14 +35,14 @@ MessageFormat.format("Result {0} &amp; {1}.", value, value);
 MessageFormat.format("Result {0}.", myObject);
 
 java.util.logging.Logger logger;
-logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14, 2); // Noncompliant {{Not enough arguments.}}
+logger.log(java.util.logging.Level.SEVERE, "Result {1}!", 14, 2); //不合规{{没有足够的论点。}}
 
 org.slf4j.Logger slf4jLog;
 org.slf4j.Marker marker;
 
 slf4jLog.debug(marker, "message {}", 1);
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/wQA1">CERT, FIO47-C.</a> - Use valid format strings </li>
 </ul>

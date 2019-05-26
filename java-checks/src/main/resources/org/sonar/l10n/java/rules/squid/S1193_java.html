@@ -1,21 +1,21 @@
-<p>Multiple catch blocks of the appropriate type should be used instead of catching a general exception, and then testing on the type.</p>
-<h2>Noncompliant Code Example</h2>
+<p>应该使用适当类型的多个catch块，而不是捕获一般异常，然后测试类型。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 try {
   /* ... */
 } catch (Exception e) {
-  if(e instanceof IOException) { /* ... */ }         // Noncompliant
-  if(e instanceof NullPointerException{ /* ... */ }  // Noncompliant
+  if(e instanceof IOException) { /* ... */ }         // 不合规
+  if(e instanceof NullPointerException{ /* ... */ }  // 不合规
 }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
 try {
   /* ... */
-} catch (IOException e) { /* ... */ }                // Compliant
-} catch (NullPointerException e) { /* ... */ }       // Compliant
+} catch (IOException e) { /* ... */ }                // 合规
+} catch (NullPointerException e) { /* ... */ }       // 合规
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/5gFFB">CERT, ERR51-J.</a> - Prefer user-defined exceptions over more general exception
   types </li>

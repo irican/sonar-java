@@ -1,5 +1,5 @@
 {
-  "title": "Persistent entities should not be used as arguments of \"@RequestMapping\" methods",
+  "title": "不应将持久实体用作\"@RequestMapping\" 方法的参数",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

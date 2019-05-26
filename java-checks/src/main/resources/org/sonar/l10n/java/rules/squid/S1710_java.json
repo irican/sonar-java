@@ -1,5 +1,5 @@
 {
-  "title": "Annotation repetitions should not be wrapped",
+  "title": "不应封装注解（annotation）重复",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

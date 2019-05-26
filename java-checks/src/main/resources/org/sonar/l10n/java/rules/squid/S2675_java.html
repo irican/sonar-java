@@ -1,18 +1,16 @@
-<p>A <code>readObject</code> method is written when a <code>Serializable</code> object needs special handling to be rehydrated from file. It should be
-the case that the object being created by <code>readObject</code> is only visible to the thread that invoked the method, and the
-<code>synchronized</code> keyword is not needed, and using <code>synchronized</code> anyway is just confusing. If this is not the case, the method
-should be refactored to make it the case.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当<code>readObject</code>对象需要特殊处理才能从文件中重新融合时，就会编写一个<code>Serializable</code>方法。应该是这样的:由<code>readObject</code> 
+创建的对象只对调用该方法的线程可见，而不需要使用 <code>synchronized</code> 关键字，无论如何使用<code>synchronized</code> 只会让人感到困惑。如果不是这种情况，则应该重构方法使其成为这种情况。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 private synchronized void readObject(java.io.ObjectInputStream in)
-     throws IOException, ClassNotFoundException { // Noncompliant
+     throws IOException, ClassNotFoundException { // 不合规
   //...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 private void readObject(java.io.ObjectInputStream in)
-     throws IOException, ClassNotFoundException { // Compliant
+     throws IOException, ClassNotFoundException { // 合规的
   //...
 }
 </pre>

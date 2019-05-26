@@ -1,10 +1,8 @@
-<p>A selector argument is a <code>boolean</code> argument that's used to determine which of two paths to take through a method. Specifying such a
-parameter may seem innocuous, particularly if it's well named. </p>
-<p>Unfortunately, the maintainers of the code calling the method won't see the parameter name, only its value. They'll be forced either to guess at
-the meaning or to take extra time to look the method up.</p>
-<p>Instead, separate methods should be written.</p>
-<p>This rule finds methods with a <code>boolean</code> that's used to determine which path to take through the method.</p>
-<h2>Noncompliant Code Example</h2>
+<p>selector参数是一个<code>boolean</code> 参数，用于确定通过方法的两个路径中的哪一个。指定这样的参数可能看起来无害，特别是如果它的名字很好。 </p>
+<p>不幸的是，调用该方法的代码的维护者将看不到参数名称，只看到它的值。他们将被迫猜测其含义，或者花些额外的时间来查看方法。</p>
+<p>相反，应该编写单独的方法。</p>
+<p>此规则使用<code>boolean</code> 查找方法，该方法用于确定通过该方法的路径。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public String tempt(String name, boolean ofAge) {
   if (ofAge) {
@@ -16,10 +14,10 @@ public String tempt(String name, boolean ofAge) {
 
 // ...
 public void corrupt() {
-  tempt("Joe", false); // does this mean not to temp Joe?
+  tempt("Joe", false); // 这对温特乔来说意味着什么？
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public void temptAdult(String name) {
   offerLiquor(name);

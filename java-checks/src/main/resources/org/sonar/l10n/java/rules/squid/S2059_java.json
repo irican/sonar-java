@@ -1,5 +1,5 @@
 {
-  "title": "\"Serializable\" inner classes of \"Serializable\" classes should be static",
+  "title": " \"Serializable\" 类的内部类 \"Serializable\" 时应该是静态的（static）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

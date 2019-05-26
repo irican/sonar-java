@@ -1,15 +1,11 @@
-<p>Spring <code>@Controller</code>, <code>@Service</code>, and <code>@Repository</code> classes are singletons by default, meaning only one instance
-of the class is ever instantiated in the application. Typically such a class might have a few <code>static</code> members, such as a logger, but all
-non-static members should be managed by Spring and supplied via constructor injection rather than by field injection.</p>
-<p>This rule raise an issue when any non-<code>static</code> member of a Spring component has an injection annotation, or if the constructor of Spring
-component does not have injection annotation.</p>
-<h2>Noncompliant Code Example</h2>
+<p> Spring <code> @Controller </code>，<code> @Service </code>和<code> @Repository </code>类默认是单例，这意味着只有一个类实例被实例化在申请中。通常这样的类可能有一些<code> static </code>成员，例如记录器，但是所有非静态成员都应该由Spring管理并通过构造函数注入而不是通过字段注入提供。</p> <p>当Spring组件的任何非<code> static </code>成员具有注入注释时，或者如果Spring组件的构造函数没有注入注释时，此规则引发问题。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @Controller
 public class HelloWorld {
 
   @Autowired
-  private String name = null; // Noncompliant
+  private String name = null; // 不符合规范的
 
   HelloWorld() {
    // ...
@@ -18,7 +14,7 @@ public class HelloWorld {
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Controller
 public class HelloWorld {

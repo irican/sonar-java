@@ -1,5 +1,5 @@
 {
-  "title": "\"HttpSecurity\" URL patterns should be correctly ordered",
+  "title": "应正确排序“HttpSecurity”URL模式",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

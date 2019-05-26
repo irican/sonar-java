@@ -1,15 +1,14 @@
-<p>Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when a pom's <code>artifactId</code> does not match the
-provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default regular expression: <code>[a-z][a-z-0-9]+</code></p>
+<p>共享命名约定允许团队有效协作。 当pom的<code>artifactId</code> 与提供的正则表达式不匹配时，此规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
+<p>使用默认正则表达式： <code>[a-z][a-z-0-9]+</code></p>
 <pre>
 &lt;project ...&gt;
-  &lt;artifactId&gt;My_Project&lt;/artifactId&gt;  &lt;!-- Noncompliant --&gt;
+  &lt;artifactId&gt;My_Project&lt;/artifactId&gt;  &lt;!-- 不合规的 --&gt;
 
   &lt;!-- ... --&gt;
 &lt;/project&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 &lt;project ...&gt;
   &lt;artifactId&gt;my-project&lt;/artifactId&gt;

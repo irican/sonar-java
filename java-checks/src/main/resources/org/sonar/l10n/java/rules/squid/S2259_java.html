@@ -1,16 +1,12 @@
-<p>A reference to <code>null</code> should never be dereferenced/accessed. Doing so will cause a <code>NullPointerException</code> to be thrown. At
-best, such an exception will cause abrupt program termination. At worst, it could expose debugging information that would be useful to an attacker, or
-it could allow an attacker to bypass security measures.</p>
-<p>Note that when they are present, this rule takes advantage of <code>@CheckForNull</code> and <code>@Nonnull</code> annotations defined in <a
-href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> to understand which values are and are not nullable except when <code>@Nonnull</code> is used
-on the parameter to <code>equals</code>, which by contract should always work with null.</p>
-<h2>Noncompliant Code Example</h2>
+<p>对 <code>null</code> 的引用永远不应该被取消引用/访问。 这样做将导致抛出<code>NullPointerException</code>。充其量，这样的异常会导致突然的程序终止。最坏的情况是，它可能公开对攻击者有用的调试信息，或者允许攻击者绕过安全措施。这条规则利用 <code>@CheckForNull</code> 和<code>@Nonnull</code> 中定义的<a
+href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> 注释来理解哪些值是可空的，哪些值是不可空的，除非@non-null对参数使用等于，根据合同，它应该始终使用NULL。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 @CheckForNull
 String getName(){...}
 
 public boolean isNameEmpty() {
-  return getName().length() == 0; // Noncompliant; the result of getName() could be null, but isn't null-checked
+  return getName().length() == 0; // 不合规的;  getName()的结果可能为null，但不是null检查
 }
 </pre>
 <pre>
@@ -24,27 +20,27 @@ try{
 }catch(Exception e){
   e.printStackTrace();
 }finally{
-  stmt.close();   // Noncompliant; stmt could be null if an exception was thrown in the try{} block
-  conn.close();  // Noncompliant; conn could be null if an exception was thrown
+  stmt.close();   // 不符合要求的; 如果在try {}块中抛出异常，则stmt可以为null
+  conn.close();  // 不合规; 如果抛出异常，conn可以为null
 }
 </pre>
 <pre>
 private void merge(@Nonnull Color firstColor, @Nonnull Color secondColor){...}
 
 public  void append(@CheckForNull Color color) {
-    merge(currentColor, color);  // Noncompliant; color should be null-checked because merge(...) doesn't accept nullable parameters
+    merge(currentColor, color);  // 不符合要求的; color应该为null，因为merge（...）不接受可为空的参数
 }
 </pre>
 <pre>
 void paint(Color color) {
   if(color == null) {
-    System.out.println("Unable to apply color " + color.toString());  // Noncompliant; NullPointerException will be thrown
-    return;
+    System.out.println("Unable to apply color " + color.toString());  // 不符合要求的; 将抛出NullPointerException
+     返回;
   }
   ...
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/476.html">MITRE, CWE-476</a> - NULL Pointer Dereference </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/PAw">CERT, EXP34-C.</a> - Do not dereference null pointers </li>

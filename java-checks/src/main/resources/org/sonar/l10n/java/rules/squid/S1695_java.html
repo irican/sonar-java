@@ -1,17 +1,14 @@
-<p>A <code>NullPointerException</code> should indicate that a <code>null</code> value was unexpectedly encountered. Good programming practice dictates
-that code is structured to avoid NPE's. </p>
-<p>Explicitly throwing <code>NullPointerException</code> forces a method's callers to explicitly catch it, rather than coding to avoid it. Further, it
-makes it difficult to distinguish between the unexpectedly-encountered <code>null</code> value and the condition which causes the method to purposely
-throw an NPE.</p>
-<p>If an NPE is being thrown to indicate that a parameter to the method should not have been null, use the <code>@NotNull</code> annotation
-instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p> <code>NullPointerException</code> 应该表示意外遇到了一个 <code>null</code> 值。良好的编程实践要求代码结构化来避免NPE。</p>
+<p>显式抛出 <code>NullPointerException</code> 迫使方法的调用者显式捕获它，而不是编码来避免它。此外，
+很难区分意外遇到的 <code>null</code> 值和导致方法故意抛出NPE的条件。</p>
+<p>如果抛出NPE以指示方法的参数不应为null，请使用 <code>@NotNull</code> 注解（annotation）</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething (String aString) throws NullPointerException {
      throw new NullPointerException();
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething (@NotNull String aString) {
 }

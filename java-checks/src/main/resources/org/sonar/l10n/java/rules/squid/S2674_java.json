@@ -1,5 +1,5 @@
 {
-  "title": "The value returned from a stream read should be checked",
+  "title": "应该检查从读取的流返回的值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

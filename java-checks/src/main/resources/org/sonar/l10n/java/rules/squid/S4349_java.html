@@ -1,13 +1,9 @@
-<p>When directly subclassing <code>java.io.OutputStream</code> or <code>java.io.FilterOutputStream</code>, the only requirement is that you implement
-the method <code>write(int)</code>. However most uses for such streams don't write a single byte at a time and the default implementation for
-<code>write(byte[],int,int)</code> will call <code>write(int)</code> for every single byte in the array which can create a lot of overhead and is
-utterly inefficient. It is therefore strongly recommended that subclasses provide an efficient implementation of
-<code>write(byte[],int,int)</code>.</p>
-<p>This rule raises an issue when a direct subclass of <code>java.io.OutputStream</code> or <code>java.io.FilterOutputStream</code> doesn't provide an
-override of <code>write(byte[],int,int)</code>.</p>
-<h2>Noncompliant Code Example</h2>
+直接继承<code> java.io.OutputStream </code>或<code> java.io.FilterOutputStream </code>时，唯一的要求是实现方法<code> write（int）</code>。 
+<p>但是，此类流的大多数用法不会一次写入一个字节，<code> write（byte[]，int，int）</code>的默认实现将调用<code> write（int）</code>对于数组中的每个字节，它可能会产生大量开销并且效率极低。 因此强烈建议子类提供<code> write（byte[]，int，int）</code>的有效实现。</p>
+<p>当<code> java.io.OutputStream </code>或<code> java.io.FilterOutputStream </code>的直接子类不提供<code> write(byte[],int,int)的覆盖时，此规则引发了一个问题</code></p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class MyStream extends OutputStream { // Noncompliant
+public class MyStream extends OutputStream { // 不合规的
     private FileOutputStream fout;
 
     public MyStream(File file) throws IOException {
@@ -27,7 +23,7 @@ public class MyStream extends OutputStream { // Noncompliant
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class MyStream extends OutputStream {
     private FileOutputStream fout;
@@ -54,6 +50,6 @@ public class MyStream extends OutputStream {
     }
 }
 </pre>
-<h2>Exceptions</h2>
+<h2>例外</h2>
 <p>This rule doesn't raise an issue when the class is declared <code>abstract</code>.</p>
 

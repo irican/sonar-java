@@ -1,5 +1,5 @@
 {
-  "title": "Strings literals should be placed on the left side when checking for equality",
+  "title": "在检查是否相等时，应将字符串文本放在左侧",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,7 +1,6 @@
-<p>When two methods have the same implementation, either it was a mistake - something else was intended - or the duplication was intentional, but may
-be confusing to maintainers. In the latter case, one implementation should invoke the other. Numerical and string literals are not taken into account.
+<p>当两种方法具有相同的实现时，要么是错误的 - 还是其他意图 - 或者重复是故意的，但可能会让维护者感到困惑。 在后一种情况下，一个实现应该调用另一个。 不考虑数字和字符串文字。
 </p>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 private final static String CODE = "bounteous";
 
@@ -10,12 +9,12 @@ public String calculateCode() {
   return CODE;
 }
 
-public String getName() {  // Noncompliant
+public String getName() {  // 不合规的
   doTheThing();
   return CODE;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的代码示例</h2>
 <pre>
 private final static String CODE = "bounteous";
 
@@ -28,6 +27,6 @@ public String getName() {
   return getCode();
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Methods that are not accessors (getters and setters), with fewer than 2 statements are ignored.</p>
+<h2>例外</h2>
+<p>忽略少于2个语句的非访问器（getter和setter）的方法。</p>
 

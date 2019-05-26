@@ -1,5 +1,5 @@
 {
-  "title": "\"main\" should not \"throw\" anything",
+  "title": "\"main\" 不应该 \"throw\" 任何东西",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

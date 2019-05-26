@@ -1,9 +1,7 @@
-<p>"@EnableAutoConfiguration" is a convenient feature to configure the Spring Application Context by attempting to guess the beans that you are likely
-to need. The drawback is that it may load and configure beans the application will never use and therefore consume more CPU and RAM than really
-required. <code>@EnableAutoConfiguration</code> should be configured to exclude all the beans not required by the application. Alternatively, use the
-<code>@Import</code> annotation instead of <code>@EnableAutoConfiguration</code>, to explicitly import the useful AutoConfiguration classes.</p>
+<p>“@ EnableAutoConfiguration”是一个方便的功能，通过尝试猜测您可能需要的bean来配置Spring Application Context。缺点是它可能加载和配置应用程序永远不会使用的bean，因此消耗的CPU和RAM比真正需要的多。
+<code>@EnableAutoConfiguration</code> 应配置为排除应用程序不需要的所有bean。或者，使用<code>@Import</code> 注释而不是 <code>@EnableAutoConfiguration</code>, 来显式导入有用的AutoConfiguration类。</p>
 <p>This rule applies for <code>@SpringBootApplication</code> as well.</p>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 @SpringBootApplication
 public class MyApplication {
@@ -17,7 +15,7 @@ public class MyApplication {
 ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 @SpringBootApplication(exclude = {
   MultipartAutoConfiguration.class,

@@ -1,19 +1,18 @@
-<p>The needless repetition of an operator is usually a typo. There is no reason to write <code>!!!i</code> when <code>!i</code> will do.</p>
-<p>On the other hand, the repetition of increment and decrement operators may have been done on purpose, but doing so obfuscates the meaning, and
-should be simplified.</p>
-<p>This rule raises an issue for sequences of: <code>!</code>, <code>~</code>, <code>-</code>, and <code>+</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>操作员不必要的重复通常是打字错误。当要写<code>!i</code>时，没有理由写成 <code>!!!i</code>。</p>
+<p>另一方面，递增和递减运算符的重复可能是故意的，但是这样做会混淆意思，应该简化。</p>
+<p>这条规则对以下序列会引发问题: <code>!</code>， <code>~</code>， <code>-</code>， 和 <code>+</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 int i = 1;
 
-int j = - - -i;  // Noncompliant; just use -i
-int k = ~~~i;    // Noncompliant; same as i
-int m = + +i;    // Noncompliant; operators are useless here
+int j = - - -i;  // 不合规；只需要 -i
+int k = ~~~i;    // 不合规；同样的 i
+int m = + +i;    // 不合规；操作符在这无用
 
 boolean b = false;
-boolean c = !!!b;   // Noncompliant
+boolean c = !!!b;   // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 int i =  1;
 
@@ -24,6 +23,6 @@ int m =  i;
 boolean b = false;
 boolean c = !b;
 </pre>
-<h2>Exceptions</h2>
-<p>Overflow handling for GWT compilation using <code>~~</code> is ignored.</p>
+<h2>例外</h2>
+<p>使用<code>~~</code>编译GWT时的溢出处理将被忽略</p>
 

@@ -1,24 +1,23 @@
-<p>"equals" as a method name should be used exclusively to override <code>Object.equals(Object)</code> to prevent any confusion.</p>
-<p>It is tempting to overload the method to take a specific class instead of <code>Object</code> as parameter, to save the class comparison check.
-However, this will not work as expected when that is the only override.</p>
-<h2>Noncompliant Code Example</h2>
+<p>"equals" 作为一个方法名，应该专门用来重写 <code>Object.equals(Object)</code> ，以防止混淆。</p>
+<p>重载方法以使用特定的类而不是使用<code> Object </code>作为参数，这样来保存类比较检查是很吸引人的。但是，当这是唯一的重写时，这将无法按预期工作。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class MyClass {
   private int foo = 1;
 
-  public boolean equals(MyClass o) {  // Noncompliant; does not override Object.equals(Object)
+  public boolean equals(MyClass o) {  // 不合规； 不会重写 Object.equals(Object)
     return o != null &amp;&amp; o.foo == this.foo;
   }
 
   public static void main(String[] args) {
     MyClass o1 = new MyClass();
     Object o2 = new MyClass();
-    System.out.println(o1.equals(o2));  // Prints "false" because o2 an Object not a MyClass
+    System.out.println(o1.equals(o2));  // 打印“false”，因为o2是对象而不是MyClass
   }
 }
 
 class MyClass2 {
-  public boolean equals(MyClass2 o) {  // Ignored; `boolean equals(Object)` also present
+  public boolean equals(MyClass2 o) {  // 忽略； `boolean equals(Object)` 也会出现
     //..
   }
 
@@ -27,7 +26,7 @@ class MyClass2 {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class MyClass {
   private int foo = 1;

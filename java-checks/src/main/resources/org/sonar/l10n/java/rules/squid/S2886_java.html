@@ -1,7 +1,6 @@
-<p>When one part of a getter/setter pair is <code>synchronized</code> the other part should be too. Failure to synchronize both sides of a pair may
-result in inconsistent behavior at runtime as callers access an inconsistent method state.</p>
-<p>This rule raises an issue when either the method or the contents of one method in a getter/setter pair are synchrnoized but the other is not.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当getter/setter对的一部分是 <code>synchronized</code> 时，另一部分也应该是。当调用方访问不一致的方法状态时，未能同步对的两边可能会在运行时导致不一致的行为。</p>
+<p>当getter/setter对中的方法或其中一个方法的内容同步而另一个方法没有同步时，该规则会引发问题。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Person {
   String name;
@@ -11,11 +10,11 @@ public class Person {
     this.name = name;
   }
 
-  public String getName() {  // Noncompliant
+  public String getName() {  // 不合规
     return this.name;
   }
 
-  public void setAge(int age) {  // Noncompliant
+  public void setAge(int age) {  // 不合规
     this.age = age;
   }
 
@@ -26,7 +25,7 @@ public class Person {
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Person {
   String name;
@@ -53,7 +52,7 @@ public class Person {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/I4BoAg">CERT, VNA01-J.</a> - Ensure visibility of shared references to immutable
   objects </li>

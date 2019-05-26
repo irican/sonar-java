@@ -1,13 +1,13 @@
-<p>There's no point in creating an array solely for the purpose of passing it as a varargs (<code>...</code>) argument; varargs <em>is</em> an array.
-Simply pass the elements directly. They will be consolidated into an array automatically. Incidentally passing an array where <code>Object ...</code>
-is expected makes the intent ambiguous: Is the array supposed to be one object or a collection of objects?</p>
-<h2>Noncompliant Code Example</h2>
+<p>创建一个数组只是为了将它作为varargs（<code> ... </code>）参数传递而没有意义; varargs <em>is</em>一个数组。
+只需直接传递元素即可。 它们将自动合并为一个数组。 顺便传递一个数组，其中<code> Object ... </code>
+预期会使意图模糊不清：数组应该是一个对象还是一个对象集合？</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void callTheThing() {
   //...
-  doTheThing(new String[] { "s1", "s2"});  // Noncompliant: unnecessary
-  doTheThing(new String[12]);  // Compliant
-  doTheOtherThing(new String[8]);  // Noncompliant: ambiguous
+  doTheThing(new String[] { "s1", "s2"});  // 不合规：不必要
+  doTheThing(new String[12]);  //合规的
+  doTheOtherThing(new String[8]);  // 不合规：含糊不清
   // ...
 }
 
@@ -19,7 +19,7 @@ public void doTheOtherThing(Object ... args) {
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void callTheThing() {
   //...

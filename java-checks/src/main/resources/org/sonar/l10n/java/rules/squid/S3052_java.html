@@ -1,23 +1,23 @@
-<p>The compiler automatically initializes class fields to their default values before setting them with any initialization values, so there is no need
-to explicitly set a field to its default value. Further, under the logic that cleaner code is better code, it's considered poor style to do so.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在将类的字段设为初始化值之前，编译器会自动先将它们初始化为默认值，因此没有必要显式地将一个字段设为它的默认值。而且，考虑到
+“代码越简洁越好”的原则，这样的习惯会被视作不好的代码风格。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyClass {
 
-  int count = 0;  // Noncompliant
-  // ...
+  int count = 0;  // 不合规
+  // ……
 
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class MyClass {
 
   int count;
-  // ...
+  // ……
 
 }
 </pre>
-<h2>Exceptions</h2>
-<p><code>final</code> fields are ignored.</p>
+<h2>例外</h2>
+<p>此规则忽略 <code>final</code> 字段。</p>
 

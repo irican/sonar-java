@@ -1,5 +1,5 @@
 {
-  "title": "Non-public methods should not be \"@Transactional\"",
+  "title": "非公共方法不应该是 \"@Transactional\"",
   "type": "BUG",
   "status": "ready",
   "remediation": {

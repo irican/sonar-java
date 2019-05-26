@@ -1,5 +1,5 @@
 {
-  "title": "Silly equality checks should not be made",
+  "title": "不应该进行无用的相等性检查",
   "type": "BUG",
   "status": "ready",
   "remediation": {

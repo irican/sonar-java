@@ -1,11 +1,10 @@
-<p>Using classes and methods that rely on the default system encoding can result in code that works fine in its "home" environment. But that code may
-break for customers who use different encodings in ways that are extremely difficult to diagnose and nearly, if not completely, impossible to
-reproduce when it's time to fix them.</p>
-<p>This rule detects uses of the following classes and methods:</p>
+<p>使用依赖于默认系统编码的类和方法可以生成在其“home”环境中工作良好的代码。但是，对于使用不同编码方式的客户来说，代码可能会破坏，
+这些编码方式非常难以诊断，而且在需要修复它们的时候，几乎不可能重现。</p>
+<p>此规则检测以下类和方法的使用：</p>
 <ul>
   <li> <code>FileReader</code> </li>
   <li> <code>FileWriter</code> </li>
-  <li> String constructors with a <code>byte[]</code> argument but no <code>Charset</code> argument
+  <li> 带有 <code>byte[]</code> 参数但没有 <code>Charset</code> 参数的字符串构造函数
     <ul>
       <li> <code>String(byte[] bytes)</code> </li>
       <li> <code>String(byte[] bytes, int offset, int length)</code> </li>
@@ -15,34 +14,33 @@ reproduce when it's time to fix them.</p>
   <li> <code>InputStreamReader(InputStream in)</code> </li>
   <li> <code>OutputStreamWriter(OutputStream out)</code> </li>
   <li> <code>ByteArrayOutputStream.toString()</code> </li>
-  <li> Some <code>Formatter</code> constructors
+  <li> 一些 <code>Formatter</code> 构造函数
     <ul>
       <li> <code>Formatter(String fileName)</code> </li>
       <li> <code>Formatter(File file)</code> </li>
       <li> <code>Formatter(OutputStream os)</code> </li>
     </ul> </li>
-  <li> Some <code>Scanner</code> constructors
+  <li> 一些 <code>Scanner</code> 构造函数
     <ul>
       <li> <code>Scanner(File source)</code> </li>
       <li> <code>Scanner(Path source)</code> </li>
       <li> <code>Scanner(InputStream source)</code> </li>
     </ul> </li>
-  <li> Some <code>PrintStream</code> constructors
+  <li> 一些 <code>PrintStream</code> 构造函数
     <ul>
       <li> <code>PrintStream(File file)</code> </li>
       <li> <code>PrintStream(OutputStream out)</code> </li>
       <li> <code>PrintStream(OutputStream out, boolean autoFlush)</code> </li>
       <li> <code>PrintStream(String fileName)</code> </li>
     </ul> </li>
-  <li> Some <code>PrintWriter</code> constructors
+  <li> 一些 <code>PrintWriter</code> 构造函数
     <ul>
       <li> <code>PrintWriter(File file)</code> </li>
       <li> <code>PrintWriter(OutputStream out)</code> </li>
       <li> <code>PrintWriter(OutputStream out, boolean autoFlush)</code> </li>
       <li> <code>PrintWriter(String fileName)</code> </li>
     </ul> </li>
-  <li> methods from Apache commons-io library which accept an encoding argument when that argument is null, and overloads of those methods that omit
-  the encoding argument
+  <li> 来自Apache commons-io库的方法，当编码参数为空时，这些方法接受编码参数，并重载那些省略编码参数的方法
     <ul>
       <li> <code>IOUtils.copy(InputStream, Writer)</code> </li>
       <li> <code>IOUtils.copy(Reader, OutputStream)</code> </li>
@@ -64,7 +62,7 @@ reproduce when it's time to fix them.</p>
       <li> <code>FileUtils.writeStringToFile(File, String)</code> </li>
     </ul> </li>
 </ul>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/FoL5AQ">CERT, STR04-J.</a> - Use compatible character encodings when communicating
   string data between JVMs </li>

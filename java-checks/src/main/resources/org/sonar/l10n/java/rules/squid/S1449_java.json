@@ -1,5 +1,5 @@
 {
-  "title": "Locale should be used in String operations",
+  "title": "应该在字符串操作中使用区域设置（Locale）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

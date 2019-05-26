@@ -1,5 +1,5 @@
 {
-  "title": "Constructors should not be used to instantiate \"String\", \"BigInteger\", \"BigDecimal\" and primitive-wrapper classes",
+  "title": "构造函数不应该用来实例化 \"String\"， \"BigInteger\"， \"BigDecimal\" 和原始类型包装器类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

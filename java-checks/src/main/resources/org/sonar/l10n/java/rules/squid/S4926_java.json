@@ -1,5 +1,5 @@
 {
-  "title": "\"serialVersionUID\" should not be declared blindly",
+  "title": "\"serialVersionUID\" 不应该被盲目地声明",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

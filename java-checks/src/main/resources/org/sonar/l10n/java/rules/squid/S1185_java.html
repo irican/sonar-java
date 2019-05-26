@@ -1,7 +1,6 @@
-<p>Overriding a method just to call the same method from the super class without performing any other actions is useless and misleading. The only time
-this is justified is in <code>final</code> overriding methods, where the effect is to lock in the parent class behavior. This rule ignores such
-overrides of <code>equals</code>, <code>hashCode</code> and <code>toString</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>只是为了从超类调用相同的方法而去重写一个方法，却不执行任何其他操作，这是无用的，而且会误导人。唯一合理的一种情况是在 <code>final</code> 重写方法中，
+其效果是锁定父类行为。该规则忽略了对 <code>equals</code>， <code>hashCode</code> 和 <code>toString</code>的重写。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doSomething() {
   super.doSomething();
@@ -12,16 +11,16 @@ public boolean isLegal(Action action) {
   return super.isLegal(action);
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 @Override
-public boolean isLegal(Action action) {         // Compliant - not simply forwarding the call
+public boolean isLegal(Action action) {         // 合规 - 不仅是转发调用
   return super.isLegal(new Action(/* ... */));
 }
 
 @Id
 @Override
-public int getId() {                            // Compliant - there is annotation different from @Override
+public int getId() {                            // 合规 - 是不同于 @Override 的注释
   return super.getId();
 }
 </pre>

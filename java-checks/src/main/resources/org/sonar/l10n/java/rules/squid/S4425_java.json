@@ -1,5 +1,5 @@
 {
-  "title": "\"Integer.toHexString\" should not be used to build hexadecimal strings",
+  "title": "不应使用“Integer.toHexString”来构建十六进制字符串比特长。",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

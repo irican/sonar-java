@@ -1,5 +1,5 @@
 {
-  "title": "Comparators should be \"Serializable\"",
+  "title": "Comparators 应该是 \"Serializable\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

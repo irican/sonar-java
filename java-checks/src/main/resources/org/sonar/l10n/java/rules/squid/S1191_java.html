@@ -1,10 +1,9 @@
-<p>Classes in the <code>sun.*</code> or <code>com.sun.*</code> packages are considered implementation details, and are not part of the Java API.</p>
-<p>They can cause problems when moving to new versions of Java because there is no backwards compatibility guarantee. Similarly, they can cause
-problems when moving to a different Java vendor, such as OpenJDK.</p>
-<p>Such classes are almost always wrapped by Java API classes that should be used instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p> <code>sun.*</code> or <code>com.sun.*</code> 包中的类被视为实现细节（implementation details），不属于Java API。</p>
+<p>当迁移到Java的新版本时，它们可能会导致问题，因为没有向后兼容性保证。类似地，当迁移到其他Java供应商(如OpenJDK)时，它们也会导致问题。</p>
+<p>这些类几乎总是由应该使用的Java API类包装。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-import com.sun.jna.Native;     // Noncompliant
-import sun.misc.BASE64Encoder; // Noncompliant
+import com.sun.jna.Native;     // 不合规
+import sun.misc.BASE64Encoder; // 不合规
 </pre>
 

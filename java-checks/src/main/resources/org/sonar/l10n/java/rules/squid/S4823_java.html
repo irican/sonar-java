@@ -1,32 +1,27 @@
-<p>Using command line arguments is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>使用命令行参数是安全敏感的。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7281">CVE-2018-7281</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12326">CVE-2018-12326</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3198">CVE-2011-3198</a> </li>
 </ul>
-<p>Command line arguments can be dangerous just like any other user input. They should never be used without being first validated and sanitized.</p>
-<p>Remember also that any user can retrieve the list of processes running on a system, which makes the arguments provided to them visible. Thus
-passing sensitive information via command line arguments should be considered as insecure.</p>
-<p>This rule raises an issue when on every program entry points (<code>main</code> methods) when command line arguments are used. The goal is to guide
-security code reviews.</p>
-<h2>Ask Yourself Whether</h2>
+<p>命令行参数可能与任何其他用户输入一样危险。不经过首次验证和消毒，绝对不能使用它们。</p>
+<p>还要记住，任何用户都可以检索系统上运行的进程列表，这使得提供给它们的参数可见。因此，通过命令行参数传递敏感信息应视为不安全。</p>
+<p>当使用命令行参数时，在每个程序入口点（<code> main </ code>方法）时，此规则会引发问题。目标是指导安全代码审查。</p>
+<h2>问你自己是否。。。</h2>
 <ul>
-  <li> any of the command line arguments are used without being sanitized first. </li>
-  <li> your application accepts sensitive information via command line arguments. </li>
+  <li>使用任何命令行参数而不先进行清理。 </li>
+  <li>您的应用程序通过命令行参数接受敏感信息。 </li>
 </ul>
-<p>If you answered yes to any of these questions you are at risk.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p><a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> all command line arguments before using them.</p>
-<p>Any user or application can list running processes and see the command line arguments they were started with. There are safer ways of providing
-sensitive information to an application than exposing them in the command line. It is common to write them on the process' standard input, or give the
-path to a file containing the information.</p>
-<h2>Questionable Code Example</h2>
-<p>This rule raises an issue as soon as there is a reference to argv, be it for direct use or via a CLI library like JCommander, GetOpt or Apache
-CLI.</p>
+<p>如果您对上述任何一个问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p><a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">清理</a> 所有命令行参数，然后再使用它们。</p>
+<p>任何用户或应用程序都可以列出正在运行的进程，并查看它们启动时的命令行参数。除了在命令行中公开敏感信息之外，还有更安全的方法可以向应用程序提供敏感信息。通常在进程的标准输入上写入它们，或者给出包含信息的文件的路径。</p>
+<h2>可疑代码示例le</h2>
+<p>只要存在对argv的引用，无论是直接使用还是通过JSONmander，GetOpt或Apache CLI等CLI库，此规则都会引发问题。</p>
 <pre>
 public class Main {
 &nbsp;&nbsp;&nbsp; public static void main (String[] argv) {
-&nbsp; &nbsp; &nbsp; &nbsp; String option = argv[0]; &nbsp;// Questionable: check how the argument is used
+&nbsp; &nbsp; &nbsp; &nbsp; String option = argv[0]; &nbsp;// 疑惑：检查参数的使用方式
 &nbsp;&nbsp;&nbsp; }
 }
 </pre>
@@ -40,7 +35,7 @@ public class Main {
 &nbsp; &nbsp; &nbsp; &nbsp; JCommander.newBuilder()
 &nbsp; &nbsp; &nbsp; &nbsp; .addObject(main)
 &nbsp; &nbsp; &nbsp; &nbsp; .build()
-&nbsp; &nbsp; &nbsp; &nbsp; .parse(argv); // Questionable
+&nbsp; &nbsp; &nbsp; &nbsp; .parse(argv); //可疑的
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;main.run();
 &nbsp;&nbsp; &nbsp;}
 }
@@ -51,7 +46,7 @@ import gnu.getopt.Getopt;
 
 public class Main {
 &nbsp;&nbsp;&nbsp; public static void main (String[] argv) {
-&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Getopt g = new Getopt("myprog", argv, "ab"); // Questionable
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Getopt g = new Getopt("myprog", argv, "ab"); //可疑的
 &nbsp;&nbsp;&nbsp; }
 }
 </pre>
@@ -64,16 +59,16 @@ public class Main {
 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;Options options = new Options();
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; CommandLineParser parser = new DefaultParser();
 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;try {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  CommandLine line = parser.parse(options, argv); // Questionable
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;  CommandLine line = parser.parse(options, argv); //可疑的
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; }
 &nbsp;&nbsp;&nbsp; }
 }
 </pre>
-<p>In the case of Args4J, an issue is created on the <code>public void run</code> method of any class using <code>org.kohsuke.args4j.Option</code> or
+<p>对于Args4J，使用<code> org.kohsuke.args4j.Option </code>在任何类的<code> public void run </code>方法上创建一个问题，或者
 <code>org.kohsuke.args4j.Argument</code>.</p>
-<p>Such a class is called directly by <code>org.kohsuke.args4j.Starter</code> outside of any <code>public static void main</code> method. If the class
-has no <code>run</code> method, no issue will be raised as there must be a <code>public static void main</code> and its argument is already
-highlighted.</p>
+<p>在任何<code> public static void main </ code>方法之外，<code> org.kohsuke.args4j.Starter </ code>直接调用这样的类。
+如果这个类没有<code> run </code>方法，不会引发任何问题，因为必须得有<code> public static void main </code>并且它的参数已经是
+突出显示。</p>
 <pre>
 // === argv4J ===
 import org.kohsuke.args4j.Option;
@@ -100,20 +95,18 @@ public class Main {
         this.arg2 = arg2;
     }
 
-&nbsp;&nbsp; &nbsp;public void run() { // Questionable: This function
-        myarg; // check how this argument is used
+&nbsp;&nbsp; &nbsp;public void run() { //可疑的: 此函数
+        myarg; // 检查如何使用此参数
 &nbsp;&nbsp; &nbsp;}
 }
 </pre>
-<h2>Exceptions</h2>
-<p>The support of Argv4J without the use of <code>org.kohsuke.argv4j.Option</code> is out of scope as there is no way to know which Bean will be used
-as the mainclass.</p>
-<p>No issue will be raised on <code>public static void main(String[] argv)</code> if <code>argv</code> is not referenced in the method.</p>
-<h2>See</h2>
+<h2>例外</h2>
+<p>不使用<code> org.kohsuke.argv4j.Option </code>对Argv4J的支持超出范围，因为无法知道哪个Bean将用作主类。</p>
+<p>如果<code> argv </ code>未在方法中引用，则<code> public static void main（String [] argv）</code>不会引发任何问题。</p>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/88.html">MITRE, CWE-88</a> - Argument Injection or Modification </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/214.html">MITRE, CWE-214</a> - Information Exposure Through Process Environment </li>
   <li> OWASP Top 10 2017 Category A1 - Injection </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat1">SANS Top 25</a> - Insecure Interaction Between Components </li>
 </ul>
-

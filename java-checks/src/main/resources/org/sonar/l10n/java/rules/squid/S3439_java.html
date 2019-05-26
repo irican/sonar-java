@@ -1,9 +1,6 @@
-<p><code>DefaultMessageListenerContainer</code> is implemented as a JMS poller. While the Spring container is shutting itself down, as each
-in-progress JMS <code>Consumer.receive()</code> call completes, any non-<code>null</code> return value will be a JMS message that the DMLC will
-<em>discard</em> due to the shutdown in progress. That will result in the received message never being processed. </p>
-<p>To prevent message loss during restart operations, set <code>acceptMessagesWhileStopping</code> to <code>true</code> so that such messages will be
-processed before shut down.</p>
-<h2>Noncompliant Code Example</h2>
+<p> <code> DefaultMessageListenerContainer </code>作为JMS轮询器实现。当Spring容器自行关闭时，当每个正在进行的JMS <code> Consumer.receive（）</code>调用完成时，任何非<code> null </code>返回值都将是一个JMS消息，由于正在进行关机，DMLC将<em>丢弃</em>。这将导致收到的消息永远不会被处理。 </p>
+<p>为了防止在重启操作期间丢失消息，请将<code> acceptMessagesWhileStopping </code>设置为<code> true </code>，以便在关闭之前处理此类消息。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 &lt;bean id="listenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"&gt;  &lt;!-- Noncompliant --&gt;
    &lt;property name="connectionFactory" ref="connFactory" /&gt;
@@ -16,7 +13,7 @@ processed before shut down.</p>
 &lt;/bean&gt;
  {code}
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 &lt;bean id="listenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer"&gt;
    &lt;property name="connectionFactory" ref="connFactory" /&gt;

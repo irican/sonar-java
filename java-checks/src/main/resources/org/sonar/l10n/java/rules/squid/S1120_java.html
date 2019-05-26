@@ -1,23 +1,22 @@
-<p>Proper indentation is a simple and effective way to improve the code's readability. Consistent indentation among the developers within a team also
-reduces the differences that are committed to source control systems, making code reviews easier. </p>
-<p>This rule raises an issue when indentation does not match the configured value. Only the first line of a badly indented section is reported.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With an indent size of 2:</p>
+<p>正确的缩进是提高代码可读性的简单而有效的方法。团队中开发人员之间的一致缩进也减少了对源控制系统的差异，使代码审查更容易。 </p>
+<p>当缩进与配置的值不匹配时，此规则会报告问题。仅报告不当缩进部分的第一行。</p>
+<h2>不合规的代码示例</h2>
+<p>缩进大小为2：</p>
 <pre>
 class Foo {
   public int a;
-   public int b;   // Noncompliant, expected to start at column 4
+   public int b;   // 不合规，应该从第4列开始
 
 ...
 
   public void doSomething() {
     if(something) {
-          doSomethingElse();  // Noncompliant, expected to start at column 6
-  }   // Noncompliant, expected to start at column 4
+          doSomethingElse();  //不合规，应该从第6列开始
+  }   // 不合规，应该从第4列开始
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class Foo {
   public int a;

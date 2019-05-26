@@ -1,5 +1,5 @@
 {
-  "title": "Only static class initializers should be used",
+  "title": "只应使用静态类初始化程序",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

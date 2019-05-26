@@ -1,7 +1,6 @@
-<p>The purpose of synchronization is to ensure that only one thread executes a given block of code at a time. There's no real problem with marking
-<code>writeObject</code> <code>synchronized</code>, but it's highly suspicious if this serialization-related method is the only
-<code>synchronized</code> code in a <code>class</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>同步的目的是确保一次只有一个线程来执行给定的一个代码块。将 <code>writeObject</code> 标记为 <code>synchronized</code> 没有
+实际问题，但如果这个与序列化相关的方法是某个类中唯一的 <code>synchronized</code> 代码，就非常可疑了。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class RubberBall {
 
@@ -9,19 +8,19 @@ public class RubberBall {
   private int diameter;
 
   public RubberBall(Color color, int diameter) {
-    // ...
+    // ……
   }
 
   public void bounce(float angle, float velocity) {
-    // ...
+    // ……
   }
 
-  private synchronized void writeObject(ObjectOutputStream stream) throws IOException { // Noncompliant
-    // ...
+  private synchronized void writeObject(ObjectOutputStream stream) throws IOException { // 不合规
+    // ……
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class RubberBall {
 
@@ -29,15 +28,15 @@ public class RubberBall {
   private int diameter;
 
    public RubberBall(Color color, int diameter) {
-    // ...
+    // ……
   }
 
   public void bounce(float angle, float velocity) {
-    // ...
+    // ……
   }
 
   private void writeObject(ObjectOutputStream stream) throws IOException {
-    // ...
+    // ……
   }
 }
 </pre>

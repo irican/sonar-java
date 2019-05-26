@@ -10,22 +10,22 @@ or <code>use = Id.MINIMAL_CLASS</code></p>
   <li> Consider using @JsonTypeInfo instead of enabling globally PTH </li>
   <li> Use @JsonTypeInfo(use = Id.NAME) instead </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 ObjectMapper mapper = new ObjectMapper();
-mapper.enableDefaultTyping(); // Noncompliant
+mapper.enableDefaultTyping(); // 不合规
 </pre>
 <pre>
-@JsonTypeInfo(use = Id.CLASS) // Noncompliant
+@JsonTypeInfo(use = Id.CLASS) // 不合规
 abstract class PhoneNumber {
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <p>- use the latest patch versions of <code>jackson-databind</code> blocking the already discovered "deserialization gadgets"</p>
 <p>- avoid using the default typing configuration: <code>ObjectMapper.enableDefaultTyping()</code></p>
 <p>- use <code>@JsonTypeInfo(use = Id.NAME)</code> instead of <code>@JsonTypeInfo(use = Id.CLASS)</code> or <code>@JsonTypeInfo(use = Id.
 MINIMAL_CLASS)</code> and so rely on <code>@JsonTypeName</code> and <code>@JsonSubTypes</code></p>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/502.html">MITRE, CWE-502</a> - Deserialization of Untrusted Data </li>
   <li> OWASP Top 10 2017 Category A8 - Insecure Deserialization </li>

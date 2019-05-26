@@ -1,5 +1,5 @@
 {
-  "title": "\"read\" and \"readLine\" return values should be used",
+  "title": "应该使用\"read\" 和 \"readLine\" 返回值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

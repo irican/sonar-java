@@ -1,47 +1,47 @@
-<p>It is very easy to write incomplete assertions when using some test frameworks. This rule enforces complete assertions in the following cases:</p>
+<p>使用某些测试框架时，很容易编写不完整的断言。此规则在下列情况下强制执行完整的断言：</p>
 <ul>
-  <li> Fest: <code>assertThat</code> is not followed by an assertion invocation </li>
-  <li> AssertJ: <code>assertThat</code> is not followed by an assertion invocation </li>
-  <li> Mockito: <code>verify</code> is not followed by a method invocation </li>
-  <li> Truth: <code>assertXXX</code> is not followed by an assertion invocation </li>
+  <li> Fest：<code>assertThat</code> 后面没有断言调用 </li>
+  <li> AssertJ：<code>assertThat</code> 后面没有断言调用 </li>
+  <li> Mockito：<code>verify</code> 后面没有方法调用 </li>
+  <li> Truth：<code>assertXXX</code> 后面没有断言调用 </li>
 </ul>
-<p>In such cases, what is intended to be a test doesn't actually verify anything</p>
-<h2>Noncompliant Code Example</h2>
+<p>在这种情况下，测试的目的实际上并不能验证任何东西</p>
+<h2>不合规的代码示例</h2>
 <pre>
 // Fest
 boolean result = performAction();
-// let's now check that result value is true
-assertThat(result); // Noncompliant; nothing is actually checked, the test passes whether "result" is true or false
+// 现在检查结果值是否为true
+assertThat(result); // 不合规； 实际上没有检查任何内容，测试通过判断“result”是真还是假
 
 // Mockito
 List mockedList = Mockito.mock(List.class);
 mockedList.add("one");
 mockedList.clear();
-// let's check that "add" and "clear" methods are actually called
-Mockito.verify(mockedList); // Noncompliant; nothing is checked here, oups no call is chained to verify()
+// 检查是否实际调用了“add”和“clear”方法
+Mockito.verify(mockedList); // 不合规； 这里没有选中任何东西，oups no调用被链接到verify()
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 // Fest
 boolean result = performAction();
-// let's now check that result value is true
+// 现在检查结果值是否为true
 assertThat(result).isTrue();
 
 // Mockito
 List mockedList = Mockito.mock(List.class);
 mockedList.add("one");
 mockedList.clear();
-// let's check that "add" and "clear" methods are actually called
+// 检查是否实际调用了“add”和“clear”方法
 Mockito.verify(mockedList).add("one");
 Mockito.verify(mockedList).clear();
 </pre>
-<h2>Exceptions</h2>
-<p>Variable assignments and return statements are skipped to allow helper methods.</p>
+<h2>例外</h2>
+<p>跳过变量赋值和返回语句，以允许helper方法。</p>
 <pre>
 private BooleanAssert check(String filename, String key) {
   String fileContent = readFileContent(filename);
   performReplacements(fileContent);
-  return assertThat(fileContent.contains(key)); // No issue is raised here
+  return assertThat(fileContent.contains(key)); // 这里没有提出任何问题
 }
 
 @Test

@@ -1,5 +1,5 @@
 {
-  "title": "\"Stream.peek\" should be used with caution",
+  "title": "应谨慎使用“Stream.peek”",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

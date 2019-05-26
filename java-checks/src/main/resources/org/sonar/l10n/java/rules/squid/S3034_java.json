@@ -1,5 +1,5 @@
 {
-  "title": "Raw byte values should not be used in bitwise operations in combination with shifts",
+  "title": "原始字节值不应该在按位操作中与移位结合使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

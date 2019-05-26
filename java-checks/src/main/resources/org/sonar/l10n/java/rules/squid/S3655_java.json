@@ -1,5 +1,5 @@
 {
-  "title": "Optional value should only be accessed after calling isPresent()",
+  "title": "只有在调用isPresent（）后才能访问可选值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

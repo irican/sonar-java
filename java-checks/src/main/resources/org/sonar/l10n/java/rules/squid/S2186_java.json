@@ -1,5 +1,5 @@
 {
-  "title": "JUnit assertions should not be used in \"run\" methods",
+  "title": "JUnit断言（assertion）不应该在 \"run\" 方法中使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

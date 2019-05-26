@@ -1,7 +1,5 @@
-<p>When the names of parameters in a method call match the names of the method arguments, it contributes to clearer, more readable code. However, when
-the names match, but are passed in a different order than the method arguments, it indicates a mistake in the parameter order which will likely lead
-to unexpected results.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当方法调用中的参数名称与方法参数的名称匹配时，它有助于更清晰，更易读的代码。 但是，当名称匹配但以与方法参数不同的顺序传递时，它表示参数顺序中的错误，这可能会导致意外结果。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public double divide(int divisor, int dividend) {
   return divisor/dividend;
@@ -11,11 +9,11 @@ public void doTheThing() {
   int divisor = 15;
   int dividend = 5;
 
-  double result = divide(dividend, divisor);  // Noncompliant; operation succeeds, but result is unexpected
+  double result = divide(dividend, divisor);  // 不合规; 操作成功，但结果出乎意料
   //...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public double divide(int divisor, int dividend) {
   return divisor/dividend;

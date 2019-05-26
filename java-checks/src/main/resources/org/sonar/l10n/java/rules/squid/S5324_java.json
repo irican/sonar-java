@@ -1,5 +1,5 @@
 {
-  "title": "Accessing Android external storage is security-sensitive",
+  "title": "访问Android外部存储是安全敏感的",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "tags": [

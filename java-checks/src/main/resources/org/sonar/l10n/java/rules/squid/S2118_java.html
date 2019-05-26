@@ -1,8 +1,8 @@
-<p>Nothing in a non-serializable class will be written out to file, and attempting to serialize such a class will result in an exception being thrown.
-Only a class that <code>implements Serializable</code> or one that extends such a class can successfully be serialized (or de-serialized). </p>
-<h2>Noncompliant Code Example</h2>
+<p>非序列化类中的任何内容都不会写入文件，并且尝试序列化此类将导致抛出异常。 只有 <code>implements Serializable</code> 
+的类或扩展此类的类才能成功序列化（或反序列化）。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class Vegetable {  // neither implements Serializable nor extends a class that does
+public class Vegetable {  // 既不实现序列化，也不扩展实现序列化的类
   //...
 }
 
@@ -12,13 +12,13 @@ public class Menu {
     //...
     FileOutputStream fout = new FileOutputStream(veg.getName());
     ObjectOutputStream oos = new ObjectOutputStream(fout);
-    oos.writeObject(veg);  // Noncompliant. Nothing will be written
+    oos.writeObject(veg);  // 不合规； 什么都不写
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public class Vegetable implements Serializable {  // can now be serialized
+public class Vegetable implements Serializable {  // 现在可以序列化了
   //...
 }
 

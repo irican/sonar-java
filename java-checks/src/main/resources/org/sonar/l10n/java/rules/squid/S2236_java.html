@@ -1,13 +1,10 @@
-<p>The methods <code>wait(...)</code>, <code>notify()</code> and <code>notifyAll()</code> are available on a <code>Thread</code> instance, but only
-because all classes in Java extend <code>Object</code> and therefore automatically inherit those methods. But there are two very good reasons for not
-calling them on a <code>Thread</code>:</p>
+<p>方法 <code>wait(...)</code>, <code>notify()</code> 和 <code>notifyAll()</code> 都是在 <code>Thread</code>上可用的，但是就只是因为 Java中的所有类都扩展了 <code>Object</code> 因此会自动继承这些方法。 但有两个很好的理由不是
+在 <code>Thread</code>上调用他们:</p>
 <ul>
-  <li> Internally, the JVM relies on these methods to change the state of the Thread (<code>BLOCKED</code>, <code>WAITING</code>, ...), so calling
-  them will corrupt the behavior of the JVM. </li>
-  <li> It is not clear (perhaps even to the original coder) what is really expected. For instance, it is waiting for the execution of the Thread to
-  suspended, or is it the acquisition of the object monitor that is waited for? </li>
+  <li> 在内部，JVM依赖这些方法来改变Thread的状态(<code>BLOCKED</code>, <code>WAITING</code>, ...), 所以调用它们会破坏它的行为 JVM。 </li>
+  <li>目前尚不清楚（甚至可能是原始编码员）真正期待的是什么。 例如，它正在等待执行Thread挂起，还是等待获取等待的对象监视器？</li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Thread myThread = new Thread(new RunnableJob());
 ...

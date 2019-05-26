@@ -1,27 +1,24 @@
-<p>The <code>java.security.SecureRandom</code> class provides a strong random number generator (RNG) appropriate for cryptography. However, seeding it
-with a constant or another predictable value will weaken it significantly. In general, it is much safer to rely on the seed provided by the
-<code>SecureRandom</code> implementation.</p>
-<p>This rule raises an issue when <code>SecureRandom.setSeed()</code> or <code>SecureRandom(byte[])</code> are called with a seed that is either
-of:</p>
+<p> <code> java.security.SecureRandom </code>类提供适用于加密的强随机数生成器（RNG）。 但是，以恒定或其他可预测的值播种它会显着削弱它。 通常，依赖<code> SecureRandom </code>实现提供的种子会更安全</p>
+<p>当使用以下任一种子的种子调用<code> SecureRandom.setSeed（）</code>或<code> SecureRandom（byte []）</code>时，此规则会引发问题：</p>
 <ul>
   <li> a constant </li>
   <li> <code>System.currentTimeMillis()</code> </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 SecureRandom sr = new SecureRandom();
-sr.setSeed(123456L); // Noncompliant
+sr.setSeed(123456L); // 不合规的
 int v = sr.next(32);
 
-sr = new SecureRandom("abcdefghijklmnop".getBytes("us-ascii")); // Noncompliant
+sr = new SecureRandom("abcdefghijklmnop".getBytes("us-ascii")); // 不合规的
 v = sr.next(32);
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 SecureRandom sr = new SecureRandom();
 int v = sr.next(32);
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/330.html">MITRE, CWE-330</a> - Use of Insufficiently Random Values </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/332.html">MITRE, CWE-332</a> - Insufficient Entropy in PRNG </li>

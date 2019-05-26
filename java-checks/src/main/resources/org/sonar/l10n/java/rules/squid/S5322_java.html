@@ -1,21 +1,20 @@
-<p>In Android applications, receiving intents is security-sensitive. For example, it has led in the past to the following vulnerability:</p>
+<p>在Android应用程序中，接收（receiving）意图（inent）是安全敏感的。例如，它过去曾导致以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-1677">CVE-2019-1677</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1275">CVE-2015-1275</a> </li>
 </ul>
-<p>Once a receiver is registered, any app can broadcast potentially malicious intents to your application.</p>
-<p>This rule raises an issue when a receiver is registered without specifying any "broadcast permission".</p>
-<h2>Ask Yourself Whether</h2>
+<p>一旦receiver注册，任何应用程序都可以向您的应用程序广播潜在的恶意意图。</p>
+<p>当注册receiver而未指定任何“广播许可”时，此规则会引发问题。</p>
+<h2>检查自己是否存在以下问题</h2>
 <ul>
-  <li> The data extracted from intents is not sanitized. </li>
-  <li> Intents broadcast is not restricted. </li>
+  <li> 从意图（intent）中提取的数据未经过净化。 </li>
+  <li> 意图广播不受限制。 </li>
 </ul>
-<p>You may be at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Restrict the access to broadcasted intents. See <a
-href="https://developer.android.com/guide/components/broadcasts.html#restricting_broadcasts_with_permissions">Android documentation</a> for more
-information.</p>
-<h2>Sensitive Code Example</h2>
+<p>如果您对这些问题的回答都是肯定的，那么您可能会面临风险。</p>
+<h2>推荐的安全编码实践</h2>
+<p>限制对广播意图的访问。 欲获得更多信息，请参阅 <a
+href="https://developer.android.com/guide/components/broadcasts.html#restricting_broadcasts_with_permissions">Android 文档</a> 。</p>
+<h2>敏感代码示例</h2>
 <pre>
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,12 +31,12 @@ public class MyIntentReceiver {
                          String broadcastPermission,
                          Handler scheduler,
                          int flags) {
-        context.registerReceiver(receiver, filter); // Sensitive
-        context.registerReceiver(receiver, filter, flags); // Sensitive
+        context.registerReceiver(receiver, filter); // 敏感
+        context.registerReceiver(receiver, filter, flags); // 敏感
 
         // Broadcasting intent with "null" for broadcastPermission
-        context.registerReceiver(receiver, filter, null, scheduler); // Sensitive
-        context.registerReceiver(receiver, filter, null, scheduler, flags); // Sensitive
+        context.registerReceiver(receiver, filter, null, scheduler); // 敏感
+        context.registerReceiver(receiver, filter, null, scheduler, flags); // 敏感
 
 
         context.registerReceiver(receiver, filter,broadcastPermission, scheduler); // OK
@@ -45,7 +44,7 @@ public class MyIntentReceiver {
     }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.owasp.org/index.php/Top_10-2017_A1-Injection">OWASP Top 10 2017 Category A1</a> - Injection </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/925.html">MITRE, CWE-925</a> - Improper Verification of Intent by Broadcast Receiver </li>

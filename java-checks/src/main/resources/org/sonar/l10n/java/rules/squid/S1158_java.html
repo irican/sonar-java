@@ -1,12 +1,11 @@
-<p>Creating temporary primitive wrapper objects only for <code>String</code> conversion or the use of the <code>compareTo</code> method is
-inefficient.</p>
-<p>Instead, the static <code>toString()</code> or <code>compare</code> method of the primitive wrapper class should be used.</p>
-<h2>Noncompliant Code Example</h2>
+<p>仅为 <code>String</code> 转换（conversion）或 <code>compareTo</code> 方法的使用来创建临时原始包装器对象是低效的。</p>
+<p>应该使用原始包装器类的static <code>toString()</code> 或 <code>compare</code> 方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-new Integer(myInteger).toString();  // Noncompliant
+new Integer(myInteger).toString();  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-Integer.toString(myInteger);        // Compliant
+Integer.toString(myInteger);        // 合规
 </pre>
 

@@ -1,43 +1,39 @@
-<p>Using setters in Struts 2 ActionSupport is security-sensitive. For example, their use has led in the past to the following vulnerabilities:</p>
+<p>在Struts 2中使用setter ActionSupport对安全性敏感。例如，它们的使用在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-1006">CVE-2012-1006</a> </li>
 </ul>
-<p>All classes extending <code>com.opensymphony.xwork2.ActionSupport</code> are potentially remotely reachable. An action class extending
-ActionSupport will receive all HTTP parameters sent and these parameters will be automatically mapped to the setters of the Struts 2 action class. One
-should review the use of the fields set by the setters, to be sure they are used safely. By default, they should be considered as untrusted
-inputs.</p>
-<p>This rule is there to allow a security auditor to quickly find some potential hotspots to review.</p>
-<h2>Ask Yourself Whether</h2>
+<p>所有扩展 <code>com.opensymphony.xwork2.ActionSupport</code> 的类都可以远程访问。扩展ActionSupport的操作类将接收所有发送的HTTP参数，这些参数将自动映射到Struts 2操作类的setter。应该检查使用setter设置的字段，以确保它们被安全使用。默认情况下，它们应被视为不受信任的输入。</p>
+<p>此规则允许安全审核员快速找到一些潜在的热点进行审核。</p>
+<h2>请检查是否存在以下情况</h2>
 <ul>
-  <li> the setter is needed. There is no need for it if the attribute's goal is not to map queries' parameter. </li>
-  <li> the value provided to the setter is properly sanitized before being used or stored. (*) </li>
+  <li>需要setter。如果属性的目标不是映射查询参数，则不需要它。  </li>
+  <li> 提供给setter的值在使用或存储之前已经过适当的清理。 (*) </li>
 </ul>
-<p>(*) You are at risk if you answered yes to this question.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>As said in Strut's documentation: <a href="https://struts.apache.org/security/#do-not-define-setters-when-not-needed">"Do not define setters when
-not needed"</a></p>
-<p>Sanitize the user input. This can be for example done by implementing the <code>validate()</code> method of
+<p>(*) 如果您对此问题的回答是肯定的，则存在风险。</p>
+<h2>推荐的安全编码惯例</h2>
+<p>正如Strut的文档中所述： <a href="https://struts.apache.org/security/#do-not-define-setters-when-not-needed">"不要在定义setter时定义不需要"</a></p>
+<p>清理用户输入。这可以通过实现<code>validate()</code> 方法来完成
 <code>com.opensymphony.xwork2.ActionSupport</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <pre>
 public class AccountBalanceAction extends ActionSupport {
   private static final long serialVersionUID = 1L;
   private Integer accountId;
 
-  // this setter might be called with user input
+  // 可以使用用户输入调用此setter
   public void setAccountId(Integer accountId) {
     this.accountId = accountId;
   }
 
   @Override
   public String execute() throws Exception {
-    // call a service to get the account's details and its balance
+    // 致电服务以获取帐户的详细信息及其余额
     [...]
     return SUCCESS;
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A1 - Injection </li>
 </ul>

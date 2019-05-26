@@ -1,5 +1,5 @@
 {
-  "title": "\"compareTo\" should not be overloaded",
+  "title": "“compareTo”不应该重载",
   "type": "BUG",
   "status": "ready",
   "remediation": {

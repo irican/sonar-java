@@ -1,40 +1,39 @@
-<p>Unused parameters are misleading. Whatever the values passed to such parameters, the behavior will be the same.</p>
-<h2>Noncompliant Code Example</h2>
+<p>未使用的参数具有误导性。无论传递给这些参数的值是什么，行为都是相同的。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-void doSomething(int a, int b) {     // "b" is unused
+void doSomething(int a, int b) {     // "b" 未使用
   compute(a);
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案 </h2>
 <pre>
 void doSomething(int a) {
   compute(a);
 }
 </pre>
-<h2>Exceptions</h2>
-<p>The rule will not raise issues for unused parameters:</p>
+<h2>例外</h2>
+<p>该规则不会对未使用参数报错的情况：</p>
 <ul>
-  <li> that are annotated with <code>@javax.enterprise.event.Observes</code> </li>
-  <li> in overrides and implementation methods </li>
-  <li> in interface <code>default</code> methods </li>
-  <li> in non-private methods that only <code>throw</code> or that have empty bodies </li>
-  <li> in annotated methods, unless the annotation is <code>@SuppressWarning("unchecked")</code> or <code>@SuppressWarning("rawtypes")</code>, in
-  which case the annotation will be ignored </li>
-  <li> in overridable methods (non-final, or not member of a final class, non-static, non-private), if the parameter is documented with a proper
-  javadoc. </li>
+  <li> 用 <code>@javax.enterprise.event.Observes</code> 注释 </li>
+  <li> 在重写和实现方法中 </li>
+  <li> 在接口 <code>default</code> 方法中 </li>
+  <li> 在只有 <code>throw</code> 或具有空方法体的非私有方法中 </li>
+  <li> 在带注释的方法中，除非注释是 <code>@SuppressWarning("unchecked")</code> 或 <code>@SuppressWarning("rawtypes")</code>，
+  在这种情况下，注释将被忽略 </li>
+  <li> 在可覆盖的方法中 （非-final，或者不是final类的成员，非-static, 非-private），如果参数是用适当的javadoc记录的。 </li>
 </ul>
 <pre>
 @Override
-void doSomething(int a, int b) {     // no issue reported on b
+void doSomething(int a, int b) {     //没有报告b的问题
   compute(a);
 }
 
 public void foo(String s) {
-  // designed to be extended but noop in standard case
+  // 设计为扩展但在标准情况下为noop
 }
 
 protected void bar(String s) {
-  //open-closed principle
+  //开放封闭原则
 }
 
 public void qix(String s) {
@@ -42,13 +41,13 @@ public void qix(String s) {
 }
 
 /**
- * @param s This string may be use for further computation in overriding classes
+ * @param s 该字符串可用于在重写类中进一步计算
  */
-protected void foobar(int a, String s) { // no issue, method is overridable and unused parameter has proper javadoc
+protected void foobar(int a, String s) { // 没问题，方法是可重写的，未使用的参数有恰当的javadoc
   compute(a);
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C++:2008, 0-1-11 - There shall be no unused parameters (named or unnamed) in nonvirtual functions. </li>
   <li> MISRA C:2012, 2.7 - There should be no unused parameters in functions </li>

@@ -1,28 +1,27 @@
-<p>An infinite loop is one that will never end while the program is running, i.e., you have to kill the program to get out of the loop. Whether it is
-by meeting the loop's end condition or via a <code>break</code>, every loop should have an end condition.</p>
-<h2>Noncompliant Code Example</h2>
+<p>无限循环是一个在程序运行时永远不会结束的循环，即你必须终止程序才能退出循环。无论是通过满足循环结束条件还是通过<code> break </code>，每个循环都应该具有结束条件。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-for (;;) {  // Noncompliant; end condition omitted
+for (;;) {  // 不符合要求的; 结束条件省略
   // ...
 }
 
 int j;
-while (true) { // Noncompliant; end condition omitted
+while (true) { // 不符合要求的; 结束条件省略
   j++;
 }
 
 int k;
 boolean b = true;
-while (b) { // Noncompliant; b never written to in loop
+while (b) { // 不符合要求的; b从未写入循环
   k++;
 }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
 int j;
-while (true) { // reachable end condition added
+while (true) { // 可达到的最终条件已添加
   j++;
-  if (j  == Integer.MIN_VALUE) {  // true at Integer.MAX_VALUE +1
+  if (j  == Integer.MIN_VALUE) {  // 如果值为Integer.MAX_VALUE +1，则为真
     break;
   }
 }

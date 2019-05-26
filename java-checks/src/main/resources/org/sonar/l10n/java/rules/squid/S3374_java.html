@@ -1,19 +1,18 @@
-<p>According to the Common Weakness Enumeration,</p>
+<p>根据“共同弱点枚举”（Common Weakness Enumeration）</p>
 <blockquote>
-  If two validation forms have the same name, the Struts Validator arbitrarily chooses one of the forms to use for input validation and discards the
-  other. This decision might not correspond to the programmer's expectations...
+如果两个验证表单具有相同的名称，Struts验证器（Struts Validator）会任意选择其中一个表单用于输入验证并丢弃另一个表单。这个决定可能与程序员的期望不一致......
 </blockquote>
-<p>In such a case, it is likely that the two forms should be combined. At the very least, one should be removed.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在这种情况下，很可能应该组合两种形式。至少应该删除一个。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 &lt;form-validation&gt;
   &lt;formset&gt;
     &lt;form name="BookForm"&gt; ... &lt;/form&gt;
-    &lt;form name="BookForm"&gt; ... &lt;/form&gt;  &lt;!-- Noncompliant --&gt;
+    &lt;form name="BookForm"&gt; ... &lt;/form&gt;  &lt;!-- 不合规的 --&gt;
   &lt;/formset&gt;
 &lt;/form-validation&gt;
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 &lt;form-validation&gt;
   &lt;formset&gt;
@@ -21,7 +20,7 @@
   &lt;/formset&gt;
 &lt;/form-validation&gt;
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/102.html">MITRE, CWE-102</a> - Struts: Duplicate Validation Forms </li>
   <li> <a href="https://www.owasp.org/index.php/Struts:_Duplicate_Validation_Forms#Struts:_Duplicate_Validation_Forms">OWASP, Improper Data

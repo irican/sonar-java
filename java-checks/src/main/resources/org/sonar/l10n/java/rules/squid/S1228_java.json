@@ -1,5 +1,5 @@
 {
-  "title": "Packages should have a javadoc file 'package-info.java'",
+  "title": "包应该有一个javadoc文件 'package-info.java'",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

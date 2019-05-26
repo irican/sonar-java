@@ -1,5 +1,5 @@
 {
-  "title": "\"getClass\" should not be used for synchronization",
+  "title": "\"getClass\" 不应用于同步",
   "type": "BUG",
   "status": "ready",
   "remediation": {

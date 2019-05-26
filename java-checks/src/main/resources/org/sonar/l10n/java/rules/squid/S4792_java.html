@@ -1,57 +1,43 @@
-<p>Configuring loggers is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>配置记录器（Configuring loggers）对安全性敏感。它在过去导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-0285">CVE-2018-0285</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2000-1127">CVE-2000-1127</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-15113">CVE-2017-15113</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5742">CVE-2015-5742</a> </li>
 </ul>
-<p>Logs are useful before, during and after a security incident.</p>
+<p>在安全事件发生之前，中间和之后，日志都很有用。</p>
 <ul>
-  <li> Attackers will most of the time start their nefarious work by probing the system for vulnerabilities. Monitoring this activity and stopping it
-  is the first step to prevent an attack from ever happening. </li>
-  <li> In case of a successful attack, logs should contain enough information to understand what damage an attacker may have inflicted. </li>
+  <li> 攻击者大部分时间都会通过探测系统的漏洞来开展他们的邪恶工作。监视此活动并停止它是防止攻击发生的第一步。</li>
+  <li> 如果攻击成功，日志应包含足够的信息，以了解攻击者可能造成的损害。 </li>
 </ul>
-<p>Logs are also a target for attackers because they might contain sensitive information. Configuring loggers has an impact on the type of information
-logged and how they are logged.</p>
-<p>This rule flags for review code that initiates loggers configuration. The goal is to guide security code reviews.</p>
-<h2>Ask Yourself Whether</h2>
+<p>日志也是攻击者的目标，因为它们可能包含敏感信息。配置记录器会对记录的信息类型及其记录方式产生影响。</p>
+<p>此规则标记启动记录器配置的审阅代码。目标是指导安全代码审查。</p>
+<h2>问你自己是否...</h2>
 <ul>
-  <li> unauthorized users might have access to the logs, either because they are stored in an insecure location or because the application gives
-  access to them. </li>
-  <li> the logs contain sensitive information on a production server. This can happen when the logger is in debug mode. </li>
-  <li> the log can grow without limit. This can happen when additional information is written into logs every time a user performs an action and the
-  user can perform the action as many times as he/she wants. </li>
-  <li> the logs do not contain enough information to understand the damage an attacker might have inflicted. The loggers mode (info, warn, error)
-  might filter out important information. They might not print contextual information like the precise time of events or the server hostname. </li>
-  <li> the logs are only stored locally instead of being backuped or replicated. </li>
+  <li>未经授权的用户可能有权访问日志，因为它们存储在不安全的位置，或者因为应用程序可以访问它们。 </li>
+  <li> 日志包含生产服务器上的敏感信息。当记录器处于调试模式时，可能会发生这种情况。</li>
+  <li> 日志可以无限制地增长。每当用户执行操作时将附加信息写入日志中并且用户可以按照他/她想要的次数执行操作，就会发生这种情况。  </li>
+  <li> 日志中没有足够的信息来了解攻击者可能造成的损害。记录器模式（信息，警告，错误）可能会过滤掉重要信息。它们可能不会打印上下文信息，例如事件的精确时间或服务器主机名。 </li>
+  <li> 日志仅存储在本地，而不是备份或复制。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>如果您对其中任何一个问题的回答都是肯定的，那么您将面临风险。</p>
+<h2>推荐的安全编码惯例</h2>
 <ul>
-  <li> Check that your production deployment doesn't have its loggers in "debug" mode as it might write sensitive information in logs. </li>
-  <li> Production logs should be stored in a secure location which is only accessible to system administrators. </li>
-  <li> Configure the loggers to display all warnings, info and error messages. Write relevant information such as the precise time of events and the
-  hostname. </li>
-  <li> Choose log format which is easy to parse and process automatically. It is important to process logs rapidly in case of an attack so that the
-  impact is known and limited. </li>
-  <li> Check that the permissions of the log files are correct. If you index the logs in some other service, make sure that the transfer and the
-  service are secure too. </li>
-  <li> Add limits to the size of the logs and make sure that no user can fill the disk with logs. This can happen even when the user does not control
-  the logged information. An attacker could just repeat a logged action many times. </li>
+  <li> 检查您的生产部署是否在“调试”模式下没有其记录器，因为它可能会在日志中写入敏感信息。 </li>
+  <li>生产日志应存储在只有系统管理员可访问的安全位置。 </li>
+  <li> 配置记录器以显示所有警告，信息和错误消息。写出相关信息，例如事件的准确时间和主机名 </li>
+  <li> 选择易于解析和自动处理的日志格式。在发生攻击时快速处理日志非常重要，这样才能知道并限制影响。</li>
+  <li> 检查日志文件的权限是否正确。如果您将某些其他服务中的日志编入索引，请确保传输和服务也是安全的 </li>
+  <li> 添加对日志大小的限制，并确保没有用户可以使用日志填充磁盘。即使用户不控制日志记录的信息，也会发生这种情况。攻击者可以多次重复记录的操作。  </li>
 </ul>
-<p>Remember that configuring loggers properly doesn't make them bullet-proof. Here is a list of recommendations explaining on how to use your
-logs:</p>
+<p>请记住，正确配置记录器不会使它们成为可靠证据文件;。以下列出了有关如何使用日志的建议：</p>
 <ul>
-  <li> Don't log any sensitive information. This obviously includes passwords and credit card numbers but also any personal information such as user
-  names, locations, etc... Usually any information which is protected by law is good candidate for removal. </li>
-  <li> Sanitize all user inputs before writing them in the logs. This includes checking its size, content, encoding, syntax, etc... As for any user
-  input, validate using whitelists whenever possible. Enabling users to write what they want in your logs can have many impacts. It could for example
-  use all your storage space or compromise your log indexing service. </li>
-  <li> Log enough information to monitor suspicious activities and evaluate the impact an attacker might have on your systems. Register events such as
-  failed logins, successful logins, server side input validation failures, access denials and any important transaction. </li>
-  <li> Monitor the logs for any suspicious activity. </li>
+  <li> 请勿记录任何敏感信息。这显然包括密码和信用卡号码，但也包括任何个人信息，如用户名，位置等......通常任何受法律保护的信息都是很好的删除候选人。</li>
+  <li> 在将所有用户输入写入日志之前清理它们。这包括检查其大小，内容，编码，语法等...对于任何用户输入，请尽可能使用白名单进行验证。允许用户在日志中编写他们想要的内容会产生很多影响。例如，它可能会占用您的所有存储空间或损害您的日志索引服务。</li>
+  <li> 记录足够的信息以监控可疑活动并评估攻击者可能对您的系统造成的影响。注册登录失败，登录成功，服务器端输入验证失败，拒绝访问和任何重要事务等事件。</li>
+  <li> 监控日志中是否存在任何可疑活动。 </li>
 </ul>
-<p>See</p>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/532.html">MITRE, CWE-532</a> - Information Exposure Through Log Files </li>
   <li> <a href="https://cwe.mitre.org/data/definitions/117.html">MITRE, CWE-117</a> - Improper Output Neutralization for Logs </li>
@@ -60,8 +46,8 @@ logs:</p>
   <li> OWASP Top 10 2017 Category A10 - Insufficient Logging &amp; Monitoring </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>
 </ul>
-<h2>Questionable Code Example</h2>
-<p>This rule supports the following libraries: Log4J, <code>java.util.logging</code> and Logback</p>
+<h2>可疑代码示例</h2>
+<p>此规则支持以下库: Log4J, <code>java.util.logging</code> and Logback</p>
 <pre>
 // === Log4J 2 ===
 import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory;
@@ -69,7 +55,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.*;
 import org.apache.logging.log4j.core.config.*;
 
-// Questionable: creating a new custom configuration
+// 可疑：创建新的自定义配置
 abstract class CustomConfigFactory extends ConfigurationFactory {
     // ...
 }
@@ -80,28 +66,28 @@ class A {
             java.io.File file, java.net.URL url, String source, ClassLoader loader, Level level, Filter filter)
             throws java.io.IOException {
         // Creating a new custom configuration
-        ConfigurationBuilderFactory.newConfigurationBuilder();  // Questionable
+        ConfigurationBuilderFactory.newConfigurationBuilder();  // 可疑的
 
         // Setting loggers level can result in writing sensitive information in production
-        Configurator.setAllLevels("com.example", Level.DEBUG);  // Questionable
-        Configurator.setLevel("com.example", Level.DEBUG);  // Questionable
-        Configurator.setLevel(levelMap);  // Questionable
-        Configurator.setRootLevel(Level.DEBUG);  // Questionable
+        Configurator.setAllLevels("com.example", Level.DEBUG);  // 可疑的
+        Configurator.setLevel("com.example", Level.DEBUG);  // 可疑的
+        Configurator.setLevel(levelMap);  // 可疑的
+        Configurator.setRootLevel(Level.DEBUG);  // 可疑的
 
-        config.addAppender(appender); // Questionable: this modifies the configuration
+        config.addAppender(appender); // 可疑的: this modifies the configuration
 
         LoggerConfig loggerConfig = config.getRootLogger();
-        loggerConfig.addAppender(appender, level, filter); // Questionable
-        loggerConfig.setLevel(level); // Questionable
+        loggerConfig.addAppender(appender, level, filter); // 可疑的
+        loggerConfig.setLevel(level); // 可疑的
 
-        context.setConfigLocation(uri); // Questionable
+        context.setConfigLocation(uri); // 可疑的
 
         // Load the configuration from a stream or file
-        new ConfigurationSource(stream);  // Questionable
-        new ConfigurationSource(stream, file);  // Questionable
-        new ConfigurationSource(stream, url);  // Questionable
-        ConfigurationSource.fromResource(source, loader);  // Questionable
-        ConfigurationSource.fromUri(uri);  // Questionable
+        new ConfigurationSource(stream);  // 可疑的
+        new ConfigurationSource(stream, file);  // 可疑的
+        new ConfigurationSource(stream, url);  // 可疑的
+        ConfigurationSource.fromResource(source, loader);  // 可疑的
+        ConfigurationSource.fromUri(uri);  // 可疑的
     }
 }
 
@@ -115,10 +101,10 @@ import java.util.logging.*;
 class M {
     void foo(LogManager logManager, Logger logger, java.io.InputStream is, Handler handler)
             throws SecurityException, java.io.IOException {
-        logManager.readConfiguration(is); // Questionable
+        logManager.readConfiguration(is); // 可疑的
 
-        logger.setLevel(Level.FINEST); // Questionable
-        logger.addHandler(handler); // Questionable
+        logger.setLevel(Level.FINEST); // 可疑的
+        logger.addHandler(handler); // 可疑的
     }
 }
 </pre>
@@ -132,15 +118,15 @@ import ch.qos.logback.classic.*;
 
 class M {
     void foo(Logger logger, Appender&lt;ILoggingEvent&gt; fileAppender) {
-        System.setProperty(ContextInitializer.CONFIG_FILE_PROPERTY, "config.xml"); // Questionable
-        JoranConfigurator configurator = new JoranConfigurator(); // Questionable
+        System.setProperty(ContextInitializer.CONFIG_FILE_PROPERTY, "config.xml"); // 可疑的
+        JoranConfigurator configurator = new JoranConfigurator(); // 可疑的
 
-        logger.addAppender(fileAppender); // Questionable
-        logger.setLevel(Level.DEBUG); // Questionable
+        logger.addAppender(fileAppender); // 可疑的
+        logger.setLevel(Level.DEBUG); // 可疑的
     }
 }
 </pre>
-<h2>Exceptions</h2>
+<h2>例外</h2>
 <p>Log4J 1.x is not covered as it has reached <a href="https://blogs.apache.org/foundation/entry/apache_logging_services_project_announces">end of
 life</a>.</p>
 

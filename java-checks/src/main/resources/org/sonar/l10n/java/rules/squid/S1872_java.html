@@ -1,9 +1,7 @@
-<p>There is no requirement that class names be unique, only that they be unique within a package. Therefore trying to determine an object's type based
-on its class name is an exercise fraught with danger. One of those dangers is that a malicious user will send objects of the same name as the trusted
-class and thereby gain trusted access.</p>
-<p>Instead, the <code>instanceof</code> operator or the <code>Class.isAssignableFrom()</code> method should be used to check the object's underlying
-type.</p>
-<h2>Noncompliant Code Example</h2>
+<p>不要求类名是唯一的，只要它们在包中是唯一的。因此，尝试根据类名确定对象的类型是一种充满危险的行为。 
+其中一个危险是恶意用户将发送与受信任类同名的对象，从而获得可信访问权。</p>
+<p>相反，应该使用 <code>instanceof</code> 操作符或 <code>Class.isAssignableFrom()</code> 方法来检查对象的底层类型。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 package computer;
 class Pear extends Laptop { ... }
@@ -14,21 +12,21 @@ class Pear extends Fruit { ... }
 class Store {
 
   public boolean hasSellByDate(Object item) {
-    if ("Pear".equals(item.getClass().getSimpleName())) {  // Noncompliant
+    if ("Pear".equals(item.getClass().getSimpleName())) {  // 不合规
       return true;  // Results in throwing away week-old computers
     }
     return false;
   }
 
   public boolean isList(Class&lt;T&gt; valueClass) {
-    if (List.class.getName().equals(valueClass.getName())) {  // Noncompliant
+    if (List.class.getName().equals(valueClass.getName())) {  // 不合规
       return true;
     }
     return false;
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class Store {
 
@@ -47,7 +45,7 @@ class Store {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/486.html">MITRE, CWE-486</a> - Comparison of Classes by Name </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/LAFlAQ">CERT, OBJ09-J.</a> - Compare classes and not class names </li>

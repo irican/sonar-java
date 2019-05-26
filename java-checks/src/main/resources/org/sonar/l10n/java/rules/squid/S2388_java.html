@@ -1,7 +1,5 @@
-<p>When an inner class extends another class, and both its outer class and its parent class have a method with the same name, calls to that method can
-be confusing. The compiler will resolve the call to the superclass method, but maintainers may be confused, so the superclass method should be called
-explicitly, using <code>super.</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当内部类扩展另一个类，并且它的外部类和它的父类都有一个具有相同名称的方法时，对该方法的调用可能会令人困惑。 编译器将解析对超类方法的调用，但维护者可能会感到困惑，因此应使用<code>super.</code>显式调用超类方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Parent {
   public void foo() { ... }
@@ -14,13 +12,13 @@ public class Outer {
   public class Inner extends Parent {
 
     public void doTheThing() {
-      foo();  // Noncompliant; was Outer.this.foo() intended instead?
+      foo();  // 不符合要求；是否其实应该为Outer.this.foo（）？ 
       // ...
     }
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public class Parent {
   public void foo() { ... }

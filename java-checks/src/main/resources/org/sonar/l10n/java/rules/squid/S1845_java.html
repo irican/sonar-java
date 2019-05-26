@@ -1,12 +1,9 @@
-<p>Looking at the set of methods in a class, including superclass methods, and finding two methods or fields that differ only by capitalization is
-confusing to users of the class. It is similarly confusing to have a method and a field which differ only in capitalization or a method and a field
-with exactly the same name and visibility.</p>
-<p>In the case of methods, it may have been a mistake on the part of the original developer, who intended to override a superclass method, but instead
-added a new method with nearly the same name.</p>
-<p>Otherwise, this situation simply indicates poor naming. Method names should be action-oriented, and thus contain a verb, which is unlikely in the
-case where both a method and a member have the same name (with or without capitalization differences). However, renaming a public method could be
-disruptive to callers. Therefore renaming the member is the recommended action.</p>
-<h2>Noncompliant Code Example</h2>
+<p>查看类中的方法集（包括超类方法），以及查找仅通过大小写来区分的两个方法或字段会使该类的用户感到困惑。 同样令人困惑的是，
+只有大写字母或方法和字段不同的方法和字段具有完全相同的名称和可见性。</p>
+<p>在这种方法的情况下，最初的开发人员可能犯了一个错误，他们打算重写一个超类方法，但是添加了一个几乎同名的新方法。</p>
+<p>否则，这种情况只表明命名不当。方法名应该是面向操作的，因此包含一个动词，在方法和成员都具有相同的名称(无论大小写是否不同)的情况下，
+这是不可能的。然而，重命名公共方法可能会对调用者造成干扰。因此，建议重命名成员。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Car{
 
@@ -14,18 +11,18 @@ public class Car{
 
   public void tearDown(){...}
 
-  public void drive() {...}  // Noncompliant; duplicates field name
+  public void drive() {...}  // 不合规； 重复的字段名
 }
 
 public class MyCar extends Car{
-  public void teardown(){...}  // Noncompliant; not an override. It it really what's intended?
+  public void teardown(){...}  // 不合规； 不是一个重写。 真的是想要的吗?
 
   public void drivefast(){...}
 
-  public void driveFast(){...} //Huh?
+  public void driveFast(){...} //嗯?
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Car{
 
@@ -33,7 +30,7 @@ public class Car{
 
   public void tearDown(){...}
 
-  public void drive() {...}  // field visibility reduced
+  public void drive() {...}  // 字段可见性降低
 }
 
 public class MyCar extends Car{

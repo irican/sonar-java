@@ -1,5 +1,5 @@
 {
-  "title": "Regex patterns should not be created needlessly",
+  "title": "不应该不必要地创建正则表达式模式",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

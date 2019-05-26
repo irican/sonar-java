@@ -1,10 +1,10 @@
-<p>Certain math operations are just silly and should not be performed because their results are predictable.</p>
-<p>In particular, <code>anyValue % 1</code> is silly because it will always return 0.</p>
-<p>Casting a non-floating-point value to floating-point and then passing it to <code>Math.round</code>, <code>Math.ceil</code>, or
-<code>Math.floor</code> is silly because the result will always be the original value. </p>
-<p>These operations are silly with any constant value: <code>Math.abs</code>, <code>Math.ceil</code>, <code>Math.floor</code>, <code>Math.rint</code>,
-<code>Math.round</code>.</p>
-<p>And these oprations are silly with certain constant values:</p>
+<p>某些数学运算只是愚蠢而且不应该执行，因为它们的结果是可预测的。</p>
+<p>特别是， <code>anyValue % 1</code> 是愚蠢的，因为它总是返回0。</p>
+<p>将非浮点值转换为浮点值，然后将其传递给 <code>Math.round</code>， <code>Math.ceil</code>， 或 <code>Math.floor</code> 是愚蠢的，
+因为结果将始终是原始值。</p>
+<p>这些运算对于任何常量值都是愚蠢的： <code>Math.abs</code>， <code>Math.ceil</code>， <code>Math.floor</code>， <code>Math.rint</code>，
+<code>Math.round</code>。</p>
+<p>在某些常量下，这些运算是愚蠢的:</p>
 <table>
   <tbody>
     <tr>
@@ -85,12 +85,12 @@
     </tr>
   </tbody>
 </table>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doMath(int a) {
-  double floor = Math.floor((double)a); // Noncompliant
-  double ceiling = Math.ceil(4.2);  // Noncompliant
-  double arcTan = Math.atan(0.0);  // Noncompliant
+  double floor = Math.floor((double)a); // 不合规
+  double ceiling = Math.ceil(4.2);  // 不合规
+  double arcTan = Math.atan(0.0);  // 不合规
 }
 </pre>
 

@@ -1,19 +1,18 @@
-<p>When the execution is not explicitly terminated at the end of a switch case, it continues to execute the statements of the following case. While
-this is sometimes intentional, it often is a mistake which leads to unexpected behavior. </p>
-<h2>Noncompliant Code Example</h2>
+<p>当执行没有在switch case的末尾显式终止时，它将继续执行接下来的case语句。虽然这有时是故意的，但通常是一个导致意外行为的错误。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 switch (myVariable) {
   case 1:
     foo();
     break;
-  case 2:  // Both 'doSomething()' and 'doSomethingElse()' will be executed. Is it on purpose ?
+  case 2:  // 'doSomething()'和'doSomethingElse()'都将被执行。这是故意的吗？
     doSomething();
   default:
     doSomethingElse();
     break;
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的代码示例</h2>
 <pre>
 switch (myVariable) {
   case 1:
@@ -27,25 +26,25 @@ switch (myVariable) {
     break;
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule is relaxed in the following cases:</p>
+<h2>例外</h2>
+<p>在以下case下放宽此规则：</p>
 <pre>
 switch (myVariable) {
-  case 0:                                // Empty case used to specify the same behavior for a group of cases.
+  case 0:                                // 空case用于为一组case指定相同的行为。
   case 1:
     doSomething();
     break;
-  case 2:                                // Use of return statement
+  case 2:                                // 使用return语句
     return;
-  case 3:                                // Use of throw statement
+  case 3:                                // 使用throw语句
     throw new IllegalStateException();
-  case 4:                                // Use of continue statement
+  case 4:                                // 使用continue语句
     continue;
-  default:                               // For the last case, use of break statement is optional
+  default:                               // 对于最后一个case，break语句的使用是可选的
     doSomethingElse();
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 15.0 - The MISRA C <em>switch</em> syntax shall be used. </li>
   <li> MISRA C:2004, 15.2 - An unconditional break statement shall terminate every non-empty switch clause </li>

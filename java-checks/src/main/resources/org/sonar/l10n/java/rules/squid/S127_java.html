@@ -1,26 +1,25 @@
-<p>A <code>for</code> loop stop condition should test the loop counter against an invariant value (i.e. one that is true at both the beginning and
-ending of every loop iteration). Ideally, this means that the stop condition is set to a local variable just before the loop begins. </p>
-<p>Stop conditions that are not invariant are slightly less efficient, as well as being difficult to understand and maintain, and likely lead to the
-introduction of errors in the future.</p>
-<p>This rule tracks three types of non-invariant stop conditions:</p>
+<p> <code>for</code> 循环停止条件应该针对不变值测试循环计数器（即在每次循环迭代的开始和结束时都为真的值）。理想情况下，
+这意味着在循环开始之前将停止条件设置为局部变量。 </p>
+<p>非恒定的停止条件效率稍低，难以理解和维护，并且可能导致将来引入错误。</p>
+<p>此规则监控三种类型的非恒定停止条件：</p>
 <ul>
-  <li> When the loop counters are updated in the body of the <code>for</code> loop </li>
-  <li> When the stop condition depend upon a method call </li>
-  <li> When the stop condition depends on an object property, since such properties could change during the execution of the loop. </li>
+  <li> 当循环计数器在 <code>for</code> 循环的主体中更新时 </li>
+  <li> 停止条件取决于方法调用 </li>
+  <li> 当停止条件取决于对象属性时，因为在执行循环期间这些属性可能会发生变化。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 for (int i = 0; i &lt; 10; i++) {
   ...
-  i = i - 1; // Noncompliant; counter updated in the body of the loop
+  i = i - 1; // 不合规；计数器在循环体中更新
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 for (int i = 0; i &lt; 10; i++) {...}
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> MISRA C:2004, 13.6 - Numeric variables being used within a <em>for</em> loop for iteration counting shall not be modified in the body of the
   loop. </li>

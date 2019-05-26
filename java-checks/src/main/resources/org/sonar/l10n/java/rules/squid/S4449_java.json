@@ -1,5 +1,5 @@
 {
-  "title": "Nullness of parameters should be guaranteed",
+  "title": "应保证参数的无效",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

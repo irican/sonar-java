@@ -1,27 +1,26 @@
-<p>The <code>java.util.regex.Pattern.compile()</code> methods have a significant performance cost, and therefore should be used sensibly.</p>
-<p>Moreover they are the only mechanism available to create instances of the Pattern class, which are necessary to do any pattern matching using
-regular expressions. Unfortunately that can be hidden behind convenience methods like <code>String.matches()</code> or
+<p>The <code>java.util.regex.Pattern.compile()</code> 方法具有显着的性能成本，因此应该合理使用。</p>
+<p>此外，它们是唯一可用于创建Pattern类实例的机制，这些机制是使用正则表达式进行任何模式匹配所必需的。不幸的是，它可以隐藏在诸如<code> String.matches（）</code>之类的便利方法之后或者
 <code>String.split()</code>.</p>
-<p>It is therefore somewhat easy to inadvertently repeatedly compile the same regular expression at great performance cost with no valid reason.</p>
-<p>This rule raises an issue when:</p>
+<p>因此，在没有正当理由的情况下，以极高的性能成本无意中重复编译相同的正则表达式有点容易。</p>
+<p>此规则在以下情况下引发问题：</p>
 <ul>
-  <li> A <code>Pattern</code> is compiled from a <code>String</code> literal or constant and is not stored in a static final reference. </li>
-  <li> <code>String.matches</code>, <code>String.split</code>, <code>String.replaceAll</code> or <code>String.replaceFirst</code> are invoked with a
-  <code>String</code> literal or constant. In which case the code should be refactored to use a <code>java.util.regex.Pattern</code> while respecting
-  the previous rule. </li>
+  <li> <code> Pattern </code>是从<code> String </code>文字或常量编译而来，不存储在静态最终引用中。</li>
+  <li>使用以下方法调用 <code>String.matches</code>, <code>String.split</code>, <code>String.replaceAll</code> or <code>String.replaceFirst</code> 与
+  <code>String</code> 文字或常量。在这种情况下，代码应该重构为使用<code> java.util.regex.Pattern </code>，同时尊重
+  以前的规则。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public void doingSomething(String stringToMatch) {
-  Pattern regex = Pattern.compile("myRegex");  // Noncompliant
+  Pattern regex = Pattern.compile("myRegex");  // 不合规的
   Matcher matcher = regex.matcher("s");
   // ...
-  if (stringToMatch.matches("myRegex2")) {  // Noncompliant
+  if (stringToMatch.matches("myRegex2")) {  //不合规的
     // ...
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 private static final Pattern myRegex = Pattern.compile("myRegex");
 private static final Pattern myRegex2 = Pattern.compile("myRegex2");

@@ -1,11 +1,11 @@
-<p>Many existing switch statements are essentially simulations of switch expressions, where each arm either assigns to a common target variable or
-returns a value. Expressing this as a statement is roundabout, repetitive, and error-prone.</p>
-<p>Java 12 added support for switch expressions, which provide more succint and less error-prone version of switch.</p>
-<h2>Noncompliant Code Example</h2>
+<p>许多现有的switch语句本质上是switch表达式的模拟，其中每个arm要么分配给一个公共目标变量，要么返回一个值。将其表示为语句是迂回的、重复的，
+并且容易出错。</p>
+<p>Java 12增加了对switch表达式的支持，它提供了更简洁，更不容易出错的switch版本。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 void day_of_week(DoW day) {
     int numLetters;
-    switch (day) {  // Noncompliant
+    switch (day) {  // 不合规
       case MONDAY:
       case FRIDAY:
       case SUNDAY:
@@ -27,7 +27,7 @@ void day_of_week(DoW day) {
 }
 
 int return_switch(int x) {
-    switch (x) { // Noncompliant
+    switch (x) { // 不合规
       case 1:
         return 1;
       case 2:
@@ -37,7 +37,7 @@ int return_switch(int x) {
     }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 int numLetters = switch (day) {
     case MONDAY, FRIDAY, SUNDAY -&gt; 6;

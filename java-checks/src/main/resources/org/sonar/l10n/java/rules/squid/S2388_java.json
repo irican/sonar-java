@@ -1,5 +1,5 @@
 {
-  "title": "Inner class calls to super class methods should be unambiguous",
+  "title": "对超类方法的内部类调用应该是明确的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

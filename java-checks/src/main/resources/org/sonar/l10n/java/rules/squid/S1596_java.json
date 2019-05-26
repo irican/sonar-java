@@ -1,5 +1,5 @@
 {
-  "title": "\"Collections.EMPTY_LIST\", \"EMPTY_MAP\", and \"EMPTY_SET\" should not be used",
+  "title": "不应使用\"Collections.EMPTY_LIST\"， \"EMPTY_MAP\"， 和 \"EMPTY_SET\" ",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

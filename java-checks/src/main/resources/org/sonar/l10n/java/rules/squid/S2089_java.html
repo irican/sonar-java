@@ -1,12 +1,12 @@
-<p>The fields in an HTTP request are putty in the hands of an attacker, and you cannot rely on them to tell you the truth about anything. While it may
-be safe to store such values after they have been neutralized, decisions should never be made based on their contents.</p>
-<p>This rule flags uses of the referer header field.</p>
-<h2>Noncompliant Code Example</h2>
+<p>HTTP请求中的字段是攻击者手中的putty，您不能指望它们告诉您任何事情的真相。虽然在这些值被中和之后存储这些值可能是安全的，
+但是不应该根据它们的内容做出决定。</p>
+<p>此规则标记referer头字段的使用。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class MyServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-    String referer = request.getHeader("referer");  // Noncompliant
+    String referer = request.getHeader("referer");  // 不合规
     if(isTrustedReferer(referer)){
       //..
     }
@@ -14,7 +14,7 @@ public class MyServlet extends HttpServlet {
   }
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/807">MITRE, CWE-807</a> - Reliance on Untrusted Inputs in a Security Decision </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/293">MITRE, CWE-293</a> - Using Referer Field for Authentication </li>

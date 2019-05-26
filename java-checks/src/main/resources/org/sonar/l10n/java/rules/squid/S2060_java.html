@@ -1,14 +1,13 @@
-<p>An <code>Externalizable</code> class is one which handles its own <code>Serialization</code> and deserialization. During deserialization, the first
-step in the process is a default instantiation using the class' no-argument constructor. Therefore an <code>Externalizable</code> class without a
-no-arg constructor cannot be deserialized.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code>Externalizable</code> 类是一个处理自己的 <code>Serialization</code> 和反序列化的类。在反序列化期间，
+流程中的第一步是使用类的无参数构造函数进行默认实例化。因此，不能反序列化没有无参构造函数的 <code>Externalizable</code> 类。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class Tomato implements Externalizable {  // Noncompliant; no no-arg constructor
+public class Tomato implements Externalizable {  // 不合规； 没有无参数构造函数
 
   public Tomato (String color, int weight) { ... }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Tomato implements Externalizable {
 

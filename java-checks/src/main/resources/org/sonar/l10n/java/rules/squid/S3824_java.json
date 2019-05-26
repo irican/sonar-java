@@ -1,5 +1,5 @@
 {
-  "title": "\"Map.get\" and value test should be replaced with single method call",
+  "title": "“Map.get ”和值测试应该用单个方法调用替换",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

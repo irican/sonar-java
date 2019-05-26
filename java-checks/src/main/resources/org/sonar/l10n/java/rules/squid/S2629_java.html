@@ -1,51 +1,46 @@
-<p>Passing message arguments that require further evaluation into a Guava <code>com.google.common.base.Preconditions</code> check can result in a
-performance penalty. That's because whether or not they're needed, each argument must be resolved before the method is actually called.</p>
-<p>Similarly, passing concatenated strings into a logging method can also incur a needless performance hit because the concatenation will be performed
-every time the method is called, whether or not the log level is low enough to show the message.</p>
-<p>Instead, you should structure your code to pass static or pre-computed values into <code>Preconditions</code> conditions check and logging
-calls.</p>
-<p>Specifically, the built-in string formatting should be used instead of string concatenation, and if the message is the result of a method call,
-then <code>Preconditions</code> should be skipped altoghether, and the relevant exception should be conditionally thrown instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p>将需要进一步计算的消息参数传递到Guava <code>com.google.common.base.Preconditions</code>检查会导致性能损失。这是因为无论是否需要它们，在实际调用方法之前必须解析每个参数。</p>
+<p>类似地，将连接的字符串传递到日志方法也会导致不必要的性能损失，因为每次调用该方法时都会执行连接，无论日志级别是否低到足以显示消息。</p>
+<p>相反，应该将代码结构为将静态或预先计算的值传递到<code>Preconditions</code>环境下检查和记录调用。</p>
+<p>具体来说，应该使用内置的字符串格式而不是字符串连接，如果消息是方法调用的结果，那么<code>Preconditions</code>应该跳过所有检查，并有条件地抛出相关异常。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-logger.log(Level.DEBUG, "Something went wrong: " + message);  // Noncompliant; string concatenation performed even when log level too high to show DEBUG messages
+logger.log(Level.DEBUG, "Something went wrong: " + message);  // 不合规；即使日志级别再高，无法显示调试消息，也会执行字符串连接
 
-logger.fine("An exception occurred with message: " + message); // Noncompliant
+logger.fine("An exception occurred with message: " + message); // 不合规
 
-LOG.error("Unable to open file " + csvPath, e);  // Noncompliant
+LOG.error("Unable to open file " + csvPath, e);  // 不合规
 
-Preconditions.checkState(a &gt; 0, "Arg must be positive, but got " + a);  // Noncompliant. String concatenation performed even when a &gt; 0
+Preconditions.checkState(a &gt; 0, "Arg must be positive, but got " + a);  // 不合规。即使 a &gt; 0，链接字符串也会执行
 
-Preconditions.checkState(condition, formatMessage());  // Noncompliant. formatMessage() invoked regardless of condition
+Preconditions.checkState(condition, formatMessage());  // 不合规。无论条件如何都调用formatMessage()
 
-Preconditions.checkState(condition, "message: %s", formatMessage());  // Noncompliant
+Preconditions.checkState(condition, "message: %s", formatMessage());  // 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-logger.log(Level.SEVERE, "Something went wrong: {0} ", message);  // String formatting only applied if needed
+logger.log(Level.SEVERE, "Something went wrong: {0} ", message);  // 只有在需要时才应用字符串格式
 
 logger.fine("An exception occurred with message: {}", message);  // SLF4J, Log4j
 
-logger.log(Level.SEVERE, () -&gt; "Something went wrong: " + message); // since Java 8, we can use Supplier , which will be evaluated lazily
+logger.log(Level.SEVERE, () -&gt; "Something went wrong: " + message); //由于Java 8，我们可以使用Supplier，它将被延迟判断
 
 LOG.error("Unable to open file {0}", csvPath, e);
 
 if (LOG.isDebugEnabled() {
-  LOG.debug("Unable to open file " + csvPath, e);  // this is compliant, because it will not evaluate if log level is above debug.
+  LOG.debug("Unable to open file " + csvPath, e);  // 这是兼容的，因为它不会评估日志级别是否高于debug。
 }
 
-Preconditions.checkState(arg &gt; 0, "Arg must be positive, but got %d", a);  // String formatting only applied if needed
+Preconditions.checkState(arg &gt; 0, "Arg must be positive, but got %d", a);  // 只有在需要时才应用字符串格式
 
 if (!condition) {
-  throw new IllegalStateException(formatMessage());  // formatMessage() only invoked conditionally
+  throw new IllegalStateException(formatMessage());  // 只在条件下调用formatMessage()
 }
 
 if (!condition) {
   throw new IllegalStateException("message: " + formatMessage());
 }
 </pre>
-<h2>Exceptions</h2>
-<p><code>catch</code> blocks are ignored, because the performance penalty is unimportant on exceptional paths (catch block should not be a part of
-standard program flow). Getters are ignored as well as methods called on annotations which can be considered as getters. This rule accounts for
-explicit test-level testing with SLF4J methods <code>isXXXEnabled</code> and ignores the bodies of such <code>if</code> statements.</p>
+<h2>例外</h2>
+<p><code>catch</code>块被忽略，因为异常路径上的性能损失并不重要(catch块不应该是标准程序流的一部分)。Getters和在注解上调用的方法都被忽略，注解可以被认为是ggetters。
+该规则解释了使用SLF4J方法<code>isXXXEnabled</code>进行显式测试级别的原因，并忽略了这些<code>if</code>语句的主体。</p>
 

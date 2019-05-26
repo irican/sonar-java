@@ -1,5 +1,5 @@
 {
-  "title": "\"Serializable\" classes should have a \"serialVersionUID\"",
+  "title": "\"Serializable\" 类不应有 \"serialVersionUID\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

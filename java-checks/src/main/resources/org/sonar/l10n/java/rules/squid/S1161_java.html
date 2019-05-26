@@ -1,27 +1,27 @@
-<p>Using the <code>@Override</code> annotation is useful for two reasons :</p>
+<p>使用 <code>@Override</code> 注释有两个原因:</p>
 <ul>
-  <li> It elicits a warning from the compiler if the annotated method doesn't actually override anything, as in the case of a misspelling. </li>
-  <li> It improves the readability of the source code by making it obvious that methods are overridden. </li>
+  <li> 如果带注释的方法实际上没有重写任何内容(如拼写错误)，则编译器会发出警告。 </li>
+  <li> 它通过明确表示方法被重写来提高源代码的可读性。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 class ParentClass {
   public boolean doSomething(){...}
 }
 class FirstChildClass extends ParentClass {
-  public boolean doSomething(){...}  // Noncompliant
+  public boolean doSomething(){...}  // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class ParentClass {
   public boolean doSomething(){...}
 }
 class FirstChildClass extends ParentClass {
   @Override
-  public boolean doSomething(){...}  // Compliant
+  public boolean doSomething(){...}  // 合规
 }
 </pre>
-<h2>Exceptions</h2>
-<p>This rule is relaxed when overriding a method from the <code>Object</code> class like <code>toString()</code>, <code>hashCode()</code>, ...</p>
+<h2>例外</h2>
+<p>从 <code>Object</code> 重写方法时，比如 <code>toString()</code>， <code>hashCode()</code> ……，可以放宽此规则。</p>
 

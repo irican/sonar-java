@@ -1,5 +1,5 @@
 {
-  "title": "Group ids should follow a naming convention",
+  "title": "组ID（Group ids）应遵循命名约定",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

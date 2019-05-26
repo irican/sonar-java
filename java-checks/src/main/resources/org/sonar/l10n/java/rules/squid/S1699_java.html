@@ -1,21 +1,19 @@
-<p>Calling an overridable method from a constructor could result in failures or strange behaviors when instantiating a subclass which overrides the
-method.</p>
-<p>For example:</p>
+<p>在实例化一个重写该方法的子类时，从构造函数调用可重写的方法可能会导致失败或奇怪的行为。</p>
+<p>例如：</p>
 <ul>
-  <li> The subclass class constructor starts by contract by calling the parent class constructor. </li>
-  <li> The parent class constructor calls the method, which has been overridden in the child class. </li>
-  <li> If the behavior of the child class method depends on fields that are initialized in the child class constructor, unexpected behavior (like a
-  <code>NullPointerException</code>) can result, because the fields aren't initialized yet. </li>
+  <li> 子类类构造函数通过调用父类构造函数来按契约启动。 </li>
+  <li> 父类构造函数调用已在子类中重写的方法。 </li>
+  <li> 如果子类方法的行为依赖于在子类构造函数中初始化的字段，则可能会导致意外行为（如 <code>NullPointerException</code>），因为这些字段尚未初始化。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Parent {
 
   public Parent () {
-    doSomething();  // Noncompliant
+    doSomething();  // 不合规
   }
 
-  public void doSomething () {  // not final; can be overridden
+  public void doSomething () {  // 不是 final； 能被重写
     ...
   }
 }
@@ -25,7 +23,7 @@ public class Child extends Parent {
   private String foo;
 
   public Child(String foo) {
-    super(); // leads to call doSomething() in Parent constructor which triggers a NullPointerException as foo has not yet been initialized
+    super(); // 导致在Parent构造函数中调用doSomething（），因为foo尚未初始化，所以会触发NullPointerException
     this.foo = foo;
   }
 
@@ -35,7 +33,7 @@ public class Child extends Parent {
 
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/MYYbAQ">CERT, MET05-J.</a> - Ensure that constructors do not call overridable methods
   </li>

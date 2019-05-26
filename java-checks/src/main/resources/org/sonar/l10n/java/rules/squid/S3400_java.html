@@ -1,16 +1,15 @@
-<p>There's no point in forcing the overhead of a method call for a method that always returns the same constant value. Even worse, the fact that a
-method call must be made will likely mislead developers who call the method thinking that something more is done. Declare a constant instead. </p>
-<p>This rule raises an issue if on methods that contain only one statement: the <code>return</code> of a constant value. </p>
-<h2>Noncompliant Code Example</h2>
+<p>对于总是返回相同常量值的方法强制方法调用的开销是没有意义的。更糟糕的是，必须进行方法调用这一事实可能会误导开发人员，他们称该方法认为已经完成了更多工作。声明一个常量。</p>
+<p>如果on方法只包含一个语句，则此规则会引发问题：常量值的<code>return</code></p>
+<h2>不合规的代码示例</h2>
 <pre>
 int getBestNumber() {
-  return 12;  // Noncompliant
+  return 12;  // 不合规的
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 static int bestNumber = 12;
 </pre>
-<h2>Exceptions</h2>
-<p>Methods with annotations, such as <code>@Override</code> and Spring's <code>@RequestMapping</code>, are ignored.</p>
+<h2>例外</h2>
+<p>带有注释的方法，例如<code>@Override</code> and Spring's <code>@RequestMapping</code>,将被忽略。</p>
 

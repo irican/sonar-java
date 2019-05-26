@@ -1,5 +1,5 @@
 {
-  "title": "\"readResolve\" methods should be inheritable",
+  "title": "\"readResolve\" 方法应该是可继承的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

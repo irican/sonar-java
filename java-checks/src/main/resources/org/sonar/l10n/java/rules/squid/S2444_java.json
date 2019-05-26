@@ -1,5 +1,5 @@
 {
-  "title": "Lazy initialization of \"static\" fields should be \"synchronized\"",
+  "title": "延迟初始化\"static\" 字段应该\"synchronized\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

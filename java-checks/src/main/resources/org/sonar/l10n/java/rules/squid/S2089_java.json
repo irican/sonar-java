@@ -1,5 +1,5 @@
 {
-  "title": "HTTP referers should not be relied on",
+  "title": "不应依赖 HTTP referers",
   "type": "VULNERABILITY",
   "status": "ready",
   "remediation": {

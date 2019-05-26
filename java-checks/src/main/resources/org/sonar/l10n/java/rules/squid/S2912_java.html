@@ -1,17 +1,15 @@
-<p>One thing that makes good code good is the clarity with which it conveys the intent of the original programmer to maintainers, and the proper
-choice of <code>indexOf</code> methods can help move code from confusing to clear.</p>
-<p>If you need to see whether a substring is located beyond a certain point in a string, you can test the <code>indexOf</code> the substring versus
-the target point, or you can use the version of <code>indexOf</code> which takes a starting point argument. The latter is arguably clearer because the
-result is tested against -1, which is an easily recognizable "not found" indicator.</p>
-<h2>Noncompliant Code Example</h2>
+<p>好的代码之所以好，是因为它清楚地向维护者传达了原始程序员的意图，正确地选择<code>indexOf</code> 方法可以帮助将代码从混乱变为清晰。</p>
+<p>如果需要查看子字符串是否位于字符串中的某个特定点之外，可以测试 <code>indexOf</code> 子字符串与目标点之间的关系，或者可以使用 <code>indexOf</code> 的版本，该版本使用一个起始参数。
+后者可以说更清楚，因为结果是用-1进行测试的，-1是一个很容易识别的“未找到”指标。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 String name = "ismael";
 
-if (name.indexOf("ae") &gt; 2) { // Noncompliant
+if (name.indexOf("ae") &gt; 2) { // 不合规
   // ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 String name = "ismael";
 

@@ -1,16 +1,14 @@
-<p>Passing a collection as an argument to the collection's own method is either an error - some other argument was intended - or simply nonsensical
-code. </p>
-<p>Further, because some methods require that the argument remain unmodified during the execution, passing a collection to itself can result in
-undefined behavior. </p>
-<h2>Noncompliant Code Example</h2>
+<p>将集合作为参数传递给集合自己的方法要么是一个错误(有意使用其他参数)，要么仅仅是无意义的代码。 </p>
+<p>此外，由于某些方法要求参数在执行期间保持不变，因此将集合传递给自身可能会导致未定义的行为。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 List &lt;Object&gt; objs = new ArrayList&lt;Object&gt;();
 objs.add("Hello");
 
-objs.add(objs); // Noncompliant; StackOverflowException if objs.hashCode() called
-objs.addAll(objs); // Noncompliant; behavior undefined
-objs.containsAll(objs); // Noncompliant; always true
-objs.removeAll(objs); // Noncompliant; confusing. Use clear() instead
-objs.retainAll(objs); // Noncompliant; NOOP
+objs.add(objs); // 不合规； 如果 objs.hashCode() 调用，则StackOverflowException 
+objs.addAll(objs); // 不合规； 未定义的行为
+objs.containsAll(objs); // 不合规； 总是 true
+objs.removeAll(objs); // 不合规； 令人困惑。 使用 clear() 代替
+objs.retainAll(objs); // 不合规； NOOP
 </pre>
 

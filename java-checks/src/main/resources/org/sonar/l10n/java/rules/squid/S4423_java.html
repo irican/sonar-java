@@ -1,22 +1,17 @@
-<p><code>javax.net.ssl.SSLContext.getInstance</code> returns a SSLContext object that implements the specified secure socket protocol. However, not
-all protocols are created equal and some legacy ones like "SSL", have been proven to be insecure.</p>
-<p>This rule raises an issue when an <code>SSLContext</code> is created with an insecure protocol (ie: a protocol different from "TLS", "DTLS",
-"TLSv1.2", "DTLSv1.2", "TLSv1.3", "DTLSv1.3").</p>
-<p>The recommended value is "TLS" or "DTLS" as it will always use the latest version of the protocol. However an issue will be raised if the bytecode
-was compiled with JDK7 or an even older version of JDK because they are not alias for TLSv1.2 and DTLSv1.2 but for weaker protocols.</p>
-<p>Note that calling <code>SSLContext.getInstance(...)</code> with "TLSv1.2" or "DTLSv1.2" doesn't prevent protocol version negotiation. For example,
-if a client connects with "TLSv1.1" and the server used <code>SSLContext.getInstance("TLSv1.2")</code>, the connection will use "TLSv1.1". It is
-possible to enable only specific protocol versions by calling <code>setEnabledProtocols</code> on <code>SSLSocket</code>, <code>SSLServerSocket</code>
-or <code>SSLEngine</code>. However this should be rarely needed as clients usually ask for the most secure protocol supported.</p>
-<h2>Noncompliant Code Example</h2>
+<p><code> javax.net.ssl.SSLContext.getInstance </code>返回实现指定安全套接字协议的SSLContext对象。但是，并非所有协议都是平等的，而且一些传统的协议如“SSL”已被证明是不安全的。</p>
+<p>当使用不安全的协议创建<code> SSLContext </code>时，此规则会引发问题（即：与“TLS”，“DTLS”，“TLSv1.2”，“DTLSv1.2”不同的协议，“TLSv1.3”，“DTLSv1.3”）。</p>
+<p>建议值为“TLS”或“DTLS”，因为它始终使用最新版本的协议。但是，如果使用JDK7或更旧版本的JDK编译字节码，则会出现问题，因为它们不是TLSv1.2和DTLSv1.2的别名，而是用于较弱的协议。</p>
+<p>请注意，使用“TLSv1.2”或“DTLSv1.2”调用<code> SSLContext.getInstance（...）</code>不会阻止协议版本协商。例如，如果客户端连接“TLSv1.1”并且服务器使用<code> SSLContext.getInstance（“TLSv1.2”）</code>，则连接将使用“TLSv1.1”。通过在<code> SSLSocket </code>，<code> SSLServerSocket </code>上调用<code> setEnabledProtocols </code>，可以只启用特定的协议版本。
+或<code> SSLEngine </code>。但是，这应该很少需要，因为客户端通常会要求支持最安全的协议。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-context = SSLContext.getInstance("SSL"); // Noncompliant
+context = SSLContext.getInstance("SSL"); //不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 context = SSLContext.getInstance("TLSv1.2");
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/326.html">MITRE, CWE-327</a> - Inadequate Encryption Strength </li>
   <li> <a href="http://cwe.mitre.org/data/definitions/327.html">MITRE, CWE-326</a> - Use of a Broken or Risky Cryptographic Algorithm </li>

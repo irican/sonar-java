@@ -1,5 +1,5 @@
 {
-  "title": "\"volatile\" variables should not be used with compound operators",
+  "title": "\"volatile\" 变量不应与复合运算符一起使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

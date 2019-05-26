@@ -1,15 +1,15 @@
-<p>Shared naming conventions allow teams to collaborate efficiently. This rule checks that all method names match a provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With default provided regular expression <code>^[a-z][a-zA-Z0-9]*$</code>:</p>
+<p>共享命名约定允许团队高效地协作。此规则检查所有方法名是否与提供的正则表达式匹配。</p>
+<h2>不合规的代码示例</h2>
+<p>使用默认提供的正则表达式 <code>^[a-z][a-zA-Z0-9]*$</code>:</p>
 <pre>
 public int DoSomething(){...}
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public int doSomething(){...}
 </pre>
-<h2>Exceptions</h2>
-<p>Overriding methods are excluded. </p>
+<h2>例外</h2>
+<p>重写的方法不需要符合此规则。 </p>
 <pre>
 @Override
 public int Do_Something(){...}

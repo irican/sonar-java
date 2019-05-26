@@ -1,5 +1,5 @@
 {
-  "title": "Switches should be used for sequences of simple \"String\" tests",
+  "title": "开关(Switches) 应该用于简单的“String”测试序列",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

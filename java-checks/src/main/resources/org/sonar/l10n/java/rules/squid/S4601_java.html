@@ -1,35 +1,35 @@
-<p>URL patterns configured on a <code>HttpSecurity.authorizeRequests()</code> method are considered in the order they were declared. It's easy to do a
-mistake and to declare a less restrictive configuration before a more restrictive one. Therefore, it's required to review the order of the
-"antMatchers" declarations. The <code>/**</code> one should be the last one if it is declared.</p>
-<p>This rule raises an issue when:</p>
-<p>- A pattern is preceded by another that ends with <code>**</code> and has the same beginning. E.g.: <code>/page*-admin/db/**</code> is after
+<p>
+在<code> HttpSecurity.authorizeRequests（）</code>方法上配置的URL模式按其声明的顺序进行考虑。在更严格的配置之前，很容易犯错误并声明限制较少的配置。因此，需要检查“antMatchers”声明的顺序。如果声明了<code> / ** </code>，那么它应该是最后一个。
+</p>
+<p>此规则在以下情况下引发问题：</p>
+<p>- 一个模式前面是另一个以<code>**</code>结尾并具有相同开头的模式。例如：<code>/page*-admin/db/**</code> 之后
 <code>/page*-admin/**</code></p>
-<p>- A pattern without wildcard characters is preceded by another that matches. E.g.: <code>/page-index/db</code> is after <code>/page*/**</code></p>
-<h2>Noncompliant Code Example</h2>
+<p>- 没有通配符的模式前面是另一个匹配的模式。例如：<code>/page-index/db</code> 在 <code>/page*/**</code>之后</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-      .antMatchers("/resources/**", "/signup", "/about").permitAll() // Compliant
+      .antMatchers("/resources/**", "/signup", "/about").permitAll() // 合规的
       .antMatchers("/admin/**").hasRole("ADMIN")
-      .antMatchers("/admin/login").permitAll() // Noncompliant; the pattern "/admin/login" should occurs before "/admin/**"
+      .antMatchers("/admin/login").permitAll() // 不合规的; 模式 "/admin/login" 应该发生在 "/admin/**"之前
       .antMatchers("/**", "/home").permitAll()
-      .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')") // Noncompliant; the pattern "/db/**" should occurs before "/**"
+      .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')") // 不合规的; 模式 "/db/**" 应该发生在  "/**"之前
       .and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
   }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的代码示例</h2>
 <pre>
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-      .antMatchers("/resources/**", "/signup", "/about").permitAll() // Compliant
+      .antMatchers("/resources/**", "/signup", "/about").permitAll() // 合规的
       .antMatchers("/admin/login").permitAll()
-      .antMatchers("/admin/**").hasRole("ADMIN") // Compliant
+      .antMatchers("/admin/**").hasRole("ADMIN") // 合规的
       .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-      .antMatchers("/**", "/home").permitAll() // Compliant; "/**" is the last one
+      .antMatchers("/**", "/home").permitAll() // 合规的; "/**" 是最后一个
       .and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
   }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>
 </ul>

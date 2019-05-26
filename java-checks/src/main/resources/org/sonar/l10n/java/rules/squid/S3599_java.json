@@ -1,5 +1,5 @@
 {
-  "title": "Double Brace Initialization should not be used",
+  "title": "不应使用双支撑初始化",
   "type": "BUG",
   "status": "ready",
   "remediation": {

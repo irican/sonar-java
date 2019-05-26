@@ -1,5 +1,5 @@
 {
-  "title": "Neither \"Math.abs\" nor negation should be used on numbers that could be \"MIN_VALUE\"",
+  "title": "\"Math.abs\"和negation（否定）都不应该用于可能是\"MIN_VALUE\"的数字",
   "type": "BUG",
   "status": "ready",
   "remediation": {

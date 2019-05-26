@@ -1,5 +1,5 @@
 {
-  "title": "Spring beans should be considered by \"@ComponentScan\"",
+  "title": "应该通过“@ ComponentScan”来考虑Spring bean",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

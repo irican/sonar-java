@@ -1,11 +1,11 @@
-<p>Non-static initializers are rarely used, and can be confusing for most developers because they only run when new class instances are created. When
-possible, non-static initializers should be refactored into standard constructors or field initializers.</p>
-<h2>Noncompliant Code Example</h2>
+<p>非静态初始化程序很少使用，并且可能会让大多数开发人员感到困惑，因为它们只在创建新类实例时运行。
+如果可能，应将非静态初始化程序重构为标准构造函数或字段初始化程序。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 class MyClass {
   private static final Map&lt;String, String&gt; MY_MAP = new HashMap&lt;String, String&gt;() {
 
-    // Noncompliant - HashMap should be extended only to add behavior, not for initialization
+    // 不合规 - HashMap应该只扩展为附加行为，而不是初始化
     {
       put("a", "b");
     }
@@ -13,7 +13,7 @@ class MyClass {
   };
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class MyClass {
   private static final Map&lt;String, String&gt; MY_MAP = new HashMap&lt;String, String&gt;();
@@ -23,10 +23,10 @@ class MyClass {
   }
 }
 </pre>
-<p>or using Guava:</p>
+<p>或使用 Guava:</p>
 <pre>
 class MyClass {
-  // Compliant
+  // 合规
   private static final Map&lt;String, String&gt; MY_MAP = ImmutableMap.of("a", "b");
 }
 </pre>

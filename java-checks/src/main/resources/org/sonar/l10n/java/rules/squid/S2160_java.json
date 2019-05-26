@@ -1,5 +1,5 @@
 {
-  "title": "Subclasses that add fields should override \"equals\"",
+  "title": "添加字段的子类应该重写 \"equals\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

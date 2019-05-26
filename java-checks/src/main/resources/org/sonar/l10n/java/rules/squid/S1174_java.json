@@ -1,5 +1,5 @@
 {
-  "title": "\"Object.finalize()\" should remain protected (versus public) when overriding",
+  "title": "\"Object.finalize()\" 重写时应该保持受保护（相对于public）",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

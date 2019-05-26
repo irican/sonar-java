@@ -1,5 +1,5 @@
 {
-  "title": "Consumed Stream pipelines should not be reused",
+  "title": "消耗的流管道不应重复使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Limited dependence should be placed on operator precedence",
+  "title": "应限制对运算符优先级的依赖性",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -8,7 +8,6 @@
   },
   "tags": [
     "cwe",
-    "based-on-misra",
     "misra",
     "cert"
   ],

@@ -1,11 +1,9 @@
-<p>Spring Security is coming out of the box with a protection against CSRF attacks. With 4.0, this protection is even enabled by default. Spring's
-recommendation is to "use CSRF protection for any request that could be processed by a browser by normal users". So there is no reason to disable it
-for standard web applications.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p> Spring Security开箱即用，可防范CSRF攻击。使用4.0，默认情况下甚至启用此保护。 Spring的建议是“对普通用户可以通过浏览器处理的任何请求使用CSRF保护”。因此没有理由为标准Web应用程序禁用它。</p>
+<h2>推荐的安全编码惯例</h2>
 <ul>
-  <li> activate Spring Security's CSRF protection. </li>
+  <li> 激活Spring Security的CSRF保护。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -16,7 +14,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 }
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> <a href="https://cwe.mitre.org/data/definitions/352.html">MITRE, CWE-352</a> - Cross-Site Request Forgery (CSRF) </li>
   <li> OWASP Top 10 2017 Category A6 - Security Misconfiguration </li>

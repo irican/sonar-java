@@ -1,14 +1,12 @@
-<p>Just because you <em>can</em> do something, doesn't mean you should, and that's the case with nested ternary operations. Nesting ternary operators
-results in the kind of code that may seem clear as day when you write it, but six months later will leave maintainers (or worse - future you)
-scratching their heads and cursing.</p>
-<p>Instead, err on the side of clarity, and use another line to express the nested operation as a separate statement.</p>
-<h2>Noncompliant Code Example</h2>
+<p>仅仅因为你<em>可以</em>做某事，并不意味着你应该这样做，嵌套三元操作就是这种情况。嵌套三元运算符会产生一种代码，这些代码在您编写代码时可能看起来很清楚，但六个月之后会让维护者（或者更糟 - 让未来的您）挠头和难受。</p>
+<p>相反，在清晰度方面犯了错误，并使用另一行将嵌套操作表示为单独的语句。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public String getTitle(Person p) {
-  return p.gender == Person.MALE ? "Mr. " : p.isMarried() ? "Mrs. " : "Miss ";  // Noncompliant
+  return p.gender == Person.MALE ? "Mr. " : p.isMarried() ? "Mrs. " : "Miss ";  // 不合规的
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 public String getTitle(Person p) {
   if (p.gender == Person.MALE) {

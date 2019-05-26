@@ -1,5 +1,5 @@
 {
-  "title": "\"java.lang.Error\" should not be extended",
+  "title": "\"java.lang.Error\" 不应该扩展",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

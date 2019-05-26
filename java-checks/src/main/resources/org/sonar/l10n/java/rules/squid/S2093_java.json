@@ -1,5 +1,5 @@
 {
-  "title": "Try-with-resources should be used",
+  "title": "应使用 Try-with-resources 语句",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

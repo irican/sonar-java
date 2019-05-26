@@ -1,15 +1,15 @@
-<p>There's no point in redundantly defining an <code>abstract</code> method with the same signature as a method in an <code>interface</code> that the
-class <code>implements</code>. Any concrete child classes will have to implement the method either way.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在一个类中，没有必要再定义一个与该类 <code>implements</code> 的 <code>interface</code> 中的方法具有相同签名的 <code>abstract</code> 
+成员方法。不论哪一种方式，任何具体的子类都要实现这个方法。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public interface Reportable {
   String getReport();
 }
 
 public abstract class AbstractRuleReport implements Reportable{
-  public abstract String getReport();  // Noncompliant
+  public abstract String getReport();  // 不合规
 
-  // ...
+  // ……
 }
 </pre>
 

@@ -1,5 +1,5 @@
 {
-  "title": "Classes from \"sun.*\" packages should not be used",
+  "title": "不应使用 \"sun.*\" 包中的类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

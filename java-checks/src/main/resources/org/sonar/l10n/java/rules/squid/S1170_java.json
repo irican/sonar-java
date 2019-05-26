@@ -1,5 +1,5 @@
 {
-  "title": "Public constants and fields initialized at declaration should be \"static final\" rather than merely \"final\"",
+  "title": "在声明中初始化的public常量和字段应该是 \"static final\" 而不仅仅是 \"final\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

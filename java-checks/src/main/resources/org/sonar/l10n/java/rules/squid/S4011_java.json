@@ -1,5 +1,5 @@
 {
-  "title": "Track uses of disallowed constructors",
+  "title": "跟踪不允许的构造函数的使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "tags": [

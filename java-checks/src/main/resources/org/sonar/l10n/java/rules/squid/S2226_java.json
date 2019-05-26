@@ -1,5 +1,5 @@
 {
-  "title": "Servlets should not have mutable instance fields",
+  "title": "Servlet不应该有可变的实例字段",
   "type": "BUG",
   "status": "ready",
   "remediation": {

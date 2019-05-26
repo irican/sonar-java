@@ -1,11 +1,9 @@
-<p>A <code>serialVersionUID</code> field is strongly recommended in all <code>Serializable</code> classes. If you do not provide one, one will be
-calculated for you by the compiler. The danger in not explicitly choosing the value is that when the class changes, the compiler will generate an
-entirely new id, and you will be suddenly unable to deserialize (read from file) objects that were serialized with the previous version of the
-class.</p>
-<p><code>serialVersionUID</code>'s should be declared with all of these modifiers: <code>static final long</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在所有 <code>Serializable</code> 类中，强烈建议使用 <code>serialVersionUID</code> 字段。如果您不提供一个，编译器将为您计算一个。
+不显式选择值的危险在于，当类发生更改时，编译器将生成一个全新的id，您将突然无法反序列化(从文件中读取)使用类的前一个版本序列化的对象。</p>
+<p>应使用所有这些修饰符声明 <code>serialVersionUID</code>： <code>static final long</code>。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class Raspberry extends Fruit  // Noncompliant; no serialVersionUID.
+public class Raspberry extends Fruit  // 不合规； 无 serialVersionUID.
         implements Serializable {
   private String variety;
 
@@ -16,9 +14,9 @@ public class Raspberry extends Fruit  // Noncompliant; no serialVersionUID.
 
 public class Raspberry extends Fruit
         implements Serializable {
-  private final int serialVersionUID = 1; // Noncompliant; not static &amp; int rather than long
+  private final int serialVersionUID = 1; // 不合规； 不是 static &amp; int 而不是 long
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Raspberry extends Fruit
         implements Serializable {
@@ -30,10 +28,10 @@ public class Raspberry extends Fruit
   public String getVarity() {...}
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Swing and AWT classes, <code>abstract</code> classes, <code>Throwable</code> and its subclasses (<code>Exception</code>s and <code>Error</code>s),
-and classes marked with <code>@SuppressWarnings("serial")</code> are ignored.</p>
-<h2>See</h2>
+<h2>例外</h2>
+<p>Swing 和 AWT 类， <code>abstract</code> 类， <code>Throwable</code> 及其子类 （<code>Exception</code> 和 <code>Error</code>），
+以及标有 <code>@SuppressWarnings("serial")</code> 的类被忽略。</p>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/NYCpAQ">CERT, SER00-J.</a> - Enable serialization compatibility during class evolution
   </li>

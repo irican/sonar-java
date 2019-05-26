@@ -1,5 +1,5 @@
 {
-  "title": "Track uses of \"NOPMD\" suppression comments ",
+  "title": "跟踪 \"NOPMD\" 抑制注释的使用情况",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

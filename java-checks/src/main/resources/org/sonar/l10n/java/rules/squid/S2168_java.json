@@ -1,5 +1,5 @@
 {
-  "title": "Double-checked locking should not be used",
+  "title": "不应使用双重检查锁定（Double-checked locking）",
   "type": "BUG",
   "status": "ready",
   "remediation": {

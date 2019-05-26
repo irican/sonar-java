@@ -1,13 +1,11 @@
-<p>Java 7 introduced the diamond operator (<code>&lt;&gt;</code>) to reduce the verbosity of generics code. For instance, instead of having to declare
-a <code>List</code>'s type in both its declaration and its constructor, you can now simplify the constructor declaration with <code>&lt;&gt;</code>,
-and the compiler will infer the type.</p>
-<p><strong>Note</strong> that this rule is automatically disabled when the project's <code>sonar.java.source</code> is lower than <code>7</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Java 7引入了菱形运算符(<code>&lt;&gt;</code>) 来减少泛型代码的冗长。 例如，您现在可以使用<code>List</code>简化构造函数声明，而不必在其声明及其构造函数中声明<code>&lt;&gt;</code>的类型， 编译器会推断出类型。</p>
+<p><strong>注意</strong> 当项目的<code>sonar.java.source</code> 低于<code>7</code>时，会自动禁用此规则。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-List&lt;String&gt; strings = new ArrayList&lt;String&gt;();  // Noncompliant
-Map&lt;String,List&lt;Integer&gt;&gt; map = new HashMap&lt;String,List&lt;Integer&gt;&gt;();  // Noncompliant
+List&lt;String&gt; strings = new ArrayList&lt;String&gt;();  // 不合规的
+Map&lt;String,List&lt;Integer&gt;&gt; map = new HashMap&lt;String,List&lt;Integer&gt;&gt;();  // 不合规的
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 List&lt;String&gt; strings = new ArrayList&lt;&gt;();
 Map&lt;String,List&lt;Integer&gt;&gt; map = new HashMap&lt;&gt;();

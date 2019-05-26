@@ -1,5 +1,5 @@
 {
-  "title": "\"throws\" declarations should not be superfluous",
+  "title": "\"throws\" 声明不应是多余的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

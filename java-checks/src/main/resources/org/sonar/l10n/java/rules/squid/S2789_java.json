@@ -1,5 +1,5 @@
 {
-  "title": "\"null\" should not be used with \"Optional\"",
+  "title": "\"null\"不应该与 \"Optional\"一起使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

@@ -1,32 +1,31 @@
-<p>Using such generic exceptions as <code>Error</code>, <code>RuntimeException</code>, <code>Throwable</code>, and <code>Exception</code> prevents
-calling methods from handling true, system-generated exceptions differently than application-generated errors. </p>
-<h2>Noncompliant Code Example</h2>
+<p>使用 <code>Error</code>， <code>RuntimeException</code>， <code>Throwable</code>， 和 <code>Exception</code> 这样的
+泛型异常（generic exceptions）会阻止调用方法处理由系统生成的真实异常，这种异常与应用程序生成的错误不同。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public void foo(String bar) throws Throwable {  // Noncompliant
-  throw new RuntimeException("My Message");     // Noncompliant
+public void foo(String bar) throws Throwable {  // 不合规
+  throw new RuntimeException("My Message");     // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void foo(String bar) {
   throw new MyOwnRuntimeException("My Message");
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Generic exceptions in the signatures of overriding methods are ignored, because overriding method has to follow signature of the throw declaration
-in the superclass. The issue will be raised on superclass declaration of the method (or won't be raised at all if superclass is not part of the
-analysis).</p>
+<h2>例外</h2>
+<p>重写方法的签名中的泛型异常将被忽略，因为重写方法必须遵循超类（superclass）中throw声明的签名。该方法的
+超类声明将应对该问题（如果超类不是分析的一部分，则根本不会起作用）</p>
 <pre>
 @Override
 public void myMethod() throws Exception {...}
 </pre>
-<p>Generic exceptions are also ignored in the signatures of methods that make calls to methods that throw generic exceptions.</p>
+<p>在对抛出泛型异常的方法进行调用的方法的签名中，也会忽略泛型异常。</p>
 <pre>
 public void myOtherMethod throws Exception {
-  doTheThing();  // this method throws Exception
+  doTheThing();  // 这个方法抛出异常
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/397.html">MITRE, CWE-397</a> - Declaration of Throws for Generic Exception </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/BoB3AQ">CERT, ERR07-J.</a> - Do not throw RuntimeException, Exception, or Throwable

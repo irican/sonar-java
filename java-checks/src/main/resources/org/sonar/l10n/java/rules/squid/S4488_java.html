@@ -1,16 +1,16 @@
-<p>Spring framework 4.3 introduced variants of the <code>@RequestMapping</code> annotation to better represent the semantics of the annotated methods.
-The use of <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@PatchMapping</code> and <code>@DeleteMapping</code>
-should be preferred to the use of the raw <code>@RequestMapping(method = RequestMethod.XYZ)</code>.</p>
-<h1>Noncompliant Code Example</h1>
+<p>Spring framework 4.3引入了<code> @RequestMapping </code>注释的变体，以更好地表示带注释的方法的语义。
+使用 <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@PatchMapping</code> 和 <code>@DeleteMapping</code>
+前者的使用应优先于使用 <code>@RequestMapping(method = RequestMethod.XYZ)</code>.</p>
+<h1>不符合规范的代码示例</h1>
 <pre>
-@RequestMapping(path = "/greeting", method = RequestMethod.GET) // Noncompliant
+@RequestMapping(path = "/greeting", method = RequestMethod.GET) // 不合规的
 public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 ...
 }
 </pre>
-<h1>Compliant Solution</h1>
+<h1>合规解决方案</h1>
 <pre>
-@GetMapping(path = "/greeting") // Compliant
+@GetMapping(path = "/greeting") // 合规的
 public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 ...
 }

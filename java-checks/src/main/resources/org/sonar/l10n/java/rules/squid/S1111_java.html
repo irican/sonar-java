@@ -1,12 +1,12 @@
-<p>According to the official javadoc documentation, this Object.finalize() is called by the garbage collector on an object when garbage collection
-determines that there are no more references to the object. Calling this method explicitly breaks this contract and so is misleading. </p>
-<h2>Noncompliant Code Example</h2>
+<p>根据官方的javadoc文档，当垃圾收集（garbage collection）确定不再引用该对象时，
+此对象上的垃圾收集器（garbage collector）会调用此Object.finalize（）。显式地调用该方法会破坏此契约，因此具有误导性。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 public void dispose() throws Throwable {
-  this.finalize();                       // Noncompliant
+  this.finalize();                       // 不合规
 }
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="http://cwe.mitre.org/data/definitions/586.html">MITRE, CWE-586</a> - Explicit Call to Finalize() </li>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/H4cbAQ">CERT, MET12-J.</a> - Do not use finalizers </li>

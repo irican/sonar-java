@@ -1,27 +1,26 @@
-<p>Writers of <code>Serializable</code> classes can choose to let Java's automatic mechanisms handle serialization and deserialization, or they can
-choose to handle it themselves by implementing specific methods. However, if the signatures of those methods are not exactly what is expected, they
-will be ignored and the default serialization mechanisms will kick back in. </p>
-<h2>Noncompliant Code Example</h2>
+<p> <code>Serializable</code> 类的编写者可以选择让Java的自动机制处理序列化和反序列化，或者他们可以选择通过实现特定的方法来自己处理它。
+但是，如果这些方法的签名不完全符合预期，它们将被忽略，默认的序列化机制将重新启动。 </p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Watermelon implements Serializable {
   // ...
-  void writeObject(java.io.ObjectOutputStream out)// Noncompliant; not private
+  void writeObject(java.io.ObjectOutputStream out)// 不合规； 非 private
         throws IOException
   {...}
 
   private void readObject(java.io.ObjectInputStream in)
   {...}
 
-  public void readObjectNoData()  // Noncompliant; not private
+  public void readObjectNoData()  // 不合规； 非 private
   {...}
 
-  static Object readResolve() throws ObjectStreamException  // Noncompliant; this method may have any access modifier, may not be static
+  static Object readResolve() throws ObjectStreamException  // 不合规； 此方法可能具有任何访问修饰符，可能不是static
 
-  Watermelon writeReplace() throws ObjectStreamException // Noncompliant; this method may have any access modifier, but must return Object
+  Watermelon writeReplace() throws ObjectStreamException //不合规； 此方法可能具有任何访问修饰符，但必须返回Object
   {...}
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Watermelon implements Serializable {
   // ...
@@ -43,7 +42,7 @@ public class Watermelon implements Serializable {
   private Object writeReplace() throws ObjectStreamException
   {...}
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/4gAMAg">CERT, SER01-J.</a> - Do not deviate from the proper signatures of serialization
   methods </li>

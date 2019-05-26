@@ -1,5 +1,5 @@
 {
-  "title": "Public methods should not contain selector arguments",
+  "title": "公共方法不应包含选择器参数",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

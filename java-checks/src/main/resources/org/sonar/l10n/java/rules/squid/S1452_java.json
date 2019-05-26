@@ -1,5 +1,5 @@
 {
-  "title": "Generic wildcard types should not be used in return parameters",
+  "title": "通用通配符（generic wildcard）类型不应在返回参数中使用",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

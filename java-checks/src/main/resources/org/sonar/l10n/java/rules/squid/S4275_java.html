@@ -1,27 +1,25 @@
-<p>Getters and setters provide a way to enforce encapsulation by providing <code>public</code> methods that give controlled access to
-<code>private</code> fields. However in classes with multiple fields it is not unusual that cut and paste is used to quickly create the needed getters
-and setters, which can result in the wrong field being accessed by a getter or setter.</p>
-<p>This rule raises an issue in any of these cases:</p>
+<p>Getters和setter提供了一种通过提供<code> public </code>方法来强制封装的方法，这些方法提供对<code> private </code>字段的受控访问。但是在具有多个字段的类中，使用剪切和粘贴快速创建所需的getter和setter并不常见，这可能导致getter或setter访问错误的字段。</p>
+<p>此规则在以下任何一种情况下都会出现问题：</p>
 <ul>
-  <li> A setter does not update the field with the corresponding name. </li>
-  <li> A getter does not access the field with the corresponding name. </li>
+  <li> setter不会使用相应的名称更新字段。 </li>
+  <li> getter不会访问具有相应名称的字段。 </li>
 </ul>
-<h2>Noncompliant Code Example</h2>
+<h2>不合规的代码示例</h2>
 <pre>
 class A {
   private int x;
   private int y;
 
-  public void setX(int val) { // Noncompliant: field 'x' is not updated
+  public void setX(int val) { // 不合规的: 字段 'x' 没有更新
     this.y = val;
   }
 
-  public int getY() { // Noncompliant: field 'y' is not used in the return value
+  public int getY() { // 不合规的: 字段 'y' 未在返回值中使用
     return this.x;
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class A {
   private int x;

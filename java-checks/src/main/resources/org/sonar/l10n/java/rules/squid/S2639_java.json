@@ -1,5 +1,5 @@
 {
-  "title": "Inappropriate regular expressions should not be used",
+  "title": "不应该使用不合适的正则表达式",
   "type": "BUG",
   "status": "ready",
   "remediation": {

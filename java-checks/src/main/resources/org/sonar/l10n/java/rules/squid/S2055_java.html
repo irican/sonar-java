@@ -1,9 +1,8 @@
-<p>When a <code>Serializable</code> object has a non-serializable ancestor in its inheritance chain, object deserialization (re-instantiating the
-object from file) starts at the first non-serializable class, and proceeds down the chain, adding the properties of each subsequent child class, until
-the final object has been instantiated. </p>
-<p>In order to create the non-serializable ancestor, its no-argument constructor is called. Therefore the non-serializable ancestor of a
-<code>Serializable</code> class must have a no-arg constructor. Otherwise the class is <code>Serializable</code> but not deserializable.</p>
-<h2>Noncompliant Code Example</h2>
+<p>当 <code>Serializable</code>对象在其继承链中具有不可序列化的祖先（ancestor）时，对象反序列化（从文件重新实例化对象）从第一个非可序列化的类开始，
+然后沿着链继续进行，增加每个随后的子类的属性,直到最后一个对象被实例化。</p>
+<p>为了创建不可序列化的祖先，调用其无参数构造函数。 因此，<code>Serializable</code> 类的不可序列化的祖先必须具有无参构造函数。 
+否则该类是 <code>Serializable</code> 但不可反序列化。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 public class Fruit {
   private Season ripe;
@@ -14,7 +13,7 @@ public class Fruit {
 }
 
 public class Raspberry extends Fruit
-        implements Serializable {  // Noncompliant; nonserializable ancestor doesn't have no-arg constructor
+        implements Serializable {  // 不合规； 不可序列化的祖先没有无参构造函数
   private static final long serialVersionUID = 1;
 
   private String variety;
@@ -24,12 +23,12 @@ public class Raspberry extends Fruit
   public String getVarity() {...}
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public class Fruit {
   private Season ripe;
 
-  public Fruit () {...};  // Compliant; no-arg constructor added to ancestor
+  public Fruit () {...};  // 合规；无参构造函数添加到祖先
   public Fruit (Season ripe) {...}
   public void setRipe(Season ripe) {...}
   public Season getRipe() {...}

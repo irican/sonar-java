@@ -1,5 +1,5 @@
 {
-  "title": "Custom resources should be closed",
+  "title": "应关闭自定义资源",
   "type": "BUG",
   "status": "ready",
   "tags": [

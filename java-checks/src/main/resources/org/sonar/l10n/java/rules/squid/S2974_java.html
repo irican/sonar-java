@@ -1,7 +1,7 @@
-<p>Classes with only <code>private</code> constructors should be marked <code>final</code> to prevent any mistaken extension attempts.</p>
-<h2>Noncompliant Code Example</h2>
+<p>只有<code>private</code> 构造函数的类应该标记为<code>final</code> ，以防止任何错误的扩展尝试。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-public class PrivateConstructorClass {  // Noncompliant
+public class PrivateConstructorClass {  // 不合规
   private PrivateConstructorClass() {
     // ...
   }
@@ -11,9 +11,9 @@ public class PrivateConstructorClass {  // Noncompliant
   }
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
-public final class PrivateConstructorClass {  // Compliant
+public final class PrivateConstructorClass {  // 合规的
   private PrivateConstructorClass() {
     // ...
   }

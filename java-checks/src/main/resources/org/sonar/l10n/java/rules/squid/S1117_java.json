@@ -1,5 +1,5 @@
 {
-  "title": "Local variables should not shadow class fields",
+  "title": "局部变量不应该隐藏类字段",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,10 +7,7 @@
     "constantCost": "5min"
   },
   "tags": [
-    "based-on-misra",
-    "misra",
     "cert",
-    "suspicious",
     "pitfall"
   ],
   "standards": [

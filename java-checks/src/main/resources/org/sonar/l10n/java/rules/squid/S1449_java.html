@@ -1,19 +1,17 @@
-<p>Failure to specify a locale when calling the methods <code>toLowerCase()</code>, <code>toUpperCase()</code> or <code>format()</code> on
-<code>String</code> objects means the system default encoding will be used, possibly creating problems with international characters or number
-representations. For instance with the Turkish language, when converting the small letter 'i' to upper case, the result is capital letter 'I' with a
-dot over it.</p>
-<p>Case conversion without a locale may work fine in its "home" environment, but break in ways that are extremely difficult to diagnose for customers
-who use different encodings. Such bugs can be nearly, if not completely, impossible to reproduce when it's time to fix them. For locale-sensitive
-strings, the correct locale should always be used, but <code>Locale.ENGLISH</code> can be used for case-insensitive ones.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在 <code>String</code> 对象上调用方法 <code>toLowerCase()</code>， <code>toUpperCase()</code> 或 <code>format()</code> 时未能指定区域设置（locale），
+这意味着将使用系统默认编码，可能会产生国际字符或数字表示的问题。例如，使用土耳其语，当将小写字母“i”转换为大写字母时，结果是大写字母“I”，上面有一个点。</p>
+<p>没有区域设置（locale）的case转换在其“home”环境中可能工作得很好，但是对于使用不同编码的客户来说，这种转换的方式非常难以诊断。
+当修复这些bug的时候，即使不能完全修复，也几乎不可能重现这些bug。对于对语言环境敏感的字符串，应该始终使用正确的语言环境，
+但是 <code>Locale.ENGLISH</code> 可用于不区分大小写的语言环境。</p>
+<h2>不合规的代码示例</h2>
 <pre>
 myString.toLowerCase()
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 myString.toLowerCase(Locale.TR)
 </pre>
-<h2>See</h2>
+<h2>请参阅</h2>
 <ul>
   <li> <a href="https://www.securecoding.cert.org/confluence/x/EwAiAg">CERT, STR02-J.</a> - Specify an appropriate locale when comparing
   locale-dependent data </li>

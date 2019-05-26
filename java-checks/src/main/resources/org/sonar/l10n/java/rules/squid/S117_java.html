@@ -1,32 +1,31 @@
-<p>Shared naming conventions allow teams to collaborate effectively. This rule raises an issue when a local variable or function parameter name does
-not match the provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default regular expression <code>^[a-z][a-zA-Z0-9]*$</code>:</p>
+<p>共享命名约定能使团队有效协作。当局部变量或函数参数名称与提供的正则表达式不匹配时，此规则会提出问题。</p>
+<h2>不合规的代码示例</h2>
+<p>使用默认的正则表达式 <code>^[a-z][a-zA-Z0-9]*$</code>：</p>
 <pre>
 public void doSomething(int my_param) {
   int LOCAL;
   ...
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 public void doSomething(int myParam) {
   int local;
   ...
 }
 </pre>
-<h2>Exceptions</h2>
-<p>Loop counters are ignored by this rule.</p>
+<h2>例外</h2>
+<p>此规则将忽略循环计数器。</p>
 <pre>
-for (int i_1 = 0; i_1 &lt; limit; i_1++) {  // Compliant
+for (int i_1 = 0; i_1 &lt; limit; i_1++) {  // 合规
   // ...
 }
 </pre>
-<p>as well as one-character <code>catch</code> variables: </p>
+<p>以及单字符 <code>catch</code> 变量： </p>
 <pre>
 try {
 //...
-} catch (Exception e) { // Compliant
+} catch (Exception e) { // 合规
 }
 </pre>
 

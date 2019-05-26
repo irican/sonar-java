@@ -1,5 +1,5 @@
 {
-  "title": "\"Stream\" call chains should be simplified when possible",
+  "title": "应尽可能简化“Stream ”调用链",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

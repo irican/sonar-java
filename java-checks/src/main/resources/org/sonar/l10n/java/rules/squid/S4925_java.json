@@ -1,5 +1,5 @@
 {
-  "title": "\"Class.forName()\" should not load JDBC 4.0+ drivers",
+  "title": "\"Class.forName()\" 不应加载JDBC 4.0+驱动程序",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

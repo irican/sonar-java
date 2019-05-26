@@ -1,29 +1,26 @@
-<p>A cookie's domain specifies which websites should be able to read it. Left blank, browsers are supposed to only send the cookie to sites that
-exactly match the sending domain. For example, if a cookie was set by <em>lovely.dream.com</em>, it should only be readable by that domain, and not by
-<em>nightmare.com</em> or even <em>strange.dream.com</em>. If you want to allow sub-domain access for a cookie, you can specify it by adding a dot in
-front of the cookie's domain, like so: <em>.dream.com</em>. But cookie domains should always use at least two levels.</p>
-<p>Cookie domains can be set either programmatically or via configuration. This rule raises an issue when any cookie domain is set with a single
-level, as in <em>.com</em>.</p>
-<h2>Noncompliant Code Example</h2>
+<p> Cookie的域名指定哪些网站应该能够阅读它。如果留空，浏览器应该只将cookie发送到与发送域完全匹配的网站。例如，如果cookie是由<em>lovely.dream.com</em>设置的，那么它应该只能由该域读取，而不能由
+<em>nightmare.com</em> 或甚至 <em>strange.dream.com</em>. 如果您想允许cookie的子域访问，您可以通过在cookie的域前添加一个点来指定它，如下所示： <em>.dream.com</em>. 但cookie域应始终使用至少两个级别</p>
+<p>Cookie域可以通过编程方式或通过配置进行设置。当任何cookie域设置为单个级别时，此规则会引发问题，如<em>.com</em>.</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 Cookie myCookie = new Cookie("name", "val");
-myCookie.setDomain(".com"); // Noncompliant
+myCookie.setDomain(".com"); // 不合规的
 java.net.HttpCookie myOtherCookie = new java.net.HttpCookie("name", "val");
-myOtherCookie.setDomain(".com"); // Noncompliant
+myOtherCookie.setDomain(".com"); // 不合规的
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
-Cookie myCookie = new Cookie("name", "val"); // Compliant; by default, cookies are only returned to the server that sent them.
+Cookie myCookie = new Cookie("name", "val"); // 合规;默认情况下，cookie仅返回发送它们的服务器。
 
-// or
+// 或者
 
 Cookie myCookie = new Cookie("name", "val");
-myCookie.setDomain(".myDomain.com"); // Compliant
+myCookie.setDomain(".myDomain.com"); //合规的
 
 java.net.HttpCookie myOtherCookie = new java.net.HttpCookie("name", "val");
-myOtherCookie.setDomain(".myDomain.com"); // Compliant
+myOtherCookie.setDomain(".myDomain.com"); // 合规的
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
   <li> OWASP Top 10 2017 Category A7 - Cross-Site Scripting (XSS) </li>
 </ul>

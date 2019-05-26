@@ -1,11 +1,10 @@
-<p>When two locks are held simultaneously, a <code>wait</code> call only releases one of them. The other will be held until some other thread requests
-a lock on the awaited object. If no unrelated code tries to lock on that object, then all other threads will be locked out, resulting in a
-deadlock.</p>
-<h2>Noncompliant Code Example</h2>
+<p>同时持有两个锁的时候，一个 <code>wait</code> 调用只能释放其中的一个，而另一个锁在其他线程申请锁定那个对象之前会保持持有的状
+态。如果没有相关的代码尝试锁定那个对象，那么其他的线程都会被锁死，从而造成死锁。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-synchronized (this.mon1) {  // threadB can't enter this block to request this.mon2 lock &amp; release threadA
+synchronized (this.mon1) {  // 线程B无法进入该代码块以请求this.mon2锁&amp;释放threadA
 	synchronized (this.mon2) {
-		this.mon2.wait();  // Noncompliant; threadA is stuck here holding lock on this.mon1
+		this.mon2.wait();  // 不合规，线程A持有对this.mon1的锁并卡在这里
 	}
 }
 </pre>

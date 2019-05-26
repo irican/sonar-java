@@ -1,5 +1,5 @@
 {
-  "title": "Anonymous inner classes containing only one method should become lambdas",
+  "title": "只包含一个方法的匿名内部类应该变成lambdas",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

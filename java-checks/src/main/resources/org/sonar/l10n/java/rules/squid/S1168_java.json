@@ -1,5 +1,5 @@
 {
-  "title": "Empty arrays and collections should be returned instead of null",
+  "title": "应返回空数组和集合而不是null",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

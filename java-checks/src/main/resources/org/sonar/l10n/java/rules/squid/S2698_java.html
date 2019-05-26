@@ -1,17 +1,15 @@
-<p>Adding messages to JUnit assertions is an investment in your future productivity. Spend a few seconds writing them now, and you'll save a lot of
-time on the other end when either the tests fail and you need to quickly diagnose the problem, or when you need to maintain the tests and the
-assertion messages work as a sort of documentation.</p>
-<h2>Noncompliant Code Example</h2>
+<p>向JUnit断言添加消息是对未来生产力的一项投资。现在花几秒钟编写它们，当测试失败并且需要快速诊断问题时，或者当需要维护测试和断言消息作为一种文档时，将节省大量时间。</p>
+<h2>不合规的代码示例</h2>
 <pre>
-assertEquals(4, list.size());  // Noncompliant
+assertEquals(4, list.size());  // 不合规
 
 try {
-  fail();  // Noncompliant
+  fail();  // 不合规
 } catch (Exception e) {
-  assertThat(list.get(0)).isEqualTo("pear");  // Noncompliant
+  assertThat(list.get(0)).isEqualTo("pear");  // 不合规
 }
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 assertEquals("There should have been 4 Fruits in the list", 4, list.size());
 

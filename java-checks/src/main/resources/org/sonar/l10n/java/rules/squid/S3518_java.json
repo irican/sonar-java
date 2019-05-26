@@ -1,5 +1,5 @@
 {
-  "title": "Zero should not be a possible denominator",
+  "title": "0不可以做分母",
   "type": "BUG",
   "status": "ready",
   "remediation": {
